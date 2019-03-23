@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "dom-to-image": "^2.6.0",
+    "file-saver": "^2.0.1",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1"
   },

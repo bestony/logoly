@@ -54,6 +54,8 @@
 
 <script>
 import domtoimage from 'dom-to-image';
+const FileSaver = require('file-saver');
+
 
 export default {
     name:'pornhub',
@@ -63,7 +65,7 @@ export default {
 
             domtoimage.toPng(node)
                 .then(function (blob) {
-                    window.saveAs(blob, 'logo.png');
+                    FileSaver.saveAs(blob, "logo.png");
                 });
         }
     }
