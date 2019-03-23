@@ -7,6 +7,7 @@
     flex-direction column
     justify-content center
     align-items center
+    padding 50px 0px
 h3
     margin-block-start 1px
 h2 
@@ -16,7 +17,7 @@ h2
     flex-direction row
     justify-content space-around
     align-items center
-    padding 20px
+    padding 50px 0
 </style>
 
 <template>
