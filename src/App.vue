@@ -57,6 +57,7 @@ body,
   height: 100%;
   background-color: #000;
   color: #f90;
+  font-family: Arial,Helvetica,sans-serif;
 }
 a {
   color: #f90;
