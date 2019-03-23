@@ -74,7 +74,7 @@ a {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-top: 20px;
+  padding: 20px 0px;
 }
 .menu {
   width: 60%;
