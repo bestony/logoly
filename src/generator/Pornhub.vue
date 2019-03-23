@@ -25,6 +25,11 @@
     .note
         text-align center
         color #666
+        padding-top 20px
+    .download
+        text-align center
+        margin-top 20px
+    
 </style>
 
 <template>
@@ -37,6 +42,23 @@
             <div class="note">
                 Click on the text above and modify it to generate your own logo
             </div>
+            <div class="switch">
+
+            </div>
+            <div class="download">
+                <a  class="button" @click="download">Download</a>
+            </div>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    name:'pornhub',
+    methods:{
+        download(){
+            alert("Download")
+        }
+    }
+}
+</script>

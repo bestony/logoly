@@ -111,4 +111,28 @@ span.disable{
   width: 60%;
   padding: 20px 20%;
 }
+.button{
+     display: inline-block;
+    zoom: 1;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 100%;
+    padding: 0.5em 1em;
+    color: #000;
+    border: 1px solid #999;  /*IE 6/7/8*/
+    border: none rgba(0, 0, 0, 0);  /*IE9 + everything else*/
+    background-color: #f90;
+    text-decoration: none;
+    border-radius: 2px;
+}
 </style>
