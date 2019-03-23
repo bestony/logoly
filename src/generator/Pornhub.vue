@@ -27,10 +27,7 @@
         flex-direction row
         justify-content space-around
         padding 20px 0px 0px 0px
-    .note
-        text-align center
-        color #666
-        padding-top 20px
+
     .download
         text-align center
         margin-top 40px
@@ -44,9 +41,6 @@
             <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px'}">
                 <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Porn</span>
                 <span class="postfix" :style="{'color':postfixColor, 'background-color':postfixBgColor}" contenteditable>Hub</span>
-            </div>
-            <div class="note">
-                Click on the text above and modify it to generate your own logo
             </div>
             <div class="switch">
                 <span>
