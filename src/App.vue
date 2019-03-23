@@ -12,7 +12,7 @@
           <span class="prefix">Porn</span>
           <span class="postfix">Hub</span>
         </router-link>
-        <span class="disable yb">
+        <span class="disable">
           <span class="prefix">You</span>  
           <span class="postfix">tube</span>
         </span>
@@ -88,7 +88,7 @@ a {
   letter-spacing: -1px;
 }
 span.disable{
-  color:#ccc;
+  color:#777 !important;
   font-weight: 500;
 }
 
