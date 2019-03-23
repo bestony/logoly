@@ -20,7 +20,13 @@ p
         </h3>
         <p>
             Logoly.pro is a creative Logo Genetor, you can generate Logo with pattern like PornHub , Youtube , and more.
-
+            <br><br>
+            <strong style="color:#f90">
+            If you think this Project is good, Please 
+            <a href="https://github.com/bestony/logoly">
+            <img src="https://img.shields.io/badge/give%20me-a%20star-green.svg" />
+            </a>
+            </strong>
         </p>
     </div>
 </template>
