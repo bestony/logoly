@@ -63,6 +63,10 @@
         <div class="download"  v-tooltip="{content:'Download Your Own Logo', show: true, classes: 'tooltipClasses'}">
             <a  class="button" @click="download">Download</a>
         </div>
+
+        <div class="download">
+            <a  class="button" style="background-color:#1da1f2;color:#fff;" @click="twitter"><i class="iconfont icon-twitter"></i> Tweet</a>
+        </div>
     </div>
 </template>
 
@@ -92,6 +96,11 @@ export default {
                 .then(function (blob) {
                     FileSaver.saveAs(blob, "logo.png");
                 });
+        },
+        twitter(){
+            let url = "https://logoly.pro"
+            let text = encodeURIComponent(`Built with #Logoly, by @xiqingongzi ${url}`)
+            window.open(`https://twitter.com/intent/tweet?text=${text}`)
         }
     }
 }
