@@ -5,6 +5,7 @@ import VueAnalytics from 'vue-analytics'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
