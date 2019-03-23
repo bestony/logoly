@@ -32,18 +32,19 @@
     text-align center
     margin-top 40px
 
+
 </style>
 
 <template>
     <div class="pornhub">
-        <div class="box">
+        <div class="box" v-tooltip="{content:'Edit The Text to Create Your Own Logo', show: true, classes: 'tooltipClasses'}">
             <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px'}">
                 <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Porn</span>
                 <span class="postfix" :style="{'color':postfixColor, 'background-color':postfixBgColor}" contenteditable>Hub</span>
             </div>
         </div>
-         <div class="switch">
-                <span id="prefixColor">
+         <div class="switch" >
+                <span id="prefixColor"  v-tooltip="{content:'Switch Color as You Like', show: true, classes: 'tooltipClasses'}">
                   Prefix Text Color : <input type="color" v-model="prefixColor"  />
                 </span>
                 <span>
@@ -59,7 +60,7 @@
                 </span>
         </div>
             
-        <div class="download">
+        <div class="download"  v-tooltip="{content:'Download Your Own Logo', show: true, classes: 'tooltipClasses'}">
             <a  class="button" @click="download">Download</a>
         </div>
     </div>
