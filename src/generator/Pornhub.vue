@@ -12,7 +12,7 @@
     .editarea
         padding 10px
         text-align center
-        font-size 50px
+        font-size 60px
         .prefix
             color #fff
             padding 5px 5px
@@ -33,7 +33,7 @@
         padding-top 20px
     .download
         text-align center
-        margin-top 20px
+        margin-top 40px
     
 </style>
 
@@ -41,7 +41,7 @@
     <div class="pornhub">
         <v-tour name="pornhub" :steps="steps"></v-tour>
         <div class="box">
-            <div class="editarea" id="logo">
+            <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px'}">
                 <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Porn</span>
                 <span class="postfix" :style="{'color':postfixColor, 'background-color':postfixBgColor}" contenteditable>Hub</span>
             </div>
@@ -57,6 +57,9 @@
                 </span>
                 <span>
                   Postfix Background Color : <input type="color" v-model="postfixBgColor"  />
+                </span>
+                <span>
+                  Font Size: <input type="range" v-model="fontSize"  /> {{fontSize}}px
                 </span>
             </div>
             
@@ -79,6 +82,7 @@ export default {
             prefixColor: "#ffffff",
             postfixColor: "#000000",
             postfixBgColor: "#ff9900",
+            fontSize:"60",
             steps: [
                 {
                     target: '#logo',  // We're using document.querySelector() under the hood
