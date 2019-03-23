@@ -31,7 +31,7 @@
 .download
     text-align center
     margin-top 40px
-    
+
 </style>
 
 <template>
@@ -56,7 +56,7 @@
             </div>
         <div class="switch">
             <span>
-                  Font Size: <input type="range" v-model="fontSize"  /> {{fontSize}}px
+                  Font Size: <input type="range" min=30 max=200 v-model="fontSize"  /> {{fontSize}}px
                 </span>
         </div>
             
@@ -102,7 +102,7 @@ export default {
         }
     },
     mounted: function () {
-      this.$tours['pornhub'].start()
+    //   this.$tours['pornhub'].start()
     },
     methods:{
         download(){
