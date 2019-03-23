@@ -22,6 +22,11 @@
             background-color #f90
             padding 5px 10px
             border-radius 7px
+    .switch
+        display flex
+        flex-direction row
+        justify-content space-around
+        padding 20px 0px 0px 0px
     .note
         text-align center
         color #666
@@ -36,14 +41,25 @@
     <div class="pornhub">
         <div class="box">
             <div class="editarea" id="logo">
-                <span class="prefix" contenteditable>Porn</span>
-                <span class="postfix" contenteditable>Hub</span>
+                <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Porn</span>
+                <span class="postfix" :style="{'color':postfixColor, 'background-color':postfixBgColor}" contenteditable>Hub</span>
             </div>
             <div class="note">
                 Click on the text above and modify it to generate your own logo
             </div>
             <div class="switch">
-
+                <span>
+                  Prefix Text Color : <input type="color" v-model="prefixColor"  />
+                </span>
+                <span>
+                  Postfix Text Color : <input type="color" v-model="postfixColor"  />
+                </span>
+                <span>
+                  Postfix Background Color : <input type="color" v-model="postfixBgColor"  />
+                </span>
+            </div>
+            <div class="note">
+                Click The Color Picker to change Logo Color
             </div>
             <div class="download">
                 <a  class="button" @click="download">Download</a>
@@ -59,6 +75,13 @@ const FileSaver = require('file-saver');
 
 export default {
     name:'pornhub',
+    data(){
+        return {
+            prefixColor: "#ffffff",
+            postfixColor: "#000000",
+            postfixBgColor: "#ff9900"
+        }
+    },
     methods:{
         download(){
             var node = document.getElementById('logo');
