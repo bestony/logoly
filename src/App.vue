@@ -21,17 +21,22 @@
       </div>
     </div>
     <router-view class="router-view"/>
-  
+    <Slogan class="router-view"></Slogan>
+    <Faq class="router-view"></Faq>
   </div>
 </template>
 
 <script>
 import Logo from "./components/Logo";
 import Description from "./components/Description";
+import Slogan from "./components/Slogan";
+import Faq from "./components/Faq";
 export default {
   components: {
     logo: Logo,
-    Description
+    Description,
+    Slogan,
+    Faq
   }
 };
 </script>
