@@ -1,3 +1,9 @@
+<style lang="stylus" scoped>
+p
+    text-align center
+    color #666
+</style>
+
 <template>
-    <h1>Copyright</h1>
+    <p>© Bestony 2019</p>
 </template>
