@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "dom-to-image": "^2.6.0",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1"
   },

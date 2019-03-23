@@ -35,7 +35,7 @@
 <template>
     <div class="pornhub">
         <div class="box">
-            <div class="editarea">
+            <div class="editarea" id="logo">
                 <span class="prefix" contenteditable>Porn</span>
                 <span class="postfix" contenteditable>Hub</span>
             </div>
@@ -53,11 +53,18 @@
 </template>
 
 <script>
+import domtoimage from 'dom-to-image';
+
 export default {
     name:'pornhub',
     methods:{
         download(){
-            alert("Download")
+            var node = document.getElementById('logo');
+
+            domtoimage.toPng(node)
+                .then(function (blob) {
+                    window.saveAs(blob, 'logo.png');
+                });
         }
     }
 }
