@@ -23,6 +23,7 @@
     <router-view class="router-view"/>
     <Slogan class="router-view"></Slogan>
     <Faq class="router-view"></Faq>
+    <Author class="router-view"></Author>
   </div>
 </template>
 
@@ -31,12 +32,14 @@ import Logo from "./components/Logo";
 import Description from "./components/Description";
 import Slogan from "./components/Slogan";
 import Faq from "./components/Faq";
+import Author from "./components/Author";
 export default {
   components: {
     logo: Logo,
     Description,
     Slogan,
-    Faq
+    Faq,
+    Author
   }
 };
 </script>
