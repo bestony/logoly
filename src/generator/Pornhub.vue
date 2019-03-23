@@ -43,7 +43,7 @@
                 <span class="postfix" :style="{'color':postfixColor, 'background-color':postfixBgColor}" contenteditable>Hub</span>
             </div>
             <div class="switch">
-                <span>
+                <span id="prefixColor">
                   Prefix Text Color : <input type="color" v-model="prefixColor"  />
                 </span>
                 <span>
@@ -80,17 +80,20 @@ export default {
             steps: [
                 {
                     target: '#logo',  // We're using document.querySelector() under the hood
-                    content: `Edit This Text To Generate Your own Logo`
+                    content: `Edit This Text To Generate Your own Logo`,
+                    params: {
+                        placement: 'top'
+                    }
                 },
                 {
-                    target: '.switch',
+                    target: '#prefixColor',
                     content: 'You Can change Color you like'
                 },
                 {
                     target: '.download',
                     content: 'While you compete your set, Download Your Own Logo.',
                     params: {
-                    placement: 'top'
+                        placement: 'bottom'
                     }
                 }
             ]
