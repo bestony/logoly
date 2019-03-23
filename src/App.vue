@@ -8,6 +8,7 @@
     </div>
     <div id="nav">
       <div class="menu">
+        <router-link to="/about">About</router-link>
         <router-link to="/" class="pb">
           <span class="prefix">Porn</span>
           <span class="postfix">Hub</span>
@@ -19,7 +20,8 @@
         <span class="disable">More in Progress...</span>
       </div>
     </div>
-    <router-view/>
+    <router-view class="router-view"/>
+  
   </div>
 </template>
 
@@ -91,5 +93,8 @@ span.disable{
   color:#777 !important;
   font-weight: 500;
 }
-
+.router-view{
+  width: 60%;
+  padding: 20px 20%;
+}
 </style>
