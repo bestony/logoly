@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Ribbon></Ribbon>
     <div class="logo">
       <logo></logo>
     </div>
@@ -33,13 +34,15 @@ import Description from "./components/Description";
 import Slogan from "./components/Slogan";
 import Faq from "./components/Faq";
 import Author from "./components/Author";
+import Ribbon from "./components/Ribbon";
 export default {
   components: {
     logo: Logo,
     Description,
     Slogan,
     Faq,
-    Author
+    Author,
+    Ribbon
   }
 };
 </script>
