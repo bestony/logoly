@@ -12,7 +12,8 @@
     "file-saver": "^2.0.1",
     "vue": "^2.6.6",
     "vue-analytics": "^5.16.4",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-tour": "^1.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",

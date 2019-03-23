@@ -39,6 +39,7 @@
 
 <template>
     <div class="pornhub">
+        <v-tour name="pornhub" :steps="steps"></v-tour>
         <div class="box">
             <div class="editarea" id="logo">
                 <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Porn</span>
@@ -58,9 +59,7 @@
                   Postfix Background Color : <input type="color" v-model="postfixBgColor"  />
                 </span>
             </div>
-            <div class="note">
-                Click The Color Picker to change Logo Color
-            </div>
+            
             <div class="download">
                 <a  class="button" @click="download">Download</a>
             </div>
@@ -79,8 +78,28 @@ export default {
         return {
             prefixColor: "#ffffff",
             postfixColor: "#000000",
-            postfixBgColor: "#ff9900"
+            postfixBgColor: "#ff9900",
+            steps: [
+                {
+                    target: '#logo',  // We're using document.querySelector() under the hood
+                    content: `Edit This Text To Generate Your own Logo`
+                },
+                {
+                    target: '.switch',
+                    content: 'You Can change Color you like'
+                },
+                {
+                    target: '.download',
+                    content: 'While you compete your set, Download Your Own Logo.',
+                    params: {
+                    placement: 'top'
+                    }
+                }
+            ]
         }
+    },
+    mounted: function () {
+      this.$tours['pornhub'].start()
     },
     methods:{
         download(){
