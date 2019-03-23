@@ -4,11 +4,10 @@
     flex-direction  column
     align-items center
 .box
-    height 300px
-    width 100%
-    border 2px solid #f90
+    border 2px solid #333
     border-radius 10px
-    padding 20px 0px
+    padding 10px 0px
+    margin 40px 0px
     .editarea
         padding 10px
         text-align center
@@ -22,15 +21,16 @@
             background-color #f90
             padding 5px 10px
             border-radius 7px
-    .switch
-        display flex
-        flex-direction row
-        justify-content space-around
-        padding 20px 0px 0px 0px
+.switch
+    display flex
+    flex-direction row
+    justify-content space-around
+    padding 40px 0px 0px 0px
+    width 80%
 
-    .download
-        text-align center
-        margin-top 40px
+.download
+    text-align center
+    margin-top 40px
     
 </style>
 
@@ -42,7 +42,8 @@
                 <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Porn</span>
                 <span class="postfix" :style="{'color':postfixColor, 'background-color':postfixBgColor}" contenteditable>Hub</span>
             </div>
-            <div class="switch">
+        </div>
+         <div class="switch">
                 <span id="prefixColor">
                   Prefix Text Color : <input type="color" v-model="prefixColor"  />
                 </span>
@@ -52,14 +53,15 @@
                 <span>
                   Postfix Background Color : <input type="color" v-model="postfixBgColor"  />
                 </span>
-                <span>
+            </div>
+        <div class="switch">
+            <span>
                   Font Size: <input type="range" v-model="fontSize"  /> {{fontSize}}px
                 </span>
-            </div>
+        </div>
             
-            <div class="download">
-                <a  class="button" @click="download">Download</a>
-            </div>
+        <div class="download">
+            <a  class="button" @click="download">Download</a>
         </div>
     </div>
 </template>
