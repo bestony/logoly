@@ -99,7 +99,7 @@ export default {
         },
         twitter(){
             let url = "https://logoly.pro"
-            let text = encodeURIComponent(`Built with #Logoly, by @xiqingongzi ${url}`)
+            let text = encodeURIComponent(`Built with #LogolyPro, by @xiqingongzi ${url}`)
             window.open(`https://twitter.com/intent/tweet?text=${text}`)
         }
     }
