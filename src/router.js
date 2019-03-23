@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import VueAnalytics from 'vue-analytics'
 
 Vue.use(Router)
 
@@ -8,12 +9,32 @@ export default new Router({
     {
       path: '/',
       name: 'pornhub',
-      component: () => import(/* webpackChunkName: "pornhub" */ './generator/Pornhub.vue')
+      component: () => import(/* webpackChunkName: "pornhub" */ './generator/Pornhub.vue'),
+      meta: {
+        analytics: {
+          pageviewTemplate (route) {
+            return {
+              title: 'Pornhub Generator',
+              page: route.path,
+            }
+          }
+        }
+      }
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      meta: {
+        analytics: {
+          pageviewTemplate (route) {
+            return {
+              title: 'About',
+              page: route.path,
+            }
+          }
+        }
+      }
     }
   ]
 })
