@@ -21,10 +21,11 @@
         <span class="disable">More in Progress...</span>
       </div>
     </div>
-    <router-view class="router-view"/>
-    <Slogan class="router-view"></Slogan>
-    <Faq class="router-view"></Faq>
-    <Author class="router-view"></Author>
+    <router-view class="container"/>
+    <Slogan class="container"></Slogan>
+    <Faq class="container"></Faq>
+    <Author class="container"></Author>
+    <Copyright  class="container"></Copyright>
   </div>
 </template>
 
@@ -35,6 +36,7 @@ import Slogan from "./components/Slogan";
 import Faq from "./components/Faq";
 import Author from "./components/Author";
 import Ribbon from "./components/Ribbon";
+import Copyright from "./components/Copyright";
 export default {
   components: {
     logo: Logo,
@@ -42,7 +44,8 @@ export default {
     Slogan,
     Faq,
     Author,
-    Ribbon
+    Ribbon,
+    Copyright
   }
 };
 </script>
@@ -104,7 +107,7 @@ span.disable{
   color:#777 !important;
   font-weight: 500;
 }
-.router-view{
+.container{
   width: 60%;
   padding: 20px 20%;
 }
