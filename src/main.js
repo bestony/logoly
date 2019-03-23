@@ -2,10 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import VueAnalytics from 'vue-analytics'
-import VueTour from 'vue-tour'
 
 import './assets/iconfont/iconfont.css'
-require('vue-tour/dist/vue-tour.css')
 
 
 Vue.config.productionTip = false
@@ -16,7 +14,6 @@ Vue.use(VueAnalytics, {
     screenview: true
   }
 })
-Vue.use(VueTour)
 
 
 new Vue({

@@ -36,7 +36,6 @@
 
 <template>
     <div class="pornhub">
-        <v-tour name="pornhub" :steps="steps"></v-tour>
         <div class="box">
             <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px'}">
                 <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Porn</span>
@@ -79,26 +78,6 @@ export default {
             postfixColor: "#000000",
             postfixBgColor: "#ff9900",
             fontSize:"60",
-            steps: [
-                {
-                    target: '#logo',  // We're using document.querySelector() under the hood
-                    content: `Edit This Text To Generate Your own Logo`,
-                    params: {
-                        placement: 'top'
-                    }
-                },
-                {
-                    target: '#prefixColor',
-                    content: 'You Can change Color you like'
-                },
-                {
-                    target: '.download',
-                    content: 'While you compete your set, Download Your Own Logo.',
-                    params: {
-                        placement: 'bottom'
-                    }
-                }
-            ]
         }
     },
     mounted: function () {
