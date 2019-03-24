@@ -28,7 +28,6 @@
 
 ## Todo
 
-- Post it to Twitter
 - Share it on Facebook
 - Customize Font
 
