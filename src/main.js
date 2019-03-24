@@ -11,8 +11,9 @@ Vue.config.productionTip = false
 
 Vue.use(VueAnalytics, {
   id: 'UA-47834775-20',
+  router,
   autoTracking: {
-    screenview: true
+    pageviewOnLoad: false
   }
 })
 Vue.use(VTooltip)
