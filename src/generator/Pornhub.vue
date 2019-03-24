@@ -40,8 +40,8 @@
     <div class="pornhub">
         <div class="box" v-tooltip="{content:'Edit The Text to Create Your Own Logo', show: true, classes: 'tooltipClasses'}">
             <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px'}">
-                <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Porn</span>
-                <span class="postfix" :style="{'color':postfixColor, 'background-color':postfixBgColor}" contenteditable>Hub</span>
+                <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Edit</span>
+                <span class="postfix" :style="{'color':postfixColor, 'background-color':postfixBgColor}" contenteditable>Me</span>
             </div>
         </div>
          <div class="switch" >
