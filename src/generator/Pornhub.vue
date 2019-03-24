@@ -12,6 +12,7 @@
         padding 10px
         text-align center
         font-size 60px
+        font-weight 700
         .prefix
             color #fff
             padding 5px 5px
