@@ -6,10 +6,10 @@
 .box
     border 2px solid #333
     border-radius 10px
-    padding 10px 0px
+    padding 40px
     margin 40px 0px
     .editarea
-        padding 10px
+        padding 20px
         text-align center
         font-size 60px
         font-weight 700
