@@ -60,8 +60,8 @@
                 </span>
         </div>
             
-        <div class="download"  v-tooltip="{content:'Download Your Own Logo', show: true, classes: 'tooltipClasses'}">
-            <a  class="button" @click="download">Download</a>
+        <div class="download"  v-tooltip="{content:'Export Your Own Logo', show: true, classes: 'tooltipClasses'}">
+            <a  class="button" @click="download">Export</a>
         </div>
 
         <div class="download">
