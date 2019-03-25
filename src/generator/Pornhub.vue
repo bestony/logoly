@@ -49,10 +49,10 @@
                   Prefix Text Color : <input type="color" v-model="prefixColor"  />
                 </span>
                 <span>
-                  Postfix Text Color : <input type="color" v-model="postfixColor"  />
+                  Suffix Text Color : <input type="color" v-model="postfixColor"  />
                 </span>
                 <span>
-                  Postfix Background Color : <input type="color" v-model="postfixBgColor"  />
+                  Suffix Background Color : <input type="color" v-model="postfixBgColor"  />
                 </span>
                 <span>
                   Transparent Background: <input type="checkbox"  value="transparentBg" v-model="transparentBg">
