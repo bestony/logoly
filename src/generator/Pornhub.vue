@@ -42,7 +42,7 @@
         <div class="box" v-tooltip="{content:'Edit The Text to Create Your Own Logo', show: true, classes: 'tooltipClasses'}">
             <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px','background-color':transparentBgColor}">
                 <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Edit</span>
-                <span class="postfix" :style="{'color':postfixColor, 'background-color':postfixBgColor}" contenteditable>Me</span>
+                <span class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>Me</span>
             </div>
         </div>
          <div class="switch" >
@@ -50,7 +50,7 @@
                   Prefix Text Color : <input type="color" v-model="prefixColor"  />
                 </span>
                 <span>
-                  Suffix Text Color : <input type="color" v-model="postfixColor"  />
+                  Suffix Text Color : <input type="color" v-model="suffixColor"  />
                 </span>
                 <span>
                   Suffix Background Color : <input type="color" v-model="postfixBgColor"  />
@@ -85,7 +85,7 @@ export default {
     data(){
         return {
             prefixColor: "#ffffff",
-            postfixColor: "#000000",
+            suffixColor: "#000000",
             postfixBgColor: "#ff9900",
             fontSize:"60",
             transparentBg: false
