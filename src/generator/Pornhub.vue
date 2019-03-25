@@ -8,6 +8,7 @@
     border-radius 10px
     padding 40px
     margin 40px 0px
+    max-width 100%
     .editarea
         padding 20px
         text-align center
