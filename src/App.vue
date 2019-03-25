@@ -4,7 +4,7 @@
     <div class="logo">
       <logo></logo>
     </div>
-    <div class="descriptio">
+    <div class="description">
       <Description></Description>
     </div>
     <div id="nav">
@@ -15,7 +15,7 @@
           <span class="postfix">Hub</span>
         </router-link>
         <span class="disable">
-          <span class="prefix">You</span>  
+          <span class="prefix">You</span>
           <span class="postfix">tube</span>
         </span>
         <span class="disable">More in Progress...</span>

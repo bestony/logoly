@@ -19,7 +19,7 @@
 - Customize Logo Font Size
 
 
-## How To Use 
+## How To Use
 
 1. Open The Logoly Website: [https://logoly.pro/](https://logoly.pro/)
 2. Edit The Text In Box
@@ -52,7 +52,7 @@ At the end of this Section, I suggest you read [the Contributing File](Contribut
 1. Clone Project in your computer
 2. Install requirements by run `npm install` at project root directory
 3. Run development server by `npm run serve`
-4. Edit File 
+4. Edit File
 5. Run Build by `npm run build`
 
 ## LICENSE
