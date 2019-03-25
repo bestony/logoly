@@ -41,8 +41,14 @@
     <div class="pornhub">
         <div class="box" v-tooltip="{content:'Edit The Text to Create Your Own Logo', show: true, classes: 'tooltipClasses'}">
             <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px','background-color':transparentBgColor}">
+                <template v-if="!reverseHighlight">
                 <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Edit</span>
                 <span class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>Me</span>
+                </template>
+                <template v-else>
+                <span class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>Me</span>
+                <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Edit</span>
+                </template>
             </div>
         </div>
          <div class="switch" >
@@ -62,6 +68,9 @@
         <div class="switch">
             <span>
                   Font Size: <input type="range" min=30 max=200 v-model="fontSize"  /> {{fontSize}}px
+            </span>
+            <span>
+                  Reverse Highlight: <input type="checkbox"   v-model="reverseHighlight">
                 </span>
         </div>
             
@@ -88,7 +97,8 @@ export default {
             suffixColor: "#000000",
             postfixBgColor: "#ff9900",
             fontSize:"60",
-            transparentBg: false
+            transparentBg: false,
+            reverseHighlight: false
         }
     },
     mounted: function () {
