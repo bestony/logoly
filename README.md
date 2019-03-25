@@ -31,6 +31,10 @@
 - Share it on Facebook
 - Customize Font
 
+## Change Log
+
+See [Changelog](Changelog.md)
+
 ## How to Contribute 
 
 For People Who want to ask a new Feature or report a bug, Click [This Link](https://github.com/bestony/logoly/issues/new/choose) to open a new Issue.
