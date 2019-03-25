@@ -39,7 +39,7 @@
 <template>
     <div class="pornhub">
         <div class="box" v-tooltip="{content:'Edit The Text to Create Your Own Logo', show: true, classes: 'tooltipClasses'}">
-            <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px'}">
+            <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px','background-color':transparentBgColor}">
                 <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Edit</span>
                 <span class="postfix" :style="{'color':postfixColor, 'background-color':postfixBgColor}" contenteditable>Me</span>
             </div>
@@ -53,6 +53,9 @@
                 </span>
                 <span>
                   Postfix Background Color : <input type="color" v-model="postfixBgColor"  />
+                </span>
+                <span>
+                  Transparent Background: <input type="checkbox"  value="transparentBg" v-model="transparentBg">
                 </span>
             </div>
         <div class="switch">
@@ -84,6 +87,7 @@ export default {
             postfixColor: "#000000",
             postfixBgColor: "#ff9900",
             fontSize:"60",
+            transparentBg: false
         }
     },
     mounted: function () {
@@ -103,6 +107,15 @@ export default {
             let url = "https://logoly.pro"
             let text = encodeURIComponent(`Built with #LogolyPro, by @xiqingongzi ${url}`)
             window.open(`https://twitter.com/intent/tweet?text=${text}`)
+        }
+    },
+    computed:{
+        transparentBgColor(){
+            if(this.transparentBg){
+                return 'transparent'
+            }else{
+                return '#000000'
+            }
         }
     }
 }
