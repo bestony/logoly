@@ -25,7 +25,7 @@ h2
         <div class="info">
             <img class="avatar" src="../assets/avatar.png" alt="bestony">
             <h2> Bestony</h2>
-            <h4>A indie developer, focus on something interesting.</h4>
+            <h4>An indie developer, focus on something interesting.</h4>
         </div>
         <div class="social">
             <a class="github" href="https://github.com/bestony"><i class="iconfont icon-github"></i> Github</a>
