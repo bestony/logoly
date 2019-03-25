@@ -9,8 +9,8 @@ li
         <p>
             <ol>
                 <li>
-                    <p>Q: What should i use this Generator</p>
-                    <p>A: Edit The Text in Box, Then Download It.</p>
+                    <p>Q: How to use this generator?</p>
+                    <p>A: Edit the text in box, then click the `Export` button.</p>
                 </li>
             </ol>
         </p>

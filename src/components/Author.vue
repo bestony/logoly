@@ -10,9 +10,9 @@
     padding 50px 0px
 h3
     margin-block-start 1px
-h2 
+h2
     margin-block-end 1px
-.social 
+.social
     display flex
     flex-direction row
     justify-content space-around
@@ -21,12 +21,11 @@ h2
 </style>
 
 <template>
-
     <div class="author">
         <div class="info">
             <img class="avatar" src="../assets/avatar.png" alt="bestony">
             <h2> Bestony</h2>
-            <h4>A indie Developer, Focus on something interesting.</h4>
+            <h4>A indie developer, focus on something interesting.</h4>
         </div>
         <div class="social">
             <a class="github" href="https://github.com/bestony"><i class="iconfont icon-github"></i> Github</a>

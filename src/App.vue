@@ -12,13 +12,13 @@
         <router-link to="/about">About</router-link>
         <router-link to="/" class="pb">
           <span class="prefix">Porn</span>
-          <span class="postfix">Hub</span>
+          <span class="postfix">hub</span>
         </router-link>
         <span class="disable">
           <span class="prefix">You</span>
-          <span class="postfix">tube</span>
+          <span class="postfix">Tube</span>
         </span>
-        <span class="disable">More in Progress...</span>
+        <span class="disable">More coming soon...</span>
       </div>
     </div>
     <router-view class="container"/>

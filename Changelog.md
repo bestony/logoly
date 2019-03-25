@@ -1,6 +1,7 @@
-# ChangeLog
+# Changelog
 
 ## 2019.03.25
+
 1. Download Image with Dark Background.
 
 ## 2019.03.23
