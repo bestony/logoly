@@ -5,6 +5,6 @@
 
 <template>
     <div class="description">
-       <h2>A Online Simple Logo Generator</h2>
+       <h2>A Simple Online Logo Generator</h2>
     </div>
 </template>

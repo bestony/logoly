@@ -1,24 +1,24 @@
-# Contribute This Project
+# Contribute to This Project
 
-## Ask a new Feature
+## Feature Request
 
-If you want to ask a new feature, You just need open an issue, and tell me what you want.
+If you want to request for a new feature, you may open an issue and tell me what you want.
 
-If you can, a screenshot or a image can make me know your mean.
+If possible, attach a screenshot or an image to help me understand.
 
 [**Open an Issue**](https://github.com/bestony/logoly/issues/new?assignees=&labels=&template=feature_request.md&title=)
 
-## Report a Bug
+## Bug Report
 
-If you want to report a bug, you need open an issue.
+If you want to report a bug, you may open an issue.
 
-If you can, please give a step guide to reproduce the bug.
+If possible, please include steps to reproduce the bug.
 
 [**Open an Issue**](https://github.com/bestony/logoly/issues/new?assignees=&labels=&template=bug_report.md&title=)
 
 
-## Join to develop
+## Make Contribution
 
-If you want to Join this project, Fork Project, and Clone Project, Develop it on your own project,
+If you want to contribute to this project, fork the project first, and then clone the project and make changes on your own repository,
 
-While you done it, open a Pull Request.
+Once you pushed into your own repository, you may open a pull request.
