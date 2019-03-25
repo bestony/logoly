@@ -42,12 +42,12 @@
         <div class="box" v-tooltip="{content:'Edit The Text to Create Your Own Logo', show: true, classes: 'tooltipClasses'}">
             <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px','background-color':transparentBgColor}">
                 <template v-if="!reverseHighlight">
-                <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Edit</span>
-                <span class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>Me</span>
+                <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>{{prefixText}}</span>
+                <span class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{suffixText}}</span>
                 </template>
                 <template v-else>
-                <span class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>Me</span>
-                <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>Edit</span>
+                <span class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{prefixText}}</span>
+                <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>{{suffixText}}</span>
                 </template>
             </div>
         </div>
@@ -98,7 +98,9 @@ export default {
             postfixBgColor: "#ff9900",
             fontSize:"60",
             transparentBg: false,
-            reverseHighlight: false
+            reverseHighlight: false,
+            prefixText: 'Edit',
+            suffixText: 'Me'
         }
     },
     mounted: function () {
