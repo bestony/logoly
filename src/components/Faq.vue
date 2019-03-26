@@ -13,8 +13,8 @@ li
                     <p>A: Edit the text in box, then click the `Export` button.</p>
                 </li>
                 <li>
-                    <p>Q: What Copyright of the file ? </p>
-                    <p>A: The File Copyright is belong to You.</p>
+                    <p>Q: What about copyright of the image? </p>
+                    <p>A: The copyright of image belongs to You.</p>
                 </li>
             </ol>
         </p>
