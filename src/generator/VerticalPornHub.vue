@@ -14,6 +14,7 @@
         text-align center
         font-size 60px
         font-weight 700
+        border-radius 10px
         
         .prefix
             color #fff
