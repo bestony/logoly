@@ -15,7 +15,7 @@
         font-size 60px
         font-weight 700
         border-radius 10px
-        
+
         .prefix
             color #fff
             padding 5px 5px
@@ -34,11 +34,34 @@
     padding 40px 0px 0px 0px
     width 80%
 
-.download
-    text-align center
-    margin-top 40px
+// customize things
+.customize
+  display flex
+  justify-content space-around
+  width 100%
+  margin-bottom 50px
+  .customize-color > div,
+  .customize-misc > div
+    padding 8px 0
 
-
+// download and share buttons
+.download-share
+  display flex
+  justify-content space-around
+  width 80%
+  & > div
+      width 100px
+      height 40px
+      border-radius 3px
+      line-height 40px
+      text-align center
+      cursor pointer
+  .download
+      color black
+      background #f90
+  .share
+    color #fff
+    background #1da1f2
 </style>
 
 <template>
@@ -50,40 +73,45 @@
                 <p class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{suffixText}}</p>
                 </template>
                 <template v-else>
-                <p class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{prefixText}}</span>
+                <p class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{prefixText}}</p>
                 <p class="prefix"  :style="{'color':prefixColor}"  contenteditable>{{suffixText}}</p>
                 </template>
             </div>
         </div>
-         <div class="switch" >
-                <span id="prefixColor"  v-tooltip="{content:'Switch Color as You Like', show: true, classes: 'tooltipClasses'}">
-                   Top Text Color : <input type="color" v-model="prefixColor"  />
-                </span>
-                <span>
-                  Bottom Text Color : <input type="color" v-model="suffixColor"  />
-                </span>
-                <span>
-                  Bottom Background Color : <input type="color" v-model="postfixBgColor"  />
-                </span>
-                <span>
-                  Transparent Background: <input type="checkbox"  value="transparentBg" v-model="transparentBg">
-                </span>
+
+        <div class="customize">
+          <div
+            class="customize-color"
+            id="prefixColor"
+            v-tooltip="{ content: 'Switch Color as You Like', show: true, classes: 'tooltipClasses' }"
+          >
+            <div>Prefix Text Color: &nbsp; <input type="color" v-model="prefixColor" /></div>
+            <div>Suffix Text Color: &nbsp; <input type="color" v-model="suffixColor" /></div>
+            <div>Suffix Background Color: &nbsp; <input type="color" v-model="postfixBgColor" /></div>
+            <div>
+              Transparent Background: &nbsp;
+              <input type="checkbox" value="transparentBg" v-model="transparentBg" />
             </div>
-        <div class="switch">
-            <span>
-                  Font Size: <input type="range" min=30 max=350 v-model="fontSize"  /> {{fontSize}}px
-            </span>
-            <span>
-                  Reverse Highlight: <input type="checkbox"   v-model="reverseHighlight">
-                </span>
-        </div>
-            
-        <div class="download"  v-tooltip="{content:'Export Your Own Logo', show: true, classes: 'tooltipClasses'}">
-            <a  class="button" @click="download">Export</a>
+          </div>
+
+          <div class="customize-misc">
+            <div>
+              Font Size: <input type="range" min="30" max="200" v-model="fontSize" /> {{ fontSize }}px
+            </div>
+            <div>Reverse Highlight: <input type="checkbox" v-model="reverseHighlight" /></div>
+          </div>
         </div>
 
-        <div class="download">
-            <a  class="button" style="background-color:#1da1f2;color:#fff;" @click="twitter"><i class="iconfont icon-twitter"></i> Tweet</a>
+        <div class="download-share">
+          <div
+            class="download"
+            v-tooltip="{ content: 'Export Your Own Logo', show: true, classes: 'tooltipClasses' }"
+            @click="download"
+          >
+            Export
+          </div>
+
+          <div class="share" @click="twitter"><i class="iconfont icon-twitter"></i> Tweet</div>
         </div>
     </div>
 </template>
@@ -91,7 +119,6 @@
 <script>
 import domtoimage from 'dom-to-image';
 const FileSaver = require('file-saver');
-
 
 export default {
     name:'pornhub',
