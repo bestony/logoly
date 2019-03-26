@@ -4,10 +4,10 @@
     flex-direction  column
     align-items center
 .box
-    border 2px solid #333
+    border 1px solid #333
     border-radius 10px
     padding 40px
-    margin 40px 0px
+    margin 40px 10px
     max-width 100%
     .editarea
         padding 20px
@@ -42,12 +42,12 @@
         <div class="box" v-tooltip="{content:'Edit The Text to Create Your Own Logo', show: true, classes: 'tooltipClasses'}">
             <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px','background-color':transparentBgColor}">
                 <template v-if="!reverseHighlight">
-                <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>{{prefixText}}</span>
-                <span class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{suffixText}}</span>
+                <span class="prefix"  :style="{'color':prefixColor}" contenteditable spellcheck="false">{{prefixText}}</span>
+                <span class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable spellcheck="false">{{suffixText}}</span>
                 </template>
                 <template v-else>
-                <span class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{prefixText}}</span>
-                <span class="prefix"  :style="{'color':prefixColor}"  contenteditable>{{suffixText}}</span>
+                <span class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable spellcheck="false">{{prefixText}}</span>
+                <span class="prefix"  :style="{'color':prefixColor}"  contenteditable spellcheck="false">{{suffixText}}</span>
                 </template>
             </div>
         </div>
