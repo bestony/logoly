@@ -57,4 +57,4 @@ At the end of this section, I suggest you read the [Contributing Guide](Contribu
 
 ## LICENSE
 
-[AGPL 3.0](LICENSE)
+[WTFPL 2](LICENSE)
