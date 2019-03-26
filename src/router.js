@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import VueAnalytics from 'vue-analytics'
 
 Vue.use(Router)
 
@@ -13,28 +12,30 @@ export default new Router({
       component: () => import(/* webpackChunkName: "pornhub" */ './generator/Pornhub.vue'),
       meta: {
         analytics: {
-          pageviewTemplate (route) {
+          pageviewTemplate(route) {
             return {
               title: 'Pornhub Generator',
               page: route.path,
             }
-          }
-        }
-      }
-    },{
+          },
+        },
+      },
+    },
+    {
       path: '/vertical-ph',
       name: 'vertical-pornhub',
-      component: () => import(/* webpackChunkName: "vertical-pornhub" */ './generator/VerticalPornHub.vue'),
+      component: () =>
+        import(/* webpackChunkName: "vertical-pornhub" */ './generator/VerticalPornHub.vue'),
       meta: {
         analytics: {
-          pageviewTemplate (route) {
+          pageviewTemplate(route) {
             return {
               title: 'VerticalPornHub Generator',
               page: route.path,
             }
-          }
-        }
-      }
+          },
+        },
+      },
     },
     {
       path: '/about',
@@ -42,14 +43,14 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
       meta: {
         analytics: {
-          pageviewTemplate (route) {
+          pageviewTemplate(route) {
             return {
               title: 'About',
               page: route.path,
             }
-          }
-        }
-      }
-    }
-  ]
+          },
+        },
+      },
+    },
+  ],
 })
