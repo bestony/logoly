@@ -21,6 +21,20 @@ export default new Router({
           }
         }
       }
+    },{
+      path: '/vertical-ph',
+      name: 'vertical-pornhub',
+      component: () => import(/* webpackChunkName: "vertical-pornhub" */ './generator/VerticalPornHub.vue'),
+      meta: {
+        analytics: {
+          pageviewTemplate (route) {
+            return {
+              title: 'VerticalPornHub Generator',
+              page: route.path,
+            }
+          }
+        }
+      }
     },
     {
       path: '/about',

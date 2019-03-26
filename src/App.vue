@@ -14,6 +14,10 @@
           <span class="prefix">Porn</span>
           <span class="postfix">hub</span>
         </router-link>
+        <router-link to="/vertical-ph" class="vph">
+          <p class="prefix">Porn</p>
+          <p class="postfix">hub</p>
+        </router-link>
         <span class="disable">
           <span class="prefix">You</span>
           <span class="postfix">Tube</span>
@@ -103,6 +107,20 @@ a {
   padding: 2px;
   border-radius: 3px;
   letter-spacing: -1px;
+}
+.vph{
+  text-align: center;
+}
+.vph .prefix{
+  margin: 0px;
+  color:#fff;
+}
+.vph .postfix{
+  margin: 0px;
+  color: #000;
+  background-color: #f90;
+  padding: 2px;
+  border-radius: 3px;
 }
 span.disable{
   color:#777 !important;
