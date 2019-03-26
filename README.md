@@ -37,7 +37,7 @@ See [Changelog](Changelog.md)
 
 ## How to Contribute 
 
-For those who want to request for a new feature or file a bug report, click [this link](https://github.com/bestony/logoly/issues/new/choose) to open a new issue.
+For those who want to request new features or submit bug reports, click [this link](https://github.com/bestony/logoly/issues/new/choose) to open a new issue.
 
 For those who want to play around with this project, read the `Get Started` section.
 
