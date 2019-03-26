@@ -1,5 +1,9 @@
 # Changelog
 
+## 2019.03.26
+
+1. add Vertical Pornhub Logo
+
 ## 2019.03.25
 
 1. Download Image with Dark Background.
