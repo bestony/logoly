@@ -24,7 +24,7 @@
 1. open the Logoly website: [https://logoly.pro/](https://logoly.pro/)
 2. edit the text in the box
 3. change color & font size as you like
-4. click the **Download** button to download the image
+4. click the **Export** button to download the image
 
 ## TODO
 
