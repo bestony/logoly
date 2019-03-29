@@ -15,7 +15,7 @@ li
                             <li>Choose a style (e.g. Horizontal/Vertical, Pornhub/Youtube/...).</li>
                             <li>Edit the text in the center box.</li>
                             <li>Customize your logo (color, background, font size, etc.).</li>
-                            <li>Finally, click the "Export" button and generate a logo of your own.</li>
+                            <li>Finally, click the "Export" button and get the logo of your own.</li>
                         </ul>
                 </li>
                 <li>
