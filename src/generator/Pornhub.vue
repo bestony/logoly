@@ -59,7 +59,7 @@
     <div
       class="box"
       v-tooltip="{
-        content: 'Edit The Text to Create Your Own Logo',
+        content: 'Edit the text to create your own logo',
         show: true,
         classes: 'tooltipClasses',
       }"
