@@ -55,6 +55,12 @@ At the end of this section, I suggest you read the [Contributing Guide](Contribu
 4. make changes
 5. build with `npm run build`
 
+## Releated Project
+
+- [Logoly.pro MiniProgram](https://github.com/GHLandy/logoly-pro)
+
+
+
 ## LICENSE
 
 [WTFPL 2](LICENSE)
