@@ -59,6 +59,9 @@ At the end of this section, I suggest you read the [Contributing Guide](Contribu
 
 - [Logoly.pro MiniProgram](https://github.com/GHLandy/logoly-pro)
 
+## Sponsors
+
+[<img src="https://postimg.aliavv.com/picgo/20190331211014.png" height=40>](http://www.leancloud.app/)
 
 
 ## LICENSE
