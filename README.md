@@ -4,7 +4,10 @@
 
 # Logoly —— A Pornhub Flavour Logo Generator
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/6095e928-6e66-4f72-8c7a-ba75f4db70f3/deploy-status)](https://app.netlify.com/sites/logoly/deploys)![GitHub last commit](https://img.shields.io/github/last-commit/bestony/logoly.svg)![GitHub issues](https://img.shields.io/github/issues/bestony/logoly.svg)![GitHub stars](https://img.shields.io/github/stars/bestony/logoly.svg?style=social)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6095e928-6e66-4f72-8c7a-ba75f4db70f3/deploy-status)](https://app.netlify.com/sites/logoly/deploys)
+![GitHub last commit](https://img.shields.io/github/last-commit/bestony/logoly.svg)
+![GitHub issues](https://img.shields.io/github/issues/bestony/logoly.svg)
+![GitHub stars](https://img.shields.io/github/stars/bestony/logoly.svg?style=social)
 
 **A Simple Online Logo Generator for People Who Want to Design Logos Easily.**
 
@@ -35,7 +38,7 @@
 
 See [Changelog](Changelog.md)
 
-## How to Contribute 
+## How to Contribute
 
 For those who want to request new features or submit bug reports, click [this link](https://github.com/bestony/logoly/issues/new/choose) to open a new issue.
 
@@ -58,6 +61,8 @@ At the end of this section, I suggest you read the [Contributing Guide](Contribu
 ## Releated Project
 
 - [Logoly.pro MiniProgram](https://github.com/GHLandy/logoly-pro)
+
+![](https://github.com/GHLandy/logoly-pro/raw/master/assets/images/logoly-pro.png)
 
 ## Sponsors
 
