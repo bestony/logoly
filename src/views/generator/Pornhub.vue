@@ -109,6 +109,7 @@ h1
     align-items center
     .logo-area
         padding 10px
+        font-family Arial,Helvetica,sans-serif
     .prefix
         color #fff
         padding 5px 5px
