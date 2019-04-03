@@ -3,6 +3,10 @@
         <h1>Logoly</h1>
         <br>
         <h2>The minimal Logo generator</h2>
+        <h2>If you think this project is fun, please 
+            <a href="https://github.com/bestony/logoly">
+            <img src="https://img.shields.io/badge/give%20me-a%20star-green.svg" />
+            </a></h2>
         <br>
         <br>
         <br>
