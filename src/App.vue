@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Ribbon></Ribbon>
     <div class="layout">
         <Layout>
             <Header>
@@ -38,11 +39,11 @@
 </template>
 
 <script>
-
+import Ribbon from './components/Ribbon'
 export default {
   name: 'app',
   components: {
-    
+    Ribbon
   }
 }
 </script>
