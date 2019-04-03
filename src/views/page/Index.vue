@@ -65,7 +65,7 @@
                                    <router-link to="/simplecard">Build>></router-link>
                                </p>
                                <div class="logo-container">
-                                   <img class="logo" src="@logos/pornhub-app.png" alt="">
+                                   <img class="logo" src="@logos/simplecard.png" alt="">
                                </div>
                             </Card>
                         </Col>
