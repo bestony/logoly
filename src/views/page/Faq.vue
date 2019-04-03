@@ -20,5 +20,15 @@
             <p slot="title"><Icon type="md-help"></Icon> Can I use the generated logo for personal or commercial purposes?</p>
             <p>The generated logo fully belongs to you. You can use it freely for any purposes. Though credit is always appreciated.</p>
         </Card>
+        <Card class="faq-box" icon="md-help">
+            <p slot="title"><Icon type="md-help"></Icon> What is the default Font ?</p>
+            <p>The Default Font Family is Arial,Helvetica,sans-serif.</p>
+        </Card>
+
+        <Card class="faq-box" icon="md-help">
+            <p slot="title"><Icon type="md-help"></Icon> How Can i add a new Font into Logoly ?</p>
+            <p>Visit <a href="https://fonts.google.com/" target="_blank">Google Fonts</a>, find the Font you like, then <a href="https://github.com/bestony/logoly/issues/new"  target="_blank">open an issue</a> and tell me the font name.</p>
+            <p>Or you can send the Font name to <a href="mailto:xiqingongzi+logoly@gmail.com">my Email</a></p>
+        </Card>
     </div>
 </template>
