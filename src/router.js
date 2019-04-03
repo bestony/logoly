@@ -61,7 +61,22 @@ export default new Router({
         analytics: {
           pageviewTemplate(route) {
             return {
-              title: 'Pornhub | Logoly - The Simple Logo Generator',
+              title: 'Pornhub Flavour | Logoly - The Simple Logo Generator',
+              page: route.path,
+            }
+          },
+        },
+      },
+    },
+    {
+      path:'/pornhub-app',
+      name:'Pornhub App',
+      component: () => import(/* webpackChunkName: "pornhub-app" */ './views/generator/PornhubApp.vue'),
+      meta: {
+        analytics: {
+          pageviewTemplate(route) {
+            return {
+              title: 'Pornhub App Flavour | Logoly - The Simple Logo Generator',
               page: route.path,
             }
           },

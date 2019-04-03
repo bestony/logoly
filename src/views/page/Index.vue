@@ -51,7 +51,7 @@
                             <Card :style='{"border":"1px solid #dcdee2"}'>
                                <p slot="title" class="logo-title">Pornhub App Flavour</p>
                                <p slot="extra" class="logo-link">
-                                   <router-link to="/">Build>></router-link>
+                                   <router-link to="/pornhub-app">Build>></router-link>
                                </p>
                                <div class="logo-container">
                                    <img class="logo" src="@logos/pornhub-app.png" alt="">
