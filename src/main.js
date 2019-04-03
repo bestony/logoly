@@ -4,7 +4,6 @@ import router from './router'
 import VueAnalytics from 'vue-analytics'
 import VTooltip from 'v-tooltip'
 
-import './assets/iconfont/iconfont.css'
 import store from './store'
 import './plugins/iview.js'
 
