@@ -38,14 +38,24 @@
                </div>
                <div class="logo-matrix">
                    <Row :gutter="16">
-                        <Col span="8">
-                            <Card  class="logo-container" :style='{"border":"1px solid #dcdee2"}'>
-                               <img class="logo" src="@logos/pornhub.png" alt="">
+                        <Col span="6">
+                            <Card  :style='{"border":"1px solid #dcdee2"}'>
+                               <p slot="title" class="logo-title">Pornhub Flavour</p>
+                               <p slot="extra" class="logo-link">
+                                   <router-link to="/">Build>></router-link>
+                               </p>
+                               <div class="logo-container"><img class="logo" src="@logos/pornhub.png" alt=""></div>
                             </Card>
                         </Col>
-                        <Col span="8">
-                            <Card class="logo-container" :style='{"border":"1px solid #dcdee2"}'>
-                               <img class="logo" src="@logos/pornhub-app.png" alt="">
+                        <Col span="6">
+                            <Card :style='{"border":"1px solid #dcdee2"}'>
+                               <p slot="title" class="logo-title">Pornhub App Flavour</p>
+                               <p slot="extra" class="logo-link">
+                                   <router-link to="/">Build>></router-link>
+                               </p>
+                               <div class="logo-container">
+                                   <img class="logo" src="@logos/pornhub-app.png" alt="">
+                               </div>
                             </Card>
                         </Col>
                         
@@ -56,11 +66,16 @@
                </div>
                <div class="sponsors-matrix">
                    <Row :gutter="16">
+
                         <Col span="3" class="sponsor-container">
-                            <img class="sponsor" src="@/assets/sponsors/linuxcn.jpg" alt="">
+                            <a href="https://linux.cn/" target="_blank">
+                                <img class="sponsor" src="@/assets/sponsors/linuxcn.jpg" alt="">
+                            </a>
                         </Col>
                         <Col span="3" class="sponsor-container">
-                            <img class="sponsor" src="@/assets/sponsors/leancloud.png" alt="">
+                            <a href="https://www.leancloud.app/" target="_blank">
+                                <img class="sponsor" src="@/assets/sponsors/leancloud.png" alt="">
+                            </a>                        
                         </Col>
                     </Row>
                </div>
