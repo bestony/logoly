@@ -6,6 +6,7 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
+    // Simple Pages
     {
       path:'/',
       name:'Index',
@@ -51,6 +52,23 @@ export default new Router({
         },
       },
     },
+    // Generators
+    {
+      path:'/pornhub',
+      name:'Pornhub',
+      component: () => import(/* webpackChunkName: "pornhub" */ './views/generator/Pornhub.vue'),
+      meta: {
+        analytics: {
+          pageviewTemplate(route) {
+            return {
+              title: 'Pornhub | Logoly - The Simple Logo Generator',
+              page: route.path,
+            }
+          },
+        },
+      },
+    },
+    // Function Pages
     {
       path:'*',
       name:'404',
