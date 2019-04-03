@@ -35,6 +35,21 @@ export default new Router({
           },
         },
       },
+    },
+    {
+      path:'/about',
+      name:'About',
+      component: () => import(/* webpackChunkName: "about" */ './views/page/About.vue'),
+      meta: {
+        analytics: {
+          pageviewTemplate(route) {
+            return {
+              title: 'About | Logoly - The Simple Logo Generator',
+              page: route.path,
+            }
+          },
+        },
+      },
     }
   ],
 })

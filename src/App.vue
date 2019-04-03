@@ -5,8 +5,10 @@
             <Header>
                 <Menu mode="horizontal" theme="dark" active-name="1">
                     <div class="layout-logo">
+                        <router-link to="/">
                         <span class="logoly">Logoly</span>
                         <span class="pro">Pro</span>
+                        </router-link>
                     </div>
                     <div class="layout-nav">
                         <MenuItem name="1" to="/">
@@ -17,7 +19,7 @@
                             <Icon type="ios-keypad"></Icon>
                             FAQ
                         </MenuItem>
-                        <MenuItem name="3">
+                        <MenuItem name="3" to="/about">
                             <Icon type="ios-analytics"></Icon>
                             About
                         </MenuItem>
@@ -72,4 +74,6 @@ html,#app,body
 .layout-footer-center
     text-align: center;
 
+span.logoly,span.pro
+    color: #fff
 </style>
