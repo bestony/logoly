@@ -5,6 +5,7 @@ function resolve(dir) {
 module.exports = {
     chainWebpack: config => {
       config.resolve.alias
-        .set("@com", resolve("src/components/"));
+        .set("@com", resolve("src/components/"))
+        .set("@logos",resolve("src/assets/logos/"));
     }
   };
