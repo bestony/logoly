@@ -26,7 +26,7 @@
                     </div>
                 </Menu>
             </Header>
-            <Content :style="{padding: '50px 50px'}">
+            <Content :style="{padding: '50px 50px','min-height':'800px'}">
 
                <router-view></router-view>
                
