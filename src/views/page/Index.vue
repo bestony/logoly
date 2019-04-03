@@ -82,6 +82,11 @@
                                 <img class="sponsor" src="@/assets/sponsors/bitbear.jpg" alt="">
                             </a>                        
                         </Col>
+                        <Col span="3" class="sponsor-container">
+                            <a href="https://v2geek.com" target="_blank">
+                                <img class="sponsor" src="@/assets/sponsors/v2geek.jpg" alt="">
+                            </a>                        
+                        </Col>
                     </Row>
                </div>
     </div>
