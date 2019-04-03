@@ -50,6 +50,21 @@ export default new Router({
           },
         },
       },
+    },
+    {
+      path:'*',
+      name:'404',
+      component: () => import(/* webpackChunkName: "404" */ './views/page/404.vue'),
+      meta: {
+        analytics: {
+          pageviewTemplate(route) {
+            return {
+              title: '404 | Logoly - The Simple Logo Generator',
+              page: route.path,
+            }
+          },
+        },
+      },
     }
   ],
 })
