@@ -9,11 +9,11 @@
                         <span class="pro">Pro</span>
                     </div>
                     <div class="layout-nav">
-                        <MenuItem name="1">
+                        <MenuItem name="1" to="/">
                             <Icon type="ios-navigate"></Icon>
                             Home
                         </MenuItem>
-                        <MenuItem name="2">
+                        <MenuItem name="2" to="/faq">
                             <Icon type="ios-keypad"></Icon>
                             FAQ
                         </MenuItem>
