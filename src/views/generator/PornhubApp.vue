@@ -5,7 +5,7 @@
             <Col :xs="24" :sm="24" :md="24" :lg="24">
                 <Card class="text-box" :style="{ 'font-size': logoFontSize + 'px','background-color':'#333'}">
                     <template v-if="!isReverse">
-                        <div id="logo-area" class="logo-area" :style="{'background-color':transparentBgColor}">
+                        <div id="logo-area" class="logo-area" :style="{'background-color':transparentBgColor,fontFamily:usingFont}">
                             <p 
                                 class="prefix" 
                                 :style="{'color':prefixFontColor + ' !important'}" 
@@ -19,7 +19,7 @@
                         </div>
                     </template>
                     <template v-else>
-                        <div id="logo-area" class="logo-area" :style="{'background-color':transparentBgColor}">
+                        <div id="logo-area" class="logo-area" :style="{'background-color':transparentBgColor,fontFamily:usingFont}">
                             <p 
                                 class="suffix" 
                                 :style="{'color':suffixFontColor + ' !important','background-color': suffixBackgroundColor+ ' !important'}" 
@@ -64,6 +64,13 @@
                             <Col :xs="24" :sm="24" :md="24" :lg="24">
                                 <h2>Transparent Background</h2>
                                  <i-switch v-model="isTransparent" @on-change="reverseTransparent" />
+                            </Col>
+                            <Col :xs="24" :sm="24" :md="24" :lg="24">
+                                <h2>Font Family</h2>
+                                <Select v-model="usingFont">
+                                    <Option value="Arial,Helvetica,sans-serif" >Arial,Helvetica,sans-serif</Option>
+                                    <Option v-for="item in fontFamily" :value="item" :key="item">{{ item }}</Option>
+                                </Select>
                             </Col>
                         </Row>
                         
@@ -127,7 +134,7 @@ h1
 <script>
 import domtoimage from 'dom-to-image'
 const FileSaver = require('file-saver')
-
+let WebFont = require('webfontloader')
 export default {
     data(){
         return {
@@ -142,7 +149,16 @@ export default {
             fileType: 'png',
             prefixText: 'Edit',
             suffixText: 'Me',
+            fontFamily: this.$store.state.fontFamily,
+            usingFont: "Arial,Helvetica,sans-serif"
         }
+    },
+     created(){
+        WebFont.load({
+            google: {
+                families: this.$store.state.fontFamily
+            }
+        });
     },
      methods: {
         reverseHighlight (status) {
