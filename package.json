@@ -10,6 +10,7 @@
   "dependencies": {
     "dom-to-image": "^2.6.0",
     "file-saver": "^2.0.1",
+    "iview": "^3.0.1",
     "v-tooltip": "^2.0.0-rc.33",
     "vue": "^2.6.6",
     "vue-analytics": "^5.16.4",
@@ -23,8 +24,11 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.6",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
+    "vue-cli-plugin-iview": "^1.0.6",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {

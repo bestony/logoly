@@ -6,6 +6,7 @@ import VTooltip from 'v-tooltip'
 
 import './assets/iconfont/iconfont.css'
 import store from './store'
+import './plugins/iview.js'
 
 Vue.config.productionTip = false
 
