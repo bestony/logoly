@@ -21,7 +21,13 @@
         justify-content center
         align-items center
         .sponsor
-            height 50px
+            height 30px
+            -webkit-filter: grayscale(100%);     
+            -moz-filter: grayscale(100%);     
+            -ms-filter: grayscale(100%);     
+            -o-filter: grayscale(100%);          
+            filter: grayscale(100%); 	     
+            filter: gray;
 
 </style>
 <template>
@@ -32,13 +38,13 @@
                </div>
                <div class="logo-matrix">
                    <Row :gutter="16">
-                        <Col span="6">
-                            <Card :bordered="false" class="logo-container">
+                        <Col span="8">
+                            <Card  class="logo-container" :style='{"border":"1px solid #dcdee2"}'>
                                <img class="logo" src="@logos/pornhub.png" alt="">
                             </Card>
                         </Col>
-                        <Col span="6">
-                            <Card :bordered="false" class="logo-container">
+                        <Col span="8">
+                            <Card class="logo-container" :style='{"border":"1px solid #dcdee2"}'>
                                <img class="logo" src="@logos/pornhub-app.png" alt="">
                             </Card>
                         </Col>
@@ -50,10 +56,10 @@
                </div>
                <div class="sponsors-matrix">
                    <Row :gutter="16">
-                        <Col span="6" class="sponsor-container">
+                        <Col span="3" class="sponsor-container">
                             <img class="sponsor" src="@/assets/sponsors/linuxcn.jpg" alt="">
                         </Col>
-                        <Col span="6" class="sponsor-container">
+                        <Col span="3" class="sponsor-container">
                             <img class="sponsor" src="@/assets/sponsors/leancloud.png" alt="">
                         </Col>
                     </Row>
