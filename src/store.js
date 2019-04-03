@@ -15,12 +15,18 @@ export default new Vuex.Store({
       'Source Sans Pro',
       'Ubuntu',
       'Ubuntu Mono'
-    ]
+    ],
+    prefixText:'Edit',
+    suffixText:'Me'
   },
   mutations: {
-
+    updatePrefix(state,value){
+      state.prefixText = value;
+    },
+    updateSuffix(state,value){
+      state.suffixText = value;
+    }
   },
   actions: {
-
   }
 })

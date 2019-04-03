@@ -10,22 +10,26 @@
                                 class="prefix" 
                                 :style="{'color':prefixFontColor + ' !important',fontFamily:usingFont}" 
                                 contenteditable 
+                                @input="updatePrefix"
                                 spellcheck="false">{{prefixText}}</span>
                             <span 
                                 class="suffix" 
                                 :style="{'color':suffixFontColor + ' !important','background-color': suffixBackgroundColor+ ' !important',fontFamily:usingFont}" 
                                 contenteditable 
+                                @input="updateSuffix"
                                 spellcheck="false">{{suffixText}}</span>
                         </div>
                     </template>
                     <template v-else>
                         <div id="logo-area" class="logo-area" :style="{'background-color':transparentBgColor}">
                             <span 
-                                class="suffix" 
+                                class="suffix"
+                                @input="updatePrefix" 
                                 :style="{'color':suffixFontColor + ' !important','background-color': suffixBackgroundColor+ ' !important',fontFamily:usingFont}" 
                                 contenteditable spellcheck="false">{{prefixText}}</span>
                             <span 
                                 class="prefix" 
+                                 @input="updateSuffix"
                                 :style="{'color':prefixFontColor + ' !important',fontFamily:usingFont}" 
                                 contenteditable spellcheck="false">{{suffixText}}</span>
                         </div>
@@ -146,8 +150,8 @@ export default {
             isTransparent: false,
             transparentBgColor: '#333',
             fileType: 'png',
-            prefixText: 'Edit',
-            suffixText: 'Me',
+            prefixText: this.$store.state.prefixText,
+            suffixText: this.$store.state.suffixText,
             fontFamily: this.$store.state.fontFamily,
             usingFont: "Arial,Helvetica,sans-serif"
         }
@@ -160,6 +164,12 @@ export default {
         });
     },
      methods: {
+        updatePrefix(e){
+            this.$store.commit('updatePrefix',e.target.childNodes[0].nodeValue)
+        },
+        updateSuffix(e){
+            this.$store.commit('updateSuffix',e.target.childNodes[0].nodeValue)
+        },
         reverseHighlight (status) {
             this.isReverse = status
         },

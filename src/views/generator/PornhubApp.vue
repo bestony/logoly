@@ -10,9 +10,11 @@
                                 class="prefix" 
                                 :style="{'color':prefixFontColor + ' !important'}" 
                                 contenteditable 
+                                @input="updatePrefix"
                                 spellcheck="false">{{prefixText}}</p>
                             <p 
                                 class="suffix" 
+                                 @input="updateSuffix"
                                 :style="{'color':suffixFontColor + ' !important','background-color': suffixBackgroundColor+ ' !important'}" 
                                 contenteditable 
                                 spellcheck="false">{{suffixText}}</p>
@@ -22,10 +24,12 @@
                         <div id="logo-area" class="logo-area" :style="{'background-color':transparentBgColor,fontFamily:usingFont}">
                             <p 
                                 class="suffix" 
+                                @input="updatePrefix"
                                 :style="{'color':suffixFontColor + ' !important','background-color': suffixBackgroundColor+ ' !important'}" 
                                 contenteditable spellcheck="false">{{prefixText}}</p>
                             <p 
                                 class="prefix" 
+                                @input="updateSuffix"
                                 :style="{'color':prefixFontColor + ' !important'}" 
                                 contenteditable spellcheck="false">{{suffixText}}</p>
                         </div>
@@ -147,8 +151,8 @@ export default {
             isTransparent: false,
             transparentBgColor: '#333',
             fileType: 'png',
-            prefixText: 'Edit',
-            suffixText: 'Me',
+            prefixText: this.$store.state.prefixText,
+            suffixText: this.$store.state.suffixText,
             fontFamily: this.$store.state.fontFamily,
             usingFont: "Arial,Helvetica,sans-serif"
         }
@@ -161,6 +165,12 @@ export default {
         });
     },
      methods: {
+        updatePrefix(e){
+            this.$store.commit('updatePrefix',e.target.childNodes[0].nodeValue)
+        },
+        updateSuffix(e){
+            this.$store.commit('updateSuffix',e.target.childNodes[0].nodeValue)
+        },
         reverseHighlight (status) {
             this.isReverse = status
         },
