@@ -44,7 +44,9 @@
                                <p slot="extra" class="logo-link">
                                    <router-link to="/pornhub">Build>></router-link>
                                </p>
-                               <div class="logo-container"><img class="logo" src="@logos/pornhub.png" alt=""></div>
+                               <div class="logo-container">
+                                   <router-link to="/pornhub"><img class="logo" src="@logos/pornhub.png" alt=""></router-link>
+                                </div>
                             </Card>
                         </Col>
                         <Col span="6">
@@ -54,7 +56,7 @@
                                    <router-link to="/pornhub-app">Build>></router-link>
                                </p>
                                <div class="logo-container">
-                                   <img class="logo" src="@logos/pornhub-app.png" alt="">
+                                   <router-link to="/pornhub-app"><img class="logo" src="@logos/pornhub-app.png" alt=""></router-link>
                                </div>
                             </Card>
                         </Col>
@@ -65,7 +67,7 @@
                                    <router-link to="/simplecard">Build>></router-link>
                                </p>
                                <div class="logo-container">
-                                   <img class="logo" src="@logos/simplecard.png" alt="">
+                                   <router-link to="/simplecard"><img class="logo" src="@logos/simplecard.png" alt=""></router-link>
                                </div>
                             </Card>
                         </Col>
