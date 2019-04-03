@@ -83,6 +83,21 @@ export default new Router({
         },
       },
     },
+    {
+      path:'/simplecard',
+      name:'Simple Card',
+      component: () => import(/* webpackChunkName: "simple-card" */ './views/generator/SimpleCard.vue'),
+      meta: {
+        analytics: {
+          pageviewTemplate(route) {
+            return {
+              title: 'Pornhub App Flavour | Logoly - The Simple Logo Generator',
+              page: route.path,
+            }
+          },
+        },
+      },
+    },
     // Function Pages
     {
       path:'*',

@@ -58,6 +58,17 @@
                                </div>
                             </Card>
                         </Col>
+                        <Col span="6">
+                            <Card :style='{"border":"1px solid #dcdee2"}'>
+                               <p slot="title" class="logo-title">Simple Card</p>
+                               <p slot="extra" class="logo-link">
+                                   <router-link to="/simplecard">Build>></router-link>
+                               </p>
+                               <div class="logo-container">
+                                   <img class="logo" src="@logos/pornhub-app.png" alt="">
+                               </div>
+                            </Card>
+                        </Col>
                         
                     </Row>
                </div>
