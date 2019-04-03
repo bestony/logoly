@@ -77,6 +77,11 @@
                                 <img class="sponsor" src="@/assets/sponsors/leancloud.png" alt="">
                             </a>                        
                         </Col>
+                        <Col span="3" class="sponsor-container">
+                            <a href="https://bitbear.net/?refcode=1ndyezv73" target="_blank">
+                                <img class="sponsor" src="@/assets/sponsors/bitbear.jpg" alt="">
+                            </a>                        
+                        </Col>
                     </Row>
                </div>
     </div>
