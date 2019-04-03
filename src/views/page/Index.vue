@@ -12,6 +12,7 @@
         align-items center
         .logo
             height 100px
+            max-width 100%;
 
 .sponsors-matrix
     margin 20px 0px
@@ -53,7 +54,7 @@
                             <img class="sponsor" src="@/assets/sponsors/linuxcn.jpg" alt="">
                         </Col>
                         <Col span="6" class="sponsor-container">
-                                <img class="sponsor" src="@/assets/sponsors/leancloud.png" alt="">
+                            <img class="sponsor" src="@/assets/sponsors/leancloud.png" alt="">
                         </Col>
                     </Row>
                </div>
