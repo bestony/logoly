@@ -28,7 +28,7 @@ h2
             <h4>An indie developer / Focus on something interesting.</h4>
         </div>
         <div class="social">
-            <a class="github" href="https://github.com/bestony"><i class="iconfont icon-github"></i> Github</a>
+            <a class="github" href="https://github.com/bestony"><i class="iconfont icon-github"></i> GitHub</a>
             <a class="twitter" href="https://twitter.com/xiqingongzi"><i class="iconfont icon-twitter"></i> Twitter</a>
             <a class="gmail" href="mailto:xiqingongzi+logoly@gmail.com"><i class="iconfont icon-gmail"></i> Email</a>
         </div>
