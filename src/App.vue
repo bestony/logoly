@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <!--<remote-js src="//cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js" :fn="fn"></remote-js>-->
+
     <Ribbon></Ribbon>
     <div class="logo">
       <logo></logo>
@@ -18,6 +20,13 @@
           <p class="prefix">Porn</p>
           <p class="postfix">hub</p>
         </router-link>
+        <router-link to="/t66y" class="t66y">
+          <p class="prefix t66y-font" ref="t66y">草榴社区</p>
+        </router-link>
+        <!--<router-link to="/91porn">-->
+          <!--<p class="prefix">91</p>-->
+          <!--<p class="postfix">porn</p>-->
+        <!--</router-link>-->
         <span class="disable">
           <span class="prefix">You</span>
           <span class="postfix">Tube</span>
@@ -41,6 +50,7 @@ import Faq from "./components/Faq";
 import Author from "./components/Author";
 import Ribbon from "./components/Ribbon";
 import Copyright from "./components/Copyright";
+
 export default {
   components: {
     logo: Logo,
@@ -49,7 +59,29 @@ export default {
     Faq,
     Author,
     Ribbon,
-    Copyright
+    Copyright,
+  },
+  data () {
+    return {
+    }
+  },
+  methods: {
+    init () {
+      this._font()
+    },
+    _font () {
+      // eslint-disable-next-line
+      $youziku.load('.t66y-font', "fec6348c7f524b9fadd47d8891c5bbf4", "JetLinkBoldRoundJang");
+      /*$youziku.load("#id1,.class1,h1", "fec6348c7f524b9fadd47d8891c5bbf4", "JetLinkBoldRoundJang");*/
+      /*．．．*/
+      // eslint-disable-next-line
+      $youziku.draw(0);
+      // eslint-disable-next-line
+      $youziku.submit('app');
+    }
+  },
+  mounted () {
+    this.init()
   }
 };
 </script>
@@ -111,6 +143,12 @@ a {
 }
 .vph{
   text-align: center;
+}
+.t66y {
+  text-align: center;
+}
+.t66y .prefix {
+  color: #fff;
 }
 .vph .prefix{
   margin: 0px;

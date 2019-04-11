@@ -38,6 +38,36 @@ export default new Router({
       },
     },
     {
+      path: '/t66y',
+      name: '草榴',
+      component: () => import(/* webpackChunkName: "t66y" */ './generator/T66y.vue'),
+      meta: {
+        analytics: {
+          pageviewTemplate(route) {
+            return {
+              title: 't66y Generator',
+              page: route.path,
+            }
+          },
+        },
+      },
+    },
+    {
+      path: '/91porn',
+      name: '91Porn',
+      component: () => import(/* webpackChunkName: "91porn" */ './generator/91Porn.vue'),
+      meta: {
+        analytics: {
+          pageviewTemplate(route) {
+            return {
+              title: '91Porn Generator',
+              page: route.path,
+            }
+          },
+        },
+      },
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
