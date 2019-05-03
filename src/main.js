@@ -2,6 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import VueAnalytics from 'vue-analytics'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+
 
 import './assets/iconfont/iconfont.css'
 import store from './store'
@@ -15,6 +18,9 @@ Vue.use(VueAnalytics, {
     pageviewOnLoad: false,
   },
 })
+
+Vue.use(Vuetify)
+
 
 new Vue({
   router,
