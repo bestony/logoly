@@ -1,4 +1,6 @@
 # Changelog
+## 2019.05.04
+1. Fix Typo at Slogan.vue
 
 ## 2019.03.26
 
