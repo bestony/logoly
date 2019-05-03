@@ -163,11 +163,32 @@ export default {
     updateSuffix(e){
         this.$store.commit('updateSuffix',e.target.childNodes[0].nodeValue)
     },
+    downloadIamge(imgsrc, name) {//下载图片地址和图片名
+      let image = new Image();
+      // 解决跨域 Canvas 污染问题
+      image.setAttribute("crossOrigin", "anonymous");
+      image.onload = function() {
+        let canvas = document.createElement("canvas");
+        canvas.width = image.width;
+        canvas.height = image.height;
+        let context = canvas.getContext("2d");
+        context.drawImage(image, 0, 0, image.width, image.height);
+        let url = canvas.toDataURL("image/png"); 
+        let a = document.createElement("a"); 
+        let event = new MouseEvent("click"); 
+        a.download = name || "photo"; 
+        a.href = url; 
+        a.dispatchEvent(event); 
+      };
+      image.src = imgsrc;
+    },
     download() {
+      var that=this
       var node = document.getElementById('logo')
-
-      domtoimage.toPng(node).then(function(blob) {
-        FileSaver.saveAs(blob, 'logo.png')
+      domtoimage.toPng(node).then(function(res) {
+        console.log(res)
+        that.downloadIamge(res,"logo")
+        // FileSaver.saveAs(blob, 'logo.png')
       })
     },
     twitter() {

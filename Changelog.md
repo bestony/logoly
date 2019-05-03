@@ -2,6 +2,7 @@
 ## 2019.05.04
 1. Fix Typo at Slogan.vue
 2. Add vuex for keep text while switch layout
+3. use Canvas export
 
 ## 2019.03.26
 
