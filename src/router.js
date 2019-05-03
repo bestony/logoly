@@ -4,8 +4,13 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',
+  mode: 'history',
   routes: [
+    {
+      path: '/github',
+      name: 'repos',
+      beforeEnter() { location.href = 'https://github.com/bestony/logoly' }
+    },
     {
       path: '/',
       name: 'pornhub',
