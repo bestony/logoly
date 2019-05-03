@@ -13,7 +13,8 @@
     "v-tooltip": "^2.0.0-rc.33",
     "vue": "^2.6.6",
     "vue-analytics": "^5.16.4",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",

@@ -5,6 +5,7 @@ import VueAnalytics from 'vue-analytics'
 import VTooltip from 'v-tooltip'
 
 import './assets/iconfont/iconfont.css'
+import store from './store'
 
 Vue.config.productionTip = false
 
@@ -19,5 +20,6 @@ Vue.use(VTooltip)
 
 new Vue({
   router,
-  render: h => h(App),
+  store,
+  render: h => h(App)
 }).$mount('#app')

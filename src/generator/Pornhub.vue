@@ -70,13 +70,14 @@
         :style="{ 'font-size': fontSize + 'px', 'background-color': transparentBgColor }"
       >
         <template v-if="!reverseHighlight">
-          <span class="prefix" :style="{ color: prefixColor }" contenteditable spellcheck="false">{{
+          <span  @input="updatePrefix" class="prefix" :style="{ color: prefixColor }" contenteditable spellcheck="false">{{
             prefixText
           }}</span>
           <span
             class="postfix"
             :style="{ color: suffixColor, 'background-color': postfixBgColor }"
             contenteditable
+            @input="updateSuffix" 
             spellcheck="false"
             >{{ suffixText }}</span
           >
@@ -86,10 +87,11 @@
             class="postfix"
             :style="{ color: suffixColor, 'background-color': postfixBgColor }"
             contenteditable
+            @input="updatePrefix"
             spellcheck="false"
             >{{ prefixText }}</span
           >
-          <span class="prefix" :style="{ color: prefixColor }" contenteditable spellcheck="false">{{
+          <span class="prefix"  @input="updateSuffix"  :style="{ color: prefixColor }" contenteditable spellcheck="false">{{
             suffixText
           }}</span>
         </template>
@@ -147,14 +149,20 @@ export default {
       fontSize: '60',
       transparentBg: false,
       reverseHighlight: false,
-      prefixText: 'Edit',
-      suffixText: 'Me',
+      prefixText: this.$store.state.prefix,
+            suffixText: this.$store.state.suffix
     }
   },
   mounted: function() {
     //   this.$tours['pornhub'].start()
   },
   methods: {
+    updatePrefix(e){
+        this.$store.commit('updatePrefix',e.target.childNodes[0].nodeValue)
+    },
+    updateSuffix(e){
+        this.$store.commit('updateSuffix',e.target.childNodes[0].nodeValue)
+    },
     download() {
       var node = document.getElementById('logo')
 

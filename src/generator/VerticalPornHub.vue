@@ -69,12 +69,12 @@
         <div class="box" v-tooltip="{content:'Edit the text to create your own logo', show: true, classes: 'tooltipClasses'}">
             <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px','background-color':transparentBgColor}">
                 <template v-if="!reverseHighlight">
-                <p class="prefix"  :style="{'color':prefixColor}"  contenteditable>{{prefixText}}</p>
-                <p class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{suffixText}}</p>
+                <p class="prefix"  @input="updatePrefix" :style="{'color':prefixColor}"  contenteditable>{{prefixText}}</p>
+                <p class="postfix" @input="updateSuffix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{suffixText}}</p>
                 </template>
                 <template v-else>
-                <p class="postfix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{prefixText}}</p>
-                <p class="prefix"  :style="{'color':prefixColor}"  contenteditable>{{suffixText}}</p>
+                <p class="postfix" @input="updatePrefix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{prefixText}}</p>
+                <p class="prefix"  @input="updateSuffix" :style="{'color':prefixColor}"  contenteditable>{{suffixText}}</p>
                 </template>
             </div>
         </div>
@@ -130,14 +130,20 @@ export default {
             fontSize:"60",
             transparentBg: false,
             reverseHighlight: false,
-            prefixText: 'Edit',
-            suffixText: 'Me'
+            prefixText: this.$store.state.prefix,
+            suffixText: this.$store.state.suffix
         }
     },
     mounted: function () {
     //   this.$tours['pornhub'].start()
     },
     methods:{
+        updatePrefix(e){
+            this.$store.commit('updatePrefix',e.target.childNodes[0].nodeValue)
+        },
+        updateSuffix(e){
+            this.$store.commit('updateSuffix',e.target.childNodes[0].nodeValue)
+        },
         download(){
             var node = document.getElementById('logo');
 
