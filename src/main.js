@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import VueAnalytics from 'vue-analytics'
-import VTooltip from 'v-tooltip'
 
 import './assets/iconfont/iconfont.css'
 import store from './store'
@@ -16,7 +15,6 @@ Vue.use(VueAnalytics, {
     pageviewOnLoad: false,
   },
 })
-Vue.use(VTooltip)
 
 new Vue({
   router,
