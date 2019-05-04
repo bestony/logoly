@@ -11,6 +11,7 @@
                   id="logo"
                   :style="{ 'font-size': fontSize + 'px',
                         'padding': borderSize + 'px',
+                        'font-family':fontFamily,
                        'background-color': transparentBgColor }"
                 >
                   <span class="prefix" @input="updatePrefix" :style="{ color: prefixColor }" contenteditable>{{prefixText}}</span>
@@ -22,6 +23,7 @@
                   id="logo"
                   :style="{ 'font-size': fontSize + 'px',
                         'padding': borderSize + 'px',
+                        'font-family':fontFamily,
                        'background-color': transparentBgColor }"
                   >
                   <span class="postifx" @input="updatePrefix"  :style="{ color: postfixColor, 'background-color': postfixBgColor }" contenteditable>{{prefixText}}</span>
@@ -79,8 +81,18 @@
                 dark
                 prepend-icon="check_box_outline_blank"
               ></v-slider>
-              
-   
+              <v-flex xs12>
+                <v-select
+                  v-model="font"
+                  :items="fonts"
+                  menu-props="auto"
+                  label="Source"
+                  hide-details
+                  prepend-icon="map"
+                  single-line
+                  dark
+                ></v-select>
+              </v-flex>
             </v-card-text>
             
           </v-card>
@@ -109,6 +121,57 @@ export default {
       postfixBgColor: '#ff9900',
       reverseHighlight: false,
       borderSize: 20,
+      font: 'roboto',
+      fonts:[
+        {
+          text:'Roboto',
+          value:"roboto"
+        },
+        {
+          text:"Source Sans Pro",
+          value:'source-sans-pro'
+        },
+        {
+          text:"Source Serif Pro",
+          value:'source-serif-pro'
+        },
+        {
+          text:"Ubuntu",
+          value:'ubuntu'
+        },
+        {
+          text:"Ubuntu Mono",
+          value:'ubuntu-mono'
+        },
+        {
+          text:"Fira Sans",
+          value:'fira-sans'
+        },
+        {
+          text:"Fira Mono",
+           value:'fira-mono'
+        },
+        {
+          text:"Lato",
+           value:'lato'
+        },
+        {
+          text:"Open Sans",
+           value:'open-sans'
+        },
+        {
+          text:"Noto Sans",
+           value:'noto-sans'
+        },
+        {
+          text:"Hind",
+           value:'hind'
+        },
+        {
+          text:"Hind Vadodara",
+           value:'hind-vadodara'
+        }
+      ]
     }
   },
   methods: {
@@ -127,6 +190,57 @@ export default {
         return '#000000'
       }
     },
+    fontFamily(){
+      switch (this.font) {
+        case 'ubuntu':
+          return "'Ubuntu', sans-serif"
+          break;
+
+        case 'source-sans-pro':
+          return "'Source Sans Pro', sans-serif"
+          break;
+        
+        case 'source-serif-pro':
+          return "'Source Serif Pro', sans-serif"
+          break;
+        
+        case 'ubuntu-mono':
+          return "'Ubuntu Mono', monospace"
+          break;
+        
+        case 'fira-sans':
+          return "'Fira Sans', sans-serif"
+          break;
+        
+        case 'fira-mono':
+          return "'Fira Mono', monospace"
+          break;
+
+        case 'lato':
+          return "'Lato', sans-serif"
+          break;
+
+        case 'open-sans':
+          return "'Open Sans', sans-serif"
+          break;
+        
+        case 'noto-sans':
+          return "'Noto Sans', sans-serif"
+          break;
+        
+        case 'hind':
+          return "'Hind', sans-serif"
+          break;
+        
+        case 'hind-vadodara':
+          return "'Hind Vadodara', sans-serif"
+          break;
+      
+        default:
+          return "'Roboto', sans-serif"
+          break;
+      }
+    }
   },
 }
 </script>
