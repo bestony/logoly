@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-export default new Router({
+let router =  new Router({
   mode: 'history',
   routes: [
     {
@@ -13,13 +13,14 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'pornhub',
+      name: 'home',
       component: () => import(/* webpackChunkName: "pornhub" */ './views/Home.vue'),
       meta: {
+        title: 'Logoly - a minimal Logo Generator',
         analytics: {
           pageviewTemplate(route) {
             return {
-              title: 'Pornhub Generator',
+              title: 'Logoly',
               page: route.path,
             }
           },
@@ -27,8 +28,30 @@ export default new Router({
       },
     },
     {
+      path: '/generator',
+      name: 'generator',
+      component: () => import(/* webpackChunkName: "generator" */ './views/Generator.vue'),
+      children:[
+        {
+          path:'p0rnhub',
+          component:() => import(/* webpackChunkName: "p0rnhub" */ './generators/p0rnhub.vue')
+        }
+      ]
+    }
+    ,
+    {
       path:'*',
       redirect:'/'
     }
   ],
 })
+
+router.beforeEach((to, from, next) => {
+  let title = to.meta && to.meta.title;
+  
+  if (title) {
+      document.title = title; // 设置页面 title
+  }  
+  next();
+})
+export default router
