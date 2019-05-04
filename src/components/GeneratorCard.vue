@@ -1,7 +1,7 @@
 <template>
     <v-flex xs12 md6 xl3>
             <v-card class="mb-2 mx-2">
-              <v-img :src="image" aspect-ratio="2"></v-img>
+              <v-img :src="imagePath" aspect-ratio="2"></v-img>
 
               <v-card-title primary-title>
                 <div>
@@ -30,6 +30,9 @@ export default {
     computed:{
         inspiredPath(){
             return "/" + this.mode
+        },
+        imagePath(){
+            return require("@/assets/generator/" + this.image)
         }
     }
 }

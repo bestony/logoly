@@ -7,17 +7,17 @@
       <v-container fluid grid-list-xs>
         <v-layout row wrap>
           <GeneratorCard 
-            image="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
+            image="p0rnhub.jpg"
             to="/generator/pornhub"
             mode="pornhub"
-            title="P*rnhub Style"
+            title="P0rnhub Style"
             description="P*rnHub Style Logo Generator"
             ></GeneratorCard>
           <GeneratorCard 
-            image="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
+            image="p0rnhub-app.jpg"
             to="/generator/pornhub-app"
             mode="pornhub"
-            title="P*rnhub App Style"
+            title="P0rnhub App Style"
             description="P*rnHub Style Logo Generator"
             ></GeneratorCard>
 
