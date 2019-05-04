@@ -5,6 +5,7 @@
 </template>
 <script>
 import domtoimage from 'dom-to-image'
+const FileSaver = require('file-saver')
 
 export default {
     methods:{
@@ -30,9 +31,8 @@ export default {
         download(){
             var that=this
             var node = document.getElementById('logo')
-            domtoimage.toPng(node).then(function(res) {
-                console.log("Image Base64",res)
-                that.downloadIamge(res,"logo")
+             domtoimage.toPng(node).then(function(blob) {
+                FileSaver.saveAs(blob, 'logo.png')
             })
         },
         shareToTwitter(){

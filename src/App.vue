@@ -4,6 +4,7 @@
       <v-toolbar-title>Logoly</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn flat to="/">Home</v-btn>
         <v-btn flat>How To</v-btn>
         <v-btn flat icon to="/github">
           <v-icon>fab fa-github</v-icon>

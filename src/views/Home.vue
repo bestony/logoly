@@ -8,7 +8,7 @@
         <v-layout row wrap>
           <GeneratorCard 
             image="p0rnhub.jpg"
-            to="/generator/pornhub"
+            to="/generator/p0rnhub"
             mode="pornhub"
             title="P0rnhub Style"
             description="P*rnHub Style Logo Generator"
