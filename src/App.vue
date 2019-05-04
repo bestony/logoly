@@ -5,7 +5,9 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat>How To</v-btn>
-        <v-btn flat icon to="/github"><v-icon>fab fa-github</v-icon></v-btn>
+        <v-btn flat icon to="/github">
+          <v-icon>fab fa-github</v-icon>
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
@@ -14,21 +16,20 @@
           <router-view></router-view>
         </v-fade-transition>
       </v-container>
-    </v-content>  
+    </v-content>
+      <v-footer class="pa-3 black">
+        <v-spacer></v-spacer>
+        <div class="white--text">&copy; {{ new Date().getFullYear() }} Bestony</div>
+      </v-footer>
   </v-app>
 </template>
 
 <script>
 export default {
   components: {},
+  
 }
 </script>
 
 <style>
-html,
-body,
-#app {
-  height: 100%;
-  margin: 0;
-}
 </style>
