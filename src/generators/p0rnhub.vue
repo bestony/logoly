@@ -10,8 +10,8 @@
                     <span class="prefix" @input="updatePrefix" contenteditable>
                         {{prefixText}}
                     </span>
-                    <span class="postifx" @input="updateSuffix" contenteditable>
-                        {{suffixText}}
+                    <span class="postifx" @input="updatePostfix" contenteditable>
+                        {{postfixText}}
                     </span>
                 </div>
             </div>
@@ -47,15 +47,15 @@ export default {
     data(){
         return {
             prefixText: this.$store.state.prefixText,
-            suffixText: this.$store.state.suffixText
+            postfixText: this.$store.state.postfixText
         }
     },
     methods:{
         updatePrefix(e){
             this.$store.commit('updatePrefix',e.target.childNodes[0].nodeValue)
         },
-        updateSuffix(e){
-            this.$store.commit('updateSuffix',e.target.childNodes[0].nodeValue)
+        updatePostfix(e){
+            this.$store.commit('updatePostfix',e.target.childNodes[0].nodeValue)
         },
     }
 }
