@@ -4,7 +4,7 @@
 
     <div class="list">
       <h3 class="display-2 my-4 font-weight-bold text-uppercase text-xs-center">Generators</h3>
-      <v-container fluid grid-list-xs>
+      <v-responsive fluid grid-list-xs>
         <v-layout row wrap>
           <GeneratorCard 
             image="p0rnhub.jpg"
@@ -22,7 +22,7 @@
             ></GeneratorCard>
 
         </v-layout>
-      </v-container>
+      </v-responsive>
     </div>
   </div>
 </template>
