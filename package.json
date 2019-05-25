@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "dom-to-image": "^2.6.0",
-    "file-saver": "^2.0.1",
+    "file-saver": "^2.0.2",
     "v-tooltip": "^2.0.0-rc.33",
     "vue": "^2.6.6",
     "vue-analytics": "^5.16.4",
