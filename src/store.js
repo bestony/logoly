@@ -5,18 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    prefixText:'edit',
-    postfixText:'me'
+    prefixText: 'edit',
+    postfixText: 'me',
   },
   mutations: {
-      updatePrefix(state,text){
-        state.prefix = text
-      },
-      updatePostfix(state,text){
-        state.postfix = text
-      }
+    updatePrefix(state, text) {
+      state.prefix = text
+    },
+    updatePostfix(state, text) {
+      state.postfix = text
+    },
   },
-  actions: {
-
-  }
+  actions: {},
 })

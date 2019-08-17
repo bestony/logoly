@@ -5,7 +5,6 @@ import VueAnalytics from 'vue-analytics'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
-
 import './assets/iconfont/iconfont.css'
 import store from './store'
 
@@ -21,9 +20,8 @@ Vue.use(VueAnalytics, {
 
 Vue.use(Vuetify)
 
-
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')
