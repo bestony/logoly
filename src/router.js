@@ -3,13 +3,15 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-let router =  new Router({
+let router = new Router({
   mode: 'history',
   routes: [
     {
       path: '/github',
       name: 'repos',
-      beforeEnter() { location.href = 'https://github.com/bestony/logoly' }
+      beforeEnter() {
+        location.href = 'https://github.com/bestony/logoly'
+      },
     },
     {
       path: '/',
@@ -31,27 +33,26 @@ let router =  new Router({
       path: '/generator',
       name: 'generator',
       component: () => import(/* webpackChunkName: "generator" */ './views/Generator.vue'),
-      children:[
+      children: [
         {
-          path:'p0rnhub',
-          component:() => import(/* webpackChunkName: "p0rnhub" */ './generators/p0rnhub.vue')
-        }
-      ]
-    }
-    ,
+          path: 'p0rnhub',
+          component: () => import(/* webpackChunkName: "p0rnhub" */ './generators/p0rnhub.vue'),
+        },
+      ],
+    },
     {
-      path:'*',
-      redirect:'/'
-    }
+      path: '*',
+      redirect: '/',
+    },
   ],
 })
 
 router.beforeEach((to, from, next) => {
-  let title = to.meta && to.meta.title;
-  
+  let title = to.meta && to.meta.title
+
   if (title) {
-      document.title = title; // 设置页面 title
-  }  
-  next();
+    document.title = title // 设置页面 title
+  }
+  next()
 })
 export default router
