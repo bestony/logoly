@@ -22,7 +22,7 @@
     "@vue/cli-service": "^3.11.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.2.3",
+    "eslint-plugin-vue": "^6.0.1",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.5.21"
