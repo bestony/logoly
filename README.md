@@ -1,6 +1,4 @@
-<p class="text-align:center">
-<img src="https://i.loli.net/2019/03/24/5c9681455a5a2.png" alt="logo" title="logo" />
-</a>
+<img align="right" src="https://postimg.aliavv.com/mbp/adpsj.png"/>
 
 # Logoly —— A Pornhub Flavour Logo Generator
 
