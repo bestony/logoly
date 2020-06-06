@@ -3,14 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start":"npm run serve",
+    "start": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "dom-to-image": "^2.6.0",
-    "file-saver": "^2.0.2",
     "v-tooltip": "^2.0.3",
     "vue": "^2.6.6",
     "vue-analytics": "^5.22.1",

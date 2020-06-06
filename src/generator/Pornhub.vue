@@ -77,7 +77,7 @@
             class="postfix"
             :style="{ color: suffixColor, 'background-color': postfixBgColor }"
             contenteditable
-            @input="updateSuffix" 
+            @input="updateSuffix"
             spellcheck="false"
             >{{ suffixText }}</span
           >
@@ -137,7 +137,6 @@
 
 <script>
 import domtoimage from 'dom-to-image'
-const FileSaver = require('file-saver')
 
 export default {
   name: 'pornhub',
@@ -173,12 +172,12 @@ export default {
         canvas.height = image.height;
         let context = canvas.getContext("2d");
         context.drawImage(image, 0, 0, image.width, image.height);
-        let url = canvas.toDataURL("image/png"); 
-        let a = document.createElement("a"); 
-        let event = new MouseEvent("click"); 
-        a.download = name || "photo"; 
-        a.href = url; 
-        a.dispatchEvent(event); 
+        let url = canvas.toDataURL("image/png");
+        let a = document.createElement("a");
+        let event = new MouseEvent("click");
+        a.download = name || "photo";
+        a.href = url;
+        a.dispatchEvent(event);
       };
       image.src = imgsrc;
     },
@@ -187,8 +186,7 @@ export default {
       var node = document.getElementById('logo')
       domtoimage.toPng(node).then(function(res) {
         console.log(res)
-        that.downloadIamge(res,"logo")
-        // FileSaver.saveAs(blob, 'logo.png')
+        that.downloadIamge(res,"logo.png")
       })
     },
     twitter() {
