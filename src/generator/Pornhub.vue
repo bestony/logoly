@@ -1,57 +1,74 @@
 <style lang="stylus" scoped>
-.pornhub
-  display flex
-  flex-direction  column
-  align-items center
-.box
-    border 1px solid #333
-    border-radius 10px
-    padding 40px
-    margin 40px 10px
-    max-width 100%
-    .editarea
-        padding 20px
-        text-align center
-        font-size 60px
-        font-weight 700
-        .prefix
-            color #fff
-            padding 5px 5px
+.pornhub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-        .postfix
-            color #000
-            background-color #f90
-            padding 5px 10px
-            border-radius 7px
+.box {
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 40px;
+  margin: 40px 10px;
+  max-width: 100%;
+
+  .editarea {
+    padding: 20px;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 700;
+
+    .prefix {
+      color: #fff;
+      padding: 5px 5px;
+    }
+
+    .postfix {
+      color: #000;
+      background-color: #f90;
+      padding: 5px 10px;
+      border-radius: 7px;
+    }
+  }
+}
 
 // customize things
-.customize
-  display flex
-  justify-content space-around
-  width 100%
-  margin-bottom 50px
-  .customize-color > div,
-  .customize-misc > div
-    padding 8px 0
+.customize {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 50px;
+
+  .customize-color > div, .customize-misc > div {
+    padding: 8px 0;
+  }
+}
 
 // download and share buttons
-.download-share
-  display flex
-  justify-content space-around
-  width 80%
-  & > div
-      width 100px
-      height 40px
-      border-radius 3px
-      line-height 40px
-      text-align center
-      cursor pointer
-  .download
-      color black
-      background #f90
-  .share
-    color #fff
-    background #1da1f2
+.download-share {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+
+  & > div {
+    width: 100px;
+    height: 40px;
+    border-radius: 3px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .download {
+    color: black;
+    background: #f90;
+  }
+
+  .share {
+    color: #fff;
+    background: #1da1f2;
+  }
+}
 </style>
 
 <template>
@@ -67,20 +84,27 @@
       <div
         class="editarea"
         id="logo"
-        :style="{ 'font-size': fontSize + 'px', 'background-color': transparentBgColor }"
+        :style="{ 'font-size': fontSize + 'px', 'background-color': transparentBgColor,'font-family':fontFamily }"
       >
         <template v-if="!reverseHighlight">
-          <span  @input="updatePrefix" class="prefix" :style="{ color: prefixColor }" contenteditable spellcheck="false">{{
+          <span
+            @input="updatePrefix"
+            class="prefix"
+            :style="{ color: prefixColor }"
+            contenteditable
+            spellcheck="false"
+          >
+            {{
             prefixText
-          }}</span>
+            }}
+          </span>
           <span
             class="postfix"
             :style="{ color: suffixColor, 'background-color': postfixBgColor }"
             contenteditable
             @input="updateSuffix"
             spellcheck="false"
-            >{{ suffixText }}</span
-          >
+          >{{ suffixText }}</span>
         </template>
         <template v-else>
           <span
@@ -89,11 +113,18 @@
             contenteditable
             @input="updatePrefix"
             spellcheck="false"
-            >{{ prefixText }}</span
+          >{{ prefixText }}</span>
+          <span
+            class="prefix"
+            @input="updateSuffix"
+            :style="{ color: prefixColor }"
+            contenteditable
+            spellcheck="false"
           >
-          <span class="prefix"  @input="updateSuffix"  :style="{ color: prefixColor }" contenteditable spellcheck="false">{{
+            {{
             suffixText
-          }}</span>
+            }}
+          </span>
         </template>
       </div>
     </div>
@@ -104,20 +135,42 @@
         id="prefixColor"
         v-tooltip="{ content: 'Pick a color you like', show: true, classes: 'tooltipClasses' }"
       >
-        <div>Prefix Text Color: &nbsp; <input type="color" v-model="prefixColor" /></div>
-        <div>Suffix Text Color: &nbsp; <input type="color" v-model="suffixColor" /></div>
-        <div>Suffix Background Color: &nbsp; <input type="color" v-model="postfixBgColor" /></div>
+        <div>
+          Prefix Text Color: &nbsp;
+          <input type="color" v-model="prefixColor" />
+        </div>
+        <div>
+          Suffix Text Color: &nbsp;
+          <input type="color" v-model="suffixColor" />
+        </div>
+        <div>
+          Suffix Background Color: &nbsp;
+          <input type="color" v-model="postfixBgColor" />
+        </div>
         <div>
           Transparent Background: &nbsp;
-          <input type="checkbox" value="transparentBg" v-model="transparentBg" />
+          <input
+            type="checkbox"
+            value="transparentBg"
+            v-model="transparentBg"
+          />
         </div>
       </div>
 
       <div class="customize-misc">
         <div>
-          Font Size: <input type="range" min="30" max="200" v-model="fontSize" /> {{ fontSize }}px
+          Font Size:
+          <input type="range" min="30" max="200" v-model="fontSize" />
+          {{ fontSize }}px
         </div>
-        <div>Reverse Highlight: <input type="checkbox" v-model="reverseHighlight" /></div>
+        <div>
+          Font:
+          <FontSelector v-on:update-font="(font)=>fontFamily = font" />
+        </div>
+        <div>
+          Reverse Highlight:
+          <input type="checkbox" v-model="reverseHighlight" />
+        </div>
       </div>
     </div>
 
@@ -126,17 +179,18 @@
         class="download"
         v-tooltip="{ content: 'Export your own logo', show: true, classes: 'tooltipClasses' }"
         @click="download"
-      >
-        Export
-      </div>
+      >Export</div>
 
-      <div class="share" @click="twitter"><i class="iconfont icon-twitter"></i> Tweet</div>
+      <div class="share" @click="twitter">
+        <i class="iconfont icon-twitter"></i> Tweet
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import domtoimage from 'dom-to-image'
+import FontSelector from '../components/FontSelector'
 
 export default {
   name: 'pornhub',
@@ -146,47 +200,50 @@ export default {
       suffixColor: '#000000',
       postfixBgColor: '#ff9900',
       fontSize: '60',
+      fontFamily: 'sans-serif',
       transparentBg: false,
       reverseHighlight: false,
       prefixText: this.$store.state.prefix,
-            suffixText: this.$store.state.suffix
+      suffixText: this.$store.state.suffix,
     }
   },
+  components: { FontSelector },
   mounted: function() {
     //   this.$tours['pornhub'].start()
   },
   methods: {
-    updatePrefix(e){
-        this.$store.commit('updatePrefix',e.target.childNodes[0].nodeValue)
+    updatePrefix(e) {
+      this.$store.commit('updatePrefix', e.target.childNodes[0].nodeValue)
     },
-    updateSuffix(e){
-        this.$store.commit('updateSuffix',e.target.childNodes[0].nodeValue)
+    updateSuffix(e) {
+      this.$store.commit('updateSuffix', e.target.childNodes[0].nodeValue)
     },
-    downloadIamge(imgsrc, name) {//下载图片地址和图片名
-      let image = new Image();
+    downloadImage(imgsrc, name) {
+      //下载图片地址和图片名
+      let image = new Image()
       // 解决跨域 Canvas 污染问题
-      image.setAttribute("crossOrigin", "anonymous");
+      image.setAttribute('crossOrigin', 'anonymous')
       image.onload = function() {
-        let canvas = document.createElement("canvas");
-        canvas.width = image.width;
-        canvas.height = image.height;
-        let context = canvas.getContext("2d");
-        context.drawImage(image, 0, 0, image.width, image.height);
-        let url = canvas.toDataURL("image/png");
-        let a = document.createElement("a");
-        let event = new MouseEvent("click");
-        a.download = name || "photo";
-        a.href = url;
-        a.dispatchEvent(event);
-      };
-      image.src = imgsrc;
+        let canvas = document.createElement('canvas')
+        canvas.width = image.width
+        canvas.height = image.height
+        let context = canvas.getContext('2d')
+        context.drawImage(image, 0, 0, image.width, image.height)
+        let url = canvas.toDataURL('image/png')
+        let a = document.createElement('a')
+        let event = new MouseEvent('click')
+        a.download = name || 'photo'
+        a.href = url
+        a.dispatchEvent(event)
+      }
+      image.src = imgsrc
     },
     download() {
-      var that=this
+      var that = this
       var node = document.getElementById('logo')
       domtoimage.toPng(node).then(function(res) {
         console.log(res)
-        that.downloadIamge(res,"logo.png")
+        that.downloadImage(res, 'logo.png')
       })
     },
     twitter() {
