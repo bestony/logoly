@@ -1,4 +1,9 @@
 # Changelog
+
+## 2020.10.08
+
+1. add Font Selector into app
+
 ## 2019.05.04
 1. Fix Typo at Slogan.vue
 2. Add vuex for keep text while switch layout
