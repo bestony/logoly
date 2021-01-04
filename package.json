@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "dom-to-image": "^2.6.0",
-    "v-tooltip": "^2.0.3",
+    "v-tooltip": "^2.1.2",
     "vue": "^2.6.12",
     "vue-analytics": "^5.22.1",
     "vue-router": "^3.4.6",
