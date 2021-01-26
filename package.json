@@ -13,7 +13,7 @@
     "v-tooltip": "^2.0.3",
     "vue": "^2.6.12",
     "vue-analytics": "^5.22.1",
-    "vue-router": "^3.4.6",
+    "vue-router": "^3.5.1",
     "vuex": "^3.5.1"
   },
   "devDependencies": {
