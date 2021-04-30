@@ -98,6 +98,8 @@
             prefixText
             }}
           </span>
+          <!-- HACK: meaningless text: ".", just to split input area, see: #269 -->
+          <span style="font-size: 0;">.</span>
           <span
             class="postfix"
             :style="{ color: suffixColor, 'background-color': postfixBgColor }"
