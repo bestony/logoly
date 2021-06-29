@@ -84,13 +84,13 @@
       <div
         class="editarea"
         id="logo"
-        :style="{ 'font-size': fontSize + 'px', 'background-color': transparentBgColor,'font-family':fontFamily }"
+        :style="{ 'background-color': transparentBgColor,'font-family':fontFamily }"
       >
         <template v-if="!reverseHighlight">
           <span
             @input="updatePrefix"
             class="prefix"
-            :style="{ color: prefixColor }"
+            :style="{ 'font-size': pornFontSize + 'px', color: prefixColor }"
             contenteditable
             spellcheck="false"
           >
@@ -102,7 +102,7 @@
           <span style="font-size: 0;">.</span>
           <span
             class="postfix"
-            :style="{ color: suffixColor, 'background-color': postfixBgColor }"
+            :style="{ 'font-size': hubFontSize + 'px', color: suffixColor, 'background-color': postfixBgColor }"
             contenteditable
             @input="updateSuffix"
             spellcheck="false"
@@ -111,7 +111,7 @@
         <template v-else>
           <span
             class="postfix"
-            :style="{ color: suffixColor, 'background-color': postfixBgColor }"
+            :style="{ 'font-size': pornFontSize + 'px', color: suffixColor, 'background-color': postfixBgColor }"
             contenteditable
             @input="updatePrefix"
             spellcheck="false"
@@ -119,7 +119,7 @@
           <span
             class="prefix"
             @input="updateSuffix"
-            :style="{ color: prefixColor }"
+            :style="{ 'font-size': hubFontSize + 'px', color: prefixColor }"
             contenteditable
             spellcheck="false"
           >
@@ -161,9 +161,14 @@
 
       <div class="customize-misc">
         <div>
-          Font Size:
-          <input type="range" min="30" max="200" v-model="fontSize" />
-          {{ fontSize }}px
+          Porn Font Size:
+          <input type="range" min="30" max="200" v-model="pornFontSize" />
+          {{ pornFontSize }}px
+        </div>
+        <div>
+          Hub Font Size:
+          <input type="range" min="30" max="200" v-model="hubFontSize" />
+          {{ hubFontSize }}px
         </div>
         <div>
           Font:
@@ -201,7 +206,8 @@ export default {
       prefixColor: '#ffffff',
       suffixColor: '#000000',
       postfixBgColor: '#ff9900',
-      fontSize: '60',
+      pornFontSize: '60',
+      hubFontSize: '60',
       fontFamily: 'sans-serif',
       transparentBg: false,
       reverseHighlight: false,
