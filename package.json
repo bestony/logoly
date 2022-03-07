@@ -24,7 +24,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^7.14.0",
     "stylus": "^0.56.0",
-    "stylus-loader": "^3.0.2",
+    "stylus-loader": "^6.2.0",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
