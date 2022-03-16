@@ -67,14 +67,14 @@
 <template>
     <div class="pornhub">
         <div class="box" v-tooltip="{content:'Edit the text to create your own logo', show: true, classes: 'tooltipClasses'}">
-            <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px','background-color':transparentBgColor}">
+            <div class="editarea" id="logo" :style="{'background-color':transparentBgColor}">
                 <template v-if="!reverseHighlight">
-                <p class="prefix"  @input="updatePrefix" :style="{'color':prefixColor}"  contenteditable>{{prefixText}}</p>
-                <p class="postfix" @input="updateSuffix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{suffixText}}</p>
+                <p class="prefix"  @input="updatePrefix" :style="{'font-size':pornFontSize + 'px','color':prefixColor}"  contenteditable>{{prefixText}}</p>
+                <p class="postfix" @input="updateSuffix" :style="{'font-size':hubFontSize + 'px','color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{suffixText}}</p>
                 </template>
                 <template v-else>
-                <p class="postfix" @input="updatePrefix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{prefixText}}</p>
-                <p class="prefix"  @input="updateSuffix" :style="{'color':prefixColor}"  contenteditable>{{suffixText}}</p>
+                <p class="postfix" @input="updatePrefix" :style="{'font-size':pornFontSize + 'px','color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{prefixText}}</p>
+                <p class="prefix"  @input="updateSuffix" :style="{'font-size':hubFontSize + 'px','color':prefixColor}"  contenteditable>{{suffixText}}</p>
                 </template>
             </div>
         </div>
@@ -96,7 +96,10 @@
 
           <div class="customize-misc">
             <div>
-              Font Size: <input type="range" min="30" max="200" v-model="fontSize" /> {{ fontSize }}px
+              Porn Font Size: <input type="range" min="30" max="200" v-model="pornFontSize" /> {{ pornFontSize }}px
+            </div>
+            <div>
+              Hub Font Size: <input type="range" min="30" max="200" v-model="hubFontSize" /> {{ hubFontSize }}px
             </div>
             <div>Reverse Highlight: <input type="checkbox" v-model="reverseHighlight" /></div>
           </div>
@@ -126,7 +129,8 @@ export default {
             prefixColor: "#ffffff",
             suffixColor: "#000000",
             postfixBgColor: "#ff9900",
-            fontSize:"60",
+            pornFontSize:"60",
+            hubFontSize:"60",
             transparentBg: false,
             reverseHighlight: false,
             prefixText: this.$store.state.prefix,
