@@ -4,8 +4,9 @@
       class="box"
       v-tooltip="{
         content: 'Edit the text to create your own logo',
-        show: true,
-        classes: 'tooltipClasses'
+        shown: true,
+        classes: 'tooltipClasses',
+        theme: 'ownTooltip'
       }"
     >
       <div
@@ -46,7 +47,7 @@
       <div
         class="customize-color"
         id="prefixColor"
-        v-tooltip="{ content: 'Pick a color you like', show: true, classes: 'tooltipClasses' }"
+        v-tooltip="{ content: 'Pick a color you like', shown: true, popperClass: 'tooltipClasses', theme: 'ownTooltip' }"
       >
         <div>Prefix Text Color: &nbsp; <input type="color" v-model="prefixColor" /></div>
         <div>Suffix Text Color: &nbsp; <input type="color" v-model="suffixColor" /></div>
@@ -72,7 +73,7 @@
     <div class="download-share">
       <div
         class="download"
-        v-tooltip="{ content: 'Export your own logo', show: true, classes: 'tooltipClasses' }"
+        v-tooltip="{ content: 'Export your own logo', shown: true, popperClass: 'tooltipClasses', theme: 'ownTooltip' }"
         @click="download"
       >
         Export

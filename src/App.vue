@@ -155,10 +155,10 @@ span.disable{
     text-decoration: none;
     border-radius: 2px;
 }
-.tooltip-inner {
+.v-popper--theme-ownTooltip .v-popper__inner {
     background: #666;
     color: white;
     border-radius: 16px;
     padding: 5px 10px 4px;
-  }
+}
 </style>
