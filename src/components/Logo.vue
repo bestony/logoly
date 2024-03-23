@@ -12,10 +12,10 @@
 </style>
 
 <template>
-  <div class="logo">
-    <h1>
-      <span class="prefix">Logoly</span>
-      <span class="postfix">Pro</span>
-    </h1>
-  </div>
+    <router-link to="/" class="logo">
+      <h1>
+        <span class="prefix">Logoly</span>
+        <span class="postfix">Pro</span>
+      </h1>
+    </router-link>
 </template>
