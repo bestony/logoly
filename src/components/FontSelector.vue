@@ -1,20 +1,14 @@
 <template>
-  <select @change="picked">
-    <option :style="{fontFamily:font}" v-for="(font,index) in fonts" :key="index">{{font}}</option>
+  <select @change="picked" :value="store.font">
+    <option :style="{fontFamily:store.font}" v-for="(font,index) in fonts" :key="index">{{font}}</option>
   </select>
 </template>
 
-<script>
-export default {
-  name: 'FontSelector',
-  methods: {
-    picked(font) {
-      this.$emit('update-font', font.target.value)
-    },
-  },
-  data() {
-    return {
-      fonts: [
+<script setup>
+import { useStore } from '@/stores/store';
+
+const store = useStore()
+const fonts = [
         'Roboto',
         'Zilla Slab Highlight',
         'Open Sans',
@@ -116,8 +110,10 @@ export default {
         'PT Sans Caption',
         'Alegreya Sans',
         'Source Code Pro',
-      ],
-    }
-  },
+      ]
+
+const picked = (event) => {
+  store.font = event.target.value
 }
+
 </script>

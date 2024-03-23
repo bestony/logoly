@@ -34,13 +34,13 @@
 </template>
 
 <script>
-import Logo from "./components/Logo";
-import Description from "./components/Description";
-import Slogan from "./components/Slogan";
-import Faq from "./components/Faq";
-import Author from "./components/Author";
-import Ribbon from "./components/Ribbon";
-import Copyright from "./components/Copyright";
+import Logo from "@/components/Logo.vue";
+import Description from "@/components/Description.vue";
+import Slogan from "@/components/Slogan.vue";
+import Faq from "@/components/Faq.vue";
+import Author from "@/components/Author.vue";
+import Ribbon from "@/components/Ribbon.vue";
+import Copyright from "@/components/Copyright.vue";
 export default {
   components: {
     logo: Logo,
@@ -155,10 +155,14 @@ span.disable{
     text-decoration: none;
     border-radius: 2px;
 }
-.tooltip-inner {
+.v-popper--theme-ownTooltip .v-popper__inner {
     background: #666;
     color: white;
     border-radius: 16px;
     padding: 5px 10px 4px;
-  }
+}
+
+.v-popper--theme-tooltip .v-popper__arrow-outer {
+  border-color: #666
+}
 </style>

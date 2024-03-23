@@ -1,0 +1,255 @@
+<template>
+  <div class="pornhub">
+    <div
+      class="box"
+      v-tooltip="{
+        content: 'Edit the text to create your own logo',
+        shown: true,
+        popperClass: 'tooltipClasses',
+        theme: 'ownTooltip'
+      }"
+    >
+      <div
+        class="editarea"
+        id="logo"
+        :style="{
+          'font-size': fontSize + 'px',
+          'background-color': transparentBgColor,
+          'font-family': store.font
+        }"
+      >
+        <template v-if="!reverseHighlight">
+          <span
+            @input="updatePrefix"
+            class="prefix"
+            :style="{ color: prefixColor }"
+            contenteditable
+            spellcheck="false"
+          >
+            {{ store.prefix }}
+          </span>
+          <!-- HACK: meaningless text: ".", just to split input area, see: #269 -->
+          <span style="font-size: 0">.</span>
+          <span
+            class="postfix"
+            :style="{ color: suffixColor, 'background-color': postfixBgColor }"
+            contenteditable
+            @input="updateSuffix"
+            spellcheck="false"
+            >{{ store.suffix }}</span
+          >
+        </template>
+        <template v-else>
+          <span
+            class="postfix"
+            :style="{ color: suffixColor, 'background-color': postfixBgColor }"
+            contenteditable
+            @input="updatePrefix"
+            spellcheck="false"
+            >{{ store.prefix }}</span
+          >
+          <span
+            class="prefix"
+            @input="updateSuffix"
+            :style="{ color: prefixColor }"
+            contenteditable
+            spellcheck="false"
+          >
+            {{ store.suffix }}
+          </span>
+        </template>
+      </div>
+    </div>
+
+    <div class="customize">
+      <div
+        class="customize-color"
+        id="prefixColor"
+        v-tooltip="{ content: 'Pick a color you like', shown: true, popperClass: 'tooltipClasses', theme: 'ownTooltip' }"
+      >
+        <div>
+          Prefix Text Color: &nbsp;
+          <input type="color" v-model="prefixColor" />
+        </div>
+        <div>
+          Suffix Text Color: &nbsp;
+          <input type="color" v-model="suffixColor" />
+        </div>
+        <div>
+          Suffix Background Color: &nbsp;
+          <input type="color" v-model="postfixBgColor" />
+        </div>
+        <div>
+          Transparent Background: &nbsp;
+          <input type="checkbox" value="transparentBg" v-model="transparentBg" />
+        </div>
+      </div>
+
+      <div class="customize-misc">
+        <div>
+          Font Size:
+          <input type="range" min="30" max="200" v-model="fontSize" />
+          {{ fontSize }}px
+        </div>
+        <div>
+          Font:
+          <FontSelector />
+        </div>
+        <div>
+          Reverse Highlight:
+          <input type="checkbox" v-model="reverseHighlight" />
+        </div>
+      </div>
+    </div>
+
+    <div class="download-share">
+      <div
+        class="download"
+        v-tooltip="{ content: 'Export your own logo', shown: true, popperClass: 'tooltipClasses', theme: 'ownTooltip' }"
+        @click="download"
+      >
+        Export
+      </div>
+
+      <div class="share" @click="twitter"><i class="iconfont icon-twitter"></i> Tweet</div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import domtoimage from 'dom-to-image'
+import FontSelector from '@/components/FontSelector.vue'
+import { computed, ref } from 'vue'
+import { useStore } from '@/stores/store'
+
+const prefixColor = ref('#ffffff')
+const suffixColor = ref('#000000')
+const postfixBgColor = ref('#ff9900')
+const fontSize = ref(60)
+const transparentBg = ref(false)
+const reverseHighlight = ref(false)
+
+const store = useStore()
+
+const updatePrefix = (e) => {
+  store.updatePrefix(e.target.childNodes[0].nodeValue)
+}
+
+const updateSuffix = (e) => {
+  store.updateSuffix(e.target.childNodes[0].nodeValue)
+}
+
+const downloadImage = (imgsrc, name) => {
+  //下载图片地址和图片名
+  let image = new Image()
+  // 解决跨域 Canvas 污染问题
+  image.setAttribute('crossOrigin', 'anonymous')
+  image.onload = function () {
+    let canvas = document.createElement('canvas')
+    canvas.width = image.width
+    canvas.height = image.height
+    let context = canvas.getContext('2d')
+    context.drawImage(image, 0, 0, image.width, image.height)
+    let url = canvas.toDataURL('image/png')
+    let a = document.createElement('a')
+    let event = new MouseEvent('click')
+    a.download = name || 'photo'
+    a.href = url
+    a.dispatchEvent(event)
+  }
+  image.src = imgsrc
+}
+
+const download = () => {
+  var node = document.getElementById('logo')
+  domtoimage.toPng(node).then(function (res) {
+    downloadImage(res, 'logo.png')
+  })
+}
+
+const twitter = () => {
+  let url = 'https://logoly.pro'
+  let text = encodeURIComponent(`Built with #LogolyPro, by @xiqingongzi ${url}`)
+  window.open(`https://twitter.com/intent/tweet?text=${text}`)
+}
+
+const transparentBgColor = computed(() => {
+  if (transparentBg.value) {
+    return 'transparent'
+  } else {
+    return '#000000'
+  }
+})
+</script>
+
+<style lang="stylus" scoped>
+.pornhub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box {
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 40px;
+  margin: 40px 10px;
+  max-width: 100%;
+
+  .editarea {
+    padding: 20px;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 700;
+
+    .prefix {
+      color: #fff;
+      padding: 5px 5px;
+    }
+
+    .postfix {
+      color: #000;
+      background-color: #f90;
+      padding: 5px 10px;
+      border-radius: 7px;
+    }
+  }
+}
+
+.customize {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 50px;
+
+  .customize-color > div,
+  .customize-misc > div {
+    padding: 8px 0;
+  }
+}
+
+.download-share {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+
+  & > div {
+    width: 100px;
+    height: 40px;
+    border-radius: 3px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .download {
+    color: black;
+    background: #f90;
+  }
+
+  .share {
+    color: #fff;
+    background: #1da1f2;
+  }
+}
+</style>

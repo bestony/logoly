@@ -1,25 +1,28 @@
-import Vue from 'vue'
+import './assets/iconfont/iconfont.css'
+import 'floating-vue/dist/style.css'
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import FloatingVue from 'floating-vue'
+import VueGtag from "vue-gtag";
+
 import App from './App.vue'
 import router from './router'
-import VueAnalytics from 'vue-analytics'
-import VTooltip from 'v-tooltip'
 
-import './assets/iconfont/iconfont.css'
-import store from './store'
+const app = createApp(App)
 
-Vue.config.productionTip = false
-
-Vue.use(VueAnalytics, {
-  id: 'UA-47834775-20',
-  router,
-  autoTracking: {
-    pageviewOnLoad: false,
-  },
+app.use(createPinia())
+app.use(FloatingVue, {
+  themes: {
+    'ownTooltip': {
+      $extend: 'tooltip'
+    }
+  }
 })
-Vue.use(VTooltip)
+app.use(VueGtag, {
+  config: { 
+    id: "UA-47834775-20" 
+  }
+})
+app.use(router)
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+app.mount('#app')
