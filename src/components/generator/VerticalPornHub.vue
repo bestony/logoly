@@ -93,7 +93,7 @@ import FontSelector from '@/components/FontSelector.vue'
   const prefixColor = ref('#ffffff')
   const suffixColor = ref('#000000')
   const postfixBgColor = ref('#ff9900')
-  const fontSize = ref('#60')
+  const fontSize = ref(60)
   const transparentBg = ref(false)
   const reverseHighlight = ref(false)
 

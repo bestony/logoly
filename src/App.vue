@@ -161,4 +161,8 @@ span.disable{
     border-radius: 16px;
     padding: 5px 10px 4px;
 }
+
+.v-popper--theme-tooltip .v-popper__arrow-outer {
+  border-color: #666
+}
 </style>
