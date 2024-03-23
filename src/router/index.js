@@ -1,15 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
-Vue.use(Router)
-
-export default new Router({
-  // mode: 'history',
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'pornhub',
-      component: () => import(/* webpackChunkName: "pornhub" */ './generator/Pornhub.vue'),
+      component: () => import(/* webpackChunkName: "pornhub" */ '@/components/generator/Pornhub.vue'),
       meta: {
         analytics: {
           pageviewTemplate(route) {
@@ -25,7 +22,7 @@ export default new Router({
       path: '/vertical-ph',
       name: 'vertical-pornhub',
       component: () =>
-        import(/* webpackChunkName: "vertical-pornhub" */ './generator/VerticalPornHub.vue'),
+        import(/* webpackChunkName: "vertical-pornhub" */ '@/components/generator/VerticalPornHub.vue'),
       meta: {
         analytics: {
           pageviewTemplate(route) {
@@ -40,7 +37,7 @@ export default new Router({
     {
       path: '/about',
       name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      component: () => import(/* webpackChunkName: "about" */ '@/views/AboutView.vue'),
       meta: {
         analytics: {
           pageviewTemplate(route) {
@@ -54,3 +51,5 @@ export default new Router({
     },
   ],
 })
+
+export default router

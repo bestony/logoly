@@ -1,25 +1,17 @@
-import Vue from 'vue'
+import './assets/main.css'
+import './assets/iconfont/iconfont.css'
+import vToolTip from 'v-tooltip'
+
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+
 import App from './App.vue'
 import router from './router'
-import VueAnalytics from 'vue-analytics'
-import VTooltip from 'v-tooltip'
 
-import './assets/iconfont/iconfont.css'
-import store from './store'
+const app = createApp(App)
 
-Vue.config.productionTip = false
+app.use(createPinia())
+app.use(vToolTip)
+app.use(router)
 
-Vue.use(VueAnalytics, {
-  id: 'UA-47834775-20',
-  router,
-  autoTracking: {
-    pageviewOnLoad: false,
-  },
-})
-Vue.use(VTooltip)
-
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+app.mount('#app')
