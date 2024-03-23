@@ -89,6 +89,7 @@ import domtoimage from 'dom-to-image'
 import { computed, ref } from 'vue';
 import { useStore } from '@/stores/store';
 import FontSelector from '@/components/FontSelector.vue'
+import { event } from 'vue-gtag'
 
   const prefixColor = ref('#ffffff')
   const suffixColor = ref('#000000')
@@ -129,6 +130,7 @@ import FontSelector from '@/components/FontSelector.vue'
     }
 
     const download =() => {
+      event('download')
       var node = document.getElementById('logo')
       domtoimage.toPng(node).then(function (res) {
         downloadImage(res, 'logo.png')

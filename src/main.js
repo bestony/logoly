@@ -19,10 +19,12 @@ app.use(FloatingVue, {
   }
 })
 app.use(VueGtag, {
+  appName: 'Logoly',
+  pageTrackerScreenviewEnabled: true,
   config: { 
-    id: "UA-47834775-20" 
+    id: "G-YX7X8HWGB1" 
   }
-})
+},router)
 app.use(router)
 
 app.mount('#app')
