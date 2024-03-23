@@ -35,6 +35,21 @@ const router = createRouter({
       },
     },
     {
+      path: '/onlyfans',
+      name: 'onlyfans',
+      component: () => import(/* webpackChunkName: "onlyfans" */ '@/components/generator/Onlyfans.vue'),
+      meta: {
+        analytics: {
+          pageviewTemplate(route) {
+            return {
+              title: 'OnlyFans Generator',
+              page: route.path,
+            }
+          },
+        },
+      },
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import(/* webpackChunkName: "about" */ '@/views/AboutView.vue'),

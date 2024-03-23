@@ -18,10 +18,10 @@
           <p class="prefix">Porn</p>
           <p class="postfix">hub</p>
         </router-link>
-        <span class="disable">
-          <span class="prefix">You</span>
-          <span class="postfix">Tube</span>
-        </span>
+        <router-link to="/onlyfans" class="of">
+          <span class="prefix">Only</span>
+          <span class="postfix">Fans</span>
+        </router-link>
         <span class="disable">More coming soon...</span>
       </div>
     </div>
@@ -33,7 +33,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Logo from "@/components/Logo.vue";
 import Description from "@/components/Description.vue";
 import Slogan from "@/components/Slogan.vue";
@@ -41,17 +41,6 @@ import Faq from "@/components/Faq.vue";
 import Author from "@/components/Author.vue";
 import Ribbon from "@/components/Ribbon.vue";
 import Copyright from "@/components/Copyright.vue";
-export default {
-  components: {
-    logo: Logo,
-    Description,
-    Slogan,
-    Faq,
-    Author,
-    Ribbon,
-    Copyright
-  }
-};
 </script>
 
 <style>
@@ -97,6 +86,13 @@ a {
   background-color: #f90;
   padding: 2px;
   border-radius: 3px;
+}
+.of .prefix {
+  color: #fff;
+  padding: 2px;
+}
+.of .postfix {
+  color: #00AFF0;
 }
 .yb .prefix{
   color: #fff;
