@@ -1,6 +1,6 @@
 {
   "name": "logoly",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,6 +15,7 @@
     "floating-vue": "^5.2.2",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
+    "vue-gtag": "^2.0.1",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {

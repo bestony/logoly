@@ -1,10 +1,9 @@
-import './assets/main.css'
 import './assets/iconfont/iconfont.css'
 import 'floating-vue/dist/style.css'
-import FloatingVue from 'floating-vue'
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import FloatingVue from 'floating-vue'
+import VueGtag from "vue-gtag";
 
 import App from './App.vue'
 import router from './router'
@@ -17,6 +16,11 @@ app.use(FloatingVue, {
     'ownTooltip': {
       $extend: 'tooltip'
     }
+  }
+})
+app.use(VueGtag, {
+  config: { 
+    id: "UA-47834775-20" 
   }
 })
 app.use(router)
