@@ -15,14 +15,14 @@
         :style="{ 'font-size': fontSize + 'px', 'background-color': transparentBgColor, 'font-family': store.font }"
       >
         <template v-if="!reverseHighlight">
-          <p class="prefix" @input="updatePrefix" :style="{ color: prefixColor }" contenteditable>
+          <p class="prefix" @input="updatePrefix" :style="{ color: prefixColor }" :contenteditable="store.editable">
             {{ store.prefix }}
           </p>
           <p
             class="postfix"
             @input="updateSuffix"
             :style="{ color: suffixColor, 'background-color': postfixBgColor }"
-            contenteditable
+            :contenteditable="store.editable"
           >
             {{ store.suffix }}
           </p>
@@ -32,11 +32,11 @@
             class="postfix"
             @input="updatePrefix"
             :style="{ color: suffixColor, 'background-color': postfixBgColor }"
-            contenteditable
+            :contenteditable="store.editable"
           >
             {{ store.prefix }}
           </p>
-          <p class="prefix" @input="updateSuffix" :style="{ color: prefixColor }" contenteditable>
+          <p class="prefix" @input="updateSuffix" :style="{ color: prefixColor }" :contenteditable="store.editable">
             {{ store.suffix }}
           </p>
         </template>

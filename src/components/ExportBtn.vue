@@ -48,11 +48,13 @@
 
   const download = (type) => {
     showMenu.value = false;
+    store.editable = false;
     event('download');
     if (type === 'png') {
       var node = document.getElementById('logo')
       domtoimage.toPng(node).then(function (res) {
         downloadImage(res, store.prefix + '-' + store.suffix + '.png')
+        store.editable = true
       })
     } else if (type === 'svg') {
       var node = document.getElementById('logo')
@@ -61,6 +63,7 @@
             link.download = store.prefix + '-' + store.suffix + '.svg';
             link.href = res;
             link.click();
+            store.editable = true
       })
     }
   }

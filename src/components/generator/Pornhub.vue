@@ -23,7 +23,7 @@
             @input="updatePrefix"
             class="prefix"
             :style="{ color: prefixColor }"
-            contenteditable
+            :contenteditable="store.editable"
             spellcheck="false"
           >
             {{ store.prefix }}
@@ -33,7 +33,7 @@
           <span
             class="postfix"
             :style="{ color: suffixColor, 'background-color': postfixBgColor }"
-            contenteditable
+            :contenteditable="store.editable"
             @input="updateSuffix"
             spellcheck="false"
             >{{ store.suffix }}</span
@@ -43,7 +43,7 @@
           <span
             class="postfix"
             :style="{ color: suffixColor, 'background-color': postfixBgColor }"
-            contenteditable
+            :contenteditable="store.editable"
             @input="updatePrefix"
             spellcheck="false"
             >{{ store.prefix }}</span
@@ -52,7 +52,7 @@
             class="prefix"
             @input="updateSuffix"
             :style="{ color: prefixColor }"
-            contenteditable
+            :contenteditable="store.editable"
             spellcheck="false"
           >
             {{ store.suffix }}
