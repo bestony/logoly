@@ -11,6 +11,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@vueuse/core": "^10.9.0",
     "dom-to-image": "^2.6.0",
     "floating-vue": "^5.2.2",
     "pinia": "^2.1.7",

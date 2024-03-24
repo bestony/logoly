@@ -15,14 +15,14 @@
         :style="{ 'font-size': fontSize + 'px', 'background-color': transparentBgColor, 'font-family': store.font }"
       >
         <template v-if="!reverseHighlight">
-          <p class="prefix" @input="updatePrefix" :style="{ color: prefixColor }" contenteditable>
+          <p class="prefix" @input="updatePrefix" :style="{ color: prefixColor }" :contenteditable="store.editable">
             {{ store.prefix }}
           </p>
           <p
             class="postfix"
             @input="updateSuffix"
             :style="{ color: suffixColor, 'background-color': postfixBgColor }"
-            contenteditable
+            :contenteditable="store.editable"
           >
             {{ store.suffix }}
           </p>
@@ -32,11 +32,11 @@
             class="postfix"
             @input="updatePrefix"
             :style="{ color: suffixColor, 'background-color': postfixBgColor }"
-            contenteditable
+            :contenteditable="store.editable"
           >
             {{ store.prefix }}
           </p>
-          <p class="prefix" @input="updateSuffix" :style="{ color: prefixColor }" contenteditable>
+          <p class="prefix" @input="updateSuffix" :style="{ color: prefixColor }" :contenteditable="store.editable">
             {{ store.suffix }}
           </p>
         </template>
@@ -71,25 +71,17 @@
     </div>
 
     <div class="download-share">
-      <div
-        class="download"
-        v-tooltip="{ content: 'Export your own logo', shown: true, popperClass: 'tooltipClasses', theme: 'ownTooltip' }"
-        @click="download"
-      >
-        Export
-      </div>
-
+      <ExportBtn />
       <div class="share" @click="twitter"><i class="iconfont icon-twitter"></i> Tweet</div>
     </div>
   </div>
 </template>
 
 <script setup>
-import domtoimage from 'dom-to-image'
 import { computed, ref } from 'vue';
 import { useStore } from '@/stores/store';
 import FontSelector from '@/components/FontSelector.vue'
-import { event } from 'vue-gtag'
+import ExportBtn from '../ExportBtn.vue';
 
   const prefixColor = ref('#ffffff')
   const suffixColor = ref('#000000')
@@ -106,35 +98,6 @@ import { event } from 'vue-gtag'
 
   const updateSuffix = (e) => {
       store.updateSuffix(e.target.childNodes[0].nodeValue)
-    }
-
-  const downloadImage = (imgsrc, name) => {
-      //下载图片地址和图片名
-      let image = new Image()
-      // 解决跨域 Canvas 污染问题
-      image.setAttribute('crossOrigin', 'anonymous')
-      image.onload = function () {
-        let canvas = document.createElement('canvas')
-        canvas.width = image.width
-        canvas.height = image.height
-        let context = canvas.getContext('2d')
-        context.drawImage(image, 0, 0, image.width, image.height)
-        let url = canvas.toDataURL('image/png')
-        let a = document.createElement('a')
-        let event = new MouseEvent('click')
-        a.download = name || 'photo'
-        a.href = url
-        a.dispatchEvent(event)
-      }
-      image.src = imgsrc
-    }
-
-    const download =() => {
-      event('download')
-      var node = document.getElementById('logo')
-      domtoimage.toPng(node).then(function (res) {
-        downloadImage(res, 'logo.png')
-      })
     }
 
     const twitter = () => {

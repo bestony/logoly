@@ -4,6 +4,7 @@
 
 - Upgraded to Vue 3
 - Added OnlyFans Generator
+- Added SVG Export
 
 ## 2020.10.08
 
