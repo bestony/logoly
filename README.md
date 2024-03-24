@@ -12,8 +12,8 @@
 
 ## Features
 
-- generate logo like **Pornhub**
-- download your own logo in PNG format
+- generate logo like **PornHub** or **OnlyFans**
+- download your own logo in PNG/SVG format
 - customize logo color
 - customize logo font size
 
@@ -49,7 +49,7 @@ At the end of this section, I suggest you read the [Contributing Guide](Contribu
 
 1. clone this project
 2. install dependencies with `npm install` at the project root directory
-3. start the development server with `npm run serve`
+3. start the development server with `npm run dev`
 4. make changes
 5. build with `npm run build`
 
