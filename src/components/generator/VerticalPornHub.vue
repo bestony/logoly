@@ -1,78 +1,115 @@
 <template>
   <div class="pornhub">
-    <div
-      class="box"
-      v-tooltip="{
-        content: 'Edit the text to create your own logo',
-        shown: true,
-        classes: 'tooltipClasses',
-        theme: 'ownTooltip'
-      }"
-    >
-      <div
-        class="editarea"
-        id="logo"
-        :style="{ 'font-size': fontSize + 'px', 'background-color': transparentBgColor, 'font-family': store.font }"
-      >
-        <template v-if="!reverseHighlight">
-          <p class="prefix" @input="updatePrefix" :style="{ color: prefixColor }" :contenteditable="store.editable">
-            {{ store.prefix }}
-          </p>
-          <p
-            class="postfix"
-            @input="updateSuffix"
-            :style="{ color: suffixColor, 'background-color': postfixBgColor }"
-            :contenteditable="store.editable"
+    <v-tooltip text="Edit the text to create your own logo" location="top" model-value>
+      <template v-slot:activator="{props}">
+        <div v-bind="props" class="box">
+          <div
+            class="editarea"
+            id="logo"
+            :style="{ 'font-size': fontSize + 'px', 'background-color': transparentBgColor, 'font-family': store.font }"
           >
-            {{ store.suffix }}
-          </p>
-        </template>
-        <template v-else>
-          <p
-            class="postfix"
-            @input="updatePrefix"
-            :style="{ color: suffixColor, 'background-color': postfixBgColor }"
-            :contenteditable="store.editable"
-          >
-            {{ store.prefix }}
-          </p>
-          <p class="prefix" @input="updateSuffix" :style="{ color: prefixColor }" :contenteditable="store.editable">
-            {{ store.suffix }}
-          </p>
-        </template>
-      </div>
-    </div>
-
-    <div class="customize">
-      <div
-        class="customize-color"
-        id="prefixColor"
-        v-tooltip="{ content: 'Pick a color you like', shown: true, popperClass: 'tooltipClasses', theme: 'ownTooltip' }"
-      >
-        <div>Prefix Text Color: &nbsp; <input type="color" v-model="prefixColor" /></div>
-        <div>Suffix Text Color: &nbsp; <input type="color" v-model="suffixColor" /></div>
-        <div>Suffix Background Color: &nbsp; <input type="color" v-model="postfixBgColor" /></div>
-        <div>
-          Transparent Background: &nbsp;
-          <input type="checkbox" value="transparentBg" v-model="transparentBg" />
+            <template v-if="!reverseHighlight">
+              <p class="prefix" @input="updatePrefix" :style="{ color: prefixColor }" :contenteditable="store.editable">
+                {{ store.prefix }}
+              </p>
+              <p
+                class="postfix"
+                @input="updateSuffix"
+                :style="{ color: suffixColor, 'background-color': postfixBgColor }"
+                :contenteditable="store.editable"
+              >
+                {{ store.suffix }}
+              </p>
+            </template>
+            <template v-else>
+              <p
+                class="postfix"
+                @input="updatePrefix"
+                :style="{ color: suffixColor, 'background-color': postfixBgColor }"
+                :contenteditable="store.editable"
+              >
+                {{ store.prefix }}
+              </p>
+              <p class="prefix" @input="updateSuffix" :style="{ color: prefixColor }" :contenteditable="store.editable">
+                {{ store.suffix }}
+              </p>
+            </template>
+          </div>
         </div>
-      </div>
+      </template>
+    </v-tooltip>
+
+    <div class="customize mt-3">
+      <v-tooltip text="Pick a color you like" location="top" model-value>
+        <template v-slot:activator="{props}">
+          <div
+            v-bind="props"
+            class="customize-color"
+            id="prefixColor"
+          >
+            <div>
+              Prefix Text Color:
+              <v-menu :close-on-content-click="false" location="end">
+                <template v-slot:activator="{ props }">
+                  <button
+                    v-bind="props"
+                    class="w-12 h-6 rounded ml-1 border-2 border-solid border-white"
+                    :style="{ 'background-color': prefixColor }"
+                  ></button>
+                </template>
+                <v-color-picker mode="hex" hide-inputs v-model="prefixColor"></v-color-picker>
+              </v-menu>
+            </div>
+            <div>
+              Suffix Text Color:
+              <v-menu :close-on-content-click="false" location="end">
+                <template v-slot:activator="{ props }">
+                  <button
+                    v-bind="props"
+                    class="w-12 h-6 rounded ml-1 border-2 border-solid border-white"
+                    :style="{ 'background-color': suffixColor }"
+                  ></button>
+                </template>
+                <v-color-picker mode="hex" hide-inputs v-model="suffixColor"></v-color-picker>
+              </v-menu>
+            </div>
+            <div>
+              Suffix Background Color:
+              <v-menu :close-on-content-click="false" location="end">
+                <template v-slot:activator="{ props }">
+                  <button
+                    v-bind="props"
+                    class="w-12 h-6 rounded ml-1 border-2 border-solid border-white"
+                    :style="{ 'background-color': postfixBgColor }"
+                  ></button>
+                </template>
+                <v-color-picker mode="hex" hide-inputs v-model="postfixBgColor"></v-color-picker>
+              </v-menu>
+            </div>
+            <div class="flex items-center">
+              Transparent Background: <v-checkbox-btn v-model="transparentBg"></v-checkbox-btn>
+            </div>
+          </div>
+        </template>
+      </v-tooltip>
 
       <div class="customize-misc">
-        <div>
-          Font Size: <input type="range" min="30" max="200" v-model="fontSize" /> {{ fontSize }}px
+        <div class="flex flex-col">
+          Font Size: {{ fontSize }}px
+          <div class="-ml-1">
+            <v-slider hide-details min="30" max="200" step="1" color="#f90" v-model="fontSize"></v-slider>
+          </div>
         </div>
-        <div>
-          Font:
-          <FontSelector />
+        <FontSelector />
+        <div class="flex items-center">
+          Reverse Highlight: <v-checkbox-btn v-model="reverseHighlight"></v-checkbox-btn>
         </div>
-        <div>Reverse Highlight: <input type="checkbox" v-model="reverseHighlight" /></div>
       </div>
     </div>
 
     <div class="download-share">
       <ExportBtn />
-      <div class="share" @click="twitter"><i class="iconfont icon-twitter"></i> Tweet</div>
+      <v-btn @click="twitter" color="#1da1f2"><v-icon icon="mdi-twitter" class="mr-0.5"></v-icon> Tweet</v-btn>
     </div>
   </div>
 </template>

@@ -1,10 +1,5 @@
-<style lang="stylus" scoped>
-    h2
-        color #fff;
-</style>
-
 <template>
-    <div class="description">
-       <h2>A Simple Online Logo Generator</h2>
+    <div>
+       <h2 class="text-white">A Simple Online Logo Generator</h2>
     </div>
 </template>

@@ -1,7 +1,12 @@
 <template>
-  <select @change="picked" :value="store.font">
-    <option :style="{fontFamily:store.font}" v-for="(font,index) in fonts" :key="index">{{font}}</option>
-  </select>
+  <v-select
+  hide-details
+  v-model="store.font"
+  label="Font"
+  :items="fonts"
+  color="#f90"
+  variant="outlined"
+></v-select>
 </template>
 
 <script setup>
@@ -111,9 +116,4 @@ const fonts = [
         'Alegreya Sans',
         'Source Code Pro',
       ]
-
-const picked = (event) => {
-  store.font = event.target.value
-}
-
 </script>

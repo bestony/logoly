@@ -1,12 +1,5 @@
-<style lang="stylus" scoped>
-a
-    position fixed
-    top 0
-    right 0
-</style>
-
 <template>
-    <a href="https://github.com/bestony/logoly" target="_blank">
+    <a class="absolute md:fixed top-0 right-0" href="https://github.com/bestony/logoly" target="_blank">
     <img
         width="149"
         height="149"
