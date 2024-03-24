@@ -11,6 +11,7 @@
 - Added Font-Selector-Component
 
 ## 2019.05.04
+
 - Fix Typo at Slogan.vue
 - Add vuex for keep text while switch layout
 - use Canvas export

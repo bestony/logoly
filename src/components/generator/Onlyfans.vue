@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-col items-center">
     <v-tooltip text="Edit the text to create your own logo" model-value location="top">
-      <template v-slot:activator="{props}">  
+      <template v-slot:activator="{ props }">
         <div v-bind="props" class="box">
           <div
             class="editarea"
             id="logo"
             :style="{
               'font-size': fontSize + 'px',
-              'background-color': transparentBgColor,
+              'background-color': transparentBgColor
             }"
           >
             <span
@@ -24,7 +24,11 @@
             <span style="font-size: 0">.</span>
             <span
               class="postfix"
-              :style="{ color: suffixColor, 'background-color': postfixBgColor, 'margin-left': suffixMargin }"
+              :style="{
+                color: suffixColor,
+                'background-color': postfixBgColor,
+                'margin-left': suffixMargin
+              }"
               :contenteditable="store.editable"
               @input="updateSuffix"
               spellcheck="false"
@@ -37,70 +41,79 @@
 
     <div class="w-1/3 mb-12">
       <div class="flex flex-col">
-          Font Size: {{ fontSize }}px
-          <div class="-ml-1">
-            <v-slider hide-details min="30" max="200" step="1" color="#f90" v-model="fontSize"></v-slider>
-          </div>
+        Font Size: {{ fontSize }}px
+        <div class="-ml-1">
+          <v-slider
+            hide-details
+            min="30"
+            max="200"
+            step="1"
+            color="#f90"
+            v-model="fontSize"
+          ></v-slider>
         </div>
-        <div class="flex items-center">
-          Transparent Background: <v-checkbox-btn v-model="transparentBg"></v-checkbox-btn>
-        </div>
+      </div>
+      <div class="flex items-center">
+        Transparent Background: <v-checkbox-btn v-model="transparentBg"></v-checkbox-btn>
+      </div>
     </div>
 
     <div class="download-share">
       <ExportBtn />
-      <v-btn @click="twitter" color="#1da1f2"><v-icon icon="mdi-twitter" class="mr-0.5"></v-icon> Tweet</v-btn>
+      <v-btn @click="twitter" color="#1da1f2"
+        ><v-icon icon="mdi-twitter" class="mr-0.5"></v-icon> Tweet</v-btn
+      >
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { useStore } from '@/stores/store'
-import ExportBtn from '@/components/ExportBtn.vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import { useStore } from '@/stores/store';
+import ExportBtn from '@/components/ExportBtn.vue';
 
-const prefixColor = ref('#ffffff')
-const suffixColor = ref('#00AFF0')
-const postfixBgColor = ref('transparent')
-const fontSize = ref(60)
-const transparentBg = ref(false)
+const prefixColor = ref('#ffffff');
+const suffixColor = ref('#00AFF0');
+const postfixBgColor = ref('transparent');
+const fontSize = ref(60);
+const transparentBg = ref(false);
 const suffixMargin = computed(() => {
-  return '-' + fontSize.value / 30 + 'rem'
-})
+  return '-' + fontSize.value / 30 + 'rem';
+});
 
-const store = useStore()
+const store = useStore();
 
 const updatePrefix = (e) => {
-  store.updatePrefix(e.target.childNodes[0].nodeValue)
-}
+  store.updatePrefix(e.target.childNodes[0].nodeValue);
+};
 
 const updateSuffix = (e) => {
-  store.updateSuffix(e.target.childNodes[0].nodeValue)
-}
+  store.updateSuffix(e.target.childNodes[0].nodeValue);
+};
 
 const twitter = () => {
-  let url = 'https://logoly.pro'
-  let text = encodeURIComponent(`Built with #LogolyPro, by @xiqingongzi ${url}`)
-  window.open(`https://twitter.com/intent/tweet?text=${text}`)
-}
+  let url = 'https://logoly.pro';
+  let text = encodeURIComponent(`Built with #LogolyPro, by @xiqingongzi ${url}`);
+  window.open(`https://twitter.com/intent/tweet?text=${text}`);
+};
 
 const transparentBgColor = computed(() => {
   if (transparentBg.value) {
-    return 'transparent'
+    return 'transparent';
   } else {
-    return '#000000'
+    return '#000000';
   }
-})
+});
 
 onMounted(() => {
-  store.updatePrefix('Only')
-  store.updateSuffix('Fans')
-})
+  store.updatePrefix('Only');
+  store.updateSuffix('Fans');
+});
 
 onBeforeUnmount(() => {
-  store.updatePrefix('edit')
-  store.updateSuffix('me')
-})
+  store.updatePrefix('edit');
+  store.updateSuffix('me');
+});
 </script>
 
 <style lang="stylus" scoped>

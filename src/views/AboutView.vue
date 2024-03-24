@@ -7,4 +7,3 @@
     </p>
   </div>
 </template>
-

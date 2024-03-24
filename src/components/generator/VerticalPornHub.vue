@@ -1,15 +1,24 @@
 <template>
   <div class="pornhub">
     <v-tooltip text="Edit the text to create your own logo" location="top" model-value>
-      <template v-slot:activator="{props}">
+      <template v-slot:activator="{ props }">
         <div v-bind="props" class="box">
           <div
             class="editarea"
             id="logo"
-            :style="{ 'font-size': fontSize + 'px', 'background-color': transparentBgColor, 'font-family': store.font }"
+            :style="{
+              'font-size': fontSize + 'px',
+              'background-color': transparentBgColor,
+              'font-family': store.font
+            }"
           >
             <template v-if="!reverseHighlight">
-              <p class="prefix" @input="updatePrefix" :style="{ color: prefixColor }" :contenteditable="store.editable">
+              <p
+                class="prefix"
+                @input="updatePrefix"
+                :style="{ color: prefixColor }"
+                :contenteditable="store.editable"
+              >
                 {{ store.prefix }}
               </p>
               <p
@@ -30,7 +39,12 @@
               >
                 {{ store.prefix }}
               </p>
-              <p class="prefix" @input="updateSuffix" :style="{ color: prefixColor }" :contenteditable="store.editable">
+              <p
+                class="prefix"
+                @input="updateSuffix"
+                :style="{ color: prefixColor }"
+                :contenteditable="store.editable"
+              >
                 {{ store.suffix }}
               </p>
             </template>
@@ -41,12 +55,8 @@
 
     <div class="customize mt-3">
       <v-tooltip text="Pick a color you like" location="top" model-value>
-        <template v-slot:activator="{props}">
-          <div
-            v-bind="props"
-            class="customize-color"
-            id="prefixColor"
-          >
+        <template v-slot:activator="{ props }">
+          <div v-bind="props" class="customize-color" id="prefixColor">
             <div>
               Prefix Text Color:
               <v-menu :close-on-content-click="false" location="end">
@@ -97,7 +107,14 @@
         <div class="flex flex-col">
           Font Size: {{ fontSize }}px
           <div class="-ml-1">
-            <v-slider hide-details min="30" max="200" step="1" color="#f90" v-model="fontSize"></v-slider>
+            <v-slider
+              hide-details
+              min="30"
+              max="200"
+              step="1"
+              color="#f90"
+              v-model="fontSize"
+            ></v-slider>
           </div>
         </div>
         <FontSelector />
@@ -109,7 +126,9 @@
 
     <div class="download-share">
       <ExportBtn />
-      <v-btn @click="twitter" color="#1da1f2"><v-icon icon="mdi-twitter" class="mr-0.5"></v-icon> Tweet</v-btn>
+      <v-btn @click="twitter" color="#1da1f2"
+        ><v-icon icon="mdi-twitter" class="mr-0.5"></v-icon> Tweet</v-btn
+      >
     </div>
   </div>
 </template>
@@ -117,39 +136,39 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useStore } from '@/stores/store';
-import FontSelector from '@/components/FontSelector.vue'
+import FontSelector from '@/components/FontSelector.vue';
 import ExportBtn from '../ExportBtn.vue';
 
-  const prefixColor = ref('#ffffff')
-  const suffixColor = ref('#000000')
-  const postfixBgColor = ref('#ff9900')
-  const fontSize = ref(60)
-  const transparentBg = ref(false)
-  const reverseHighlight = ref(false)
+const prefixColor = ref('#ffffff');
+const suffixColor = ref('#000000');
+const postfixBgColor = ref('#ff9900');
+const fontSize = ref(60);
+const transparentBg = ref(false);
+const reverseHighlight = ref(false);
 
-  const store = useStore()
+const store = useStore();
 
-  const updatePrefix = (e) => {
-      store.updatePrefix(e.target.childNodes[0].nodeValue)
-    }
+const updatePrefix = (e) => {
+  store.updatePrefix(e.target.childNodes[0].nodeValue);
+};
 
-  const updateSuffix = (e) => {
-      store.updateSuffix(e.target.childNodes[0].nodeValue)
-    }
+const updateSuffix = (e) => {
+  store.updateSuffix(e.target.childNodes[0].nodeValue);
+};
 
-    const twitter = () => {
-      let url = 'https://logoly.pro'
-      let text = encodeURIComponent(`Built with #LogolyPro, by @xiqingongzi ${url}`)
-      window.open(`https://twitter.com/intent/tweet?text=${text}`)
-    }
+const twitter = () => {
+  let url = 'https://logoly.pro';
+  let text = encodeURIComponent(`Built with #LogolyPro, by @xiqingongzi ${url}`);
+  window.open(`https://twitter.com/intent/tweet?text=${text}`);
+};
 
-    const transparentBgColor = computed(() => {
-      if (transparentBg.value) {
-        return 'transparent'
-      } else {
-        return '#000000'
-      }
-    })
+const transparentBgColor = computed(() => {
+  if (transparentBg.value) {
+    return 'transparent';
+  } else {
+    return '#000000';
+  }
+});
 </script>
 
 <style lang="stylus" scoped>
