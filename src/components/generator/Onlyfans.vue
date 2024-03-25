@@ -1,115 +1,122 @@
 <template>
-  <div class="pornhub">
-    <div
-      class="box"
-      v-tooltip="{
-        content: 'Edit the text to create your own logo',
-        shown: true,
-        popperClass: 'tooltipClasses',
-        theme: 'ownTooltip'
-      }"
-    >
-      <div
-        class="editarea"
-        id="logo"
-        :style="{
-          'font-size': fontSize + 'px',
-          'background-color': transparentBgColor,
-        }"
-      >
-          <span
-            @input="updatePrefix"
-            class="prefix"
-            :style="{ color: prefixColor }"
-            :contenteditable="store.editable"
-            spellcheck="false"
+  <div class="flex flex-col items-center">
+    <v-tooltip text="Edit the text to create your own logo" model-value location="top">
+      <template v-slot:activator="{ props }">
+        <div v-bind="props" class="box">
+          <div
+            class="editarea"
+            id="logo"
+            :style="{
+              'font-size': fontSize + 'px',
+              'background-color': transparentBgColor
+            }"
           >
-            {{ store.prefix }}
-          </span>
-          <!-- HACK: meaningless text: ".", just to split input area, see: #269 -->
-          <span style="font-size: 0">.</span>
-          <span
-            class="postfix"
-            :style="{ color: suffixColor, 'background-color': postfixBgColor, 'margin-left': suffixMargin }"
-            :contenteditable="store.editable"
-            @input="updateSuffix"
-            spellcheck="false"
-            >{{ store.suffix }}</span
-          >
-      </div>
-    </div>
+            <span
+              @input="updatePrefix"
+              class="prefix"
+              :style="{ color: prefixColor }"
+              :contenteditable="store.editable"
+              spellcheck="false"
+            >
+              {{ store.prefix }}
+            </span>
+            <!-- HACK: meaningless text: ".", just to split input area, see: #269 -->
+            <span style="font-size: 0">.</span>
+            <span
+              class="postfix"
+              :style="{
+                color: suffixColor,
+                'background-color': postfixBgColor,
+                'margin-left': suffixMargin
+              }"
+              :contenteditable="store.editable"
+              @input="updateSuffix"
+              spellcheck="false"
+              >{{ store.suffix }}</span
+            >
+          </div>
+        </div>
+      </template>
+    </v-tooltip>
 
-    <div class="customize">
-      <div>
-          Font Size:
-          <input type="range" min="30" max="200" v-model="fontSize" />
-          {{ fontSize }}px
+    <div class="w-1/3 mb-12">
+      <div class="flex flex-col">
+        Font Size: {{ fontSize }}px
+        <div class="-ml-1">
+          <v-slider
+            hide-details
+            min="30"
+            max="200"
+            step="1"
+            color="#f90"
+            v-model="fontSize"
+          ></v-slider>
         </div>
-        <div>
-          Transparent Background: &nbsp;
-          <input type="checkbox" value="transparentBg" v-model="transparentBg" />
-        </div>
+      </div>
+      <div class="flex items-center">
+        Transparent Background: <v-checkbox-btn v-model="transparentBg"></v-checkbox-btn>
+      </div>
     </div>
 
     <div class="download-share">
       <ExportBtn />
-      <div class="share" @click="twitter"><i class="iconfont icon-twitter"></i> Tweet</div>
+      <v-btn @click="twitter" color="#1da1f2"
+        ><v-icon icon="mdi-twitter" class="mr-0.5"></v-icon> Tweet</v-btn
+      >
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { useStore } from '@/stores/store'
-import ExportBtn from '@/components/ExportBtn.vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import { useStore } from '@/stores/store';
+import ExportBtn from '@/components/ExportBtn.vue';
 
-const prefixColor = ref('#ffffff')
-const suffixColor = ref('#00AFF0')
-const postfixBgColor = ref('transparent')
-const fontSize = ref(60)
-const transparentBg = ref(false)
+const prefixColor = ref('#ffffff');
+const suffixColor = ref('#00AFF0');
+const postfixBgColor = ref('transparent');
+const fontSize = ref(60);
+const transparentBg = ref(false);
 const suffixMargin = computed(() => {
-  return '-' + fontSize.value / 35 + 'rem'
-})
+  return '-' + fontSize.value / 30 + 'rem';
+});
 
-const store = useStore()
+const store = useStore();
 
 const updatePrefix = (e) => {
-  store.updatePrefix(e.target.childNodes[0].nodeValue)
-}
+  store.updatePrefix(e.target.childNodes[0].nodeValue);
+};
 
 const updateSuffix = (e) => {
-  store.updateSuffix(e.target.childNodes[0].nodeValue)
-}
+  store.updateSuffix(e.target.childNodes[0].nodeValue);
+};
 
 const twitter = () => {
-  let url = 'https://logoly.pro'
-  let text = encodeURIComponent(`Built with #LogolyPro, by @xiqingongzi ${url}`)
-  window.open(`https://twitter.com/intent/tweet?text=${text}`)
-}
+  let url = 'https://logoly.pro';
+  let text = encodeURIComponent(`Built with #LogolyPro, by @xiqingongzi ${url}`);
+  window.open(`https://twitter.com/intent/tweet?text=${text}`);
+};
 
 const transparentBgColor = computed(() => {
   if (transparentBg.value) {
-    return 'transparent'
+    return 'transparent';
   } else {
-    return '#000000'
+    return '#000000';
   }
-})
+});
 
 onMounted(() => {
-  store.updatePrefix('Only')
-  store.updateSuffix('Fans')
-})
+  store.updatePrefix('Only');
+  store.updateSuffix('Fans');
+});
 
 onBeforeUnmount(() => {
-  store.updatePrefix('edit')
-  store.updateSuffix('me')
-})
+  store.updatePrefix('edit');
+  store.updateSuffix('me');
+});
 </script>
 
 <style lang="stylus" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Arizonia&family=Inter:wght@100&display=swap')
-
 .pornhub {
   display: flex;
   flex-direction: column;
@@ -187,97 +194,5 @@ onBeforeUnmount(() => {
     color: #fff;
     background: #1da1f2;
   }
-}
-
-/* We need that Shizzle for dom-to-image otherwise the exported Img will have wrong fonts */
-/* vietnamese */
-@font-face {
-  font-family: 'Arizonia';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arizonia/v21/neIIzCemt4A5qa7mv5WOFqwYUp31kXI.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Arizonia';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arizonia/v21/neIIzCemt4A5qa7mv5WPFqwYUp31kXI.woff2) format('woff2');
-  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Arizonia';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arizonia/v21/neIIzCemt4A5qa7mv5WBFqwYUp31.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyeAZJhiJ-Ek-_EeAmM.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyeAZthiJ-Ek-_EeAmM.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyeAZNhiJ-Ek-_EeAmM.woff2) format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyeAZxhiJ-Ek-_EeAmM.woff2) format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyeAZBhiJ-Ek-_EeAmM.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyeAZFhiJ-Ek-_EeAmM.woff2) format('woff2');
-  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyeAZ9hiJ-Ek-_EeA.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 </style>

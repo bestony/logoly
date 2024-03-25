@@ -1,21 +1,8 @@
-<style lang="stylus" scoped>
-.logo
-    padding 50px 0px 20px
-.prefix
-    color #fff
-    padding 5px
-.postfix
-    color #000
-    background-color #f90
-    padding 5px
-    border-radius 7px
-</style>
-
 <template>
-    <router-link to="/" class="logo">
-      <h1>
-        <span class="prefix">Logoly</span>
-        <span class="postfix">Pro</span>
-      </h1>
-    </router-link>
+  <router-link to="/" class="py-12">
+    <h1>
+      <span class="text-white p-1">Logoly</span>
+      <span class="text-black bg-custom-primary p-1 rounded-md">Pro</span>
+    </h1>
+  </router-link>
 </template>
