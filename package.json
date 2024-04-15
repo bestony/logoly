@@ -15,7 +15,7 @@
     "@vueuse/core": "^10.9.0",
     "dom-to-image": "^2.6.0",
     "pinia": "^2.1.7",
-    "vue": "^3.4.21",
+    "vue": "^3.4.22",
     "vue-gtag": "^2.0.1",
     "vue-router": "^4.3.0",
     "vuetify": "^3.5.14"
