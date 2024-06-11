@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
-    "@vueuse/core": "^10.9.0",
+    "@vueuse/core": "^10.10.1",
     "dom-to-image": "^2.6.0",
     "pinia": "^2.1.7",
     "vue": "^3.4.26",
