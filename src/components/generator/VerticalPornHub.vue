@@ -149,11 +149,15 @@ const reverseHighlight = ref(false);
 const store = useStore();
 
 const updatePrefix = (e) => {
-  store.updatePrefix(e.target.childNodes[0].nodeValue);
+  if (!navigator.userAgent.toLowerCase().includes('firefox')) {
+    store.updatePrefix(e.target.childNodes[0].nodeValue);
+  }
 };
 
 const updateSuffix = (e) => {
-  store.updateSuffix(e.target.childNodes[0].nodeValue);
+  if (!navigator.userAgent.toLowerCase().includes('firefox')) {
+    store.updateSuffix(e.target.childNodes[0].nodeValue);
+  }
 };
 
 const twitter = () => {
