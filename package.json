@@ -18,7 +18,7 @@
     "vue": "^3.4.26",
     "vue-gtag": "^2.0.1",
     "vue-router": "^4.3.2",
-    "vuetify": "^3.6.9"
+    "vuetify": "^3.6.10"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.3",
