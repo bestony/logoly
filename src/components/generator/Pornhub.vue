@@ -15,6 +15,7 @@
             <template v-if="!reverseHighlight">
               <span
                 @input="updatePrefix"
+                @paste="handlePaste"
                 class="prefix"
                 :style="{ color: prefixColor }"
                 :contenteditable="store.editable"
@@ -29,6 +30,7 @@
                 :style="{ color: suffixColor, 'background-color': postfixBgColor }"
                 :contenteditable="store.editable"
                 @input="updateSuffix"
+                @paste="handlePaste"
                 spellcheck="false"
                 >{{ store.suffix }}</span
               >
@@ -39,12 +41,14 @@
                 :style="{ color: suffixColor, 'background-color': postfixBgColor }"
                 :contenteditable="store.editable"
                 @input="updatePrefix"
+                @paste="handlePaste"
                 spellcheck="false"
                 >{{ store.prefix }}</span
               >
               <span
                 class="prefix"
                 @input="updateSuffix"
+                @paste="handlePaste"
                 :style="{ color: prefixColor }"
                 :contenteditable="store.editable"
                 spellcheck="false"
@@ -153,15 +157,22 @@ const reverseHighlight = ref(false);
 const store = useStore();
 
 const updatePrefix = (e) => {
-  if (!navigator.userAgent.toLowerCase().includes('firefox')) {
-    store.updatePrefix(e.target.childNodes[0].nodeValue);
-  }
+  // 使用 textContent 获取纯文本内容，避免 XSS 攻击
+  const text = e.target.textContent || e.target.innerText || '';
+  store.updatePrefix(text);
 };
 
 const updateSuffix = (e) => {
-  if (!navigator.userAgent.toLowerCase().includes('firefox')) {
-    store.updateSuffix(e.target.childNodes[0].nodeValue);
-  }
+  // 使用 textContent 获取纯文本内容，避免 XSS 攻击
+  const text = e.target.textContent || e.target.innerText || '';
+  store.updateSuffix(text);
+};
+
+// 处理粘贴事件，只允许纯文本
+const handlePaste = (e) => {
+  e.preventDefault();
+  const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+  document.execCommand('insertText', false, text);
 };
 
 const twitter = () => {
