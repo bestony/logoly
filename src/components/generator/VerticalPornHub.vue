@@ -16,6 +16,7 @@
               <p
                 class="prefix"
                 @input="updatePrefix"
+                @paste="handlePaste"
                 :style="{ color: prefixColor }"
                 :contenteditable="store.editable"
               >
@@ -24,6 +25,7 @@
               <p
                 class="postfix"
                 @input="updateSuffix"
+                @paste="handlePaste"
                 :style="{ color: suffixColor, 'background-color': postfixBgColor }"
                 :contenteditable="store.editable"
               >
@@ -34,6 +36,7 @@
               <p
                 class="postfix"
                 @input="updatePrefix"
+                @paste="handlePaste"
                 :style="{ color: suffixColor, 'background-color': postfixBgColor }"
                 :contenteditable="store.editable"
               >
@@ -42,6 +45,7 @@
               <p
                 class="prefix"
                 @input="updateSuffix"
+                @paste="handlePaste"
                 :style="{ color: prefixColor }"
                 :contenteditable="store.editable"
               >
@@ -149,15 +153,22 @@ const reverseHighlight = ref(false);
 const store = useStore();
 
 const updatePrefix = (e) => {
-  if (!navigator.userAgent.toLowerCase().includes('firefox')) {
-    store.updatePrefix(e.target.childNodes[0].nodeValue);
-  }
+  // 使用 textContent 获取纯文本内容，避免 XSS 攻击
+  const text = e.target.textContent || e.target.innerText || '';
+  store.updatePrefix(text);
 };
 
 const updateSuffix = (e) => {
-  if (!navigator.userAgent.toLowerCase().includes('firefox')) {
-    store.updateSuffix(e.target.childNodes[0].nodeValue);
-  }
+  // 使用 textContent 获取纯文本内容，避免 XSS 攻击
+  const text = e.target.textContent || e.target.innerText || '';
+  store.updateSuffix(text);
+};
+
+// 处理粘贴事件，只允许纯文本
+const handlePaste = (e) => {
+  e.preventDefault();
+  const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+  document.execCommand('insertText', false, text);
 };
 
 const twitter = () => {
