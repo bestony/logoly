@@ -50,3 +50,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+# Test coverage
+*.lcov
+test-results

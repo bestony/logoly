@@ -10,5 +10,21 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    css: true,
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov', 'html'],
+      exclude: [
+        'node_modules/',
+        'dist/',
+        'coverage/',
+        '**/*.test.js',
+        '**/*.spec.js'
+      ]
+    }
   }
 });
