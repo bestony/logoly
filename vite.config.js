@@ -14,6 +14,17 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    css: true
+    css: true,
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov', 'html'],
+      exclude: [
+        'node_modules/',
+        'dist/',
+        'coverage/',
+        '**/*.test.js',
+        '**/*.spec.js'
+      ]
+    }
   }
 });
