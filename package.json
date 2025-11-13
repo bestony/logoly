@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.3",
-    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue": "^5.2.4",
     "@vue/eslint-config-prettier": "^9.0.0",
     "autoprefixer": "^10.4.19",
     "eslint": "^9.1.1",
@@ -30,6 +30,6 @@
     "postcss": "^8.4.38",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.4",
-    "vite": "^5.4.5"
+    "vite": "^7.2.2"
   }
 }
