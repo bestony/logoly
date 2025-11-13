@@ -1,10 +1,10 @@
-import { ref } from 'vue';
-import { defineStore } from 'pinia';
+import { ref } from "vue";
+import { defineStore } from "pinia";
 
-export const useStore = defineStore('store', () => {
-  const prefix = ref('edit');
-  const suffix = ref('me');
-  const font = ref('Roboto');
+export const useStore = defineStore("store", () => {
+  const prefix = ref("edit");
+  const suffix = ref("me");
+  const font = ref("Roboto");
   //Needed for the SVG Export (otherwise you can edit the SVG in the browser which breaks and and leads into new issues)
   const editable = ref(true);
 

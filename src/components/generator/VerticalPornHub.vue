@@ -134,14 +134,14 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { useStore } from '@/stores/store';
-import FontSelector from '@/components/FontSelector.vue';
-import ExportBtn from '../ExportBtn.vue';
+import { computed, ref } from "vue";
+import { useStore } from "@/stores/store";
+import FontSelector from "@/components/FontSelector.vue";
+import ExportBtn from "../ExportBtn.vue";
 
-const prefixColor = ref('#ffffff');
-const suffixColor = ref('#000000');
-const postfixBgColor = ref('#ff9900');
+const prefixColor = ref("#ffffff");
+const suffixColor = ref("#000000");
+const postfixBgColor = ref("#ff9900");
 const fontSize = ref(60);
 const transparentBg = ref(false);
 const reverseHighlight = ref(false);
@@ -149,28 +149,30 @@ const reverseHighlight = ref(false);
 const store = useStore();
 
 const updatePrefix = (e) => {
-  if (!navigator.userAgent.toLowerCase().includes('firefox')) {
+  if (!navigator.userAgent.toLowerCase().includes("firefox")) {
     store.updatePrefix(e.target.childNodes[0].nodeValue);
   }
 };
 
 const updateSuffix = (e) => {
-  if (!navigator.userAgent.toLowerCase().includes('firefox')) {
+  if (!navigator.userAgent.toLowerCase().includes("firefox")) {
     store.updateSuffix(e.target.childNodes[0].nodeValue);
   }
 };
 
 const twitter = () => {
-  let url = 'https://logoly.pro';
-  let text = encodeURIComponent(`Built with #LogolyPro, by @xiqingongzi ${url}`);
+  let url = "https://logoly.pro";
+  let text = encodeURIComponent(
+    `Built with #LogolyPro, by @xiqingongzi ${url}`,
+  );
   window.open(`https://twitter.com/intent/tweet?text=${text}`);
 };
 
 const transparentBgColor = computed(() => {
   if (transparentBg.value) {
-    return 'transparent';
+    return "transparent";
   } else {
-    return '#000000';
+    return "#000000";
   }
 });
 </script>
