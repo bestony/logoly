@@ -1,9 +1,6 @@
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useStore } from "@/stores/store";
 
-const isFirefox = typeof navigator !== "undefined" &&
-  navigator.userAgent.toLowerCase().includes("firefox");
-
 export function useGeneratorControls(options = {}) {
   const store = useStore();
 
@@ -15,8 +12,8 @@ export function useGeneratorControls(options = {}) {
   const reverseHighlight = ref(options.reverseHighlight ?? false);
 
   const updateText = (updater) => (event) => {
-    if (isFirefox || !event?.target) return;
-    const value = event.target.textContent ?? "";
+    if (!event?.target) return;
+    const value = event.target.textContent ?? event.target.innerText ?? "";
     updater(value);
   };
 

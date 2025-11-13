@@ -6,10 +6,7 @@ const router = createRouter({
     {
       path: "/",
       name: "pornhub",
-      component: () =>
-        import(
-          /* webpackChunkName: "pornhub" */ "@/components/generator/Pornhub.vue"
-        ),
+      component: () => import("@/components/generator/Pornhub.vue"),
       meta: {
         analytics: {
           pageviewTemplate(route) {
@@ -24,10 +21,7 @@ const router = createRouter({
     {
       path: "/vertical-ph",
       name: "vertical-pornhub",
-      component: () =>
-        import(
-          /* webpackChunkName: "vertical-pornhub" */ "@/components/generator/VerticalPornHub.vue"
-        ),
+      component: () => import("@/components/generator/VerticalPornHub.vue"),
       meta: {
         analytics: {
           pageviewTemplate(route) {
@@ -42,10 +36,7 @@ const router = createRouter({
     {
       path: "/onlyfans",
       name: "onlyfans",
-      component: () =>
-        import(
-          /* webpackChunkName: "onlyfans" */ "@/components/generator/Onlyfans.vue"
-        ),
+      component: () => import("@/components/generator/Onlyfans.vue"),
       meta: {
         analytics: {
           pageviewTemplate(route) {
@@ -60,8 +51,7 @@ const router = createRouter({
     {
       path: "/about",
       name: "about",
-      component: () =>
-        import(/* webpackChunkName: "about" */ "@/views/AboutView.vue"),
+      component: () => import("@/views/AboutView.vue"),
       meta: {
         analytics: {
           pageviewTemplate(route) {
