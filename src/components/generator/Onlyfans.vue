@@ -68,57 +68,28 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
-import { useStore } from "@/stores/store";
 import ExportBtn from "@/components/ExportBtn.vue";
+import { useGeneratorControls } from "@/composables/useGeneratorControls";
 
-const prefixColor = ref("#ffffff");
-const suffixColor = ref("#00AFF0");
-const postfixBgColor = ref("transparent");
-const fontSize = ref(60);
-const transparentBg = ref(false);
-const suffixMargin = computed(() => {
-  return "-" + fontSize.value / 30 + "rem";
-});
-
-const store = useStore();
-
-const updatePrefix = (e) => {
-  if (!navigator.userAgent.toLowerCase().includes("firefox")) {
-    store.updatePrefix(e.target.childNodes[0].nodeValue);
-  }
-};
-
-const updateSuffix = (e) => {
-  if (!navigator.userAgent.toLowerCase().includes("firefox")) {
-    store.updateSuffix(e.target.childNodes[0].nodeValue);
-  }
-};
-
-const twitter = () => {
-  let url = "https://logoly.pro";
-  let text = encodeURIComponent(
-    `Built with #LogolyPro, by @xiqingongzi ${url}`,
-  );
-  window.open(`https://twitter.com/intent/tweet?text=${text}`);
-};
-
-const transparentBgColor = computed(() => {
-  if (transparentBg.value) {
-    return "transparent";
-  } else {
-    return "#000000";
-  }
-});
-
-onMounted(() => {
-  store.updatePrefix("Only");
-  store.updateSuffix("Fans");
-});
-
-onBeforeUnmount(() => {
-  store.updatePrefix("edit");
-  store.updateSuffix("me");
+const {
+  store,
+  prefixColor,
+  suffixColor,
+  postfixBgColor,
+  fontSize,
+  transparentBg,
+  transparentBgColor,
+  suffixMargin,
+  updatePrefix,
+  updateSuffix,
+  twitter,
+} = useGeneratorControls({
+  suffixMarginScale: 30,
+  postfixBgColor: "transparent",
+  suffixColor: "#00AFF0",
+  backgroundColor: "#000000",
+  initialText: { prefix: "Only", suffix: "Fans" },
+  resetText: { prefix: "edit", suffix: "me" },
 });
 </script>
 
