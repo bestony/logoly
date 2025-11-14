@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint \"**/*.{js,jsx,cjs,mjs,vue}\" --fix",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "test": "vitest run --coverage"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
@@ -23,15 +24,20 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.3",
     "@vitejs/plugin-vue": "^5.0.4",
+    "@vitest/coverage-istanbul": "^4.0.8",
+    "@vitest/coverage-v8": "^4.0.8",
     "@vue/eslint-config-prettier": "^9.0.0",
+    "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.19",
     "eslint": "^9.1.1",
     "eslint-plugin-vue": "^9.26.0",
+    "jsdom": "^27.2.0",
     "postcss": "^8.4.38",
     "prettier": "^3.3.3",
     "stylus": "^0.64.0",
     "tailwindcss": "^3.4.4",
     "vite": "^5.4.5",
-    "vite-plugin-compression": "^0.5.1"
+    "vite-plugin-compression": "^0.5.1",
+    "vitest": "^4.0.8"
   }
 }
