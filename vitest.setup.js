@@ -1,5 +1,5 @@
-import { config } from "@vue/test-utils";
-import { vi } from "vitest";
+import { config } from '@vue/test-utils';
+import { vi } from 'vitest';
 
 const slotStub = {
   inheritAttrs: false,
@@ -9,36 +9,36 @@ const slotStub = {
       <slot name="text"></slot>
       <slot></slot>
     </div>
-  `,
+  `
 };
 
 const vuetifyTags = [
-  "v-btn",
-  "v-checkbox-btn",
-  "v-color-picker",
-  "v-expansion-panel",
-  "v-expansion-panels",
-  "v-icon",
-  "v-list",
-  "v-list-item",
-  "v-menu",
-  "v-select",
-  "v-slider",
-  "v-tooltip",
+  'v-btn',
+  'v-checkbox-btn',
+  'v-color-picker',
+  'v-expansion-panel',
+  'v-expansion-panels',
+  'v-icon',
+  'v-list',
+  'v-list-item',
+  'v-menu',
+  'v-select',
+  'v-slider',
+  'v-tooltip'
 ];
 
 config.global.stubs = {
   ...(config.global.stubs ?? {}),
   ...Object.fromEntries(vuetifyTags.map((tag) => [tag, slotStub])),
-  "router-link": {
-    template: `<a><slot /></a>`,
+  'router-link': {
+    template: `<a><slot /></a>`
   },
-  "router-view": {
-    template: `<div><slot /></div>`,
-  },
+  'router-view': {
+    template: `<div><slot /></div>`
+  }
 };
 
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   if (!window.matchMedia) {
     window.matchMedia = () => ({
       matches: false,
@@ -49,7 +49,7 @@ if (typeof window !== "undefined") {
       dispatchEvent() {
         return false;
       },
-      media: "",
+      media: ''
     });
   }
 
@@ -79,19 +79,18 @@ class IntersectionObserver {
 }
 
 globalThis.ResizeObserver = globalThis.ResizeObserver ?? ResizeObserver;
-globalThis.IntersectionObserver =
-  globalThis.IntersectionObserver ?? IntersectionObserver;
+globalThis.IntersectionObserver = globalThis.IntersectionObserver ?? IntersectionObserver;
 
-if (typeof HTMLCanvasElement !== "undefined") {
+if (typeof HTMLCanvasElement !== 'undefined') {
   HTMLCanvasElement.prototype.getContext = () => ({
     drawImage() {},
-    clearRect() {},
+    clearRect() {}
   });
-  HTMLCanvasElement.prototype.toDataURL = () => "data:image/png;base64,stub";
+  HTMLCanvasElement.prototype.toDataURL = () => 'data:image/png;base64,stub';
 }
 
-vi.mock("vue-gtag", () => ({
-  event: vi.fn(),
+vi.mock('vue-gtag', () => ({
+  event: vi.fn()
 }));
 
 globalThis.open = globalThis.open ?? (() => {});

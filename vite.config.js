@@ -1,50 +1,51 @@
-import process from "node:process";
-import { fileURLToPath, URL } from "node:url";
+import process from 'node:process';
+import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import viteCompression from "vite-plugin-compression";
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import viteCompression from 'vite-plugin-compression';
 
 function exposeStoreInternals() {
-  const storePath = fileURLToPath(
-    new URL("./src/stores/store.js", import.meta.url),
-  ).replace(/\\/g, "/");
+  const storePath = fileURLToPath(new URL('./src/stores/store.js', import.meta.url)).replace(
+    /\\/g,
+    '/'
+  );
 
   return {
-    name: "expose-store-internals",
-    enforce: "post",
+    name: 'expose-store-internals',
+    enforce: 'post',
     transform(code, id) {
       if (!process.env.VITEST) return null;
-      const normalizedId = id.replace(/\\/g, "/");
+      const normalizedId = id.replace(/\\/g, '/');
       if (normalizedId !== storePath) return null;
-      if (code.includes("__LOGOLY_STORE_INTERNALS__")) return null;
+      if (code.includes('__LOGOLY_STORE_INTERNALS__')) return null;
 
       const marker =
-        "return { node: root, offset: root.childNodes.length };\n}\n\nfunction restoreSelectionSnapshot";
+        'return { node: root, offset: root.childNodes.length };\n}\n\nfunction restoreSelectionSnapshot';
       if (!code.includes(marker)) return null;
 
       let transformed = code.replace(
         marker,
-        'return { node: root, offset: root.childNodes.length };\n}\n\nconst __storeTestOverrides = { resolvePosition: null };\nfunction __callResolvePosition(root, targetOffset) {\n  return typeof __storeTestOverrides.resolvePosition === "function"\n    ? __storeTestOverrides.resolvePosition(root, targetOffset)\n    : resolvePosition(root, targetOffset);\n}\n\nfunction restoreSelectionSnapshot',
+        'return { node: root, offset: root.childNodes.length };\n}\n\nconst __storeTestOverrides = { resolvePosition: null };\nfunction __callResolvePosition(root, targetOffset) {\n  return typeof __storeTestOverrides.resolvePosition === "function"\n    ? __storeTestOverrides.resolvePosition(root, targetOffset)\n    : resolvePosition(root, targetOffset);\n}\n\nfunction restoreSelectionSnapshot'
       );
 
       transformed = transformed
         .replace(
-          "const startPosition = resolvePosition(editableElement, start);",
-          "const startPosition = __callResolvePosition(editableElement, start);",
+          'const startPosition = resolvePosition(editableElement, start);',
+          'const startPosition = __callResolvePosition(editableElement, start);'
         )
         .replace(
-          "const endPosition = resolvePosition(editableElement, end);",
-          "const endPosition = __callResolvePosition(editableElement, end);",
+          'const endPosition = resolvePosition(editableElement, end);',
+          'const endPosition = __callResolvePosition(editableElement, end);'
         );
 
       const exposure = `\nif (typeof globalThis !== "undefined") {\n  globalThis.__LOGOLY_STORE_INTERNALS__ = {\n    getEditableAncestor,\n    captureSelectionSnapshot,\n    resolvePosition,\n    restoreSelectionSnapshot,\n    setResolvePositionOverride(fn) {\n      __storeTestOverrides.resolvePosition = fn;\n    },\n    clearOverrides() {\n      __storeTestOverrides.resolvePosition = null;\n    },\n  };\n}\n`;
 
       return {
         code: `${transformed}${exposure}`,
-        map: null,
+        map: null
       };
-    },
+    }
   };
 }
 
@@ -54,20 +55,20 @@ export default defineConfig({
     vue(),
     exposeStoreInternals(),
     viteCompression({
-      algorithm: "brotliCompress",
-      ext: ".br",
-      threshold: 10240,
+      algorithm: 'brotliCompress',
+      ext: '.br',
+      threshold: 10240
     }),
     viteCompression({
-      algorithm: "gzip",
-      ext: ".gz",
-      threshold: 10240,
-    }),
+      algorithm: 'gzip',
+      ext: '.gz',
+      threshold: 10240
+    })
   ],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
   },
   build: {
     sourcemap: false,
@@ -76,34 +77,34 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes("node_modules")) {
-            if (id.includes("vuetify")) return "vuetify";
-            if (id.includes("vue")) return "vue";
-            return "vendor";
+          if (id.includes('node_modules')) {
+            if (id.includes('vuetify')) return 'vuetify';
+            if (id.includes('vue')) return 'vue';
+            return 'vendor';
           }
         },
-        chunkFileNames: "assets/js/[name]-[hash].js",
-        entryFileNames: "assets/js/[name]-[hash].js",
-        assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
-      },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+      }
     },
     esbuild: {
-      drop: ["console", "debugger"],
-    },
+      drop: ['console', 'debugger']
+    }
   },
   test: {
-    environment: "jsdom",
+    environment: 'jsdom',
     globals: true,
-    setupFiles: ["./vitest.setup.js"],
+    setupFiles: ['./vitest.setup.js'],
     coverage: {
-      provider: "istanbul",
-      reporter: ["text", "json-summary", "html"],
+      provider: 'istanbul',
+      reporter: ['text', 'json-summary', 'html'],
       thresholds: {
         lines: 99,
         functions: 99,
         branches: 99,
-        statements: 99,
-      },
-    },
-  },
+        statements: 99
+      }
+    }
+  }
 });

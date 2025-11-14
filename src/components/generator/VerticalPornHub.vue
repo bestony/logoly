@@ -134,9 +134,9 @@
 </template>
 
 <script setup>
-import FontSelector from "@/components/FontSelector.vue";
-import ExportBtn from "../ExportBtn.vue";
-import { useGeneratorControls } from "@/composables/useGeneratorControls";
+import FontSelector from '@/components/FontSelector.vue';
+import ExportBtn from '../ExportBtn.vue';
+import { useGeneratorControls } from '@/composables/useGeneratorControls';
 
 const {
   store,
@@ -149,8 +149,8 @@ const {
   transparentBgColor,
   updatePrefix,
   updateSuffix,
-  twitter,
-} = useGeneratorControls({ backgroundColor: "#000000" });
+  twitter
+} = useGeneratorControls({ backgroundColor: '#000000' });
 </script>
 
 <style lang="stylus" scoped>

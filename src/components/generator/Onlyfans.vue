@@ -68,8 +68,8 @@
 </template>
 
 <script setup>
-import ExportBtn from "@/components/ExportBtn.vue";
-import { useGeneratorControls } from "@/composables/useGeneratorControls";
+import ExportBtn from '@/components/ExportBtn.vue';
+import { useGeneratorControls } from '@/composables/useGeneratorControls';
 
 const {
   store,
@@ -82,14 +82,14 @@ const {
   suffixMargin,
   updatePrefix,
   updateSuffix,
-  twitter,
+  twitter
 } = useGeneratorControls({
   suffixMarginScale: 30,
-  postfixBgColor: "transparent",
-  suffixColor: "#00AFF0",
-  backgroundColor: "#000000",
-  initialText: { prefix: "Only", suffix: "Fans" },
-  resetText: { prefix: "edit", suffix: "me" },
+  postfixBgColor: 'transparent',
+  suffixColor: '#00AFF0',
+  backgroundColor: '#000000',
+  initialText: { prefix: 'Only', suffix: 'Fans' },
+  resetText: { prefix: 'edit', suffix: 'me' }
 });
 </script>
 

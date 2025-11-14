@@ -36,11 +36,11 @@
 </template>
 
 <script setup>
-import Logo from "@/components/Logo.vue";
-import Description from "@/components/Description.vue";
-import Slogan from "@/components/Slogan.vue";
-import Faq from "@/components/Faq.vue";
-import Author from "@/components/Author.vue";
-import Ribbon from "@/components/Ribbon.vue";
-import Copyright from "@/components/Copyright.vue";
+import Logo from '@/components/Logo.vue';
+import Description from '@/components/Description.vue';
+import Slogan from '@/components/Slogan.vue';
+import Faq from '@/components/Faq.vue';
+import Author from '@/components/Author.vue';
+import Ribbon from '@/components/Ribbon.vue';
+import Copyright from '@/components/Copyright.vue';
 </script>

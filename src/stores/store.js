@@ -1,9 +1,8 @@
-import { nextTick, ref } from "vue";
-import { defineStore } from "pinia";
+import { nextTick, ref } from 'vue';
+import { defineStore } from 'pinia';
 
-const hasDom = typeof window !== "undefined" && typeof document !== "undefined";
-const textNodeFilter =
-  typeof NodeFilter === "undefined" ? 4 : NodeFilter.SHOW_TEXT;
+const hasDom = typeof window !== 'undefined' && typeof document !== 'undefined';
+const textNodeFilter = typeof NodeFilter === 'undefined' ? 4 : NodeFilter.SHOW_TEXT;
 
 function getEditableAncestor(node) {
   if (!node) return null;
@@ -36,16 +35,8 @@ function captureSelectionSnapshot() {
 
   return {
     editableElement,
-    startOffset: getOffsetWithinRoot(
-      editableElement,
-      range.startContainer,
-      range.startOffset,
-    ),
-    endOffset: getOffsetWithinRoot(
-      editableElement,
-      range.endContainer,
-      range.endOffset,
-    ),
+    startOffset: getOffsetWithinRoot(editableElement, range.startContainer, range.startOffset),
+    endOffset: getOffsetWithinRoot(editableElement, range.endContainer, range.endOffset)
   };
 }
 
@@ -92,10 +83,10 @@ function restoreSelectionSnapshot(snapshot) {
   selection.addRange(range);
 }
 
-export const useStore = defineStore("store", () => {
-  const prefix = ref("edit");
-  const suffix = ref("me");
-  const font = ref("Roboto");
+export const useStore = defineStore('store', () => {
+  const prefix = ref('edit');
+  const suffix = ref('me');
+  const font = ref('Roboto');
   //Needed for the SVG Export (otherwise you can edit the SVG in the browser which breaks and and leads into new issues)
   const editable = ref(true);
 

@@ -10,10 +10,10 @@
 </template>
 
 <script setup>
-import { watch } from "vue";
-import { useStore } from "@/stores/store";
-import { loadGoogleFont } from "@/utils/fontLoader";
-import { fonts } from "@/config/fonts";
+import { watch } from 'vue';
+import { useStore } from '@/stores/store';
+import { loadGoogleFont } from '@/utils/fontLoader';
+import { fonts } from '@/config/fonts';
 
 const store = useStore();
 
@@ -22,6 +22,6 @@ watch(
   (font) => {
     loadGoogleFont(font);
   },
-  { immediate: true },
+  { immediate: true }
 );
 </script>
