@@ -1,5 +1,13 @@
 # Changelog
 
+## 2025.11.14
+
+- Added a Vitest-based test harness (jsdom environment, global setup, and 99% coverage gates) and expanded suites for stores, generators, and font utilities.
+- Refactored generators to share logic via new composables, centralized font metadata/configuration, and improved selection persistence plus font-loading behavior.
+- Cleaned up Vuetify imports, refreshed dependencies, and tuned the Vite build for compressed outputs.
+- Adopted Biome for consistent formatting/linting, standardized project styles, and committed a Bun lockfile for deterministic installs.
+- Introduced GitHub Actions CI driven by Bun to run install, lint, test, and build steps on every push/PR.
+
 ## 2024.03.23
 
 - Upgraded to Vue 3
