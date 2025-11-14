@@ -108,7 +108,9 @@ describe("generator components", () => {
 
     wrapper.vm.transparentBg = true;
     await nextTick();
-    expect(wrapper.get("#logo").attributes("style")).toContain("background-color: transparent");
+    expect(wrapper.get("#logo").attributes("style")).toContain(
+      "background-color: transparent",
+    );
 
     wrapper.unmount();
   });
@@ -140,13 +142,19 @@ describe("generator components", () => {
     await checkboxes[0].vm.$emit("update:modelValue", true);
     await slider.vm.$emit("update:modelValue", 120);
     await nextTick();
-    expect(wrapper.get("#logo").attributes("style")).toContain("font-size: 120px");
-    expect(wrapper.get("#logo").attributes("style")).toContain("background-color: transparent");
+    expect(wrapper.get("#logo").attributes("style")).toContain(
+      "font-size: 120px",
+    );
+    expect(wrapper.get("#logo").attributes("style")).toContain(
+      "background-color: transparent",
+    );
 
     const openSpy = vi.spyOn(window, "open").mockImplementation(() => {});
     const button = wrapper.findComponent(ButtonStub);
     await button.vm.$emit("click");
-    expect(openSpy).toHaveBeenCalledWith(expect.stringContaining("twitter.com/intent/tweet"));
+    expect(openSpy).toHaveBeenCalledWith(
+      expect.stringContaining("twitter.com/intent/tweet"),
+    );
     openSpy.mockRestore();
 
     wrapper.unmount();
@@ -165,7 +173,9 @@ describe("generator components", () => {
     const slider = wrapper.getComponent(SliderStub);
     await slider.vm.$emit("update:modelValue", 100);
     await nextTick();
-    expect(wrapper.get("#logo").attributes("style")).toContain("font-size: 100px");
+    expect(wrapper.get("#logo").attributes("style")).toContain(
+      "font-size: 100px",
+    );
 
     postfix.element.textContent = "Creators";
     await postfix.trigger("input");
@@ -177,7 +187,9 @@ describe("generator components", () => {
     const checkbox = wrapper.getComponent(CheckboxStub);
     await checkbox.vm.$emit("update:modelValue", true);
     await nextTick();
-    expect(wrapper.get("#logo").attributes("style")).toContain("background-color: transparent");
+    expect(wrapper.get("#logo").attributes("style")).toContain(
+      "background-color: transparent",
+    );
 
     const openSpy = vi.spyOn(window, "open").mockImplementation(() => {});
     const button = wrapper.findComponent(ButtonStub);
@@ -216,7 +228,9 @@ describe("generator components", () => {
 
     const button = wrapper.findComponent(ButtonStub);
     await button.vm.$emit("click");
-    expect(openSpy).toHaveBeenCalledWith(expect.stringContaining("twitter.com/intent/tweet"));
+    expect(openSpy).toHaveBeenCalledWith(
+      expect.stringContaining("twitter.com/intent/tweet"),
+    );
 
     openSpy.mockRestore();
     wrapper.unmount();

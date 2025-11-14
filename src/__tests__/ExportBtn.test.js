@@ -1,4 +1,12 @@
-import { describe, it, expect, beforeAll, afterAll, beforeEach, vi } from "vitest";
+import {
+  describe,
+  it,
+  expect,
+  beforeAll,
+  afterAll,
+  beforeEach,
+  vi,
+} from "vitest";
 import { mount } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
 import ExportBtn from "@/components/ExportBtn.vue";
@@ -42,7 +50,9 @@ describe("ExportBtn", () => {
         this._onload?.();
       }
     };
-    clickSpy = vi.spyOn(window.HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
+    clickSpy = vi
+      .spyOn(window.HTMLAnchorElement.prototype, "click")
+      .mockImplementation(() => {});
   });
 
   afterAll(() => {
@@ -68,7 +78,9 @@ describe("ExportBtn", () => {
     const wrapper = mountButton();
 
     await wrapper.find('[value="png"]').trigger("click");
-    expect(domToImageMock.toPng).toHaveBeenCalledWith(document.getElementById("logo"));
+    expect(domToImageMock.toPng).toHaveBeenCalledWith(
+      document.getElementById("logo"),
+    );
 
     await flush();
 
@@ -83,7 +95,9 @@ describe("ExportBtn", () => {
     const wrapper = mountButton();
 
     await wrapper.find('[value="svg"]').trigger("click");
-    expect(domToImageMock.toSvg).toHaveBeenCalledWith(document.getElementById("logo"));
+    expect(domToImageMock.toSvg).toHaveBeenCalledWith(
+      document.getElementById("logo"),
+    );
 
     await flush();
 
@@ -102,7 +116,10 @@ describe("ExportBtn", () => {
   });
 
   it("falls back to the default filename when none is provided", () => {
-    const dispatchSpy = vi.spyOn(window.HTMLAnchorElement.prototype, "dispatchEvent");
+    const dispatchSpy = vi.spyOn(
+      window.HTMLAnchorElement.prototype,
+      "dispatchEvent",
+    );
     const wrapper = mountButton();
     const { downloadImage } = wrapper.vm.$.setupState;
 

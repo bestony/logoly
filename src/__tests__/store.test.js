@@ -23,7 +23,12 @@ const mountEditable = (content = "editme", options = {}) => {
   return container;
 };
 
-const selectRange = (startNode, startOffset, endNode = startNode, endOffset = startOffset) => {
+const selectRange = (
+  startNode,
+  startOffset,
+  endNode = startNode,
+  endOffset = startOffset,
+) => {
   const range = document.createRange();
   range.setStart(startNode, startOffset);
   range.setEnd(endNode, endOffset);
@@ -42,7 +47,12 @@ describe("store", () => {
   it("updates prefix and restores the previous caret selection", async () => {
     const editable = mountEditable();
     const store = useStore();
-    const selection = selectRange(editable.firstChild, 1, editable.firstChild, 3);
+    const selection = selectRange(
+      editable.firstChild,
+      1,
+      editable.firstChild,
+      3,
+    );
 
     await store.updatePrefix("changed");
 
@@ -54,10 +64,17 @@ describe("store", () => {
   });
 
   it("handles selections that span multiple text nodes", async () => {
-    const editable = mountEditable("<span>hi</span><span>there</span>", { raw: true });
+    const editable = mountEditable("<span>hi</span><span>there</span>", {
+      raw: true,
+    });
     const spans = editable.querySelectorAll("span");
     const store = useStore();
-    const selection = selectRange(spans[1].firstChild, 1, spans[1].firstChild, 4);
+    const selection = selectRange(
+      spans[1].firstChild,
+      1,
+      spans[1].firstChild,
+      4,
+    );
 
     await store.updatePrefix("merged");
 
@@ -160,7 +177,12 @@ describe("store", () => {
 
   it("skips restoring when selection disappears mid-update", async () => {
     const editable = mountEditable();
-    const realSelection = selectRange(editable.firstChild, 0, editable.firstChild, 2);
+    const realSelection = selectRange(
+      editable.firstChild,
+      0,
+      editable.firstChild,
+      2,
+    );
     const store = useStore();
     const spy = vi.spyOn(window, "getSelection");
     spy.mockImplementationOnce(() => realSelection);
@@ -250,7 +272,10 @@ describe("store internals", () => {
     const snapshot = internals.captureSelectionSnapshot();
     expect(snapshot).not.toBeNull();
 
-    const originalDescriptor = Object.getOwnPropertyDescriptor(editable, "textContent");
+    const originalDescriptor = Object.getOwnPropertyDescriptor(
+      editable,
+      "textContent",
+    );
     Object.defineProperty(editable, "textContent", {
       configurable: true,
       get() {
@@ -308,7 +333,11 @@ describe("store without DOM APIs", () => {
     await store.updatePrefix("noop");
     await store.updateSuffix("noop");
     expect(() =>
-      internals.restoreSelectionSnapshot({ editableElement: null, startOffset: 0, endOffset: 0 })
+      internals.restoreSelectionSnapshot({
+        editableElement: null,
+        startOffset: 0,
+        endOffset: 0,
+      }),
     ).not.toThrow();
 
     globalThis.window = realWindow;

@@ -79,7 +79,8 @@ class IntersectionObserver {
 }
 
 globalThis.ResizeObserver = globalThis.ResizeObserver ?? ResizeObserver;
-globalThis.IntersectionObserver = globalThis.IntersectionObserver ?? IntersectionObserver;
+globalThis.IntersectionObserver =
+  globalThis.IntersectionObserver ?? IntersectionObserver;
 
 if (typeof HTMLCanvasElement !== "undefined") {
   HTMLCanvasElement.prototype.getContext = () => ({

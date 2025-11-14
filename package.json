@@ -7,8 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint \"**/*.{js,jsx,cjs,mjs,vue}\" --fix",
-    "format": "prettier --write src/",
+    "format": "biome format --write .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
     "test": "vitest run --coverage"
   },
   "dependencies": {
@@ -22,15 +25,12 @@
     "vuetify": "^3.6.9"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.10.3",
+    "@biomejs/biome": "^1.9.4",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vitest/coverage-istanbul": "^4.0.8",
     "@vitest/coverage-v8": "^4.0.8",
-    "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.19",
-    "eslint": "^9.1.1",
-    "eslint-plugin-vue": "^9.26.0",
     "jsdom": "^27.2.0",
     "postcss": "^8.4.38",
     "prettier": "^3.3.3",

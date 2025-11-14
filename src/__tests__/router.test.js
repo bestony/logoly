@@ -5,7 +5,12 @@ describe("router", () => {
   it("exposes all generator routes", () => {
     const names = router.getRoutes().map((route) => route.name);
     expect(names).toEqual(
-      expect.arrayContaining(["pornhub", "vertical-pornhub", "onlyfans", "about"]),
+      expect.arrayContaining([
+        "pornhub",
+        "vertical-pornhub",
+        "onlyfans",
+        "about",
+      ]),
     );
   });
 
@@ -21,7 +26,9 @@ describe("router", () => {
 
   it("resolves each lazy component definition", async () => {
     const configs = router.options.routes;
-    const components = await Promise.all(configs.map((route) => route.component()));
+    const components = await Promise.all(
+      configs.map((route) => route.component()),
+    );
     components.forEach((module) => {
       expect(module).toBeTruthy();
     });

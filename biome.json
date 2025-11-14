@@ -6,49 +6,25 @@
     "useIgnoreFile": true
   },
   "files": {
-    "ignoreUnknown": true,
-    "includes": ["**", "!node_modules", "!.next", "!dist", "!build"]
+    "ignoreUnknown": true
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
     "indentWidth": 2
   },
-  "css": {
-    "parser": {
-      "tailwindDirectives": true
-    }
-  },
+  "css": {},
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
-      "suspicious": {
-        "noUnknownAtRules": "off"
-      },
+
       "complexity": {
         "noExcessiveCognitiveComplexity": {
           "options": {
             "maxAllowedComplexity": 15
           }
         }
-      },
-      "a11y": {
-        "useAriaPropsSupportedByRole": "off",
-        "useSemanticElements": "off"
-      }
-    },
-    "domains": {
-      "next": "all",
-      "react": "all",
-      "project": "recommended",
-      "test": "all"
-    }
-  },
-  "assist": {
-    "actions": {
-      "source": {
-        "organizeImports": "on"
       }
     }
   }

@@ -1,4 +1,3 @@
-/* eslint-env node */
 import process from "node:process";
 import { fileURLToPath, URL } from "node:url";
 
@@ -7,8 +6,9 @@ import vue from "@vitejs/plugin-vue";
 import viteCompression from "vite-plugin-compression";
 
 function exposeStoreInternals() {
-  const storePath = fileURLToPath(new URL("./src/stores/store.js", import.meta.url))
-    .replace(/\\/g, "/");
+  const storePath = fileURLToPath(
+    new URL("./src/stores/store.js", import.meta.url),
+  ).replace(/\\/g, "/");
 
   return {
     name: "expose-store-internals",
@@ -19,22 +19,23 @@ function exposeStoreInternals() {
       if (normalizedId !== storePath) return null;
       if (code.includes("__LOGOLY_STORE_INTERNALS__")) return null;
 
-      const marker = "return { node: root, offset: root.childNodes.length };\n}\n\nfunction restoreSelectionSnapshot";
+      const marker =
+        "return { node: root, offset: root.childNodes.length };\n}\n\nfunction restoreSelectionSnapshot";
       if (!code.includes(marker)) return null;
 
       let transformed = code.replace(
         marker,
-        "return { node: root, offset: root.childNodes.length };\n}\n\nconst __storeTestOverrides = { resolvePosition: null };\nfunction __callResolvePosition(root, targetOffset) {\n  return typeof __storeTestOverrides.resolvePosition === \"function\"\n    ? __storeTestOverrides.resolvePosition(root, targetOffset)\n    : resolvePosition(root, targetOffset);\n}\n\nfunction restoreSelectionSnapshot"
+        'return { node: root, offset: root.childNodes.length };\n}\n\nconst __storeTestOverrides = { resolvePosition: null };\nfunction __callResolvePosition(root, targetOffset) {\n  return typeof __storeTestOverrides.resolvePosition === "function"\n    ? __storeTestOverrides.resolvePosition(root, targetOffset)\n    : resolvePosition(root, targetOffset);\n}\n\nfunction restoreSelectionSnapshot',
       );
 
       transformed = transformed
         .replace(
           "const startPosition = resolvePosition(editableElement, start);",
-          "const startPosition = __callResolvePosition(editableElement, start);"
+          "const startPosition = __callResolvePosition(editableElement, start);",
         )
         .replace(
           "const endPosition = resolvePosition(editableElement, end);",
-          "const endPosition = __callResolvePosition(editableElement, end);"
+          "const endPosition = __callResolvePosition(editableElement, end);",
         );
 
       const exposure = `\nif (typeof globalThis !== "undefined") {\n  globalThis.__LOGOLY_STORE_INTERNALS__ = {\n    getEditableAncestor,\n    captureSelectionSnapshot,\n    resolvePosition,\n    restoreSelectionSnapshot,\n    setResolvePositionOverride(fn) {\n      __storeTestOverrides.resolvePosition = fn;\n    },\n    clearOverrides() {\n      __storeTestOverrides.resolvePosition = null;\n    },\n  };\n}\n`;

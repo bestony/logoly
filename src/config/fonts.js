@@ -102,4 +102,6 @@ const rawFonts = [
   "Zilla Slab Highlight",
 ];
 
-export const fonts = [...new Set(rawFonts.map((font) => font.trim()).filter(Boolean))];
+export const fonts = [
+  ...new Set(rawFonts.map((font) => font.trim()).filter(Boolean)),
+];

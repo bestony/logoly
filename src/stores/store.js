@@ -2,7 +2,8 @@ import { nextTick, ref } from "vue";
 import { defineStore } from "pinia";
 
 const hasDom = typeof window !== "undefined" && typeof document !== "undefined";
-const textNodeFilter = typeof NodeFilter === "undefined" ? 4 : NodeFilter.SHOW_TEXT;
+const textNodeFilter =
+  typeof NodeFilter === "undefined" ? 4 : NodeFilter.SHOW_TEXT;
 
 function getEditableAncestor(node) {
   if (!node) return null;
@@ -35,8 +36,16 @@ function captureSelectionSnapshot() {
 
   return {
     editableElement,
-    startOffset: getOffsetWithinRoot(editableElement, range.startContainer, range.startOffset),
-    endOffset: getOffsetWithinRoot(editableElement, range.endContainer, range.endOffset),
+    startOffset: getOffsetWithinRoot(
+      editableElement,
+      range.startContainer,
+      range.startOffset,
+    ),
+    endOffset: getOffsetWithinRoot(
+      editableElement,
+      range.endContainer,
+      range.endOffset,
+    ),
   };
 }
 

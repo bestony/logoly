@@ -21,7 +21,9 @@ export function useGeneratorControls(options = {}) {
   const updateSuffix = updateText(store.updateSuffix);
 
   const transparentBgColor = computed(() =>
-    transparentBg.value ? "transparent" : options.backgroundColor ?? "#000000",
+    transparentBg.value
+      ? "transparent"
+      : (options.backgroundColor ?? "#000000"),
   );
 
   const suffixMargin = computed(() => {
@@ -31,7 +33,9 @@ export function useGeneratorControls(options = {}) {
 
   const twitter = () => {
     const url = "https://logoly.pro";
-    const text = encodeURIComponent(`Built with #LogolyPro, by @xiqingongzi ${url}`);
+    const text = encodeURIComponent(
+      `Built with #LogolyPro, by @xiqingongzi ${url}`,
+    );
     window.open(`https://twitter.com/intent/tweet?text=${text}`);
   };
 
