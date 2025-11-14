@@ -83,6 +83,8 @@ describe('generator components', () => {
   beforeEach(() => {
     document.body.innerHTML = '';
     setActivePinia(createPinia());
+    window.localStorage.clear();
+    window.history.replaceState(null, '', '/');
   });
 
   it('synchronizes text updates and highlight order in Pornhub generator', async () => {
