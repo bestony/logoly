@@ -27,25 +27,27 @@ const store = useStore();
 const showMenu = ref(false);
 const btnRef = ref(null);
 
-onClickOutside(btnRef, () => (showMenu.value = false));
+onClickOutside(btnRef, () => {
+  showMenu.value = false;
+});
 
 const downloadImage = (imgsrc, name) => {
   //下载图片地址和图片名
-  let image = new Image();
+  const image = new Image();
   // 解决跨域 Canvas 污染问题
   image.setAttribute('crossOrigin', 'anonymous');
-  image.onload = function () {
-    let canvas = document.createElement('canvas');
+  image.onload = () => {
+    const canvas = document.createElement('canvas');
     canvas.width = image.width;
     canvas.height = image.height;
-    let context = canvas.getContext('2d');
+    const context = canvas.getContext('2d');
     context.drawImage(image, 0, 0, image.width, image.height);
-    let url = canvas.toDataURL('image/png');
-    let a = document.createElement('a');
-    let event = new MouseEvent('click');
-    a.download = name || 'photo';
-    a.href = url;
-    a.dispatchEvent(event);
+    const url = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    const clickEvent = new MouseEvent('click');
+    link.download = name || 'photo';
+    link.href = url;
+    link.dispatchEvent(clickEvent);
   };
   image.src = imgsrc;
 };
@@ -58,14 +60,14 @@ const download = (type) => {
   if (!node) return;
 
   if (type === 'png') {
-    domtoimage.toPng(node).then(function (res) {
-      downloadImage(res, store.prefix + '-' + store.suffix + '.png');
+    domtoimage.toPng(node).then((res) => {
+      downloadImage(res, `${store.prefix}-${store.suffix}.png`);
       store.editable = true;
     });
   } else if (type === 'svg') {
-    domtoimage.toSvg(node).then(function (res) {
-      var link = document.createElement('a');
-      link.download = store.prefix + '-' + store.suffix + '.svg';
+    domtoimage.toSvg(node).then((res) => {
+      const link = document.createElement('a');
+      link.download = `${store.prefix}-${store.suffix}.svg`;
       link.href = res;
       link.click();
       store.editable = true;

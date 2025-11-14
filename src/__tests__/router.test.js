@@ -10,20 +10,20 @@ describe('router', () => {
   });
 
   it('provides analytics templates for every route', () => {
-    router.getRoutes().forEach((route) => {
+    for (const route of router.getRoutes()) {
       const template = route.meta?.analytics?.pageviewTemplate;
       expect(template).toBeTypeOf('function');
       const payload = template({ path: route.path });
       expect(payload).toMatchObject({ page: route.path });
       expect(payload.title.length).toBeGreaterThan(0);
-    });
+    }
   });
 
   it('resolves each lazy component definition', async () => {
     const configs = router.options.routes;
     const components = await Promise.all(configs.map((route) => route.component()));
-    components.forEach((module) => {
+    for (const module of components) {
       expect(module).toBeTruthy();
-    });
+    }
   });
 });

@@ -270,7 +270,7 @@ describe('store internals', () => {
     internals.restoreSelectionSnapshot(snapshot);
 
     expect(selection.rangeCount).toBe(1);
-    delete editable.textContent;
+    Reflect.deleteProperty(editable, 'textContent');
   });
 
   it('skips selection restoration when overrides return null positions', () => {
@@ -295,9 +295,9 @@ describe('store without DOM APIs', () => {
     const realDocument = globalThis.document;
     const realNodeFilter = globalThis.NodeFilter;
 
-    delete globalThis.window;
-    delete globalThis.document;
-    delete globalThis.NodeFilter;
+    globalThis.window = undefined;
+    globalThis.document = undefined;
+    globalThis.NodeFilter = undefined;
 
     vi.resetModules();
 

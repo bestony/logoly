@@ -31,10 +31,10 @@ config.global.stubs = {
   ...(config.global.stubs ?? {}),
   ...Object.fromEntries(vuetifyTags.map((tag) => [tag, slotStub])),
   'router-link': {
-    template: `<a><slot /></a>`
+    template: '<a><slot /></a>'
   },
   'router-view': {
-    template: `<div><slot /></div>`
+    template: '<div><slot /></div>'
   }
 };
 
@@ -69,7 +69,6 @@ class ResizeObserver {
 }
 
 class IntersectionObserver {
-  constructor() {}
   observe() {}
   unobserve() {}
   disconnect() {}
