@@ -49,19 +49,19 @@ describe("loadGoogleFont", () => {
   });
 
   it("no-ops when the DOM is unavailable", async () => {
-    const originalWindow = global.window;
-    const originalDocument = global.document;
+    const originalWindow = globalThis.window;
+    const originalDocument = globalThis.document;
     vi.resetModules();
     try {
       // @ts-expect-error override for test
-      global.window = undefined;
+      globalThis.window = undefined;
       // @ts-expect-error override for test
-      global.document = undefined;
+      globalThis.document = undefined;
       const { loadGoogleFont } = await import("@/utils/fontLoader.js");
       expect(() => loadGoogleFont("Roboto")).not.toThrow();
     } finally {
-      global.window = originalWindow;
-      global.document = originalDocument;
+      globalThis.window = originalWindow;
+      globalThis.document = originalDocument;
       vi.resetModules();
     }
   });

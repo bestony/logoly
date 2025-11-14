@@ -78,8 +78,8 @@ class IntersectionObserver {
   }
 }
 
-global.ResizeObserver = global.ResizeObserver ?? ResizeObserver;
-global.IntersectionObserver = global.IntersectionObserver ?? IntersectionObserver;
+globalThis.ResizeObserver = globalThis.ResizeObserver ?? ResizeObserver;
+globalThis.IntersectionObserver = globalThis.IntersectionObserver ?? IntersectionObserver;
 
 if (typeof HTMLCanvasElement !== "undefined") {
   HTMLCanvasElement.prototype.getContext = () => ({
@@ -93,4 +93,4 @@ vi.mock("vue-gtag", () => ({
   event: vi.fn(),
 }));
 
-global.open = global.open ?? (() => {});
+globalThis.open = globalThis.open ?? (() => {});

@@ -1,3 +1,5 @@
+/* eslint-env node */
+import process from "node:process";
 import { fileURLToPath, URL } from "node:url";
 
 import { defineConfig } from "vite";
