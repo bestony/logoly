@@ -22,7 +22,7 @@
     "vue": "^3.5.5",
     "vue-gtag": "^2.0.1",
     "vue-router": "^4.5.0",
-    "vuetify": "^3.6.9"
+    "vuetify": "^3.10.11"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
