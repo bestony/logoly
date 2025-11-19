@@ -1,0 +1,5 @@
+// Disable optional Vuetify packs to keep the generated CSS minimal.
+@forward 'vuetify/settings' with (
+  $color-pack: false,
+  $utilities: false
+);

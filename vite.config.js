@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import viteCompression from 'vite-plugin-compression';
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 
 function exposeStoreInternals() {
   const storePath = fileURLToPath(new URL('./src/stores/store.js', import.meta.url)).replace(
@@ -52,7 +53,17 @@ function exposeStoreInternals() {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      template: {
+        transformAssetUrls
+      }
+    }),
+    vuetify({
+      autoImport: true,
+      styles: {
+        configFile: 'src/styles/vuetify-settings.scss'
+      }
+    }),
     exposeStoreInternals(),
     viteCompression({
       algorithm: 'brotliCompress',
