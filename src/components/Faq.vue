@@ -5,14 +5,9 @@
       <v-expansion-panel title="How to use this generator?">
         <template v-slot:text>
           The generator is very simple to use. You can get a logo in just 4 steps:
-          <ul class="list-disc mt-2">
-            <div class="ml-5">
-              <li>Choose a style (e.g. Horizontal/Vertical, Pornhub/Youtube/...).</li>
-              <li>Edit the text in the center box.</li>
-              <li>Customize your logo (color, background, font size, etc.).</li>
-              <li>Finally, click the "Export" button and get the logo of your own.</li>
-            </div>
-          </ul>
+          <ol class="list-decimal mt-2 ml-6 space-y-1" aria-label="Steps to generate a logo">
+            <li v-for="step in steps" :key="step.id">{{ step.text }}</li>
+          </ol>
         </template>
       </v-expansion-panel>
       <v-expansion-panel
@@ -22,3 +17,24 @@
     </v-expansion-panels>
   </div>
 </template>
+
+<script setup>
+const steps = [
+  {
+    id: 'choose-style',
+    text: 'Choose a style (e.g. Horizontal/Vertical, Pornhub/Youtube/...).'
+  },
+  {
+    id: 'edit-text',
+    text: 'Edit the text in the center box.'
+  },
+  {
+    id: 'customize',
+    text: 'Customize your logo (color, background, font size, etc.).'
+  },
+  {
+    id: 'export',
+    text: 'Click the Export button to download your logo as PNG or SVG.'
+  }
+];
+</script>
