@@ -3,6 +3,7 @@
     class="absolute md:fixed top-0 right-0"
     href="https://github.com/bestony/logoly"
     target="_blank"
+    rel="noopener noreferrer"
   >
     <img
       width="149"

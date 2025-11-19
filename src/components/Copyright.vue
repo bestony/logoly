@@ -1,6 +1,10 @@
 <template>
   <p class="text-center text-[#666]">
-    © Bestony 2019
-    <a href="https://www.ixiqin.com" target="_blank">website</a>
+    © Bestony {{ currentYear }}
+    <a href="https://www.ixiqin.com" target="_blank" rel="noopener noreferrer">website</a>
   </p>
 </template>
+
+<script setup>
+const currentYear = new Date().getFullYear();
+</script>
