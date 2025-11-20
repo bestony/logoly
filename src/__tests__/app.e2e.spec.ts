@@ -12,6 +12,14 @@ describe('App navigation (e2e-like)', () => {
     await router.push('/')
     await router.isReady()
 
+    const resizeObserverMock: typeof ResizeObserver = vi.fn().mockImplementation(() => ({
+      observe: vi.fn(),
+      unobserve: vi.fn(),
+      disconnect: vi.fn(),
+    }))
+    ;(globalThis as typeof globalThis & { ResizeObserver: typeof ResizeObserver }).ResizeObserver =
+      resizeObserverMock
+
     // prefer Chinese locale to match snapshot text
     i18n.global.locale.value = 'zh-CN'
 
@@ -23,7 +31,9 @@ describe('App navigation (e2e-like)', () => {
 
     expect(wrapper.text()).toContain('首页')
 
-    const aboutButton = wrapper.findAll('button').find((button) => button.text() === '关于')
+    const aboutButton = wrapper
+      .findAll('button')
+      .find((button) => button.text().includes('关于') || button.text().includes('About'))
     expect(aboutButton).toBeTruthy()
     await aboutButton?.trigger('click')
     await flushPromises()

@@ -13,7 +13,6 @@ import { trackEvent } from '../utils/analytics'
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const route = useRoute()
 const router = useRouter()
-// biome-ignore lint/correctness/noUnusedVariables: used in template
 const { t } = useI18n()
 const localeStore = useLocaleStore()
 const { locale } = storeToRefs(localeStore)
@@ -37,7 +36,6 @@ const languageOptions = [
   { code: 'zh-CN', label: 'component.menu.lang.zhCN', emoji: '🇨🇳' },
 ]
 
-// biome-ignore lint/correctness/noUnusedVariables: used in template
 const currentLanguage = computed(
   () => languageOptions.find((option) => option.code === locale.value) ?? languageOptions[0],
 )

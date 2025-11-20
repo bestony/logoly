@@ -51,6 +51,13 @@ export default {
       close: 'Close',
       copy: 'Copy',
     },
+    languagePrompt: {
+      title: 'Switch language?',
+      description: 'We detected your browser prefers {locale}. Would you like to switch?',
+      hint: 'You can change this anytime via the Language menu in the header.',
+      switch: 'Switch to {locale}',
+      stay: 'Keep English',
+    },
   },
   page: {
     app: {

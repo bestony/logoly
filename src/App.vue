@@ -5,6 +5,8 @@ import ErrorBoundary from './components/ErrorBoundary.vue'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import FooterMenu from './components/FooterMenu.vue'
 // biome-ignore lint/correctness/noUnusedImports: used in template
+import LanguagePrompt from './components/LanguagePrompt.vue'
+// biome-ignore lint/correctness/noUnusedImports: used in template
 import Menu from './components/Menu.vue'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import SiteFooter from './components/SiteFooter.vue'
@@ -25,6 +27,7 @@ const { t } = useI18n()
         <RouterView :key="$route.fullPath" />
       </ErrorBoundary>
     </main>
+    <LanguagePrompt />
     <FooterMenu />
     <SiteFooter />
   </div>

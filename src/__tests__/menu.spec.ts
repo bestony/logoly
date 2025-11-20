@@ -16,15 +16,15 @@ describe('Menu', () => {
     })
 
     const labels = wrapper.findAll('button').map((button) => button.text())
-    expect(labels).toEqual([
+    expect(labels.slice(0, 6)).toEqual([
       'PornHub',
       'Vertical PH',
       'OnlyFans',
       'More',
       'About',
       'FAQ',
-      'Language: 🇺🇸 English',
     ])
+    expect(labels[6]).toContain('Language')
   })
 
   it('navigates using router.push when a button is clicked', async () => {

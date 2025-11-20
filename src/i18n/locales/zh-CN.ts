@@ -51,6 +51,13 @@ export default {
       close: '关闭',
       copy: '复制',
     },
+    languagePrompt: {
+      title: '切换为更合适的语言？',
+      description: '检测到你的浏览器偏好 {locale}，是否切换？',
+      hint: '你随时可以在右上角的语言菜单里再次修改。',
+      switch: '切换为 {locale}',
+      stay: '保持当前语言',
+    },
   },
   page: {
     app: {
