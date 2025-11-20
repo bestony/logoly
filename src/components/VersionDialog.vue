@@ -11,16 +11,11 @@ const props = defineProps<{ version: string }>()
 
 const isOpen = ref(false)
 
-const platform = computed(
-  () =>
-    (typeof navigator !== 'undefined' && (navigator.platform || 'unknown-platform')) ||
-    'unknown-platform',
-)
-const userAgent = computed(
-  () =>
-    (typeof navigator !== 'undefined' && (navigator.userAgent || 'unknown-user-agent')) ||
-    'unknown-user-agent',
-)
+const runtimeNavigator: Partial<Navigator> =
+  typeof navigator !== 'undefined' ? navigator : { platform: undefined, userAgent: undefined }
+
+const platform = computed(() => runtimeNavigator.platform || 'unknown-platform')
+const userAgent = computed(() => runtimeNavigator.userAgent || 'unknown-user-agent')
 
 const debugInfo = computed(
   () => `OS: ${platform.value}\nBrowser: ${userAgent.value}\nVersion: ${props.version}`,
@@ -41,8 +36,8 @@ const setIsOpen = (value: boolean) => {
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const copyDebugInfo = async () => {
   try {
-    if (navigator.clipboard?.writeText) {
-      await navigator.clipboard.writeText(debugInfo.value)
+    if (runtimeNavigator.clipboard?.writeText) {
+      await runtimeNavigator.clipboard.writeText(debugInfo.value)
     }
   } catch {
     // ignore clipboard errors

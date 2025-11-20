@@ -86,7 +86,7 @@ export function useSEO() {
   }
 
   const updateSEO = (lang?: SupportedLanguage | string, fullPathOverride?: string) => {
-    const language = lang || detectLanguage()
+    const language = lang ?? detectLanguage()
     const content = getSeoContent(language)
     const routeMeta = (route?.meta as RouteMeta | undefined) || undefined
 

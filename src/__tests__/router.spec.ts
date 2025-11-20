@@ -30,7 +30,9 @@ describe('router configuration', () => {
     const modules = await Promise.all(loaders.map((loader) => loader()))
 
     modules.forEach((mod) => {
-      expect(mod && 'default' in mod).toBe(true)
+      const hasDefaultExport =
+        typeof mod === 'object' && mod !== null && 'default' in (mod as Record<string, unknown>)
+      expect(hasDefaultExport).toBe(true)
     })
   })
 })

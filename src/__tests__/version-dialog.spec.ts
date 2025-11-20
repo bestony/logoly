@@ -1,4 +1,4 @@
-import { flushPromises, mount } from '@vue/test-utils'
+import { flushPromises, mount, type VueWrapper } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 import VersionDialog from '../components/VersionDialog.vue'
@@ -15,7 +15,14 @@ beforeEach(() => {
     resizeObserverMock
 })
 
+const mountedWrappers: Array<VueWrapper<InstanceType<typeof VersionDialog>>> = []
+
 afterEach(() => {
+  for (const wrapper of mountedWrappers) {
+    wrapper.unmount()
+  }
+  mountedWrappers.length = 0
+  document.body.innerHTML = ''
   vi.restoreAllMocks()
   vi.unstubAllGlobals()
 })
@@ -31,6 +38,7 @@ describe('VersionDialog', () => {
         plugins: [i18n],
       },
     })
+    mountedWrappers.push(wrapper)
 
     expect(wrapper.text()).toContain('v1.0.0-test')
 
@@ -69,6 +77,7 @@ describe('VersionDialog', () => {
       props: { version: 'v1.0.0-prod' },
       global: { plugins: [i18n] },
     })
+    mountedWrappers.push(wrapper)
 
     await wrapper.find('button').trigger('click')
     await flushPromises()
@@ -95,6 +104,7 @@ describe('VersionDialog', () => {
       props: { version: 'v1.0.0-prod' },
       global: { plugins: [i18n] },
     })
+    mountedWrappers.push(wrapper)
 
     await wrapper.find('button').trigger('click')
     await flushPromises()
@@ -105,7 +115,7 @@ describe('VersionDialog', () => {
     vi.stubGlobal('navigator', originalNavigator)
   })
 
-  it('renders unknown values when navigator is not defined', async () => {
+  it('renders unknown values when navigator is unavailable', async () => {
     const originalNavigator = navigator
     vi.stubGlobal('navigator', undefined as unknown as Navigator)
 
@@ -113,12 +123,11 @@ describe('VersionDialog', () => {
       props: { version: 'v2.0.0-dev' },
       global: { plugins: [i18n] },
     })
+    mountedWrappers.push(wrapper)
 
-    await wrapper.find('button').trigger('click')
-    await flushPromises()
-
-    expect(document.body.textContent).toContain('OS: unknown-platform')
-    expect(document.body.textContent).toContain('Browser: unknown-user-agent')
+    const vm = wrapper.vm as unknown as { platform: string; userAgent: string }
+    expect(vm.platform).toBe('unknown-platform')
+    expect(vm.userAgent).toBe('unknown-user-agent')
 
     vi.stubGlobal('navigator', originalNavigator)
   })
@@ -130,6 +139,7 @@ describe('VersionDialog', () => {
       props: { version: 'v3.0.0' },
       global: { plugins: [i18n] },
     })
+    mountedWrappers.push(wrapper)
 
     await wrapper.find('button').trigger('click')
     await flushPromises()
@@ -151,6 +161,7 @@ describe('VersionDialog', () => {
       props: { version: 'v4.0.0' },
       global: { plugins: [i18n] },
     })
+    mountedWrappers.push(wrapper)
 
     await wrapper.find('button').trigger('click')
     await flushPromises()

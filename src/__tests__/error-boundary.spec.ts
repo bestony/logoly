@@ -61,8 +61,11 @@ describe('ErrorBoundary', () => {
 
     const buttons = wrapper.findAll('button')
     expect(buttons.length).toBeGreaterThanOrEqual(2)
-    const copyButton = buttons[0]!
-    const retryButton = buttons[1]!
+    const copyButton = buttons.at(0)
+    const retryButton = buttons.at(1)
+    if (!copyButton || !retryButton) {
+      throw new Error('Expected copy and retry buttons to be present')
+    }
     await copyButton.trigger('click')
     await flushPromises()
 

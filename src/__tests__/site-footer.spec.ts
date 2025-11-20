@@ -15,7 +15,6 @@ afterEach(() => {
   vi.resetModules()
   vi.restoreAllMocks()
   vi.unstubAllEnvs()
-  // biome-ignore lint/correctness/noUndeclaredVariables: test env only
   ;(globalThis as Record<string, unknown>).__GIT_SHA__ = undefined
 })
 
@@ -44,7 +43,7 @@ describe('SiteFooter', () => {
   it('falls back to git SHA in production mode', async () => {
     vi.stubEnv('MODE', 'production')
     vi.stubEnv('DEV', false)
-    // biome-ignore lint/correctness/noUndeclaredVariables: injected at build time
+    // biome-ignore lint/style/useNamingConvention: injected at build time
     ;(globalThis as { __GIT_SHA__?: string }).__GIT_SHA__ = 'abcdef'
 
     const wrapper = await mountFooter()
@@ -54,10 +53,18 @@ describe('SiteFooter', () => {
   it('uses unknown suffix when git SHA is missing in production', async () => {
     vi.stubEnv('MODE', 'production')
     vi.stubEnv('DEV', false)
-    // biome-ignore lint/correctness/noUndeclaredVariables: injected at build time
+    // biome-ignore lint/style/useNamingConvention: injected at build time
     ;(globalThis as { __GIT_SHA__?: string }).__GIT_SHA__ = ''
 
     const wrapper = await mountFooter()
     expect(wrapper.text()).toContain('v1.0.0-unknown')
+  })
+
+  it('falls back to a plain copyright string when the locale key is missing', async () => {
+    vi.spyOn(i18n.global, 'te').mockReturnValue(false)
+
+    const wrapper = await mountFooter()
+    const year = new Date().getFullYear().toString()
+    expect(wrapper.text()).toContain(`© ${year} Logoly`)
   })
 })

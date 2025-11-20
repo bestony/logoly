@@ -2,7 +2,6 @@
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import { MenuButton, MenuItem, MenuItems, Menu as UiMenu } from '@headlessui/vue'
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import { RouterLink, useRoute, useRouter } from 'vue-router'
@@ -13,8 +12,10 @@ import { trackEvent } from '../utils/analytics'
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const route = useRoute()
 const router = useRouter()
+// biome-ignore lint/correctness/noUnusedVariables: used in template
 const { t } = useI18n()
 const localeStore = useLocaleStore()
+// biome-ignore lint/correctness/noUnusedVariables: used in template
 const { locale } = storeToRefs(localeStore)
 localeStore.init()
 
@@ -31,22 +32,16 @@ const trailingItems = [
   { name: 'component.menu.faq', path: '/faq', routeName: 'faq' },
 ]
 
-const languageOptions = [
+type LanguageOption = { code: string; label: string; emoji: string }
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const languageOptions: LanguageOption[] = [
   { code: 'en', label: 'component.menu.lang.en', emoji: '🇺🇸' },
   { code: 'zh-CN', label: 'component.menu.lang.zhCN', emoji: '🇨🇳' },
   { code: 'es', label: 'component.menu.lang.es', emoji: '🇪🇸' },
   { code: 'fr', label: 'component.menu.lang.fr', emoji: '🇫🇷' },
   { code: 'ja', label: 'component.menu.lang.ja', emoji: '🇯🇵' },
 ]
-
-const currentLanguage = computed(
-  () => languageOptions.find((option) => option.code === locale.value) ?? languageOptions[0],
-)
-
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const languageLabel = computed(() =>
-  `${currentLanguage.value?.emoji ?? ''} ${t(currentLanguage.value?.label ?? '')}`.trim(),
-)
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const otherItems = [
