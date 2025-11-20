@@ -22,7 +22,7 @@ describe('Menu', () => {
       'More',
       'About',
       'FAQ',
-      'Language: English',
+      'Language: 🇺🇸 English',
     ])
   })
 

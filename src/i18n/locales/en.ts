@@ -10,6 +10,7 @@ export default {
       language: 'Language',
       lang: {
         en: 'English',
+        zhCN: '简体中文',
         'zh-CN': '简体中文',
       },
       simpleText: 'Simple Text',

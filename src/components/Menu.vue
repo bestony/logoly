@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import { MenuButton, MenuItem, MenuItems, Menu as UiMenu } from '@headlessui/vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import { RouterLink, useRoute, useRouter } from 'vue-router'
@@ -25,11 +26,15 @@ const trailingItems = [
   { name: 'component.menu.faq', path: '/faq', routeName: 'faq' },
 ]
 
-// biome-ignore lint/correctness/noUnusedVariables: used in template
 const languageOptions = [
-  { code: 'en', label: 'component.menu.lang.en' },
-  { code: 'zh-CN', label: 'component.menu.lang.zh-CN' },
+  { code: 'en', label: 'component.menu.lang.en', emoji: '🇺🇸' },
+  { code: 'zh-CN', label: 'component.menu.lang.zh-CN', emoji: '🇨🇳' },
 ]
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const currentLanguage = computed(
+  () => languageOptions.find((option) => option.code === locale.value) ?? languageOptions[0],
+)
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const otherItems = [
@@ -151,7 +156,8 @@ const handleLocaleChange = (code: string) => {
               <MenuButton
                 class="px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800"
               >
-              <div class="i-mingcute-translate-line"/> {{ t('component.menu.language') }}
+              <div class="i-mingcute-translate-line"/> {{ t('component.menu.language') }}:
+              {{ currentLanguage?.emoji }} {{ t(currentLanguage?.label ?? '') }}
               </MenuButton>
             </div>
 
@@ -180,7 +186,7 @@ const handleLocaleChange = (code: string) => {
                       ]"
                       @click="handleLocaleChange(option.code)"
                     >
-                      {{ t(option.label) }}
+                      {{ option.emoji }} {{ t(option.label) }}
                     </button>
                   </MenuItem>
                 </div>
