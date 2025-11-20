@@ -163,5 +163,20 @@ export default {
         },
       },
     },
+    notFound: {
+      title: 'Página no encontrada, pero tus ideas importan',
+      lead:
+        'El enlace no existe o la página aún no está lista. ' +
+        'Cuéntanos qué plantilla o función quieres ' +
+        'y la seguiremos en GitHub.',
+      issuePrompt:
+        'Haz clic en el botón de abajo para abrir un Issue. ' +
+        'Describe la plantilla, función o bug que necesitas ' +
+        'y allí responderemos con el progreso.',
+      actions: {
+        issue: 'Crear un Issue en GitHub',
+        home: 'Volver al inicio',
+      },
+    },
   },
 }

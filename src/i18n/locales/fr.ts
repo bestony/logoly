@@ -164,5 +164,20 @@ export default {
         },
       },
     },
+    notFound: {
+      title: 'Page introuvable, mais vos idées comptent',
+      lead:
+        "Ce lien n'existe pas ou la page n'est pas encore prête. " +
+        'Dites-nous le modèle ou la fonctionnalité que vous souhaitez ' +
+        'et nous la suivrons sur GitHub.',
+      issuePrompt:
+        'Cliquez sur le bouton ci-dessous pour ouvrir un ticket. ' +
+        'Décrivez le modèle de marque, la fonctionnalité ou le bug dont vous avez besoin ; ' +
+        'nous répondrons et partagerons l’avancement là-bas.',
+      actions: {
+        issue: 'Ouvrir un ticket GitHub',
+        home: "Retour à l'accueil",
+      },
+    },
   },
 }

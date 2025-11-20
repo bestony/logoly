@@ -162,5 +162,15 @@ export default {
         },
       },
     },
+    notFound: {
+      title: '这里是空白页，但你的想法很重要',
+      lead: '你访问的链接不存在，或页面尚未上线。告诉我们你想要的模板或功能，我们会在 GitHub 上和你一起跟进。',
+      issuePrompt:
+        '点击下方按钮提交 Issue，描述需要的品牌模板、功能或遇到的问题。我们会在讨论区回复并给出进度。',
+      actions: {
+        issue: '去 GitHub 提交 Issue',
+        home: '返回首页',
+      },
+    },
   },
 }

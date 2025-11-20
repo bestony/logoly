@@ -163,5 +163,20 @@ export default {
         },
       },
     },
+    notFound: {
+      title: 'Page not found, but your ideas matter',
+      lead:
+        'This link does not exist or the page is not ready yet. ' +
+        'Tell us which template or feature you want ' +
+        'and we will track it on GitHub.',
+      issuePrompt:
+        'Click the button below to open an Issue. ' +
+        'Describe the brand template, feature, or bug you need ' +
+        'and we will reply and share progress there.',
+      actions: {
+        issue: 'Submit a GitHub Issue',
+        home: 'Back to Home',
+      },
+    },
   },
 }

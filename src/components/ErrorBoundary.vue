@@ -1,56 +1,17 @@
 <script setup lang="ts">
-import { computed, onErrorCaptured, ref, watch } from 'vue'
+import { computed, onErrorCaptured, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute } from 'vue-router'
+import { useDebugInfo } from '../composables/useDebugInfo'
 
 const props = defineProps<{
   message?: string
 }>()
 
 const error = ref<unknown>(null)
-const errorRoute = ref<string | null>(null)
-const route = useRoute()
-const routeHistory = ref<string[]>([route.fullPath])
 const { t } = useI18n()
 
-watch(
-  () => route.fullPath,
-  (fullPath) => {
-    routeHistory.value.push(fullPath)
-    if (routeHistory.value.length > 10) {
-      routeHistory.value.shift()
-    }
-  },
-)
-
-const platform = computed(() => navigator?.platform || 'unknown-platform')
-const userAgent = computed(() => navigator?.userAgent || 'unknown-user-agent')
-const browserBrand = computed(() => {
-  const brands = (
-    navigator as { userAgentData?: { brands?: { brand: string; version: string }[] } }
-  )?.userAgentData?.brands
-  return brands?.map((b) => `${b.brand} ${b.version}`).join(', ') || 'unknown-browser'
-})
-
-const debugInfo = computed(
-  () => `OS: ${platform.value}
-Browser: ${browserBrand.value}
-User Agent: ${userAgent.value}
-Error Route: ${errorRoute.value ?? route.fullPath}
-History: ${routeHistory.value.join(' -> ')}
-Error: ${String(error.value)}`,
-)
-
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const copyDebugInfo = async () => {
-  try {
-    if (navigator.clipboard?.writeText) {
-      await navigator.clipboard.writeText(debugInfo.value)
-    }
-  } catch {
-    // ignore clipboard errors
-  }
-}
+const { debugInfo, copyDebugInfo, setErrorRoute } = useDebugInfo({ error })
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const resetError = () => {
@@ -59,7 +20,7 @@ const resetError = () => {
 
 onErrorCaptured((err) => {
   error.value = err
-  errorRoute.value = route.fullPath
+  setErrorRoute()
   // prevent further propagation to keep UI visible
   return false
 })
