@@ -24,7 +24,7 @@ export const brandRoutes: RouteDefinition[] = [
     meta: { title: 'Mastercard', description: makeBrandDescription('Mastercard') },
   },
   { path: '/bluesnap', name: 'bluesnap', view: 'Bluesnap', meta: { title: 'Bluesnap' } },
-  { path: '/simpletext', name: 'simpletext', view: 'Simpletext', meta: { title: 'Simple Text' } },
+  { path: '/simpletext', name: 'simpletext', view: 'SimpleText', meta: { title: 'Simple Text' } },
   { path: '/sega', name: 'sega', view: 'SEGA', meta: { title: 'SEGA' } },
   { path: '/nintendo', name: 'nintendo', view: 'Nintendo', meta: { title: 'Nintendo' } },
   { path: '/lego', name: 'lego', view: 'Lego', meta: { title: 'LEGO' } },

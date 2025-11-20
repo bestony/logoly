@@ -31,7 +31,9 @@ describe('VersionDialog', () => {
       '[data-testid="copy-debug"]',
     ) as HTMLButtonElement | null
     expect(copyButton).toBeTruthy()
-    if (!copyButton) throw new Error('copy debug button not found')
+    if (!copyButton) {
+      throw new Error('copy debug button not found')
+    }
 
     await copyButton.click()
     await flushPromises()

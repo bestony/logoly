@@ -37,11 +37,15 @@ export default defineConfig(({ mode }) => {
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              if (id.includes('vue')) return 'vendor-vue'
-              if (id.includes('vue-router')) return 'vendor-vue-router'
-              if (id.includes('pinia')) return 'vendor-pinia'
-              if (id.includes('@headlessui')) return 'vendor-headlessui'
-              return 'vendor'
+              const vendorGroups = [
+                { test: 'vue-router', chunk: 'vendor-vue-router' },
+                { test: 'vue', chunk: 'vendor-vue' },
+                { test: 'pinia', chunk: 'vendor-pinia' },
+                { test: '@headlessui', chunk: 'vendor-headlessui' },
+              ]
+
+              const matchVendor = vendorGroups.find(({ test }) => id.includes(test))
+              return matchVendor?.chunk ?? 'vendor'
             }
 
             const match = id.match(/src[\\/](views)[\\/](.+?)\\.vue$/)

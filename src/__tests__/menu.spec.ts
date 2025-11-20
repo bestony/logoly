@@ -79,7 +79,7 @@ describe('Menu', () => {
 })
 
 const otherLabels = [
-  'Simpletext',
+  'Simple Text',
   'FedEx',
   'Mastercard',
   'Bluesnap',

@@ -2,10 +2,9 @@
 
 <template>
   <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-4 text-white">Simpletext</h1>
-    <p class="text-lg text-gray-300">Simpletext 页面内容</p>
+    <h1 class="text-4xl font-bold mb-4 text-white">Simple Text</h1>
+    <p class="text-lg text-gray-300">Simple Text 页面内容</p>
   </div>
 </template>
 
 <style scoped></style>
-

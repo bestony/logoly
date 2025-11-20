@@ -13,7 +13,7 @@ import Mastercard from '../views/Mastercard.vue'
 import Nintendo from '../views/Nintendo.vue'
 import OnlyFans from '../views/OnlyFans.vue'
 import SEGA from '../views/SEGA.vue'
-import Simpletext from '../views/Simpletext.vue'
+import SimpleText from '../views/SimpleText.vue'
 import VerticalPh from '../views/VerticalPh.vue'
 
 type ViewCase = {
@@ -30,7 +30,7 @@ const cases: ViewCase[] = [
   { component: FedEx, title: 'FedEx' },
   { component: Mastercard, title: 'Mastercard' },
   { component: Bluesnap, title: 'Bluesnap' },
-  { component: Simpletext, title: 'Simpletext' },
+  { component: SimpleText, title: 'Simple Text' },
   { component: SEGA, title: 'SEGA' },
   { component: Nintendo, title: 'Nintendo' },
   { component: Lego, title: 'Lego' },
