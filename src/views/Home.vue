@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { toPng } from 'html-to-image'
+import { toJpeg, toPng, toSvg } from 'html-to-image'
 import { ref } from 'vue'
 
 const captureRef = ref<HTMLDivElement | null>(null)
 const isDownloading = ref(false)
 const errorMessage = ref<string | null>(null)
 
+type DownloadFormat = 'png' | 'jpeg' | 'svg'
+
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const handleDownload = async () => {
+const downloadImage = async (format: DownloadFormat) => {
   if (!captureRef.value || isDownloading.value) {
     return
   }
@@ -16,14 +18,17 @@ const handleDownload = async () => {
   errorMessage.value = null
 
   try {
-    const dataUrl = await toPng(captureRef.value, {
-      pixelRatio: 2,
-      backgroundColor: '#000000',
-    })
+    const options = { pixelRatio: 2, backgroundColor: '#000000' }
+    const dataUrl =
+      format === 'png'
+        ? await toPng(captureRef.value, options)
+        : format === 'jpeg'
+          ? await toJpeg(captureRef.value, { ...options, quality: 0.92 })
+          : await toSvg(captureRef.value, options)
 
     const link = document.createElement('a')
     link.href = dataUrl
-    link.download = 'logoly-home.png'
+    link.download = `logoly-home.${format === 'jpeg' ? 'jpg' : format}`
     link.click()
   } catch (error) {
     console.error('Failed to download image', error)
@@ -35,26 +40,42 @@ const handleDownload = async () => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-8 space-y-8 rounded-2xl bg-black/70">
+  <div ref="captureRef" class="container mx-auto px-4 py-8 space-y-8 rounded-2xl bg-black/70">
     <header>
       <h1 class="text-4xl font-bold mb-4 text-white">首页</h1>
       <p class="text-lg text-gray-300 leading-relaxed">
         欢迎来到 Logoly，几秒生成 PornHub/OnlyFans 风格 Logo，支持 PNG 与 SVG 下载。
       </p>
-      <div class="mt-6 flex items-center gap-3">
+      <div class="mt-6 flex flex-wrap items-center gap-3">
         <button
           type="button"
           class="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 font-semibold text-black transition hover:bg-orange-500 disabled:cursor-not-allowed disabled:opacity-70"
           :disabled="isDownloading"
-          @click="handleDownload"
+          @click="downloadImage('png')"
         >
-          <span>{{ isDownloading ? "生成中…" : "下载为图片" }}</span>
+          <span>{{ isDownloading ? "生成中…" : "下载 PNG" }}</span>
+        </button>
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 rounded-lg border border-orange-400 px-4 py-2 font-semibold text-orange-200 transition hover:bg-orange-500/10 disabled:cursor-not-allowed disabled:opacity-70"
+          :disabled="isDownloading"
+          @click="downloadImage('jpeg')"
+        >
+          <span>{{ isDownloading ? "生成中…" : "下载 JPG" }}</span>
+        </button>
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 rounded-lg border border-gray-500 px-4 py-2 font-semibold text-gray-100 transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-70"
+          :disabled="isDownloading"
+          @click="downloadImage('svg')"
+        >
+          <span>{{ isDownloading ? "生成中…" : "下载 SVG" }}</span>
         </button>
         <span v-if="errorMessage" class="text-sm text-red-400">{{ errorMessage }}</span>
       </div>
     </header>
 
-    <section class="space-y-3" ref="captureRef">
+    <section class="space-y-3">
       <h2 class="text-2xl font-semibold text-primary">Logoly 是什么？</h2>
       <p class="text-gray-300 leading-relaxed">
         这是一个开源、纯前端的在线 Logo 生成器，无需注册登录即可使用，不会收集或存储你的输入和图片。
