@@ -3,6 +3,9 @@
 import { Dialog, DialogDescription, DialogPanel, DialogTitle } from '@headlessui/vue'
 import { computed, ref } from 'vue'
 
+/**
+ * App semantic version string shown in the footer button and copied in debug info.
+ */
 const props = defineProps<{ version: string }>()
 
 const isOpen = ref(false)

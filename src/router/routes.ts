@@ -11,7 +11,11 @@ export const routes: RouteRecordRaw[] = routeDefinitions.map(({ path, name, view
   const loader = views[`../views/${view}.vue`]
 
   if (!loader) {
-    throw new Error(`View component "${view}.vue" is missing in src/views`)
+    const message = `[router] View component "${view}.vue" is missing in src/views (path: ${path}, name: ${name})`
+    if (import.meta.env.DEV) {
+      console.error(message)
+    }
+    throw new Error(message)
   }
 
   return {

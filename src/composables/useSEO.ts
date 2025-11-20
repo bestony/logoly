@@ -1,39 +1,9 @@
 import { getCurrentInstance, onMounted } from 'vue'
 import type { RouteLocationNormalizedLoaded, Router } from 'vue-router'
 import { routerKey, useRoute, useRouter } from 'vue-router'
-import type { SEOMeta, SupportedLanguage, UseSEOResult } from '../types/composables'
-
-type SEOContentMap = Record<SupportedLanguage, SEOMeta>
-
-const seoContent: SEOContentMap = {
-  en: {
-    title: 'Logoly - PornHub Style Logo Generator | Free PNG & SVG Download',
-    description:
-      'Free online PornHub style logo generator. Create professional logos instantly, no registration required.',
-    keywords: 'logo, generator, pornhub, logo generator, online generator, free logo maker',
-    ogTitle: 'Logoly - PornHub Style Logo Generator | Free PNG & SVG Download',
-    ogDescription:
-      'Free online PornHub style logo generator. Create professional logos instantly, no registration required.',
-    twitterTitle: 'Logoly - PornHub Style Logo Generator | Free PNG & SVG Download',
-    twitterDescription:
-      'Free online PornHub style logo generator. Create professional logos instantly, no registration required.',
-    language: 'en',
-    htmlLang: 'en',
-    ogLocale: 'en_US',
-  },
-  'zh-CN': {
-    title: 'Logoly - PornHub 风格 Logo 生成器 | 在线免费制作支持 PNG/SVG 导出',
-    description: '免费在线生成 PornHub 风格 Logo，支持 PNG/SVG 导出，无需注册，秒级生成。',
-    keywords: 'logo, 生成器, pornhub, logo生成器, 在线生成, 免费logo制作',
-    ogTitle: 'Logoly - PornHub 风格 Logo 生成器 | 在线免费制作支持 PNG/SVG 导出',
-    ogDescription: '免费在线生成 PornHub 风格 Logo，支持 PNG/SVG 导出，无需注册，秒级生成。',
-    twitterTitle: 'Logoly - PornHub 风格 Logo 生成器 | 在线免费制作支持 PNG/SVG 导出',
-    twitterDescription: '免费在线生成 PornHub 风格 Logo，支持 PNG/SVG 导出，无需注册，秒级生成。',
-    language: 'zh-CN',
-    htmlLang: 'zh-CN',
-    ogLocale: 'zh_CN',
-  },
-}
+import { APP_NAME } from '../constants/app'
+import { SEO_CONTENT } from '../constants/seo'
+import type { RouteMeta, SEOMeta, SupportedLanguage, UseSEOResult } from '../types/composables'
 
 const resolveLanguage = (language?: string): SupportedLanguage => {
   if (language?.startsWith('zh')) {
@@ -44,7 +14,7 @@ const resolveLanguage = (language?: string): SupportedLanguage => {
 
 const getSeoContent = (language?: string): SEOMeta => {
   const key = resolveLanguage(language)
-  return seoContent[key]
+  return SEO_CONTENT[key]
 }
 
 function updateMetaTag(name: string, content: string, isProperty = false) {
@@ -108,26 +78,40 @@ export function useSEO() {
   const updateSEO = (lang?: SupportedLanguage | string, fullPathOverride?: string) => {
     const language = lang || detectLanguage()
     const content = getSeoContent(language)
+    const routeMeta = (route?.meta as RouteMeta | undefined) || undefined
+
+    const finalTitle = routeMeta?.title ? `${content.title} | ${routeMeta.title}` : content.title
+    const finalDescription = routeMeta?.description || content.description
+    const finalKeywords =
+      (Array.isArray(routeMeta?.keywords) && routeMeta?.keywords?.join(', ')) || content.keywords
 
     // Update HTML lang attribute
     updateHtmlLang(content.htmlLang)
 
     // Update title
-    updateTitle(content.title)
+    updateTitle(finalTitle)
 
     // Update meta tags
-    updateMetaTag('description', content.description)
-    updateMetaTag('keywords', content.keywords)
+    updateMetaTag('description', finalDescription)
+    updateMetaTag('keywords', finalKeywords)
     updateMetaTag('language', content.language)
 
     // Update Open Graph tags
-    updateMetaTag('og:title', content.ogTitle, true)
-    updateMetaTag('og:description', content.ogDescription, true)
+    updateMetaTag(
+      'og:title',
+      routeMeta?.title ? `${APP_NAME} | ${routeMeta.title}` : content.ogTitle,
+      true,
+    )
+    updateMetaTag('og:description', finalDescription, true)
     updateMetaTag('og:locale', content.ogLocale, true)
 
     // Update Twitter tags
-    updateMetaTag('twitter:title', content.twitterTitle, true)
-    updateMetaTag('twitter:description', content.twitterDescription, true)
+    updateMetaTag(
+      'twitter:title',
+      routeMeta?.title ? `${APP_NAME} | ${routeMeta.title}` : content.twitterTitle,
+      true,
+    )
+    updateMetaTag('twitter:description', finalDescription, true)
 
     // Update canonical URL
     const { origin, pathname } = window.location

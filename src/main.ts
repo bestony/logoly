@@ -3,9 +3,8 @@ import { createApp } from 'vue'
 
 import 'virtual:uno.css'
 import App from './App.vue'
+import { GA_MEASUREMENT_ID } from './constants/app'
 import router from './router'
-
-const GA_MEASUREMENT_ID = 'G-YX7X8HWGB1'
 
 const initAnalytics = () => {
   const script = document.createElement('script')

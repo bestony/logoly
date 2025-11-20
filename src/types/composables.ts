@@ -17,3 +17,9 @@ export interface UseSEOResult {
   updateSEO: (lang?: SupportedLanguage | string, fullPathOverride?: string) => void
   detectLanguage: () => SupportedLanguage
 }
+
+export type RouteMeta = {
+  title: string
+  description?: string
+  keywords?: string[]
+}
