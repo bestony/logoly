@@ -1,3 +1,4 @@
+> **new version is in active development at new-vue3 branch**
 <img align="right" src="https://postimg.aliavv.com/mbp/adpsj.png"/>
 
 # Logoly —— A Pornhub Flavour Logo Generator
