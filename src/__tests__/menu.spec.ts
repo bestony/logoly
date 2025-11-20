@@ -14,7 +14,7 @@ describe('Menu', () => {
     })
 
     const labels = wrapper.findAll('button').map((button) => button.text())
-    expect(labels).toEqual(['PornHub', 'Vertical PH', 'OnlyFans', '关于', 'FAQ'])
+    expect(labels).toEqual(['PornHub', 'Vertical PH', 'OnlyFans', '其他', '关于', 'FAQ'])
   })
 
   it('navigates using router.push when a button is clicked', async () => {
@@ -31,5 +31,28 @@ describe('Menu', () => {
     await flushPromises()
 
     expect(pushSpy).toHaveBeenCalledWith('/vertical-ph')
+  })
+
+  it('shows other items in dropdown and navigates', async () => {
+    const router = createTestRouter()
+    await router.push('/')
+    await router.isReady()
+    const pushSpy = vi.spyOn(router, 'push')
+
+    const wrapper = mount(Menu, {
+      global: { plugins: [router] },
+    })
+
+    const dropdownButton = wrapper.findAll('button').find((button) => button.text() === '其他')
+    expect(dropdownButton).toBeTruthy()
+    await dropdownButton?.trigger('click')
+    await flushPromises()
+
+    const otherItem = wrapper.findAll('button').find((button) => button.text() === 'SEGA')
+    expect(otherItem).toBeTruthy()
+    await otherItem?.trigger('click')
+    await flushPromises()
+
+    expect(pushSpy).toHaveBeenCalledWith('/sega')
   })
 })
