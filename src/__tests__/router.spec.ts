@@ -14,7 +14,7 @@ describe('router configuration', () => {
     expect(paths).toContain('/')
     expect(paths).toContain('/vertical-ph')
     expect(paths).toContain('/onlyfans')
-    expect(paths).toContain('/FAQ')
+    expect(paths).toContain('/faq')
   })
 
   it('matches router instance options', () => {

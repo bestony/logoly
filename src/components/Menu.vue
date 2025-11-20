@@ -19,7 +19,7 @@ const primaryItems = [
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const trailingItems = [
   { name: '关于', path: '/about', routeName: 'about' },
-  { name: 'FAQ', path: '/FAQ', routeName: 'faq' },
+  { name: 'FAQ', path: '/faq', routeName: 'faq' },
 ]
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template

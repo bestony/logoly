@@ -1,21 +1,11 @@
 import { getCurrentInstance, onMounted } from 'vue'
 import type { RouteLocationNormalizedLoaded, Router } from 'vue-router'
 import { routerKey, useRoute, useRouter } from 'vue-router'
+import type { SEOMeta, SupportedLanguage, UseSEOResult } from '../types/composables'
 
-interface SEOMeta {
-  title: string
-  description: string
-  keywords: string
-  ogTitle: string
-  ogDescription: string
-  twitterTitle: string
-  twitterDescription: string
-  language: string
-  htmlLang: string
-  ogLocale: string
-}
+type SEOContentMap = Record<SupportedLanguage, SEOMeta>
 
-const seoContent: Record<'en' | 'zh-CN', SEOMeta> = {
+const seoContent: SEOContentMap = {
   en: {
     title: 'Logoly - PornHub Style Logo Generator | Free PNG & SVG Download',
     description:
@@ -45,8 +35,15 @@ const seoContent: Record<'en' | 'zh-CN', SEOMeta> = {
   },
 }
 
-const getSeoContent = (language: string): SEOMeta => {
-  const key = (language in seoContent ? language : 'en') as keyof typeof seoContent
+const resolveLanguage = (language?: string): SupportedLanguage => {
+  if (language?.startsWith('zh')) {
+    return 'zh-CN'
+  }
+  return 'en'
+}
+
+const getSeoContent = (language?: string): SEOMeta => {
+  const key = resolveLanguage(language)
   return seoContent[key]
 }
 
@@ -94,7 +91,7 @@ export function useSEO() {
     routerInstance = useRouter()
   }
 
-  const detectLanguage = (): string => {
+  const detectLanguage = (): SupportedLanguage => {
     // Check browser language
     const browserLang =
       navigator.language || (navigator as { userLanguage?: string }).userLanguage || 'en'
@@ -108,7 +105,7 @@ export function useSEO() {
     return 'en'
   }
 
-  const updateSEO = (lang?: string, fullPathOverride?: string) => {
+  const updateSEO = (lang?: SupportedLanguage | string, fullPathOverride?: string) => {
     const language = lang || detectLanguage()
     const content = getSeoContent(language)
 
@@ -148,8 +145,10 @@ export function useSEO() {
     })
   }
 
-  return {
+  const composableApi: UseSEOResult = {
     updateSEO,
     detectLanguage,
   }
+
+  return composableApi
 }
