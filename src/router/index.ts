@@ -1,8 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import About from '../views/About.vue'
+import AMC from '../views/AMC.vue'
+import Bluesnap from '../views/Bluesnap.vue'
+import Bravo from '../views/Bravo.vue'
 import FAQ from '../views/FAQ.vue'
+import FedEx from '../views/FedEx.vue'
 import Home from '../views/Home.vue'
+import Lego from '../views/Lego.vue'
+import Marvel from '../views/Marvel.vue'
+import Mastercard from '../views/Mastercard.vue'
+import Nintendo from '../views/Nintendo.vue'
 import OnlyFans from '../views/OnlyFans.vue'
+import SEGA from '../views/SEGA.vue'
+import Simpletext from '../views/Simpletext.vue'
 import VerticalPh from '../views/VerticalPh.vue'
 
 const router = createRouter({
@@ -32,6 +42,56 @@ const router = createRouter({
       path: '/FAQ',
       name: 'faq',
       component: FAQ,
+    },
+    {
+      path: '/fedex',
+      name: 'fedex',
+      component: FedEx,
+    },
+    {
+      path: '/mastercard',
+      name: 'mastercard',
+      component: Mastercard,
+    },
+    {
+      path: '/bluesnap',
+      name: 'bluesnap',
+      component: Bluesnap,
+    },
+    {
+      path: '/simpletext',
+      name: 'simpletext',
+      component: Simpletext,
+    },
+    {
+      path: '/sega',
+      name: 'sega',
+      component: SEGA,
+    },
+    {
+      path: '/nintendo',
+      name: 'nintendo',
+      component: Nintendo,
+    },
+    {
+      path: '/lego',
+      name: 'lego',
+      component: Lego,
+    },
+    {
+      path: '/marvel',
+      name: 'marvel',
+      component: Marvel,
+    },
+    {
+      path: '/bravo',
+      name: 'bravo',
+      component: Bravo,
+    },
+    {
+      path: '/amc',
+      name: 'amc',
+      component: AMC,
     },
   ],
 })
