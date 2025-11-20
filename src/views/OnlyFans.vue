@@ -2,8 +2,8 @@
 
 <template>
   <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-4">OnlyFans</h1>
-    <p class="text-lg">OnlyFans 页面内容</p>
+    <h1 class="text-4xl font-bold mb-4 text-white">OnlyFans</h1>
+    <p class="text-lg text-gray-300">OnlyFans 页面内容</p>
   </div>
 </template>
 

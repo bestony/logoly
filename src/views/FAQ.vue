@@ -2,8 +2,8 @@
 
 <template>
   <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-4">常见问题</h1>
-    <p class="text-lg">FAQ 页面内容</p>
+    <h1 class="text-4xl font-bold mb-4 text-white">常见问题</h1>
+    <p class="text-lg text-gray-300">FAQ 页面内容</p>
   </div>
 </template>
 
