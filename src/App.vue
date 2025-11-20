@@ -3,6 +3,8 @@
 import FooterMenu from './components/FooterMenu.vue'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import Menu from './components/Menu.vue'
+// biome-ignore lint/correctness/noUnusedImports: used in template
+import SiteFooter from './components/SiteFooter.vue'
 import { useSEO } from './composables/useSEO'
 
 // Initialize SEO based on browser language
@@ -16,6 +18,7 @@ useSEO()
       <RouterView :key="$route.fullPath" />
     </main>
     <FooterMenu />
+    <SiteFooter />
   </div>
 </template>
 

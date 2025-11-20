@@ -41,13 +41,12 @@ const go = (path: string) => {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <h2 class="text-lg font-semibold text-white">快速切换 Logo 模板</h2>
-        <p class="text-sm text-gray-400">按大类分组，便于在底部快速切换</p>
       </div>
       <div class="grid grid-cols-1 gap-6">
         <div
           v-for="category in categories"
           :key="category.title"
-          class="bg-gray-800/70 rounded-lg p-4 shadow-inner border border-gray-700"
+        
         >
           <h3 class="text-sm font-semibold text-primary uppercase tracking-wide mb-3">
             {{ category.title }}
