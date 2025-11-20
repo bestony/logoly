@@ -1,17 +1,23 @@
 <script setup lang="ts">
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import { MenuButton, MenuItem, MenuItems, Menu as UiMenu } from '@headlessui/vue'
+import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import { RouterLink, useRoute, useRouter } from 'vue-router'
+import type { Locale } from '../i18n'
+import { useLocaleStore } from '../stores/locale'
 import { trackEvent } from '../utils/analytics'
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const route = useRoute()
 const router = useRouter()
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const { t, locale } = useI18n()
+const { t } = useI18n()
+const localeStore = useLocaleStore()
+const { locale } = storeToRefs(localeStore)
+localeStore.init()
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const primaryItems = [
@@ -28,12 +34,17 @@ const trailingItems = [
 
 const languageOptions = [
   { code: 'en', label: 'component.menu.lang.en', emoji: '🇺🇸' },
-  { code: 'zh-CN', label: 'component.menu.lang.zh-CN', emoji: '🇨🇳' },
+  { code: 'zh-CN', label: 'component.menu.lang.zhCN', emoji: '🇨🇳' },
 ]
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const currentLanguage = computed(
   () => languageOptions.find((option) => option.code === locale.value) ?? languageOptions[0],
+)
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const languageLabel = computed(() =>
+  `${currentLanguage.value?.emoji ?? ''} ${t(currentLanguage.value?.label ?? '')}`.trim(),
 )
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
@@ -66,7 +77,7 @@ const handleOtherItemClick = (item: { name: string; path: string }) => {
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const handleLocaleChange = (code: string) => {
-  locale.value = code
+  localeStore.setLocale(code as Locale)
 }
 </script>
 
@@ -156,8 +167,8 @@ const handleLocaleChange = (code: string) => {
               <MenuButton
                 class="px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800 flex items-center gap-2"
               >
-                <div class="i-mingcute-translate-line text-base"/> {{ t('component.menu.language') }}
-              
+                <div class="i-mingcute-translate-line text-base" />
+                {{ t('component.menu.language') }}
               </MenuButton>
             </div>
 

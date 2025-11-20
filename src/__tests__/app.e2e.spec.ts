@@ -1,4 +1,5 @@
 import { flushPromises, mount } from '@vue/test-utils'
+import { createPinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
 import App from '../App.vue'
 import { i18n } from '../i18n'
@@ -16,7 +17,7 @@ describe('App navigation (e2e-like)', () => {
 
     const wrapper = mount(App, {
       global: {
-        plugins: [router, i18n],
+        plugins: [router, i18n, createPinia()],
       },
     })
 

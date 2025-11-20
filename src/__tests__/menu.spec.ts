@@ -1,4 +1,5 @@
 import { flushPromises, mount } from '@vue/test-utils'
+import { createPinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
 import Menu from '../components/Menu.vue'
 import { i18n } from '../i18n'
@@ -11,7 +12,7 @@ describe('Menu', () => {
     await router.isReady()
 
     const wrapper = mount(Menu, {
-      global: { plugins: [router, i18n] },
+      global: { plugins: [router, i18n, createPinia()] },
     })
 
     const labels = wrapper.findAll('button').map((button) => button.text())
@@ -33,7 +34,7 @@ describe('Menu', () => {
     const pushSpy = vi.spyOn(router, 'push')
 
     const wrapper = mount(Menu, {
-      global: { plugins: [router, i18n] },
+      global: { plugins: [router, i18n, createPinia()] },
     })
 
     await wrapper.find('button:nth-child(2)').trigger('click')
@@ -49,7 +50,7 @@ describe('Menu', () => {
     const pushSpy = vi.spyOn(router, 'push')
 
     const wrapper = mount(Menu, {
-      global: { plugins: [router, i18n] },
+      global: { plugins: [router, i18n, createPinia()] },
     })
 
     const dropdownButton = wrapper.findAll('button').find((button) => button.text() === 'More')
@@ -71,7 +72,7 @@ describe('Menu', () => {
     await router.isReady()
 
     const wrapper = mount(Menu, {
-      global: { plugins: [router, i18n] },
+      global: { plugins: [router, i18n, createPinia()] },
     })
 
     const dropdownButton = wrapper.findAll('button').find((button) => button.text() === 'More')

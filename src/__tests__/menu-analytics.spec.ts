@@ -1,4 +1,5 @@
 import { flushPromises, mount } from '@vue/test-utils'
+import { createPinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
 import Menu from '../components/Menu.vue'
 import { i18n } from '../i18n'
@@ -14,7 +15,7 @@ describe('Menu analytics', () => {
     await router.isReady()
 
     const wrapper = mount(Menu, {
-      global: { plugins: [router, i18n] },
+      global: { plugins: [router, i18n, createPinia()] },
     })
 
     const dropdownButton = wrapper.findAll('button').find((button) => button.text() === 'More')
