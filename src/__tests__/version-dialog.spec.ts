@@ -60,8 +60,7 @@ describe('VersionDialog', () => {
 
   it('falls back to unknown platform values when navigator is missing data', async () => {
     const originalNavigator = navigator
-    // @ts-expect-error - override for test
-    vi.stubGlobal('navigator', {})
+    vi.stubGlobal('navigator', {} as Navigator)
     const writeText = vi.fn().mockResolvedValue(undefined)
     Object.assign(navigator, { clipboard: { writeText } })
 

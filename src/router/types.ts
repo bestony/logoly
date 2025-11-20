@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /* c8 ignore file */
 import type { RouteMeta } from '../types/composables'
 

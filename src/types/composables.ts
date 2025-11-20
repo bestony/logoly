@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /* c8 ignore file */
 
 export type SupportedLanguage = 'en' | 'es' | 'fr' | 'ja' | 'zh-CN'

@@ -45,7 +45,7 @@ describe('SiteFooter', () => {
     vi.stubEnv('MODE', 'production')
     vi.stubEnv('DEV', false)
     // biome-ignore lint/correctness/noUndeclaredVariables: injected at build time
-    ;(globalThis as Record<string, string>).__GIT_SHA__ = 'abcdef'
+    ;(globalThis as { __GIT_SHA__?: string }).__GIT_SHA__ = 'abcdef'
 
     const wrapper = await mountFooter()
     expect(wrapper.text()).toContain('v1.0.0-abcdef')
