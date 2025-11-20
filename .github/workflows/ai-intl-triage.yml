@@ -1,0 +1,204 @@
+name: ai-intl-triage
+
+on:
+  issues:
+    types: [opened, reopened, edited]
+  pull_request:
+    types: [opened, reopened, edited]
+
+jobs:
+  translate_issue:
+    if: github.event_name == 'issues'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Analyze issue language
+        id: run_codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          responses-api-endpoint: ${{ secrets.RESPONSES_API_ENDPOINT }}
+          prompt: |
+            You are a multilingual triage assistant for GitHub Issues.
+            Issue title: ${{ github.event.issue.title }}
+            Issue body: ${{ github.event.issue.body || '' }}
+            Tasks:
+            1) Decide if the combined text is English (at least 80% English words/grammar). Set is_english to true or false.
+            2) Produce English versions of the title and body. Keep them concise; if already English, return the originals.
+            3) Classify the issue as "bug" (something broken/incorrect) or "enhancement" (feature/UX request). If unclear choose "none".
+            Response format: a single-line JSON object with keys is_english (boolean), english_title (string), english_body (string), label ("bug"|"enhancement"|"none"). No markdown or commentary.
+            Example: {"is_english":false,"english_title":"App crashes on login","english_body":"Steps to reproduce...","label":"bug"}
+
+      - name: Translate and label issue
+        uses: actions/github-script@v7
+        env:
+          CODEX_RESULT: ${{ steps.run_codex.outputs['final-message'] }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const parseResult = () => {
+              try {
+                return JSON.parse(process.env.CODEX_RESULT || '{}');
+              } catch (error) {
+                core.warning(`Codex output was not valid JSON: ${error.message}`);
+                return {};
+              }
+            };
+
+            const result = parseResult();
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issue_number = context.payload.issue.number;
+            const originalTitle = context.payload.issue.title || '';
+            const originalBody = context.payload.issue.body || '';
+            const englishTitle = (result.english_title || originalTitle).trim();
+            const englishBody = (result.english_body || originalBody || '').trim();
+
+            if (result.is_english === false) {
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number,
+                title: englishTitle,
+                body: englishBody,
+              });
+
+              const comment = [
+                'The issue has been translated to English for broader visibility.',
+                '',
+                '**Original title:**',
+                originalTitle || '(empty)',
+                '',
+                '**Original body:**',
+                originalBody || '(empty)',
+              ].join('\n');
+
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body: comment,
+              });
+            }
+
+            const label = result.label;
+            if (label && label !== 'none') {
+              const assignLabel = async () => {
+                try {
+                  await github.rest.issues.addLabels({
+                    owner,
+                    repo,
+                    issue_number,
+                    labels: [label],
+                  });
+                  return;
+                } catch (error) {
+                  if (![404, 422].includes(error.status)) throw error;
+
+                  const colors = { bug: 'd73a4a', enhancement: 'a2eeef' };
+                  try {
+                    await github.rest.issues.createLabel({
+                      owner,
+                      repo,
+                      name: label,
+                      color: colors[label] || 'ededed',
+                      description:
+                        label === 'bug'
+                          ? 'Something is not working'
+                          : label === 'enhancement'
+                            ? 'New feature or request'
+                            : '',
+                    });
+                  } catch (createError) {
+                    if (![422].includes(createError.status)) throw createError;
+                  }
+
+                  await github.rest.issues.addLabels({
+                    owner,
+                    repo,
+                    issue_number,
+                    labels: [label],
+                  });
+                }
+              };
+
+              await assignLabel();
+            }
+
+  translate_pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Analyze PR language
+        id: run_codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          responses-api-endpoint: ${{ secrets.RESPONSES_API_ENDPOINT }}
+          prompt: |
+            You are a multilingual assistant for GitHub Pull Requests.
+            PR title: ${{ github.event.pull_request.title }}
+            PR body: ${{ github.event.pull_request.body || '' }}
+            Tasks:
+            1) Decide if the PR text is English (at least 80% English words/grammar). Set is_english to true or false.
+            2) Return English versions of the title and body; if content is already English, keep it unchanged.
+            Response format: single-line JSON with keys is_english (boolean), english_title (string), english_body (string). No markdown or explanation.
+            Example: {"is_english":false,"english_title":"Refactor login component","english_body":"Refactor to improve performance..."}
+
+      - name: Translate PR
+        uses: actions/github-script@v7
+        env:
+          CODEX_RESULT: ${{ steps.run_codex.outputs['final-message'] }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const parseResult = () => {
+              try {
+                return JSON.parse(process.env.CODEX_RESULT || '{}');
+              } catch (error) {
+                core.warning(`Codex output was not valid JSON: ${error.message}`);
+                return {};
+              }
+            };
+
+            const result = parseResult();
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const pull_number = context.payload.pull_request.number;
+            const originalTitle = context.payload.pull_request.title || '';
+            const originalBody = context.payload.pull_request.body || '';
+            const englishTitle = (result.english_title || originalTitle).trim();
+            const englishBody = (result.english_body || originalBody || '').trim();
+
+            if (result.is_english === false) {
+              await github.rest.pulls.update({
+                owner,
+                repo,
+                pull_number,
+                title: englishTitle,
+                body: englishBody,
+              });
+
+              const comment = [
+                'This pull request has been translated to English for broader visibility.',
+                '',
+                '**Original title:**',
+                originalTitle || '(empty)',
+                '',
+                '**Original body:**',
+                originalBody || '(empty)',
+              ].join('\n');
+
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: pull_number,
+                body: comment,
+              });
+            }
