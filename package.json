@@ -58,6 +58,7 @@
     "jsdom": "^27.0.1",
     "npm-run-all2": "^8.0.4",
     "typescript": "~5.9.0",
+    "unocss": "^66.5.7",
     "vite": "^7.1.11",
     "vite-plugin-vue-devtools": "^8.0.3",
     "vitest": "^3.2.4",
