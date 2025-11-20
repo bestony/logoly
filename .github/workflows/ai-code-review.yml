@@ -5,7 +5,7 @@ on:
     types: [opened, reopened, synchronize, ready_for_review]
   push:
     branches:
-      - '**'
+      - "**"
     tags: []
 
 jobs:
@@ -47,7 +47,7 @@ jobs:
             ${{ github.event.pull_request.title }}
             ${{ github.event.pull_request.body }}
 
-            Provide concise, actionable feedback with file references when possible.
+            Provide concise, actionable feedback with file references when possible. Return the feedback in markdown format and Chinese.
 
       - name: Report Codex feedback
         if: steps.run_codex.outputs.final-message != ''
@@ -94,7 +94,7 @@ jobs:
             Review ONLY the changes in this commit:
               git show ${{ matrix.commit.id }}
 
-            Flag bugs, regressions, missing tests, or quality issues; keep feedback concise, specific, and actionable.
+            Flag bugs, regressions, missing tests, or quality issues; keep feedback concise, specific, and actionable.Return the feedback in markdown format and Chinese.
 
       - name: Comment on commit
         if: steps.run_codex.outputs.final-message != ''
