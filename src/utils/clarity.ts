@@ -12,26 +12,26 @@ export const initClarity = (projectId?: string, isProd: boolean = import.meta.en
     return
   }
 
-  ;((c, l, a, r, i) => {
+  ;((win: ClarityWindow, doc: Document, project) => {
     // Create a small queue until the remote script is ready.
     const queue: ClarityQueue = []
     const clarity = (...args: unknown[]) => {
       queue.push(args)
     }
     clarity.q = queue
-    c[a] = clarity
+    win.clarity = clarity
 
-    const scriptEl = l.createElement(r)
+    const scriptEl = doc.createElement('script') as HTMLScriptElement
     scriptEl.async = true
-    scriptEl.src = `https://www.clarity.ms/tag/${i}`
+    scriptEl.src = `https://www.clarity.ms/tag/${project}`
 
-    const firstScript = l.getElementsByTagName(r)[0]
+    const firstScript = doc.getElementsByTagName('script')[0]
     if (firstScript?.parentNode) {
       firstScript.parentNode.insertBefore(scriptEl, firstScript)
     } else {
-      l.head.appendChild(scriptEl)
+      doc.head.appendChild(scriptEl)
     }
-  })(window as ClarityWindow, document, 'clarity', 'script', projectId)
+  })(window as ClarityWindow, document, projectId)
 }
 
 type ClarityQueue = typeof window.clarity extends (...args: infer P) => unknown ? P[] : unknown[]
