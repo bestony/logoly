@@ -1,5 +1,7 @@
 <script setup lang="ts">
 // biome-ignore lint/correctness/noUnusedImports: used in template
+import FooterMenu from './components/FooterMenu.vue'
+// biome-ignore lint/correctness/noUnusedImports: used in template
 import Menu from './components/Menu.vue'
 import { useSEO } from './composables/useSEO'
 
@@ -8,9 +10,12 @@ useSEO()
 </script>
 
 <template>
-  <div class="min-h-screen bg-background">
+  <div class="min-h-screen bg-background flex flex-col">
     <Menu />
-    <RouterView :key="$route.fullPath" />
+    <main class="flex-1">
+      <RouterView :key="$route.fullPath" />
+    </main>
+    <FooterMenu />
   </div>
 </template>
 

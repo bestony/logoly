@@ -8,19 +8,9 @@ const router = useRouter()
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const menuItems = [
-  { name: '首页', path: '/', routeName: 'home' },
+  { name: 'PornHub', path: '/', routeName: 'home' },
   { name: 'Vertical PH', path: '/vertical-ph', routeName: 'vertical-ph' },
   { name: 'OnlyFans', path: '/onlyfans', routeName: 'onlyfans' },
-  { name: 'FedEx', path: '/fedex', routeName: 'fedex' },
-  { name: 'Mastercard', path: '/mastercard', routeName: 'mastercard' },
-  { name: 'Bluesnap', path: '/bluesnap', routeName: 'bluesnap' },
-  { name: 'Simpletext', path: '/simpletext', routeName: 'simpletext' },
-  { name: 'SEGA', path: '/sega', routeName: 'sega' },
-  { name: 'Nintendo', path: '/nintendo', routeName: 'nintendo' },
-  { name: 'Lego', path: '/lego', routeName: 'lego' },
-  { name: 'Marvel', path: '/marvel', routeName: 'marvel' },
-  { name: 'Bravo', path: '/bravo', routeName: 'bravo' },
-  { name: 'AMC', path: '/amc', routeName: 'amc' },
   { name: '关于', path: '/about', routeName: 'about' },
   { name: 'FAQ', path: '/FAQ', routeName: 'faq' },
 ]

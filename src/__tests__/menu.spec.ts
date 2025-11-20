@@ -14,23 +14,7 @@ describe('Menu', () => {
     })
 
     const labels = wrapper.findAll('button').map((button) => button.text())
-    expect(labels).toEqual([
-      '首页',
-      'Vertical PH',
-      'OnlyFans',
-      'FedEx',
-      'Mastercard',
-      'Bluesnap',
-      'Simpletext',
-      'SEGA',
-      'Nintendo',
-      'Lego',
-      'Marvel',
-      'Bravo',
-      'AMC',
-      '关于',
-      'FAQ',
-    ])
+    expect(labels).toEqual(['PornHub', 'Vertical PH', 'OnlyFans', '关于', 'FAQ'])
   })
 
   it('navigates using router.push when a button is clicked', async () => {
