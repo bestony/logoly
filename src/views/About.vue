@@ -28,13 +28,6 @@ const highlights: Highlight[] = [
 ]
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const creatorPoints = [
-  '白宦成（bestony），独立开发者、开源布道者，常驻天津。',
-  '在 GitHub 维护多个工具项目，作品包括 Logoly 与 LarkGPT 等。',
-  '技术播客「编码人声」主播之一，长期分享开源与开发者生态经验。',
-]
-
-// biome-ignore lint/correctness/noUnusedVariables: used in template
 const communityLinks = [
   { label: '提交问题或建议', href: 'https://github.com/bestony/logoly/issues' },
   { label: '参与贡献指南', href: 'https://github.com/bestony/logoly#readme' },
@@ -76,14 +69,6 @@ const communityLinks = [
       </div>
     </section>
 
-    <section class="rounded-lg border border-gray-800 bg-gray-900/60 p-5 shadow-sm">
-      <h2 class="text-2xl font-semibold text-primary mb-3">创作者 · bestony</h2>
-      <ul class="list-disc list-inside space-y-2 text-gray-300 leading-relaxed">
-        <li v-for="point in creatorPoints" :key="point">
-          {{ point }}
-        </li>
-      </ul>
-    </section>
 
     <section class="grid gap-4 md:grid-cols-2">
       <div class="rounded-lg border border-gray-800 bg-gray-900/60 p-5 shadow-sm">
