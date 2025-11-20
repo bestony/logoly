@@ -1,6 +1,7 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
 import Menu from '../components/Menu.vue'
+import { i18n } from '../i18n'
 import { createTestRouter } from './test-utils'
 
 describe('Menu', () => {
@@ -10,11 +11,11 @@ describe('Menu', () => {
     await router.isReady()
 
     const wrapper = mount(Menu, {
-      global: { plugins: [router] },
+      global: { plugins: [router, i18n] },
     })
 
     const labels = wrapper.findAll('button').map((button) => button.text())
-    expect(labels).toEqual(['PornHub', 'Vertical PH', 'OnlyFans', '其他', '关于', 'FAQ'])
+    expect(labels).toEqual(['PornHub', 'Vertical PH', 'OnlyFans', 'More', 'About', 'FAQ'])
   })
 
   it('navigates using router.push when a button is clicked', async () => {
@@ -24,7 +25,7 @@ describe('Menu', () => {
     const pushSpy = vi.spyOn(router, 'push')
 
     const wrapper = mount(Menu, {
-      global: { plugins: [router] },
+      global: { plugins: [router, i18n] },
     })
 
     await wrapper.find('button:nth-child(2)').trigger('click')
@@ -40,10 +41,10 @@ describe('Menu', () => {
     const pushSpy = vi.spyOn(router, 'push')
 
     const wrapper = mount(Menu, {
-      global: { plugins: [router] },
+      global: { plugins: [router, i18n] },
     })
 
-    const dropdownButton = wrapper.findAll('button').find((button) => button.text() === '其他')
+    const dropdownButton = wrapper.findAll('button').find((button) => button.text() === 'More')
     expect(dropdownButton).toBeTruthy()
     await dropdownButton?.trigger('click')
     await flushPromises()
@@ -62,10 +63,10 @@ describe('Menu', () => {
     await router.isReady()
 
     const wrapper = mount(Menu, {
-      global: { plugins: [router] },
+      global: { plugins: [router, i18n] },
     })
 
-    const dropdownButton = wrapper.findAll('button').find((button) => button.text() === '其他')
+    const dropdownButton = wrapper.findAll('button').find((button) => button.text() === 'More')
     await dropdownButton?.trigger('click')
     await flushPromises()
 

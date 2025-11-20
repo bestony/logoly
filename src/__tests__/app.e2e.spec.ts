@@ -1,6 +1,7 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
 import App from '../App.vue'
+import { i18n } from '../i18n'
 import { createTestRouter } from './test-utils'
 
 describe('App navigation (e2e-like)', () => {
@@ -12,13 +13,13 @@ describe('App navigation (e2e-like)', () => {
 
     const wrapper = mount(App, {
       global: {
-        plugins: [router],
+        plugins: [router, i18n],
       },
     })
 
     expect(wrapper.text()).toContain('首页')
 
-    const aboutButton = wrapper.findAll('button').find((button) => button.text() === '关于')
+    const aboutButton = wrapper.findAll('button').find((button) => button.text() === 'About')
     expect(aboutButton).toBeTruthy()
     await aboutButton?.trigger('click')
     await flushPromises()

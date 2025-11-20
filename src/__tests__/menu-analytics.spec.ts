@@ -1,6 +1,7 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
 import Menu from '../components/Menu.vue'
+import { i18n } from '../i18n'
 import { trackEvent } from '../utils/analytics'
 import { createTestRouter } from './test-utils'
 
@@ -13,10 +14,10 @@ describe('Menu analytics', () => {
     await router.isReady()
 
     const wrapper = mount(Menu, {
-      global: { plugins: [router] },
+      global: { plugins: [router, i18n] },
     })
 
-    const dropdownButton = wrapper.findAll('button').find((button) => button.text() === '其他')
+    const dropdownButton = wrapper.findAll('button').find((button) => button.text() === 'More')
     expect(dropdownButton).toBeTruthy()
     await dropdownButton?.trigger('click')
     await flushPromises()
@@ -27,8 +28,8 @@ describe('Menu analytics', () => {
     await flushPromises()
 
     expect(trackEvent).toHaveBeenCalledWith('dropdown_click', {
-      menu: '其他',
-      label: 'SEGA',
+      menu: 'component.menu.other',
+      label: 'component.menu.sega',
       path: '/sega',
     })
   })

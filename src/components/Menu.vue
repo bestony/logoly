@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import { MenuButton, MenuItem, MenuItems, Menu as UiMenu } from '@headlessui/vue'
+import { useI18n } from 'vue-i18n'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { trackEvent } from '../utils/analytics'
@@ -8,32 +9,34 @@ import { trackEvent } from '../utils/analytics'
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const route = useRoute()
 const router = useRouter()
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const { t } = useI18n()
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const primaryItems = [
-  { name: 'PornHub', path: '/', routeName: 'home' },
-  { name: 'Vertical PH', path: '/vertical-ph', routeName: 'vertical-ph' },
-  { name: 'OnlyFans', path: '/onlyfans', routeName: 'onlyfans' },
+  { name: 'component.menu.home', path: '/', routeName: 'home' },
+  { name: 'component.menu.verticalPh', path: '/vertical-ph', routeName: 'vertical-ph' },
+  { name: 'component.menu.onlyfans', path: '/onlyfans', routeName: 'onlyfans' },
 ]
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const trailingItems = [
-  { name: '关于', path: '/about', routeName: 'about' },
-  { name: 'FAQ', path: '/faq', routeName: 'faq' },
+  { name: 'component.menu.about', path: '/about', routeName: 'about' },
+  { name: 'component.menu.faq', path: '/faq', routeName: 'faq' },
 ]
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const otherItems = [
-  { name: 'Simple Text', path: '/simpletext', routeName: 'simpletext' },
-  { name: 'FedEx', path: '/fedex', routeName: 'fedex' },
-  { name: 'Mastercard', path: '/mastercard', routeName: 'mastercard' },
-  { name: 'Bluesnap', path: '/bluesnap', routeName: 'bluesnap' },
-  { name: 'SEGA', path: '/sega', routeName: 'sega' },
-  { name: 'Nintendo', path: '/nintendo', routeName: 'nintendo' },
-  { name: 'Lego', path: '/lego', routeName: 'lego' },
-  { name: 'Marvel', path: '/marvel', routeName: 'marvel' },
-  { name: 'Bravo', path: '/bravo', routeName: 'bravo' },
-  { name: 'AMC', path: '/amc', routeName: 'amc' },
+  { name: 'component.menu.simpleText', path: '/simpletext', routeName: 'simpletext' },
+  { name: 'component.menu.fedex', path: '/fedex', routeName: 'fedex' },
+  { name: 'component.menu.mastercard', path: '/mastercard', routeName: 'mastercard' },
+  { name: 'component.menu.bluesnap', path: '/bluesnap', routeName: 'bluesnap' },
+  { name: 'component.menu.sega', path: '/sega', routeName: 'sega' },
+  { name: 'component.menu.nintendo', path: '/nintendo', routeName: 'nintendo' },
+  { name: 'component.menu.lego', path: '/lego', routeName: 'lego' },
+  { name: 'component.menu.marvel', path: '/marvel', routeName: 'marvel' },
+  { name: 'component.menu.bravo', path: '/bravo', routeName: 'bravo' },
+  { name: 'component.menu.amc', path: '/amc', routeName: 'amc' },
 ]
 
 const navigate = async (path: string) => {
@@ -43,7 +46,7 @@ const navigate = async (path: string) => {
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const handleOtherItemClick = (item: { name: string; path: string }) => {
   trackEvent('dropdown_click', {
-    menu: '其他',
+    menu: 'component.menu.other',
     label: item.name,
     path: item.path,
   })
@@ -76,7 +79,7 @@ const handleOtherItemClick = (item: { name: string; path: string }) => {
                 : 'text-gray-300 hover:text-white hover:bg-gray-800'
             "
           >
-            {{ item.name }}
+            {{ t(item.name) }}
           </button>
 
           <UiMenu as="div" class="relative inline-block text-left">
@@ -84,7 +87,7 @@ const handleOtherItemClick = (item: { name: string; path: string }) => {
               <MenuButton
                 class="px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800"
               >
-                其他
+                {{ t('component.menu.other') }}
               </MenuButton>
             </div>
 
@@ -109,7 +112,7 @@ const handleOtherItemClick = (item: { name: string; path: string }) => {
                       ]"
                       @click="handleOtherItemClick(item)"
                     >
-                      {{ item.name }}
+                      {{ t(item.name) }}
                     </button>
                   </MenuItem>
                 </div>
@@ -129,7 +132,7 @@ const handleOtherItemClick = (item: { name: string; path: string }) => {
                 : 'text-gray-300 hover:text-white hover:bg-gray-800'
             "
           >
-            {{ item.name }}
+            {{ t(item.name) }}
           </button>
         </div>
       </div>
