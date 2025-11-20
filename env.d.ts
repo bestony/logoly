@@ -9,5 +9,10 @@ declare global {
   interface Window {
     dataLayer?: unknown[]
     gtag?: (...args: unknown[]) => void
+    clarity?: ((...args: unknown[]) => void) & { q?: unknown[] }
+  }
+
+  interface ImportMetaEnv {
+    readonly VITE_CLARITY_PROJECT_ID?: string
   }
 }

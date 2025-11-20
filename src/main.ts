@@ -3,9 +3,10 @@ import { createApp } from 'vue'
 
 import 'virtual:uno.css'
 import App from './App.vue'
-import { GA_MEASUREMENT_ID } from './constants/app'
+import { CLARITY_PROJECT_ID, GA_MEASUREMENT_ID } from './constants/app'
 import { i18n } from './i18n'
 import router from './router'
+import { initClarity } from './utils/clarity'
 
 const initAnalytics = () => {
   const script = document.createElement('script')
@@ -31,6 +32,7 @@ app.use(i18n)
 
 if (import.meta.env.PROD) {
   initAnalytics()
+  initClarity(CLARITY_PROJECT_ID)
 }
 
 app.mount('#app')
