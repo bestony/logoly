@@ -32,7 +32,8 @@
     "lint:ci": "biome check .",
     "prepare": "husky",
     "format": "biome format --write .",
-    "clean": "rm -rf dist node_modules/.vite"
+    "clean": "rm -rf dist node_modules/.vite",
+    "i18n:check": "node scripts/i18n-check.mjs"
   },
   "lint-staged": {
     "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc,vue}": [
@@ -73,6 +74,7 @@
     "vite": "^7.1.11",
     "vite-plugin-vue-devtools": "^8.0.3",
     "vitest": "^3.2.4",
+    "vue-i18n-extract": "^2.0.7",
     "vue-tsc": "^3.1.1"
   }
 }
