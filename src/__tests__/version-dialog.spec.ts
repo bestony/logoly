@@ -85,4 +85,23 @@ describe('VersionDialog', () => {
 
     vi.stubGlobal('navigator', originalNavigator)
   })
+
+  it('shows unknown platform strings when navigator is unavailable', async () => {
+    const originalNavigator = navigator
+    // @ts-expect-error - simulate non-browser runtime
+    vi.stubGlobal('navigator', undefined)
+
+    const wrapper = mount(VersionDialog, {
+      props: { version: 'v1.0.0-prod' },
+      global: { plugins: [i18n] },
+    })
+
+    await wrapper.find('button').trigger('click')
+    await flushPromises()
+
+    expect(document.body.textContent).toContain('OS: unknown-platform')
+    expect(document.body.textContent).toContain('Browser: unknown-user-agent')
+
+    vi.stubGlobal('navigator', originalNavigator)
+  })
 })

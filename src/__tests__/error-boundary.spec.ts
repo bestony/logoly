@@ -81,4 +81,26 @@ describe('ErrorBoundary', () => {
     expect(wrapper.text()).toContain('Recovered content')
     expect(wrapper.text()).not.toContain('Something went wrong')
   })
+
+  it('ignores clipboard failures while still rendering the error UI', async () => {
+    const router = createTestRouter()
+    await router.push('/')
+    await router.isReady()
+
+    const writeText = vi.fn().mockRejectedValue(new Error('denied'))
+    Object.assign(navigator, { clipboard: { writeText } })
+
+    const wrapper = mount(ErrorBoundary, {
+      global: { plugins: [router, i18n, createPinia()] },
+      slots: { default: FaultyComponent },
+    })
+
+    await flushPromises()
+    const copyButton = wrapper.find('button')
+    await copyButton.trigger('click')
+    await flushPromises()
+
+    expect(writeText).toHaveBeenCalled()
+    expect(wrapper.text()).toContain('Something went wrong')
+  })
 })

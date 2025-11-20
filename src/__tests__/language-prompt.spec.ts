@@ -62,7 +62,8 @@ describe('LanguagePrompt', () => {
     await flushPromises()
     await nextTick()
 
-    const vm = wrapper.vm as unknown as { stayCurrent: () => void }
+    const vm = wrapper.vm as unknown as { stayCurrent: () => void; switchToSuggested: () => void }
+    vm.switchToSuggested()
     vm.stayCurrent()
     await flushPromises()
     await nextTick()

@@ -21,4 +21,16 @@ describe('router configuration', () => {
     expect(router.options.routes.length).toBe(routes.length)
     expect(router.options.routes[0]?.path).toBe('/')
   })
+
+  it('loads every lazy route component without throwing', async () => {
+    const loaders = routes
+      .map((route: RouteRecordRaw) => route.component)
+      .filter((component): component is () => Promise<unknown> => typeof component === 'function')
+
+    const modules = await Promise.all(loaders.map((loader) => loader()))
+
+    modules.forEach((mod) => {
+      expect(mod && 'default' in mod).toBe(true)
+    })
+  })
 })
