@@ -1,0 +1,18 @@
+{
+  "name": "logoly",
+  "version": "1.0.0",
+  "description": "PornHub Style Logo Generator",
+  "homepage": "https://github.com/bestony/logoly#readme",
+  "bugs": {
+    "url": "https://github.com/bestony/logoly/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bestony/logoly.git"
+  },
+  "license": "WTFPL",
+  "author": "Bestony",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
