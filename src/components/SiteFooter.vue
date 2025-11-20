@@ -7,7 +7,7 @@
         <span class="text-gray-700">|</span>
         <a class="hover:text-primary transition-colors" href="https://x.com/xiqingongzi" target="_blank" rel="noopener noreferrer">X.com</a>
         <span class="text-gray-700">|</span>
-        <a class="hover:text-primary transition-colors" href="mailto:xiqingongzi+logoly@gmail.com">联系作者</a>
+        <a class="hover:text-primary transition-colors" href="https://www.ixiqin.com/to-contact-me/" target="_blank">联系作者</a>
       </div>
     </div>
   </div>
