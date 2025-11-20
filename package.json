@@ -13,25 +13,31 @@
   },
   "license": "WTFPL",
   "author": "Bestony",
+  "keywords": ["logo", "generator", "pornhub", "vue", "vite"],
+  "homepage": "https://github.com/bestony/logoly#readme",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
+  "packageManager": "npm@10.0.0",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
-    "test:unit": "vitest",
+    "test:unit": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "biome check --write .",
+    "lint:ci": "biome check .",
     "prepare": "husky",
-    "format": "biome format --write ."
+    "format": "biome format --write .",
+    "clean": "rm -rf dist node_modules/.vite"
   },
   "lint-staged": {
     "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc,vue}": [
       "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
-    ],
-    "*": ["biome check --no-errors-on-unmatched --files-ignore-unknown=true"]
+    ]
   },
   "dependencies": {
     "husky": "^9.1.7",
