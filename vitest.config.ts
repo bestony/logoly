@@ -1,9 +1,10 @@
 import { fileURLToPath } from 'node:url'
+import type { InlineConfig } from 'vitest'
 import { configDefaults, defineConfig, mergeConfig } from 'vitest/config'
 import viteConfig from './vite.config'
 
 export default mergeConfig(
-  viteConfig,
+  viteConfig as InlineConfig,
   defineConfig({
     test: {
       environment: 'jsdom',
@@ -12,12 +13,14 @@ export default mergeConfig(
       coverage: {
         provider: 'v8',
         reporter: ['text', 'html', 'lcov'],
-        statements: 99,
-        branches: 99,
-        functions: 99,
-        lines: 99,
         include: ['src/**/*.{ts,vue}'],
         exclude: ['src/main.ts', 'src/env.d.ts'],
+        thresholds: {
+          statements: 99,
+          branches: 99,
+          functions: 99,
+          lines: 99,
+        },
       },
     },
   }),

@@ -1,11 +1,12 @@
 import { flushPromises, mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import App from '../App.vue'
 import { createTestRouter } from './test-utils'
 
 describe('App navigation (e2e-like)', () => {
   it('renders the current route view and updates after navigation', async () => {
     const router = createTestRouter()
+    const pushSpy = vi.spyOn(router, 'push')
     await router.push('/')
     await router.isReady()
 
@@ -21,6 +22,10 @@ describe('App navigation (e2e-like)', () => {
     expect(aboutButton).toBeTruthy()
     await aboutButton?.trigger('click')
     await flushPromises()
+    await pushSpy.mock.results.at(-1)?.value
+    await flushPromises()
+
+    expect(pushSpy).toHaveBeenLastCalledWith('/about')
 
     expect(router.currentRoute.value.name).toBe('about')
     expect(wrapper.text()).toContain('关于我们')

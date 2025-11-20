@@ -15,7 +15,7 @@ interface SEOMeta {
   ogLocale: string
 }
 
-const seoContent: Record<string, SEOMeta> = {
+const seoContent: Record<'en' | 'zh-CN', SEOMeta> = {
   en: {
     title: 'Logoly - PornHub Style Logo Generator | Free PNG & SVG Download',
     description:
@@ -43,6 +43,11 @@ const seoContent: Record<string, SEOMeta> = {
     htmlLang: 'zh-CN',
     ogLocale: 'zh_CN',
   },
+}
+
+const getSeoContent = (language: string): SEOMeta => {
+  const key = (language in seoContent ? language : 'en') as keyof typeof seoContent
+  return seoContent[key]
 }
 
 function updateMetaTag(name: string, content: string, isProperty = false) {
@@ -105,7 +110,7 @@ export function useSEO() {
 
   const updateSEO = (lang?: string, fullPathOverride?: string) => {
     const language = lang || detectLanguage()
-    const content = seoContent[language] || seoContent.en
+    const content = getSeoContent(language)
 
     // Update HTML lang attribute
     updateHtmlLang(content.htmlLang)

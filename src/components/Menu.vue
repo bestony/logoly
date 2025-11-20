@@ -36,8 +36,8 @@ const otherItems = [
   { name: 'AMC', path: '/amc', routeName: 'amc' },
 ]
 
-const navigate = (path: string) => {
-  router.push(path)
+const navigate = async (path: string) => {
+  await router.push(path)
 }
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template

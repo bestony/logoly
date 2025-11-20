@@ -28,7 +28,7 @@ const routeDefinitions: RouteDefinition[] = [
   { path: '/amc', name: 'amc', view: 'AMC', meta: { title: 'AMC' } },
 ]
 
-const routes: RouteRecordRaw[] = routeDefinitions.map(({ path, name, view, meta }) => {
+export const routes: RouteRecordRaw[] = routeDefinitions.map(({ path, name, view, meta }) => {
   const loader = views[`../views/${view}.vue`]
 
   if (!loader) {
