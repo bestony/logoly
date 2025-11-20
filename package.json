@@ -27,7 +27,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@tailwindcss/postcss": "^4.1.17",
-    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue": "^6.0.2",
     "@vitest/coverage-istanbul": "^4.0.8",
     "@vitest/coverage-v8": "^4.0.8",
     "@vue/test-utils": "^2.4.6",
