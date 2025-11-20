@@ -1,8 +1,9 @@
 {
   "name": "logoly",
-  "version": "1.0.0",
+ "version": "1.0.0",
   "description": "PornHub Style Logo Generator",
-  "homepage": "https://github.com/bestony/logoly#readme",
+  "private": true,
+  "type": "module",
   "bugs": {
     "url": "https://github.com/bestony/logoly/issues"
   },
@@ -12,7 +13,44 @@
   },
   "license": "WTFPL",
   "author": "Bestony",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "test:unit": "vitest",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build",
+    "lint": "eslint . --fix --cache",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "pinia": "^3.0.3",
+    "vue": "^3.5.22",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.2",
+    "@types/jsdom": "^27.0.0",
+    "@types/node": "^22.18.11",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitest/eslint-plugin": "^1.3.23",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.6.0",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.8.1",
+    "eslint": "^9.37.0",
+    "eslint-plugin-vue": "~10.5.0",
+    "jiti": "^2.6.1",
+    "jsdom": "^27.0.1",
+    "npm-run-all2": "^8.0.4",
+    "prettier": "3.6.2",
+    "typescript": "~5.9.0",
+    "vite": "^7.1.11",
+    "vite-plugin-vue-devtools": "^8.0.3",
+    "vitest": "^3.2.4",
+    "vue-tsc": "^3.1.1"
   }
 }
