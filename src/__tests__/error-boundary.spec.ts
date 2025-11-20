@@ -59,7 +59,10 @@ describe('ErrorBoundary', () => {
     }
     await flushPromises()
 
-    const [copyButton, retryButton] = wrapper.findAll('button')
+    const buttons = wrapper.findAll('button')
+    expect(buttons.length).toBeGreaterThanOrEqual(2)
+    const copyButton = buttons[0]!
+    const retryButton = buttons[1]!
     await copyButton.trigger('click')
     await flushPromises()
 
