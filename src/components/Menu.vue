@@ -34,6 +34,9 @@ const trailingItems = [
 const languageOptions = [
   { code: 'en', label: 'component.menu.lang.en', emoji: '🇺🇸' },
   { code: 'zh-CN', label: 'component.menu.lang.zhCN', emoji: '🇨🇳' },
+  { code: 'es', label: 'component.menu.lang.es', emoji: '🇪🇸' },
+  { code: 'fr', label: 'component.menu.lang.fr', emoji: '🇫🇷' },
+  { code: 'ja', label: 'component.menu.lang.ja', emoji: '🇯🇵' },
 ]
 
 const currentLanguage = computed(

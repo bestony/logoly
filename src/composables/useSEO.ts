@@ -6,9 +6,25 @@ import { SEO_CONTENT } from '../constants/seo'
 import type { RouteMeta, SEOMeta, SupportedLanguage, UseSEOResult } from '../types/composables'
 
 const resolveLanguage = (language?: string): SupportedLanguage => {
-  if (language?.startsWith('zh')) {
+  if (!language) {
+    return 'en'
+  }
+
+  const lower = language.toLowerCase()
+
+  if (lower.startsWith('zh')) {
     return 'zh-CN'
   }
+  if (lower.startsWith('es')) {
+    return 'es'
+  }
+  if (lower.startsWith('fr')) {
+    return 'fr'
+  }
+  if (lower.startsWith('ja')) {
+    return 'ja'
+  }
+
   return 'en'
 }
 
@@ -66,13 +82,7 @@ export function useSEO() {
     const browserLang =
       navigator.language || (navigator as { userLanguage?: string }).userLanguage || 'en'
 
-    // Check if it's Chinese (simplified or traditional)
-    if (browserLang.startsWith('zh')) {
-      return 'zh-CN'
-    }
-
-    // Default to English
-    return 'en'
+    return resolveLanguage(browserLang)
   }
 
   const updateSEO = (lang?: SupportedLanguage | string, fullPathOverride?: string) => {

@@ -12,6 +12,9 @@ export default {
         en: 'English',
         zhCN: '简体中文',
         'zh-CN': '简体中文',
+        es: 'Spanish',
+        fr: 'French',
+        ja: 'Japanese',
       },
       simpleText: 'Simple Text',
       fedex: 'FedEx',
@@ -56,7 +59,7 @@ export default {
       description: 'We detected your browser prefers {locale}. Would you like to switch?',
       hint: 'You can change this anytime via the Language menu in the header.',
       switch: 'Switch to {locale}',
-      stay: 'Keep English',
+      stay: 'Keep current language',
     },
   },
   page: {
