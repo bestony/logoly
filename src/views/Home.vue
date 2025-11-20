@@ -5,7 +5,8 @@ import PornHub from '@/components/LogoEditor/PornHub.vue'
 import { useDownloadTask } from '@/composables/useDownloadTask'
 import { type DownloadFormat, downloadAsZip, downloadImage } from '@/utils/download'
 
-const captureRef = ref<HTMLDivElement | null>(null)
+type LogoRef = { captureEl: HTMLElement | null } | null
+const pornHubRef = ref<LogoRef>(null)
 const isDownloading = ref(false)
 const errorMessage = ref<string | null>(null)
 const { runDownload } = useDownloadTask(isDownloading, errorMessage)
@@ -13,12 +14,14 @@ const { runDownload } = useDownloadTask(isDownloading, errorMessage)
 const DEFAULT_OPTIONS = { pixelRatio: 2, backgroundColor: '#000000', quality: 0.92 } as const
 const BASE_NAME = 'logoly-home'
 
+const getTarget = () => pornHubRef.value?.captureEl ?? null
+
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const handleSingleDownload = (format: DownloadFormat) =>
   runDownload(
-    () => Boolean(captureRef.value),
+    () => Boolean(getTarget()),
     () => {
-      const target = captureRef.value
+      const target = getTarget()
       if (!target) {
         return Promise.resolve()
       }
@@ -34,9 +37,9 @@ const handleSingleDownload = (format: DownloadFormat) =>
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const handleZipDownload = () =>
   runDownload(
-    () => Boolean(captureRef.value),
+    () => Boolean(getTarget()),
     () => {
-      const target = captureRef.value
+      const target = getTarget()
       if (!target) {
         return Promise.resolve()
       }
@@ -55,9 +58,7 @@ const handleZipDownload = () =>
     <header>
       <h1 class="text-4xl font-bold mb-4 text-white">PornHub Style Logo Generator</h1>
 
-      <div ref="captureRef">
-        <PornHub />
-      </div>
+      <PornHub ref="pornHubRef" class="mt-4" />
 
       <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
         <button

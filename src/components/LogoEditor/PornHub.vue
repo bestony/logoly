@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="preview-card">
-      <div class="logo-wrapper">
+      <div ref="captureEl" class="logo-wrapper">
         <span class="text-part left-text" contenteditable="true" @input="onLeftInput">
           {{ leftText }}
         </span>
@@ -27,13 +27,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { defineExpose, ref } from 'vue'
 
 // 1. 定义响应式状态
 const leftText = ref('edit')
 const rightText = ref('me')
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const themeColor = ref('#ff9900') // 经典的橙色 hex
+const captureEl = ref<HTMLElement | null>(null)
 
 // 2. 处理 contenteditable 的输入更新
 // 注意：contenteditable 元素不支持 v-model，需要手动监听 input 事件
@@ -48,6 +49,8 @@ const onRightInput = (e: Event) => {
   const target = e.target as HTMLElement | null
   rightText.value = target?.innerText ?? ''
 }
+
+defineExpose({ captureEl })
 </script>
 
 <style scoped>
