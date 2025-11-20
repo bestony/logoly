@@ -43,6 +43,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
     "@unocss/reset": "^66.5.7",
+    "html-to-image": "^1.11.13",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "pinia": "^3.0.3",
