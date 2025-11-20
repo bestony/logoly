@@ -23,6 +23,7 @@ const trailingItems = [
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const otherItems = [
+  { name: 'Simpletext', path: '/simpletext', routeName: 'simpletext' },
   { name: 'FedEx', path: '/fedex', routeName: 'fedex' },
   { name: 'Mastercard', path: '/mastercard', routeName: 'mastercard' },
   { name: 'Bluesnap', path: '/bluesnap', routeName: 'bluesnap' },

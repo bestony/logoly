@@ -55,4 +55,38 @@ describe('Menu', () => {
 
     expect(pushSpy).toHaveBeenCalledWith('/sega')
   })
+
+  it('lists all secondary routes inside the dropdown', async () => {
+    const router = createTestRouter()
+    await router.push('/')
+    await router.isReady()
+
+    const wrapper = mount(Menu, {
+      global: { plugins: [router] },
+    })
+
+    const dropdownButton = wrapper.findAll('button').find((button) => button.text() === '其他')
+    await dropdownButton?.trigger('click')
+    await flushPromises()
+
+    const dropdownItems = wrapper
+      .findAll('button')
+      .filter((button) => otherLabels.includes(button.text()))
+      .map((button) => button.text())
+
+    expect(dropdownItems).toEqual(otherLabels)
+  })
 })
+
+const otherLabels = [
+  'Simpletext',
+  'FedEx',
+  'Mastercard',
+  'Bluesnap',
+  'SEGA',
+  'Nintendo',
+  'Lego',
+  'Marvel',
+  'Bravo',
+  'AMC',
+]
