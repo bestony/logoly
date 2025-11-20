@@ -3,6 +3,7 @@
 import { MenuButton, MenuItem, MenuItems, Menu as UiMenu } from '@headlessui/vue'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { trackEvent } from '../utils/analytics'
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const route = useRoute()
@@ -35,9 +36,18 @@ const otherItems = [
   { name: 'AMC', path: '/amc', routeName: 'amc' },
 ]
 
-// biome-ignore lint/correctness/noUnusedVariables: used in template
 const navigate = (path: string) => {
   router.push(path)
+}
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const handleOtherItemClick = (item: { name: string; path: string }) => {
+  trackEvent('dropdown_click', {
+    menu: '其他',
+    label: item.name,
+    path: item.path,
+  })
+  navigate(item.path)
 }
 </script>
 
@@ -97,7 +107,7 @@ const navigate = (path: string) => {
                         active ? 'bg-primary/20 text-primary' : 'text-gray-200',
                         'block w-full text-left px-4 py-2 text-sm',
                       ]"
-                      @click="navigate(item.path)"
+                      @click="handleOtherItemClick(item)"
                     >
                       {{ item.name }}
                     </button>
