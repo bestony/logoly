@@ -6,7 +6,16 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**/*.ts", "**/*.mts", "**/*.tsx", "**/*.vue", "**/*.js", "**/*.mjs"]
+    "includes": [
+      "**/*.ts",
+      "**/*.mts",
+      "**/*.tsx",
+      "**/*.vue",
+      "**/*.js",
+      "**/*.mjs",
+      "**/*.json",
+      "**/*.jsonc"
+    ]
   },
   "formatter": {
     "enabled": true,
