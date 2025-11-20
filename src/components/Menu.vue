@@ -110,7 +110,7 @@ const handleLocaleChange = (code: string) => {
           <UiMenu as="div" class="relative inline-block text-left">
             <div>
               <MenuButton
-                class="px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800"
+                class="px-4 py-2 rounded-md text-md font-medium transition-colors cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800"
               >
                 {{ t('component.menu.other') }}
               </MenuButton>
