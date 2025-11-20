@@ -1,6 +1,7 @@
-import { mount } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defineComponent, nextTick } from 'vue'
+import { createMemoryHistory, createRouter } from 'vue-router'
 import { useSEO } from '../composables/useSEO'
 
 const clearHead = () => {
@@ -33,9 +34,14 @@ describe('useSEO', () => {
     await nextTick()
 
     expect(document.documentElement.lang).toBe('zh-CN')
-    expect(document.title).toContain('Logoly - PornHub 风格 Logo 生成器')
+    expect(document.title).toContain(
+      'Logoly - PornHub 风格 Logo 生成器 | 在线免费制作支持 PNG/SVG 导出',
+    )
     expect(document.querySelector('meta[property="og:locale"]')?.getAttribute('content')).toBe(
       'zh_CN',
+    )
+    expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+      `${window.location.origin}/`,
     )
   })
 
@@ -59,7 +65,7 @@ describe('useSEO', () => {
       'Free online PornHub style logo generator',
     )
     expect(document.querySelector('meta[property="twitter:title"]')?.getAttribute('content')).toBe(
-      'Logoly - PornHub Style Logo Generator',
+      'Logoly - PornHub Style Logo Generator | Free PNG & SVG Download',
     )
   })
 
@@ -122,5 +128,38 @@ describe('useSEO', () => {
 
     const wrapper = mount(Component)
     expect(wrapper.vm.detectLanguage()).toBe('en')
+  })
+
+  it('updates canonical when route changes with router present', async () => {
+    const router = createRouter({
+      history: createMemoryHistory(),
+      routes: [
+        { path: '/', component: { template: '<div>home</div>' } },
+        { path: '/about', component: { template: '<div>about</div>' } },
+      ],
+    })
+
+    const Component = defineComponent({
+      setup() {
+        useSEO()
+        return {}
+      },
+      template: '<RouterView />',
+    })
+
+    await router.push('/')
+    await router.isReady()
+    mount(Component, { global: { plugins: [router] } })
+
+    expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+      `${window.location.origin}/`,
+    )
+
+    await router.push('/about')
+    await flushPromises()
+
+    expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+      `${window.location.origin}/about`,
+    )
   })
 })

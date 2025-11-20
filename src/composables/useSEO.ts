@@ -1,4 +1,6 @@
-import { onMounted } from 'vue'
+import { getCurrentInstance, onMounted } from 'vue'
+import type { RouteLocationNormalizedLoaded, Router } from 'vue-router'
+import { routerKey, useRoute, useRouter } from 'vue-router'
 
 interface SEOMeta {
   title: string
@@ -15,14 +17,14 @@ interface SEOMeta {
 
 const seoContent: Record<string, SEOMeta> = {
   en: {
-    title: 'Logoly - PornHub Style Logo Generator',
+    title: 'Logoly - PornHub Style Logo Generator | Free PNG & SVG Download',
     description:
       'Free online PornHub style logo generator. Create professional logos instantly, no registration required.',
     keywords: 'logo, generator, pornhub, logo generator, online generator, free logo maker',
-    ogTitle: 'Logoly - PornHub Style Logo Generator',
+    ogTitle: 'Logoly - PornHub Style Logo Generator | Free PNG & SVG Download',
     ogDescription:
       'Free online PornHub style logo generator. Create professional logos instantly, no registration required.',
-    twitterTitle: 'Logoly - PornHub Style Logo Generator',
+    twitterTitle: 'Logoly - PornHub Style Logo Generator | Free PNG & SVG Download',
     twitterDescription:
       'Free online PornHub style logo generator. Create professional logos instantly, no registration required.',
     language: 'en',
@@ -30,13 +32,13 @@ const seoContent: Record<string, SEOMeta> = {
     ogLocale: 'en_US',
   },
   'zh-CN': {
-    title: 'Logoly - PornHub 风格 Logo 生成器',
-    description: '免费在线生成 PornHub 风格的 Logo，简单易用，无需注册。',
+    title: 'Logoly - PornHub 风格 Logo 生成器 | 在线免费制作支持 PNG/SVG 导出',
+    description: '免费在线生成 PornHub 风格 Logo，支持 PNG/SVG 导出，无需注册，秒级生成。',
     keywords: 'logo, 生成器, pornhub, logo生成器, 在线生成, 免费logo制作',
-    ogTitle: 'Logoly - PornHub 风格 Logo 生成器',
-    ogDescription: '免费在线生成 PornHub 风格的 Logo，简单易用，无需注册。',
-    twitterTitle: 'Logoly - PornHub 风格 Logo 生成器',
-    twitterDescription: '免费在线生成 PornHub 风格的 Logo，简单易用，无需注册。',
+    ogTitle: 'Logoly - PornHub 风格 Logo 生成器 | 在线免费制作支持 PNG/SVG 导出',
+    ogDescription: '免费在线生成 PornHub 风格 Logo，支持 PNG/SVG 导出，无需注册，秒级生成。',
+    twitterTitle: 'Logoly - PornHub 风格 Logo 生成器 | 在线免费制作支持 PNG/SVG 导出',
+    twitterDescription: '免费在线生成 PornHub 风格 Logo，支持 PNG/SVG 导出，无需注册，秒级生成。',
     language: 'zh-CN',
     htmlLang: 'zh-CN',
     ogLocale: 'zh_CN',
@@ -61,11 +63,32 @@ function updateTitle(title: string) {
   updateMetaTag('title', title)
 }
 
+function updateCanonical(url: string) {
+  let link = document.querySelector(`link[rel="canonical"]`) as HTMLLinkElement | null
+  if (!link) {
+    link = document.createElement('link')
+    link.setAttribute('rel', 'canonical')
+    document.head.appendChild(link)
+  }
+  link.setAttribute('href', url)
+}
+
 function updateHtmlLang(lang: string) {
   document.documentElement.lang = lang
 }
 
 export function useSEO() {
+  let route: RouteLocationNormalizedLoaded | null = null
+  let routerInstance: Router | undefined
+
+  const appInstance = getCurrentInstance()
+  const hasRouter = !!appInstance?.appContext.provides[routerKey as symbol]
+
+  if (hasRouter) {
+    route = useRoute()
+    routerInstance = useRouter()
+  }
+
   const detectLanguage = (): string => {
     // Check browser language
     const browserLang =
@@ -80,7 +103,7 @@ export function useSEO() {
     return 'en'
   }
 
-  const updateSEO = (lang?: string) => {
+  const updateSEO = (lang?: string, fullPathOverride?: string) => {
     const language = lang || detectLanguage()
     const content = seoContent[language] || seoContent.en
 
@@ -103,11 +126,22 @@ export function useSEO() {
     // Update Twitter tags
     updateMetaTag('twitter:title', content.twitterTitle, true)
     updateMetaTag('twitter:description', content.twitterDescription, true)
+
+    // Update canonical URL
+    const { origin, pathname } = window.location
+    const path = fullPathOverride || route?.fullPath || pathname
+    updateCanonical(`${origin}${path}`)
   }
 
   onMounted(() => {
     updateSEO()
   })
+
+  if (routerInstance) {
+    routerInstance.afterEach((to) => {
+      updateSEO(undefined, to.fullPath)
+    })
+  }
 
   return {
     updateSEO,
