@@ -114,6 +114,46 @@ describe('Menu', () => {
 
     expect(setLocaleSpy).toHaveBeenCalledWith('zh-CN')
   })
+
+  it('collapses menu on mobile and toggles items', async () => {
+    const originalWidth = window.innerWidth
+    setWindowWidth(480)
+
+    const router = createTestRouter()
+    await router.push('/')
+    await router.isReady()
+    const pushSpy = vi.spyOn(router, 'push')
+
+    const wrapper = mount(Menu, {
+      global: { plugins: [router, i18n, createPinia()] },
+    })
+    await flushPromises()
+
+    const toggle = wrapper.find('[data-testid="mobile-menu-toggle"]')
+    expect(toggle.exists()).toBe(true)
+
+    const hasPrimaryButtons = wrapper
+      .findAll('button')
+      .some((button) => button.text() === 'PornHub')
+    expect(hasPrimaryButtons).toBe(false)
+
+    await toggle.trigger('click')
+    await flushPromises()
+
+    const verticalButton = wrapper
+      .findAll('button')
+      .find((button) => button.text() === 'Vertical PH')
+    expect(verticalButton).toBeTruthy()
+    await verticalButton?.trigger('click')
+    await flushPromises()
+
+    expect(pushSpy).toHaveBeenCalledWith('/vertical-ph')
+    expect(wrapper.find('[data-testid="mobile-menu-toggle"]').attributes('aria-expanded')).toBe(
+      'false',
+    )
+
+    setWindowWidth(originalWidth)
+  })
 })
 
 const otherLabels = [
@@ -128,3 +168,12 @@ const otherLabels = [
   'Bravo',
   'AMC',
 ]
+
+const setWindowWidth = (width: number) => {
+  Object.defineProperty(window, 'innerWidth', {
+    configurable: true,
+    writable: true,
+    value: width,
+  })
+  window.dispatchEvent(new Event('resize'))
+}

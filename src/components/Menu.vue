@@ -2,6 +2,7 @@
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import { MenuButton, MenuItem, MenuItems, Menu as UiMenu } from '@headlessui/vue'
 import { storeToRefs } from 'pinia'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import { RouterLink, useRoute, useRouter } from 'vue-router'
@@ -57,23 +58,63 @@ const otherItems = [
   { name: 'component.menu.amc', path: '/amc', routeName: 'amc' },
 ]
 
+const isMobile = ref(false)
+const isMobileMenuOpen = ref(false)
+
+const updateIsMobile = () => {
+  if (typeof window === 'undefined') {
+    return
+  }
+  isMobile.value = window.innerWidth < 768
+}
+
+onMounted(() => {
+  updateIsMobile()
+  if (typeof window !== 'undefined') {
+    window.addEventListener('resize', updateIsMobile)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('resize', updateIsMobile)
+  }
+})
+
+watch(isMobile, (value) => {
+  if (!value) {
+    isMobileMenuOpen.value = false
+  }
+})
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
+}
+
+const closeMobileMenu = () => {
+  isMobileMenuOpen.value = false
+}
+
 const navigate = async (path: string) => {
   await router.push(path)
+  closeMobileMenu()
 }
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const handleOtherItemClick = (item: { name: string; path: string }) => {
+const handleOtherItemClick = async (item: { name: string; path: string }) => {
   trackEvent('dropdown_click', {
     menu: 'component.menu.other',
     label: item.name,
     path: item.path,
   })
-  navigate(item.path)
+  await navigate(item.path)
 }
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const handleLocaleChange = (code: string) => {
   localeStore.setLocale(code as Locale)
+  closeMobileMenu()
 }
 </script>
 
@@ -89,7 +130,26 @@ const handleLocaleChange = (code: string) => {
             Logoly
           </RouterLink>
         </div>
-        <div class="flex items-center space-x-1">
+        <div v-if="isMobile" class="flex items-center gap-2">
+          <button
+            data-testid="mobile-menu-toggle"
+            type="button"
+            class="p-2 rounded-md border border-gray-800 text-gray-300 hover:text-white hover:bg-gray-800 transition-colors"
+            :aria-expanded="isMobileMenuOpen"
+            aria-haspopup="true"
+            @click="toggleMobileMenu"
+          >
+            <span class="sr-only">{{ t('component.menu.other') }}</span>
+            <div
+              :class="[
+                isMobileMenuOpen ? 'i-mingcute-close-line' : 'i-mingcute-menu-line',
+                'text-xl leading-none',
+              ]"
+              aria-hidden="true"
+            />
+          </button>
+        </div>
+        <div v-else class="flex items-center space-x-1">
           <button
             v-for="item in primaryItems"
             :key="item.routeName"
@@ -202,6 +262,83 @@ const handleLocaleChange = (code: string) => {
           </UiMenu>
         </div>
       </div>
+
+      <Transition
+        enter-active-class="transition ease-out duration-150"
+        enter-from-class="transform opacity-0 -translate-y-2"
+        enter-to-class="transform opacity-100 translate-y-0"
+        leave-active-class="transition ease-in duration-100"
+        leave-from-class="transform opacity-100 translate-y-0"
+        leave-to-class="transform opacity-0 -translate-y-2"
+      >
+        <div
+          v-if="isMobile && isMobileMenuOpen"
+          class="md:hidden border-t border-gray-800 pt-3 pb-4 space-y-4"
+        >
+          <div class="grid gap-2 grid-cols-2">
+            <button
+              v-for="item in primaryItems"
+              :key="item.routeName"
+              type="button"
+              class="w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer bg-gray-900/60 text-gray-200 hover:text-white hover:bg-gray-800"
+              :class="route.name === item.routeName ? 'border border-primary/60 text-primary' : ''"
+              @click="navigate(item.path)"
+            >
+              {{ t(item.name) }}
+            </button>
+          </div>
+
+          <div class="border-t border-gray-800 pt-2">
+            <p class="text-xs uppercase tracking-wide text-gray-400 mb-2">
+              {{ t('component.menu.other') }}
+            </p>
+            <div class="grid gap-2 grid-cols-2">
+              <button
+                v-for="item in otherItems"
+                :key="item.routeName"
+                type="button"
+                class="w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer bg-gray-900/60 text-gray-200 hover:text-white hover:bg-gray-800"
+                @click="handleOtherItemClick(item)"
+              >
+                {{ t(item.name) }}
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-800 pt-2">
+            <div class="grid gap-2 grid-cols-2">
+              <button
+                v-for="item in trailingItems"
+                :key="item.routeName"
+                type="button"
+                class="w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer bg-gray-900/60 text-gray-200 hover:text-white hover:bg-gray-800"
+                :class="route.name === item.routeName ? 'border border-primary/60 text-primary' : ''"
+                @click="navigate(item.path)"
+              >
+                {{ t(item.name) }}
+              </button>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-800 pt-2">
+            <p class="text-xs uppercase tracking-wide text-gray-400 mb-2">
+              {{ t('component.menu.language') }}
+            </p>
+            <div class="grid gap-2 grid-cols-2">
+              <button
+                v-for="option in languageOptions"
+                :key="option.code"
+                type="button"
+                class="w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer bg-gray-900/60 text-gray-200 hover:text-white hover:bg-gray-800 flex items-center gap-2"
+                @click="handleLocaleChange(option.code)"
+              >
+                <span class="text-base">{{ option.emoji }}</span>
+                <span>{{ t(option.label) }}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </Transition>
     </div>
   </nav>
 </template>
