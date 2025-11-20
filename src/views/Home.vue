@@ -55,7 +55,9 @@ const handleZipDownload = () =>
     <header>
       <h1 class="text-4xl font-bold mb-4 text-white">PornHub Style Logo Generator</h1>
 
-      <PornHub ref="captureRef" />
+      <div ref="captureRef">
+        <PornHub />
+      </div>
 
       <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
         <button
