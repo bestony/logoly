@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
+import { i18n } from '../i18n'
 import About from '../views/About.vue'
 import AMC from '../views/AMC.vue'
 import Bluesnap from '../views/Bluesnap.vue'
@@ -40,8 +41,14 @@ const cases: ViewCase[] = [
 ]
 
 describe('Static views', () => {
+  i18n.global.locale.value = 'zh-CN'
+
   it.each(cases)('renders %s heading', ({ component, title }) => {
-    const wrapper = mount(component)
+    const wrapper = mount(component, {
+      global: {
+        plugins: [i18n],
+      },
+    })
     expect(wrapper.find('h1').text()).toBe(title)
   })
 })

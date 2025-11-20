@@ -11,6 +11,9 @@ describe('App navigation (e2e-like)', () => {
     await router.push('/')
     await router.isReady()
 
+    // prefer Chinese locale to match snapshot text
+    i18n.global.locale.value = 'zh-CN'
+
     const wrapper = mount(App, {
       global: {
         plugins: [router, i18n],
@@ -19,7 +22,7 @@ describe('App navigation (e2e-like)', () => {
 
     expect(wrapper.text()).toContain('首页')
 
-    const aboutButton = wrapper.findAll('button').find((button) => button.text() === 'About')
+    const aboutButton = wrapper.findAll('button').find((button) => button.text() === '关于')
     expect(aboutButton).toBeTruthy()
     await aboutButton?.trigger('click')
     await flushPromises()

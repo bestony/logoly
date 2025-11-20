@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import ErrorBoundary from './components/ErrorBoundary.vue'
 // biome-ignore lint/correctness/noUnusedImports: used in template
@@ -11,13 +12,16 @@ import { useSEO } from './composables/useSEO'
 
 // Initialize SEO based on browser language
 useSEO()
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const { t } = useI18n()
 </script>
 
 <template>
   <div class="min-h-screen bg-background flex flex-col">
     <Menu />
     <main class="flex-1">
-      <ErrorBoundary message="页面渲染出现问题，点击重试">
+      <ErrorBoundary :message="t('page.app.renderError')">
         <RouterView :key="$route.fullPath" />
       </ErrorBoundary>
     </main>

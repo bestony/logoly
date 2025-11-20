@@ -1,51 +1,67 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 type Highlight = {
   title: string
   description: string
   link?: { label: string; href: string }
 }
 
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const highlights: Highlight[] = [
-  {
-    title: '一键生成',
-    description: '输入文字即可实时预览 Pornhub / OnlyFans 等风格 Logo，导出 PNG 或 SVG。',
-    link: { label: '马上体验', href: 'https://logoly.pro' },
-  },
-  {
-    title: '纯前端、无痕迹',
-    description: '渲染和下载均在本地浏览器完成，不会上传或保存你的内容。',
-  },
-  {
-    title: '完全开源',
-    description: '代码托管在 GitHub，采用 WTFPL 许可证，欢迎自由使用与二次开发。',
-    link: { label: 'GitHub 仓库', href: 'https://github.com/bestony/logoly' },
-  },
-  {
-    title: '社区共创',
-    description: '模板、语言包和功能由开发者社区持续贡献与迭代。',
-  },
-]
+const { t } = useI18n()
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const communityLinks = [
-  { label: '提交问题或建议', href: 'https://github.com/bestony/logoly/issues' },
-  { label: '参与贡献指南', href: 'https://github.com/bestony/logoly#readme' },
-]
+const highlights = computed<Highlight[]>(() => [
+  {
+    title: t('page.about.highlights.instant.title'),
+    description: t('page.about.highlights.instant.desc'),
+    link: { label: t('page.about.highlights.instant.link'), href: 'https://logoly.pro' },
+  },
+  {
+    title: t('page.about.highlights.local.title'),
+    description: t('page.about.highlights.local.desc'),
+  },
+  {
+    title: t('page.about.highlights.open.title'),
+    description: t('page.about.highlights.open.desc'),
+    link: {
+      label: t('page.about.highlights.open.link'),
+      href: 'https://github.com/bestony/logoly',
+    },
+  },
+  {
+    title: t('page.about.highlights.community.title'),
+    description: t('page.about.highlights.community.desc'),
+  },
+])
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const communityLinks = computed(() => [
+  {
+    label: t('page.about.community.links.issues'),
+    href: 'https://github.com/bestony/logoly/issues',
+  },
+  {
+    label: t('page.about.community.links.guide'),
+    href: 'https://github.com/bestony/logoly#readme',
+  },
+])
 </script>
 
 <template>
   <div class="container mx-auto px-4 py-8 space-y-10">
     <header>
-      <h1 class="text-4xl font-bold mb-4 text-white">关于我们</h1>
+      <h1 class="text-4xl font-bold mb-4 text-white">{{ t('page.about.title') }}</h1>
       <p class="text-lg text-gray-300 leading-relaxed">
-        Logoly 是一款开源的线上 Logo 生成器，目标是让没有设计基础的人也能几秒做出好看的品牌字标。
-        你可以自由使用、修改和分发它的代码与生成的图片。
+        {{ t('page.about.subtitle.line1') }}
+        {{ t('page.about.subtitle.line2') }}
       </p>
     </header>
 
     <section>
-      <h2 class="text-2xl font-semibold text-primary mb-4">产品亮点</h2>
+      <h2 class="text-2xl font-semibold text-primary mb-4">
+        {{ t('page.about.highlights.title') }}
+      </h2>
       <div class="grid gap-4 md:grid-cols-2">
         <article
           v-for="item in highlights"
@@ -72,9 +88,11 @@ const communityLinks = [
 
     <section class="grid gap-4 md:grid-cols-2">
       <div class="rounded-lg border border-gray-800 bg-gray-900/60 p-5 shadow-sm">
-        <h2 class="text-2xl font-semibold text-primary mb-3">开源与社区</h2>
+        <h2 class="text-2xl font-semibold text-primary mb-3">
+          {{ t('page.about.community.title') }}
+        </h2>
         <p class="text-gray-400 leading-relaxed mb-3">
-          Logoly 由社区驱动持续演进，欢迎提交模板、改进 UI/UX、增加语言或反馈任何想法。
+          {{ t('page.about.community.desc') }}
         </p>
         <ul class="space-y-2">
           <li v-for="link in communityLinks" :key="link.label">
@@ -91,9 +109,11 @@ const communityLinks = [
       </div>
 
       <div class="rounded-lg border border-gray-800 bg-gray-900/60 p-5 shadow-sm">
-        <h2 class="text-2xl font-semibold text-primary mb-3">联系我们</h2>
+        <h2 class="text-2xl font-semibold text-primary mb-3">
+          {{ t('page.about.contact.title') }}
+        </h2>
         <p class="text-gray-400 leading-relaxed mb-4">
-          有任何想法或合作需求，可以通过 GitHub Issue 留言，或在博客找到 bestony 的更多联系方式。
+          {{ t('page.about.contact.desc') }}
         </p>
         <a
           class="inline-block rounded-md bg-primary px-4 py-2 text-sm font-semibold text-black hover:brightness-110"
@@ -101,7 +121,7 @@ const communityLinks = [
           target="_blank"
           rel="noreferrer"
         >
-          在 GitHub 上反馈
+          {{ t('page.about.contact.cta') }}
         </a>
       </div>
     </section>
