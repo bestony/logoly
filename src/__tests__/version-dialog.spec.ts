@@ -6,14 +6,15 @@ describe('VersionDialog', () => {
   it('opens dialog and copies debug info, then closes', async () => {
     const writeText = vi.fn().mockResolvedValue(undefined)
     Object.assign(navigator, { clipboard: { writeText } })
-    const resizeObserverMock = vi.fn(() => ({
+
+    const resizeObserverMock: typeof ResizeObserver = vi.fn().mockImplementation(() => ({
       observe: vi.fn(),
       unobserve: vi.fn(),
       disconnect: vi.fn(),
     }))
     // biome-ignore lint/style/useNamingConvention: DOM global name
-    ;(globalThis as typeof globalThis & { ResizeObserver: unknown }).ResizeObserver =
-      resizeObserverMock as unknown
+    ;(globalThis as typeof globalThis & { ResizeObserver: typeof ResizeObserver }).ResizeObserver =
+      resizeObserverMock
 
     const wrapper = mount(VersionDialog, {
       props: { version: 'v1.0.0-test' },
@@ -26,13 +27,18 @@ describe('VersionDialog', () => {
 
     expect(document.body.innerHTML).toContain('Click to Copy Debug Info')
 
-    const copyButton = document.querySelector('[data-testid="copy-debug"]') as HTMLButtonElement
+    const copyButton = document.querySelector(
+      '[data-testid="copy-debug"]',
+    ) as HTMLButtonElement | null
     expect(copyButton).toBeTruthy()
-    await copyButton?.click()
+    if (!copyButton) throw new Error('copy debug button not found')
+
+    await copyButton.click()
     await flushPromises()
 
     expect(writeText).toHaveBeenCalledTimes(1)
-    expect(writeText.mock.calls[0][0]).toContain('Version: v1.0.0-test')
+    const copiedText = writeText.mock.calls[0]?.[0]
+    expect(copiedText).toContain('Version: v1.0.0-test')
     await flushPromises()
     expect(document.body.innerHTML).not.toContain('Click to Copy Debug Info')
   })
