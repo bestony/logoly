@@ -19,6 +19,9 @@ const resolveBrowserLocale = (): Locale | null => {
       return exact
     }
     const lang = raw.split('-')[0]
+    if (!lang) {
+      continue
+    }
     const partial = supported.find((code) => code.toLowerCase().startsWith(lang.toLowerCase()))
     if (partial) {
       return partial

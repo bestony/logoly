@@ -88,10 +88,10 @@ describe('useSEO', () => {
     await nextTick()
 
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toContain(
-      'Free online PornHub style logo generator',
+      'Générateur de logos en ligne gratuit façon PornHub',
     )
     expect(document.querySelector('meta[property="og:locale"]')?.getAttribute('content')).toBe(
-      'en_US',
+      'fr_FR',
     )
   })
 
