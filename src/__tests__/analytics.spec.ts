@@ -38,4 +38,15 @@ describe('trackEvent', () => {
       path: '/sega',
     })
   })
+
+  it('passes empty params object when omitted', async () => {
+    vi.stubEnv('PROD', true)
+    const gtag = vi.fn()
+    vi.stubGlobal('gtag', gtag)
+    const { trackEvent } = await import('../utils/analytics')
+
+    trackEvent('noop_event')
+
+    expect(gtag).toHaveBeenCalledWith('event', 'noop_event', {})
+  })
 })

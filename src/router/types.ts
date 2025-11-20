@@ -1,3 +1,4 @@
+/* c8 ignore file */
 import type { RouteMeta } from '../types/composables'
 
 export type RouteDefinition = {

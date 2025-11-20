@@ -1,3 +1,5 @@
+/* c8 ignore file */
+
 export type SupportedLanguage = 'en' | 'zh-CN'
 
 export interface SEOMeta {

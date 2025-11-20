@@ -3,6 +3,7 @@ import { createPinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
 import Menu from '../components/Menu.vue'
 import { i18n } from '../i18n'
+import { useLocaleStore } from '../stores/locale'
 import { createTestRouter } from './test-utils'
 
 describe('Menu', () => {
@@ -85,6 +86,33 @@ describe('Menu', () => {
       .map((button) => button.text())
 
     expect(dropdownItems).toEqual(otherLabels)
+  })
+
+  it('changes locale via the language dropdown', async () => {
+    const router = createTestRouter()
+    await router.push('/')
+    await router.isReady()
+    const pinia = createPinia()
+    const localeStore = useLocaleStore(pinia)
+    const setLocaleSpy = vi.spyOn(localeStore, 'setLocale')
+
+    const wrapper = mount(Menu, {
+      global: { plugins: [router, i18n, pinia] },
+    })
+
+    const languageButton = wrapper
+      .findAll('button')
+      .find((button) => button.text().includes('Language'))
+    expect(languageButton).toBeTruthy()
+    await languageButton?.trigger('click')
+    await flushPromises()
+
+    const zhOption = wrapper.findAll('button').find((button) => button.text().includes('简体中文'))
+    expect(zhOption).toBeTruthy()
+    await zhOption?.trigger('click')
+    await flushPromises()
+
+    expect(setLocaleSpy).toHaveBeenCalledWith('zh-CN')
   })
 })
 
