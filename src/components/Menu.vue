@@ -154,10 +154,10 @@ const handleLocaleChange = (code: string) => {
           <UiMenu as="div" class="relative inline-block text-left">
             <div>
               <MenuButton
-                class="px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800"
+                class="px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800 flex items-center gap-2"
               >
-              <div class="i-mingcute-translate-line"/> {{ t('component.menu.language') }}:
-              {{ currentLanguage?.emoji }} {{ t(currentLanguage?.label ?? '') }}
+                <div class="i-mingcute-translate-line text-base"/> {{ t('component.menu.language') }}
+              
               </MenuButton>
             </div>
 
