@@ -16,7 +16,7 @@ export default defineConfig(async (env) => {
         provider: 'v8',
         reporter: ['text', 'html', 'lcov'],
         include: ['src/**/*.{ts,vue}'],
-        exclude: ['src/main.ts', 'src/env.d.ts'],
+        exclude: ['src/main.ts', 'src/env.d.ts', 'src/types/**', 'src/router/types.ts'],
         thresholds: {
           statements: 99,
           branches: 99,

@@ -15,11 +15,15 @@ const versionSuffix =
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const versionLabel = `v1.0.0-${versionSuffix}`
 const currentYear = new Date().getFullYear()
-const { t } = useI18n()
+const { t, te } = useI18n()
+const COPYRIGHT_KEY = 'component.siteFooter.copyright'
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const copyright = computed(() =>
-  t('component.siteFooter.copyright', { year: currentYear.toString() }),
-)
+const copyright = computed(() => {
+  if (te(COPYRIGHT_KEY)) {
+    return t(COPYRIGHT_KEY, { year: currentYear.toString() })
+  }
+  return `© ${currentYear} Logoly`
+})
 </script>
 
 <template>

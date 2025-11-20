@@ -1,5 +1,6 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { nextTick } from 'vue'
 import VersionDialog from '../components/VersionDialog.vue'
 import { i18n } from '../i18n'
 
@@ -86,10 +87,9 @@ describe('VersionDialog', () => {
     vi.stubGlobal('navigator', originalNavigator)
   })
 
-  it('shows unknown platform strings when navigator is unavailable', async () => {
+  it('shows unknown platform strings when navigator properties are empty', async () => {
     const originalNavigator = navigator
-    // @ts-expect-error - simulate non-browser runtime
-    vi.stubGlobal('navigator', undefined)
+    vi.stubGlobal('navigator', { platform: '', userAgent: '', clipboard: {} } as Navigator)
 
     const wrapper = mount(VersionDialog, {
       props: { version: 'v1.0.0-prod' },
@@ -103,5 +103,68 @@ describe('VersionDialog', () => {
     expect(document.body.textContent).toContain('Browser: unknown-user-agent')
 
     vi.stubGlobal('navigator', originalNavigator)
+  })
+
+  it('renders unknown values when navigator is not defined', async () => {
+    const originalNavigator = navigator
+    vi.stubGlobal('navigator', undefined as unknown as Navigator)
+
+    const wrapper = mount(VersionDialog, {
+      props: { version: 'v2.0.0-dev' },
+      global: { plugins: [i18n] },
+    })
+
+    await wrapper.find('button').trigger('click')
+    await flushPromises()
+
+    expect(document.body.textContent).toContain('OS: unknown-platform')
+    expect(document.body.textContent).toContain('Browser: unknown-user-agent')
+
+    vi.stubGlobal('navigator', originalNavigator)
+  })
+
+  it('closes when clipboard API is unavailable', async () => {
+    vi.stubGlobal('navigator', { platform: 'Win32', userAgent: 'UA Test' } as Navigator)
+
+    const wrapper = mount(VersionDialog, {
+      props: { version: 'v3.0.0' },
+      global: { plugins: [i18n] },
+    })
+
+    await wrapper.find('button').trigger('click')
+    await flushPromises()
+
+    const copyButton = document.querySelector(
+      '[data-testid="copy-debug"]',
+    ) as HTMLButtonElement | null
+    expect(copyButton).toBeTruthy()
+    await copyButton?.click()
+    await flushPromises()
+    await nextTick()
+
+    const vm = wrapper.vm as unknown as { isOpen: boolean }
+    expect(vm.isOpen).toBe(false)
+  })
+
+  it('closes dialog via the close button action', async () => {
+    const wrapper = mount(VersionDialog, {
+      props: { version: 'v4.0.0' },
+      global: { plugins: [i18n] },
+    })
+
+    await wrapper.find('button').trigger('click')
+    await flushPromises()
+
+    const closeLabel = i18n.global.t('component.versionDialog.close')
+    const closeButton = Array.from(document.querySelectorAll('button')).find((btn) =>
+      btn.textContent?.includes(closeLabel),
+    )
+    expect(closeButton).toBeTruthy()
+    await closeButton?.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+    await flushPromises()
+    await nextTick()
+
+    const vm = wrapper.vm as unknown as { isOpen: boolean }
+    expect(vm.isOpen).toBe(false)
   })
 })

@@ -88,7 +88,7 @@ describe('ErrorBoundary', () => {
     await router.isReady()
 
     const writeText = vi.fn().mockRejectedValue(new Error('denied'))
-    Object.assign(navigator, { clipboard: { writeText } })
+    vi.stubGlobal('navigator', { clipboard: { writeText } } as unknown as Navigator)
 
     const wrapper = mount(ErrorBoundary, {
       global: { plugins: [router, i18n, createPinia()] },
@@ -102,5 +102,38 @@ describe('ErrorBoundary', () => {
 
     expect(writeText).toHaveBeenCalled()
     expect(wrapper.text()).toContain('Something went wrong')
+  })
+
+  it('generates debug info with browser brands even before an error is captured', async () => {
+    const router = createTestRouter()
+    await router.push('/brand')
+    await router.isReady()
+
+    const writeText = vi.fn().mockResolvedValue(undefined)
+    vi.stubGlobal('navigator', {
+      platform: 'MacIntel',
+      userAgent: 'Mozilla/5.0 BrandAgent',
+      userAgentData: {
+        brands: [
+          { brand: 'Chromium', version: '120' },
+          { brand: 'NotABrand', version: '99' },
+        ],
+      },
+      clipboard: { writeText },
+    } as unknown as Navigator)
+
+    const wrapper = mount(ErrorBoundary, {
+      global: { plugins: [router, i18n, createPinia()] },
+      slots: { default: () => h('div', 'Healthy') },
+    })
+
+    const vm = wrapper.vm as unknown as { copyDebugInfo: () => Promise<void> }
+    await vm.copyDebugInfo()
+    const copied = writeText.mock.calls[0]?.[0] as string
+
+    expect(copied).toContain('Chromium 120')
+    expect(copied).toContain('NotABrand 99')
+    expect(copied).toContain('Error Route: /brand')
+    expect(copied).toContain('History: /brand')
   })
 })

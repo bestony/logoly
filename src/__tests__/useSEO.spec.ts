@@ -95,6 +95,91 @@ describe('useSEO', () => {
     )
   })
 
+  it('applies Spanish SEO metadata when requested', async () => {
+    const Component = defineComponent({
+      setup() {
+        const { updateSEO } = useSEO()
+        return { updateSEO }
+      },
+      template: '<div />',
+    })
+
+    const wrapper = mount(Component)
+    wrapper.vm.updateSEO('es')
+    await nextTick()
+
+    expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toContain(
+      'Generador online gratuito de logos estilo PornHub',
+    )
+    expect(document.querySelector('meta[property="og:locale"]')?.getAttribute('content')).toBe(
+      'es_ES',
+    )
+    expect(document.documentElement.lang).toBe('es')
+  })
+
+  it('applies Japanese SEO metadata when requested', async () => {
+    const Component = defineComponent({
+      setup() {
+        const { updateSEO } = useSEO()
+        return { updateSEO }
+      },
+      template: '<div />',
+    })
+
+    const wrapper = mount(Component)
+    wrapper.vm.updateSEO('ja')
+    await nextTick()
+
+    expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toContain(
+      '無料の PornHub 風オンラインロゴジェネレーター',
+    )
+    expect(document.querySelector('meta[property="og:locale"]')?.getAttribute('content')).toBe(
+      'ja_JP',
+    )
+    expect(document.documentElement.lang).toBe('ja')
+  })
+
+  it('falls back to English when language input is empty', async () => {
+    const Component = defineComponent({
+      setup() {
+        const { updateSEO } = useSEO()
+        return { updateSEO }
+      },
+      template: '<div />',
+    })
+
+    const wrapper = mount(Component)
+    wrapper.vm.updateSEO('')
+    await nextTick()
+
+    expect(document.querySelector('meta[property="og:locale"]')?.getAttribute('content')).toBe(
+      'en_US',
+    )
+    expect(document.documentElement.lang).toBe('en')
+  })
+
+  it('defaults to English when language code is unknown', async () => {
+    const Component = defineComponent({
+      setup() {
+        const { updateSEO } = useSEO()
+        return { updateSEO }
+      },
+      template: '<div />',
+    })
+
+    const wrapper = mount(Component)
+    wrapper.vm.updateSEO('de')
+    await nextTick()
+
+    expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toContain(
+      'Free online PornHub style logo generator',
+    )
+    expect(document.querySelector('meta[property="og:locale"]')?.getAttribute('content')).toBe(
+      'en_US',
+    )
+    expect(document.documentElement.lang).toBe('en')
+  })
+
   it('respects navigator.userLanguage when navigator.language is missing', async () => {
     vi.spyOn(navigator, 'language', 'get').mockReturnValue(undefined as unknown as string)
     Object.defineProperty(navigator, 'userLanguage', {

@@ -52,6 +52,49 @@ describe('locale store', () => {
     expect(store.initialized).toBe(true)
   })
 
+  it('detects partial language match from navigator', () => {
+    const store = useLocaleStore()
+    vi.stubGlobal('navigator', { language: 'zh-TW', languages: ['zh-TW', 'en-US'] })
+
+    store.init()
+
+    expect(store.promptLocale).toBe('zh-CN')
+    expect(store.promptVisible).toBe(true)
+  })
+
+  it('falls back to default locale when navigator is unavailable', () => {
+    const store = useLocaleStore()
+    vi.stubGlobal('navigator', undefined as unknown as Navigator)
+
+    store.init()
+
+    expect(store.locale).toBe('en')
+    expect(store.promptVisible).toBe(false)
+  })
+
+  it('ignores empty language codes safely', () => {
+    const store = useLocaleStore()
+    vi.stubGlobal('navigator', { language: '-', languages: ['-'] })
+
+    store.init()
+
+    expect(store.locale).toBe('en')
+    expect(store.promptVisible).toBe(false)
+  })
+
+  it('applies default locale when initial value is empty', () => {
+    vi.stubGlobal('navigator', undefined as unknown as Navigator)
+    i18n.global.locale.value = '' as never
+    const store = useLocaleStore()
+    const spy = vi.spyOn(store, 'applyLocale')
+
+    store.init()
+
+    expect(spy).toHaveBeenCalledWith('en')
+    expect(store.locale).toBe('en')
+    expect(store.promptVisible).toBe(false)
+  })
+
   it('sets locale and persists selection', () => {
     const store = useLocaleStore()
     const setItemSpy = vi.spyOn(window.localStorage.__proto__, 'setItem')

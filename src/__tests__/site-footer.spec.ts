@@ -50,4 +50,14 @@ describe('SiteFooter', () => {
     const wrapper = await mountFooter()
     expect(wrapper.text()).toContain('v1.0.0-abcdef')
   })
+
+  it('uses unknown suffix when git SHA is missing in production', async () => {
+    vi.stubEnv('MODE', 'production')
+    vi.stubEnv('DEV', false)
+    // biome-ignore lint/correctness/noUndeclaredVariables: injected at build time
+    ;(globalThis as { __GIT_SHA__?: string }).__GIT_SHA__ = ''
+
+    const wrapper = await mountFooter()
+    expect(wrapper.text()).toContain('v1.0.0-unknown')
+  })
 })
