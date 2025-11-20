@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// biome-ignore lint/correctness/noUnusedImports: used in template
+import VersionDialog from './VersionDialog.vue'
+
 const mode = import.meta.env.MODE
 const versionSuffix =
   mode === 'development'
@@ -7,7 +10,7 @@ const versionSuffix =
       ? 'test'
       : // biome-ignore lint/correctness/noUndeclaredVariables: injected via Vite define
         __GIT_SHA__ || 'unknown'
-// biome-ignore lint/correctness/noUnusedVariables: referenced in template
+// biome-ignore lint/correctness/noUnusedVariables: used in template
 const versionLabel = `v1.0.0-${versionSuffix}`
 </script>
 
@@ -17,7 +20,7 @@ const versionLabel = `v1.0.0-${versionSuffix}`
       class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-gray-400"
     >
       <p>© 2025 Logoly · 由社区维护，欢迎贡献新模板</p>
-      <p class="text-center text-gray-500 font-mono">{{ versionLabel }}</p>
+      <VersionDialog :version="versionLabel" />
       <div class="flex flex-wrap items-center gap-3 text-gray-400">
         <a class="hover:text-primary transition-colors" href="https://github.com/bestony/logoly" target="_blank" rel="noopener noreferrer">GitHub</a>
         <span class="text-gray-700">|</span>
