@@ -1,86 +1,51 @@
 <script setup lang="ts">
-import { saveAs } from 'file-saver'
-import { toJpeg, toPng, toSvg } from 'html-to-image'
-import JSZip from 'jszip'
 import { ref } from 'vue'
+import { useDownloadTask } from '@/composables/useDownloadTask'
+import { type DownloadFormat, downloadAsZip, downloadImage } from '@/utils/download'
 
 const captureRef = ref<HTMLDivElement | null>(null)
 const isDownloading = ref(false)
 const errorMessage = ref<string | null>(null)
+const { runDownload } = useDownloadTask(isDownloading, errorMessage)
 
-type DownloadFormat = 'png' | 'jpeg' | 'svg'
-
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const downloadImage = async (format: DownloadFormat) => {
-  if (!captureRef.value || isDownloading.value) {
-    return
-  }
-
-  isDownloading.value = true
-  errorMessage.value = null
-
-  try {
-    const options = { pixelRatio: 2, backgroundColor: '#000000' }
-    const dataUrl =
-      format === 'png'
-        ? await toPng(captureRef.value, options)
-        : format === 'jpeg'
-          ? await toJpeg(captureRef.value, { ...options, quality: 0.92 })
-          : await toSvg(captureRef.value, options)
-
-    const link = document.createElement('a')
-    link.href = dataUrl
-    link.download = `logoly-home.${format === 'jpeg' ? 'jpg' : format}`
-    link.click()
-  } catch (error) {
-    console.error('Failed to download image', error)
-    errorMessage.value = '下载失败，请稍后重试。'
-  } finally {
-    isDownloading.value = false
-  }
-}
-
-const dataUrlToArrayBuffer = async (dataUrl: string) => {
-  const response = await fetch(dataUrl)
-  return response.arrayBuffer()
-}
+const DEFAULT_OPTIONS = { pixelRatio: 2, backgroundColor: '#000000', quality: 0.92 } as const
+const BASE_NAME = 'logoly-home'
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const downloadZip = async () => {
-  if (!captureRef.value || isDownloading.value) {
-    return
-  }
+const handleSingleDownload = (format: DownloadFormat) =>
+  runDownload(
+    () => Boolean(captureRef.value),
+    () => {
+      const target = captureRef.value
+      if (!target) {
+        return Promise.resolve()
+      }
 
-  isDownloading.value = true
-  errorMessage.value = null
+      return downloadImage(target, format, {
+        baseName: BASE_NAME,
+        options: { ...DEFAULT_OPTIONS },
+      })
+    },
+    '下载失败，请稍后重试。',
+  )
 
-  try {
-    const options = { pixelRatio: 2, backgroundColor: '#000000' }
-    const [pngUrl, jpgUrl, svgText] = await Promise.all([
-      toPng(captureRef.value, options),
-      toJpeg(captureRef.value, { ...options, quality: 0.92 }),
-      toSvg(captureRef.value, options),
-    ])
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const handleZipDownload = () =>
+  runDownload(
+    () => Boolean(captureRef.value),
+    () => {
+      const target = captureRef.value
+      if (!target) {
+        return Promise.resolve()
+      }
 
-    const zip = new JSZip()
-    zip.file('logoly-home.png', await dataUrlToArrayBuffer(pngUrl))
-    zip.file('logoly-home.jpg', await dataUrlToArrayBuffer(jpgUrl))
-    zip.file('logoly-home.svg', svgText)
-
-    const zipBlob = await zip.generateAsync({
-      type: 'blob',
-      compression: 'DEFLATE',
-      compressionOptions: { level: 6 },
-    })
-
-    saveAs(zipBlob, 'logoly-assets.zip')
-  } catch (error) {
-    console.error('Failed to create zip', error)
-    errorMessage.value = '打包失败，请稍后重试。'
-  } finally {
-    isDownloading.value = false
-  }
-}
+      return downloadAsZip(target, ['png', 'jpeg', 'svg'], {
+        baseName: BASE_NAME,
+        options: { ...DEFAULT_OPTIONS },
+      })
+    },
+    '打包失败，请稍后重试。',
+  )
 </script>
 
 <template>
@@ -95,7 +60,7 @@ const downloadZip = async () => {
           type="button"
           class="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 font-semibold text-black transition hover:bg-orange-500 disabled:cursor-not-allowed disabled:opacity-70"
           :disabled="isDownloading"
-          @click="downloadImage('png')"
+          @click="handleSingleDownload('png')"
         >
           <span>{{ isDownloading ? "生成中…" : "下载 PNG" }}</span>
         </button>
@@ -103,7 +68,7 @@ const downloadZip = async () => {
           type="button"
           class="inline-flex items-center gap-2 rounded-lg border border-orange-400 px-4 py-2 font-semibold text-orange-200 transition hover:bg-orange-500/10 disabled:cursor-not-allowed disabled:opacity-70"
           :disabled="isDownloading"
-          @click="downloadImage('jpeg')"
+          @click="handleSingleDownload('jpeg')"
         >
           <span>{{ isDownloading ? "生成中…" : "下载 JPG" }}</span>
         </button>
@@ -111,7 +76,7 @@ const downloadZip = async () => {
           type="button"
           class="inline-flex items-center gap-2 rounded-lg border border-gray-500 px-4 py-2 font-semibold text-gray-100 transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-70"
           :disabled="isDownloading"
-          @click="downloadImage('svg')"
+          @click="handleSingleDownload('svg')"
         >
           <span>{{ isDownloading ? "生成中…" : "下载 SVG" }}</span>
         </button>
@@ -119,7 +84,7 @@ const downloadZip = async () => {
           type="button"
           class="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 font-semibold text-black transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-70"
           :disabled="isDownloading"
-          @click="downloadZip"
+          @click="handleZipDownload"
         >
           <span>{{ isDownloading ? "打包中…" : "打包下载 ZIP" }}</span>
         </button>
