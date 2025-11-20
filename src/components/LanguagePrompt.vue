@@ -42,36 +42,24 @@ const stayCurrent = () => {
 
 <template>
   <TransitionRoot :show="promptVisible" as="template">
-    <Dialog :open="promptVisible" @close="stayCurrent" class="relative z-50">
-      <TransitionChild
-        as="template"
-        enter="ease-out duration-200"
-        enter-from="opacity-0"
-        enter-to="opacity-100"
-        leave="ease-in duration-150"
-        leave-from="opacity-100"
-        leave-to="opacity-0"
-      >
-        <div class="fixed inset-0 bg-black/40" />
-      </TransitionChild>
-
-      <div class="fixed inset-0 flex items-center justify-center p-4">
+    <Dialog :open="promptVisible" @close="stayCurrent" class="fixed inset-0 z-40 pointer-events-none">
+      <div class="absolute top-4 right-4">
         <TransitionChild
           as="template"
           enter="ease-out duration-200"
-          enter-from="opacity-0 scale-95"
-          enter-to="opacity-100 scale-100"
+          enter-from="opacity-0 translate-y-2 scale-95"
+          enter-to="opacity-100 translate-y-0 scale-100"
           leave="ease-in duration-150"
-          leave-from="opacity-100 scale-100"
-          leave-to="opacity-0 scale-95"
+          leave-from="opacity-100 translate-y-0 scale-100"
+          leave-to="opacity-0 translate-y-2 scale-95"
         >
           <DialogPanel
-            class="w-full max-w-md rounded-lg bg-gray-900 border border-gray-700 p-6 shadow-xl"
+            class="pointer-events-auto w-80 rounded-lg bg-gray-900 border border-gray-700 p-4 shadow-xl"
           >
-            <DialogTitle class="text-lg font-semibold text-white mb-2">
+            <DialogTitle class="text-base font-semibold text-white mb-1">
               {{ t('component.languagePrompt.title') }}
             </DialogTitle>
-            <DialogDescription class="text-sm text-gray-400 mb-4">
+            <DialogDescription class="text-xs text-gray-400 mb-3">
               {{ t('component.languagePrompt.description', { locale: suggestedLabel }) }}
             </DialogDescription>
 
@@ -79,17 +67,17 @@ const stayCurrent = () => {
               {{ t('component.languagePrompt.hint') }}
             </p>
 
-            <div class="mt-4 flex justify-end gap-2">
+            <div class="flex justify-end gap-2 text-sm">
               <button
                 type="button"
-                class="rounded-md border border-gray-700 px-3 py-2 text-sm text-gray-300 hover:bg-gray-800"
+                class="rounded-md border border-gray-700 px-3 py-2 text-gray-300 hover:bg-gray-800"
                 @click="stayCurrent"
               >
                 {{ t('component.languagePrompt.stay') }}
               </button>
               <button
                 type="button"
-                class="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-black hover:brightness-110"
+                class="rounded-md bg-primary px-3 py-2 font-semibold text-black hover:brightness-110"
                 @click="switchToSuggested"
               >
                 {{ t('component.languagePrompt.switch', { locale: suggestedLabel }) }}

@@ -17,7 +17,7 @@ describe('App navigation (e2e-like)', () => {
       unobserve: vi.fn(),
       disconnect: vi.fn(),
     }))
-    ;(globalThis as typeof globalThis & { ResizeObserver: typeof ResizeObserver }).ResizeObserver =
+    ;(globalThis as typeof globalThis & { resizeObserver: typeof ResizeObserver }).ResizeObserver =
       resizeObserverMock
 
     // prefer Chinese locale to match snapshot text
