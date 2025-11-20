@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { saveAs } from 'file-saver'
 import { toJpeg, toPng, toSvg } from 'html-to-image'
+import JSZip from 'jszip'
 import { ref } from 'vue'
 
 const captureRef = ref<HTMLDivElement | null>(null)
@@ -37,6 +39,48 @@ const downloadImage = async (format: DownloadFormat) => {
     isDownloading.value = false
   }
 }
+
+const dataUrlToArrayBuffer = async (dataUrl: string) => {
+  const response = await fetch(dataUrl)
+  return response.arrayBuffer()
+}
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const downloadZip = async () => {
+  if (!captureRef.value || isDownloading.value) {
+    return
+  }
+
+  isDownloading.value = true
+  errorMessage.value = null
+
+  try {
+    const options = { pixelRatio: 2, backgroundColor: '#000000' }
+    const [pngUrl, jpgUrl, svgText] = await Promise.all([
+      toPng(captureRef.value, options),
+      toJpeg(captureRef.value, { ...options, quality: 0.92 }),
+      toSvg(captureRef.value, options),
+    ])
+
+    const zip = new JSZip()
+    zip.file('logoly-home.png', await dataUrlToArrayBuffer(pngUrl))
+    zip.file('logoly-home.jpg', await dataUrlToArrayBuffer(jpgUrl))
+    zip.file('logoly-home.svg', svgText)
+
+    const zipBlob = await zip.generateAsync({
+      type: 'blob',
+      compression: 'DEFLATE',
+      compressionOptions: { level: 6 },
+    })
+
+    saveAs(zipBlob, 'logoly-assets.zip')
+  } catch (error) {
+    console.error('Failed to create zip', error)
+    errorMessage.value = '打包失败，请稍后重试。'
+  } finally {
+    isDownloading.value = false
+  }
+}
 </script>
 
 <template>
@@ -70,6 +114,14 @@ const downloadImage = async (format: DownloadFormat) => {
           @click="downloadImage('svg')"
         >
           <span>{{ isDownloading ? "生成中…" : "下载 SVG" }}</span>
+        </button>
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 font-semibold text-black transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-70"
+          :disabled="isDownloading"
+          @click="downloadZip"
+        >
+          <span>{{ isDownloading ? "打包中…" : "打包下载 ZIP" }}</span>
         </button>
         <span v-if="errorMessage" class="text-sm text-red-400">{{ errorMessage }}</span>
       </div>

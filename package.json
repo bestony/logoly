@@ -43,8 +43,10 @@
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
     "@unocss/reset": "^66.5.7",
+    "file-saver": "^2.0.5",
     "html-to-image": "^1.11.13",
     "husky": "^9.1.7",
+    "jszip": "^3.10.1",
     "lint-staged": "^16.2.7",
     "pinia": "^3.0.3",
     "vue": "^3.5.22",
@@ -55,6 +57,7 @@
     "@biomejs/biome": "2.3.6",
     "@iconify-json/mingcute": "^1.2.5",
     "@tsconfig/node22": "^22.0.2",
+    "@types/file-saver": "^2.0.7",
     "@types/jsdom": "^27.0.0",
     "@types/node": "^22.18.11",
     "@unocss/preset-attributify": "^66.5.7",

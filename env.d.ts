@@ -16,3 +16,7 @@ declare global {
     readonly VITE_CLARITY_PROJECT_ID?: string
   }
 }
+
+declare module 'file-saver' {
+  export function saveAs(data: Blob | File | string, filename?: string, options?: unknown): void
+}
