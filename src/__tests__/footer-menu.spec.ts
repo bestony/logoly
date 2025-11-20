@@ -1,6 +1,7 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
 import FooterMenu from '../components/FooterMenu.vue'
+import { i18n } from '../i18n'
 import { createTestRouter } from './test-utils'
 
 describe('FooterMenu', () => {
@@ -10,17 +11,25 @@ describe('FooterMenu', () => {
     await router.isReady()
 
     const wrapper = mount(FooterMenu, {
-      global: { plugins: [router] },
+      global: { plugins: [router, i18n] },
     })
 
     const categoryTitles = wrapper.findAll('h3').map((title) => title.text())
-    expect(categoryTitles).toEqual(['网站', '品牌'])
+    expect(categoryTitles).toEqual([
+      i18n.global.t('component.footerMenu.categories.websites'),
+      i18n.global.t('component.footerMenu.categories.brands'),
+    ])
 
     const websiteButtons = wrapper
       .findAll('button')
       .slice(0, 4)
       .map((btn) => btn.text())
-    expect(websiteButtons).toEqual(['PornHub', 'Vertical PH', 'OnlyFans', 'Simpletext'])
+    expect(websiteButtons).toEqual([
+      i18n.global.t('component.menu.home'),
+      i18n.global.t('component.menu.verticalPh'),
+      i18n.global.t('component.menu.onlyfans'),
+      i18n.global.t('component.menu.simpleText'),
+    ])
   })
 
   it('routes when an item is clicked', async () => {
@@ -30,7 +39,7 @@ describe('FooterMenu', () => {
     const pushSpy = vi.spyOn(router, 'push')
 
     const wrapper = mount(FooterMenu, {
-      global: { plugins: [router] },
+      global: { plugins: [router, i18n] },
     })
 
     const segaButton = wrapper.findAll('button').find((btn) => btn.text() === 'SEGA')

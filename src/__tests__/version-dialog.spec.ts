@@ -1,6 +1,7 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
 import VersionDialog from '../components/VersionDialog.vue'
+import { i18n } from '../i18n'
 
 describe('VersionDialog', () => {
   it('opens dialog and copies debug info, then closes', async () => {
@@ -18,6 +19,9 @@ describe('VersionDialog', () => {
 
     const wrapper = mount(VersionDialog, {
       props: { version: 'v1.0.0-test' },
+      global: {
+        plugins: [i18n],
+      },
     })
 
     expect(wrapper.text()).toContain('v1.0.0-test')
@@ -25,7 +29,7 @@ describe('VersionDialog', () => {
     await wrapper.find('button').trigger('click')
     await flushPromises()
 
-    expect(document.body.innerHTML).toContain('Click to Copy Debug Info')
+    expect(document.body.innerHTML).toContain(i18n.global.t('component.versionDialog.description'))
 
     const copyButton = document.querySelector(
       '[data-testid="copy-debug"]',
@@ -42,6 +46,8 @@ describe('VersionDialog', () => {
     const copiedText = writeText.mock.calls[0]?.[0]
     expect(copiedText).toContain('Version: v1.0.0-test')
     await flushPromises()
-    expect(document.body.innerHTML).not.toContain('Click to Copy Debug Info')
+    expect(document.body.innerHTML).not.toContain(
+      i18n.global.t('component.versionDialog.description'),
+    )
   })
 })

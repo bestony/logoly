@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import VersionDialog from './VersionDialog.vue'
 
@@ -12,6 +14,12 @@ const versionSuffix =
         __GIT_SHA__ || 'unknown'
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const versionLabel = `v1.0.0-${versionSuffix}`
+const currentYear = new Date().getFullYear()
+const { t } = useI18n()
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const copyright = computed(() =>
+  t('component.siteFooter.copyright', { year: currentYear.toString() }),
+)
 </script>
 
 <template>
@@ -19,14 +27,34 @@ const versionLabel = `v1.0.0-${versionSuffix}`
     <div
       class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-gray-400"
     >
-      <p>© 2025 Logoly · 由社区维护，欢迎贡献新模板</p>
+      <p>{{ copyright }}</p>
       <VersionDialog :version="versionLabel" />
       <div class="flex flex-wrap items-center gap-3 text-gray-400">
-        <a class="hover:text-primary transition-colors" href="https://github.com/bestony/logoly" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a
+          class="hover:text-primary transition-colors"
+          href="https://github.com/bestony/logoly"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ t('component.siteFooter.github') }}
+        </a>
         <span class="text-gray-700">|</span>
-        <a class="hover:text-primary transition-colors" href="https://x.com/xiqingongzi" target="_blank" rel="noopener noreferrer">X.com</a>
+        <a
+          class="hover:text-primary transition-colors"
+          href="https://x.com/xiqingongzi"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ t('component.siteFooter.x') }}
+        </a>
         <span class="text-gray-700">|</span>
-        <a class="hover:text-primary transition-colors" href="https://www.ixiqin.com/to-contact-me/" target="_blank">联系作者</a>
+        <a
+          class="hover:text-primary transition-colors"
+          href="https://www.ixiqin.com/to-contact-me/"
+          target="_blank"
+        >
+          {{ t('component.siteFooter.contact') }}
+        </a>
       </div>
     </div>
   </div>

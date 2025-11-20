@@ -1,31 +1,34 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const { t } = useI18n()
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const categories = [
   {
-    title: '网站',
+    title: 'component.footerMenu.categories.websites',
     items: [
-      { name: 'PornHub', path: '/' },
-      { name: 'Vertical PH', path: '/vertical-ph' },
-      { name: 'OnlyFans', path: '/onlyfans' },
-      { name: 'Simpletext', path: '/simpletext' },
+      { label: 'component.menu.home', path: '/' },
+      { label: 'component.menu.verticalPh', path: '/vertical-ph' },
+      { label: 'component.menu.onlyfans', path: '/onlyfans' },
+      { label: 'component.menu.simpleText', path: '/simpletext' },
     ],
   },
   {
-    title: '品牌',
+    title: 'component.footerMenu.categories.brands',
     items: [
-      { name: 'FedEx', path: '/fedex' },
-      { name: 'Mastercard', path: '/mastercard' },
-      { name: 'Bluesnap', path: '/bluesnap' },
-      { name: 'SEGA', path: '/sega' },
-      { name: 'Nintendo', path: '/nintendo' },
-      { name: 'Lego', path: '/lego' },
-      { name: 'Marvel', path: '/marvel' },
-      { name: 'Bravo', path: '/bravo' },
-      { name: 'AMC', path: '/amc' },
+      { label: 'component.menu.fedex', path: '/fedex' },
+      { label: 'component.menu.mastercard', path: '/mastercard' },
+      { label: 'component.menu.bluesnap', path: '/bluesnap' },
+      { label: 'component.menu.sega', path: '/sega' },
+      { label: 'component.menu.nintendo', path: '/nintendo' },
+      { label: 'component.menu.lego', path: '/lego' },
+      { label: 'component.menu.marvel', path: '/marvel' },
+      { label: 'component.menu.bravo', path: '/bravo' },
+      { label: 'component.menu.amc', path: '/amc' },
     ],
   },
 ]
@@ -40,7 +43,9 @@ const go = (path: string) => {
   <footer class="mt-10 bg-gray-900/40 border-t ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <h2 class="text-lg font-semibold text-white">快速切换 Logo 模板</h2>
+        <h2 class="text-lg font-semibold text-white">
+          {{ t('component.footerMenu.heading') }}
+        </h2>
       </div>
       <div class="grid grid-cols-1 gap-6">
         <div
@@ -49,7 +54,7 @@ const go = (path: string) => {
         
         >
           <h3 class="text-sm font-semibold text-primary uppercase tracking-wide mb-3">
-            {{ category.title }}
+            {{ t(category.title) }}
           </h3>
           <div class="flex flex-wrap gap-2">
             <button
@@ -59,12 +64,14 @@ const go = (path: string) => {
               class="px-3 py-2 text-sm rounded-md bg-gray-900 text-gray-200 hover:bg-primary/20 hover:text-primary transition-colors border border-gray-700"
               @click="go(item.path)"
             >
-              {{ item.name }}
+              {{ t(item.label) }}
             </button>
           </div>
         </div>
       </div>
-      <p class="text-xs text-gray-500 text-center">底部菜单：按站点 / 品牌分类快速跳转</p>
+      <p class="text-xs text-gray-500 text-center">
+        {{ t('component.footerMenu.note') }}
+      </p>
     </div>
   </footer>
 </template>

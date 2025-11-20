@@ -1,11 +1,17 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import SiteFooter from '../components/SiteFooter.vue'
+import { i18n } from '../i18n'
 
 describe('SiteFooter', () => {
   it('renders copyright text and links', () => {
-    const wrapper = mount(SiteFooter)
-    expect(wrapper.text()).toContain('© 2025 Logoly')
+    const wrapper = mount(SiteFooter, {
+      global: {
+        plugins: [i18n],
+      },
+    })
+    const year = new Date().getFullYear().toString()
+    expect(wrapper.text()).toContain(`© ${year} Logoly`)
     expect(wrapper.text()).toContain('v1.0.0-test')
 
     const links = wrapper.findAll('a')

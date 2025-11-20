@@ -25,5 +25,25 @@ export default {
       retry: 'Retry',
       githubLink: 'Submit GitHub Issue',
     },
+    footerMenu: {
+      heading: 'Quick switch logo templates',
+      note: 'Footer: jump quickly by site or brand',
+      categories: {
+        websites: 'Sites',
+        brands: 'Brands',
+      },
+    },
+    siteFooter: {
+      copyright: '© {year} Logoly · Community maintained, contributions welcome',
+      github: 'GitHub',
+      x: 'X.com',
+      contact: 'Contact Author',
+    },
+    versionDialog: {
+      title: 'Debug Info',
+      description: 'Click to copy debug info',
+      close: 'Close',
+      copy: 'Copy',
+    },
   },
 }

@@ -2,6 +2,7 @@
 // biome-ignore lint/correctness/noUnusedImports: components are used in template
 import { Dialog, DialogDescription, DialogPanel, DialogTitle } from '@headlessui/vue'
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 /**
  * App semantic version string shown in the footer button and copied in debug info.
@@ -24,6 +25,9 @@ const userAgent = computed(
 const debugInfo = computed(
   () => `OS: ${platform.value}\nBrowser: ${userAgent.value}\nVersion: ${props.version}`,
 )
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const { t } = useI18n()
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const openDialog = () => {
@@ -61,10 +65,12 @@ const copyDebugInfo = async () => {
     <Dialog :open="isOpen" @close="setIsOpen">
       <div class="fixed inset-0 bg-black/30" aria-hidden="true"></div>
       <div class="fixed inset-0 flex items-center justify-center p-4">
-        <DialogPanel class="w-full max-w-md rounded-lg bg-gray-900 border border-gray-700 p-6 shadow-xl">
-          <DialogTitle class="text-lg font-semibold text-white mb-2">诊断信息</DialogTitle>
+          <DialogPanel class="w-full max-w-md rounded-lg bg-gray-900 border border-gray-700 p-6 shadow-xl">
+          <DialogTitle class="text-lg font-semibold text-white mb-2">
+            {{ t('component.versionDialog.title') }}
+          </DialogTitle>
           <DialogDescription class="text-sm text-gray-400 mb-4">
-            Click to Copy Debug Info
+            {{ t('component.versionDialog.description') }}
           </DialogDescription>
           <pre class="bg-gray-950 border border-gray-800 rounded-md p-3 text-xs text-gray-200 whitespace-pre-wrap">
 OS: {{ platform }}
@@ -77,7 +83,7 @@ Version: {{ version }}
               class="rounded-md border border-gray-700 px-3 py-2 text-sm text-gray-300 hover:bg-gray-800"
               @click="setIsOpen(false)"
             >
-              关闭
+              {{ t('component.versionDialog.close') }}
             </button>
             <button
               type="button"
@@ -85,7 +91,7 @@ Version: {{ version }}
               class="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-black hover:brightness-110"
               @click="copyDebugInfo"
             >
-              Copy
+              {{ t('component.versionDialog.copy') }}
             </button>
           </div>
         </DialogPanel>
