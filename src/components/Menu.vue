@@ -10,7 +10,7 @@ import { trackEvent } from '../utils/analytics'
 const route = useRoute()
 const router = useRouter()
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const primaryItems = [
@@ -23,6 +23,12 @@ const primaryItems = [
 const trailingItems = [
   { name: 'component.menu.about', path: '/about', routeName: 'about' },
   { name: 'component.menu.faq', path: '/faq', routeName: 'faq' },
+]
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const languageOptions = [
+  { code: 'en', label: 'component.menu.lang.en' },
+  { code: 'zh-CN', label: 'component.menu.lang.zh-CN' },
 ]
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
@@ -51,6 +57,11 @@ const handleOtherItemClick = (item: { name: string; path: string }) => {
     path: item.path,
   })
   navigate(item.path)
+}
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const handleLocaleChange = (code: string) => {
+  locale.value = code
 }
 </script>
 
@@ -134,6 +145,48 @@ const handleOtherItemClick = (item: { name: string; path: string }) => {
           >
             {{ t(item.name) }}
           </button>
+
+          <UiMenu as="div" class="relative inline-block text-left">
+            <div>
+              <MenuButton
+                class="px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800"
+              >
+                {{ t('component.menu.language') }}: {{ t(`component.menu.lang.${locale}`) }}
+              </MenuButton>
+            </div>
+
+            <Transition
+              enter-active-class="transition ease-out duration-100"
+              enter-from-class="transform opacity-0 scale-95"
+              enter-to-class="transform opacity-100 scale-100"
+              leave-active-class="transition ease-in duration-75"
+              leave-from-class="transform opacity-100 scale-100"
+              leave-to-class="transform opacity-0 scale-95"
+            >
+              <MenuItems
+                class="absolute right-0 mt-2 w-44 origin-top-right rounded-md bg-gray-900 border border-gray-700 shadow-lg focus:outline-none z-10"
+              >
+                <div class="py-1">
+                  <MenuItem
+                    v-for="option in languageOptions"
+                    :key="option.code"
+                    v-slot="{ active }"
+                  >
+                    <button
+                      type="button"
+                      :class="[
+                        active ? 'bg-primary/20 text-primary' : 'text-gray-200',
+                        'block w-full text-left px-4 py-2 text-sm',
+                      ]"
+                      @click="handleLocaleChange(option.code)"
+                    >
+                      {{ t(option.label) }}
+                    </button>
+                  </MenuItem>
+                </div>
+              </MenuItems>
+            </Transition>
+          </UiMenu>
         </div>
       </div>
     </div>

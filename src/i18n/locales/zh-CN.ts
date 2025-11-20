@@ -7,6 +7,11 @@ export default {
       about: '关于',
       faq: 'FAQ',
       other: '其他',
+      language: '语言',
+      lang: {
+        en: 'English',
+        'zh-CN': '简体中文',
+      },
       simpleText: 'Simple Text',
       fedex: 'FedEx',
       mastercard: 'Mastercard',
