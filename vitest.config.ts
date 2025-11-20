@@ -3,9 +3,11 @@ import type { InlineConfig } from 'vitest'
 import { configDefaults, defineConfig, mergeConfig } from 'vitest/config'
 import viteConfig from './vite.config'
 
-export default mergeConfig(
-  viteConfig as InlineConfig,
-  defineConfig({
+export default defineConfig(async (env) => {
+  const resolvedViteConfig =
+    typeof viteConfig === 'function' ? await viteConfig(env) : (viteConfig as InlineConfig)
+
+  return mergeConfig(resolvedViteConfig as InlineConfig, {
     test: {
       environment: 'jsdom',
       exclude: [...configDefaults.exclude, 'e2e/**'],
@@ -23,5 +25,5 @@ export default mergeConfig(
         },
       },
     },
-  }),
-)
+  })
+})

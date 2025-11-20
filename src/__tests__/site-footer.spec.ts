@@ -6,6 +6,7 @@ describe('SiteFooter', () => {
   it('renders copyright text and links', () => {
     const wrapper = mount(SiteFooter)
     expect(wrapper.text()).toContain('© 2025 Logoly')
+    expect(wrapper.text()).toContain('v1.0.0-test')
 
     const links = wrapper.findAll('a')
     const hrefs = links.map((link) => link.attributes('href'))
