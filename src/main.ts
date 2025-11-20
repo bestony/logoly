@@ -1,11 +1,15 @@
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
+import { createI18n } from 'vue-i18n'
 
 import 'virtual:uno.css'
 import App from './App.vue'
 import { GA_MEASUREMENT_ID } from './constants/app'
 import router from './router'
 
+const i18n = createI18n({
+  // something vue-i18n options here ...
+})
 const initAnalytics = () => {
   const script = document.createElement('script')
   script.async = true
@@ -26,6 +30,7 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+app.use(i18n)
 
 if (import.meta.env.PROD) {
   initAnalytics()
