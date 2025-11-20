@@ -24,9 +24,24 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "biome check --write .",
+    "prepare": "husky",
     "format": "biome format --write ."
   },
+  "lint-staged": {
+    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+      "biome check --files-ignore-unknown=true",
+      "biome check --write --organize-imports-enabled=false --no-errors-on-unmatched",
+      "biome check --write --unsafe --no-errors-on-unmatched",
+      "biome format --write --no-errors-on-unmatched",
+      "biome lint --write --no-errors-on-unmatched"
+    ],
+    "*": [
+      "biome check --no-errors-on-unmatched --files-ignore-unknown=true"
+    ]
+  },
   "dependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "pinia": "^3.0.3",
     "vue": "^3.5.22",
     "vue-router": "^4.6.3"
