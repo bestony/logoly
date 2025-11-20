@@ -1,97 +1,47 @@
+import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
-import About from '../views/About.vue'
-import AMC from '../views/AMC.vue'
-import Bluesnap from '../views/Bluesnap.vue'
-import Bravo from '../views/Bravo.vue'
-import FAQ from '../views/FAQ.vue'
-import FedEx from '../views/FedEx.vue'
-import Home from '../views/Home.vue'
-import Lego from '../views/Lego.vue'
-import Marvel from '../views/Marvel.vue'
-import Mastercard from '../views/Mastercard.vue'
-import Nintendo from '../views/Nintendo.vue'
-import OnlyFans from '../views/OnlyFans.vue'
-import SEGA from '../views/SEGA.vue'
-import Simpletext from '../views/Simpletext.vue'
-import VerticalPh from '../views/VerticalPh.vue'
 
-export const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: Home,
-  },
-  {
-    path: '/vertical-ph',
-    name: 'vertical-ph',
-    component: VerticalPh,
-  },
-  {
-    path: '/onlyfans',
-    name: 'onlyfans',
-    component: OnlyFans,
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: About,
-  },
-  {
-    path: '/FAQ',
-    name: 'faq',
-    component: FAQ,
-  },
-  {
-    path: '/fedex',
-    name: 'fedex',
-    component: FedEx,
-  },
-  {
-    path: '/mastercard',
-    name: 'mastercard',
-    component: Mastercard,
-  },
-  {
-    path: '/bluesnap',
-    name: 'bluesnap',
-    component: Bluesnap,
-  },
-  {
-    path: '/simpletext',
-    name: 'simpletext',
-    component: Simpletext,
-  },
-  {
-    path: '/sega',
-    name: 'sega',
-    component: SEGA,
-  },
-  {
-    path: '/nintendo',
-    name: 'nintendo',
-    component: Nintendo,
-  },
-  {
-    path: '/lego',
-    name: 'lego',
-    component: Lego,
-  },
-  {
-    path: '/marvel',
-    name: 'marvel',
-    component: Marvel,
-  },
-  {
-    path: '/bravo',
-    name: 'bravo',
-    component: Bravo,
-  },
-  {
-    path: '/amc',
-    name: 'amc',
-    component: AMC,
-  },
+type RouteDefinition = {
+  path: string
+  name: string
+  view: string
+  meta?: Record<string, unknown>
+}
+
+const views = import.meta.glob('../views/*.vue')
+
+const routeDefinitions: RouteDefinition[] = [
+  { path: '/', name: 'home', view: 'Home', meta: { title: 'Home' } },
+  { path: '/vertical-ph', name: 'vertical-ph', view: 'VerticalPh', meta: { title: 'Vertical PH' } },
+  { path: '/onlyfans', name: 'onlyfans', view: 'OnlyFans', meta: { title: 'OnlyFans' } },
+  { path: '/about', name: 'about', view: 'About', meta: { title: 'About' } },
+  { path: '/FAQ', name: 'faq', view: 'FAQ', meta: { title: 'FAQ' } },
+  { path: '/fedex', name: 'fedex', view: 'FedEx', meta: { title: 'FedEx' } },
+  { path: '/mastercard', name: 'mastercard', view: 'Mastercard', meta: { title: 'Mastercard' } },
+  { path: '/bluesnap', name: 'bluesnap', view: 'Bluesnap', meta: { title: 'Bluesnap' } },
+  { path: '/simpletext', name: 'simpletext', view: 'Simpletext', meta: { title: 'Simple Text' } },
+  { path: '/sega', name: 'sega', view: 'SEGA', meta: { title: 'SEGA' } },
+  { path: '/nintendo', name: 'nintendo', view: 'Nintendo', meta: { title: 'Nintendo' } },
+  { path: '/lego', name: 'lego', view: 'Lego', meta: { title: 'LEGO' } },
+  { path: '/marvel', name: 'marvel', view: 'Marvel', meta: { title: 'Marvel' } },
+  { path: '/bravo', name: 'bravo', view: 'Bravo', meta: { title: 'Bravo' } },
+  { path: '/amc', name: 'amc', view: 'AMC', meta: { title: 'AMC' } },
 ]
+
+const routes: RouteRecordRaw[] = routeDefinitions.map(({ path, name, view, meta }) => {
+  const loader = views[`../views/${view}.vue`]
+
+  if (!loader) {
+    throw new Error(`View component "${view}.vue" is missing in src/views`)
+  }
+
+  return {
+    path,
+    name,
+    component: loader,
+    meta,
+  }
+})
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
