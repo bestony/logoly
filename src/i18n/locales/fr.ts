@@ -84,6 +84,10 @@ export default {
         zipFail: 'Échec de l’archive ZIP, réessayez plus tard.',
       },
     },
+    verticalPh: {
+      title: 'Pornhub vertical',
+      description: 'Page de modèle de logo style Pornhub vertical.',
+    },
     about: {
       title: 'À propos de nous',
       subtitle: {

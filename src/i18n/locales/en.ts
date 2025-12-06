@@ -83,6 +83,10 @@ export default {
         zipFail: 'ZIP export failed, please try again later.',
       },
     },
+    verticalPh: {
+      title: 'Vertical PH',
+      description: 'Vertical Pornhub-style logo template page.',
+    },
     about: {
       title: 'About Logoly',
       subtitle: {

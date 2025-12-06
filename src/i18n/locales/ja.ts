@@ -83,6 +83,10 @@ export default {
         zipFail: 'ZIP 作成に失敗しました。もう一度お試しください。',
       },
     },
+    verticalPh: {
+      title: '縦型 Pornhub',
+      description: '縦型の Pornhub 風ロゴテンプレートページです。',
+    },
     about: {
       title: '私たちについて',
       subtitle: {

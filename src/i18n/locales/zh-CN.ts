@@ -83,6 +83,10 @@ export default {
         zipFail: '打包失败，请稍后重试。',
       },
     },
+    verticalPh: {
+      title: '垂直版 PornHub',
+      description: '垂直版 PornHub 风格 Logo 模板页面。',
+    },
     about: {
       title: '关于我们',
       subtitle: {
