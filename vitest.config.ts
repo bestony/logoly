@@ -10,6 +10,7 @@ export default defineConfig(async (env) => {
   return mergeConfig(resolvedViteConfig as InlineConfig, {
     test: {
       environment: 'jsdom',
+      setupFiles: ['./vitest.setup.ts'],
       exclude: [...configDefaults.exclude, 'e2e/**'],
       root: fileURLToPath(new URL('./', import.meta.url)),
       coverage: {

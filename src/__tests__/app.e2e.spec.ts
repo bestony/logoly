@@ -29,7 +29,7 @@ describe('App navigation (e2e-like)', () => {
       },
     })
 
-    expect(wrapper.text()).toContain('首页')
+    expect(wrapper.text()).toContain(i18n.global.t('page.home.title'))
 
     const aboutButton = wrapper
       .findAll('button')
