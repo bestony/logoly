@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineExpose, ref } from 'vue'
+import { ref } from 'vue'
 
 // 1. 定义响应式状态
 const leftText = ref('edit')
