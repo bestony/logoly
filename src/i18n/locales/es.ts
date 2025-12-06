@@ -61,6 +61,20 @@ export default {
       switch: 'Cambiar a {locale}',
       stay: 'Mantener idioma actual',
     },
+    fontPicker: {
+      title: 'Selector de fuentes',
+      subtitle: 'Usa tu clave de Google Web Fonts; carga fuentes variables y WOFF2 bajo demanda.',
+      search: 'Buscar fuentes',
+      searchPlaceholder: 'Escribe el nombre de la familia',
+      fontLabel: 'Familia tipográfica',
+      variantLabel: 'Variante',
+      reload: 'Recargar lista',
+      loading: 'Cargando…',
+      missingKey: 'Añade VITE_GOOGLE_FONT_KEY en .env para habilitar Google Fonts.',
+      fetchError: 'No se pudieron cargar las fuentes. Revisa la API key o la red.',
+      count: '{count} fuentes',
+      capability: 'Compatible con fuentes variables (VF) y WOFF2; se aplica a la página.',
+    },
   },
   page: {
     app: {

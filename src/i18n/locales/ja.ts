@@ -61,6 +61,21 @@ export default {
       switch: '{locale} に切り替える',
       stay: '現在の言語を維持',
     },
+    fontPicker: {
+      title: 'フォントピッカー',
+      subtitle:
+        'Google Web Fonts の API キーを使い、可変フォントと WOFF2 をオンデマンドで読み込みます。',
+      search: 'フォントを検索',
+      searchPlaceholder: 'ファミリー名を入力',
+      fontLabel: 'フォントファミリー',
+      variantLabel: 'バリアント',
+      reload: 'リストを再読み込み',
+      loading: '読込中…',
+      missingKey: '.env に VITE_GOOGLE_FONT_KEY を設定すると Google Fonts が有効になります。',
+      fetchError: 'フォントを読み込めませんでした。API キーまたはネットワークを確認してください。',
+      count: '{count} 種類',
+      capability: '可変フォント (VF) と WOFF2 に対応し、ページ全体に適用します。',
+    },
   },
   page: {
     app: {

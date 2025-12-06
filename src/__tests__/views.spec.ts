@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 import { i18n } from '../i18n'
 import About from '../views/About.vue'
 import AMC from '../views/AMC.vue'
@@ -19,15 +19,17 @@ import VerticalPh from '../views/VerticalPh.vue'
 
 type ViewCase = {
   component: object
-  title: string
+  title: string | (() => string)
 }
 
+const resolveTitle = (title: ViewCase['title']) => (typeof title === 'function' ? title() : title)
+
 const cases: ViewCase[] = [
-  { component: Home, title: '首页' },
-  { component: VerticalPh, title: 'Vertical PH' },
+  { component: Home, title: () => i18n.global.t('page.home.title') },
+  { component: VerticalPh, title: () => i18n.global.t('page.verticalPh.title') },
   { component: OnlyFans, title: 'OnlyFans' },
-  { component: About, title: '关于我们' },
-  { component: FAQ, title: '常见问题' },
+  { component: About, title: () => i18n.global.t('page.about.title') },
+  { component: FAQ, title: () => i18n.global.t('page.faq.title') },
   { component: FedEx, title: 'FedEx' },
   { component: Mastercard, title: 'Mastercard' },
   { component: Bluesnap, title: 'Bluesnap' },
@@ -41,7 +43,9 @@ const cases: ViewCase[] = [
 ]
 
 describe('Static views', () => {
-  i18n.global.locale.value = 'zh-CN'
+  beforeAll(() => {
+    i18n.global.locale.value = 'zh-CN'
+  })
 
   it.each(cases)('renders %s heading', ({ component, title }) => {
     const wrapper = mount(component, {
@@ -49,6 +53,6 @@ describe('Static views', () => {
         plugins: [i18n],
       },
     })
-    expect(wrapper.find('h1').text()).toBe(title)
+    expect(wrapper.find('h1').text()).toBe(resolveTitle(title))
   })
 })

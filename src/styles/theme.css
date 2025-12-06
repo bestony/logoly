@@ -1,0 +1,7 @@
+:root {
+  --logoly-font-family: 'Inter', 'Helvetica Neue', Arial, 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--logoly-font-family);
+}

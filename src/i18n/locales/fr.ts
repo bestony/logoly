@@ -62,6 +62,21 @@ export default {
       switch: 'Passer en {locale}',
       stay: 'Garder la langue actuelle',
     },
+    fontPicker: {
+      title: 'Sélecteur de polices',
+      subtitle:
+        'Utilise votre clé Google Web Fonts et charge les polices variables et WOFF2 à la demande.',
+      search: 'Rechercher une police',
+      searchPlaceholder: 'Saisir le nom de la famille',
+      fontLabel: 'Famille de police',
+      variantLabel: 'Variante',
+      reload: 'Recharger la liste',
+      loading: 'Chargement…',
+      missingKey: 'Ajoutez VITE_GOOGLE_FONT_KEY dans .env pour activer Google Fonts.',
+      fetchError: 'Impossible de charger les polices. Vérifiez la clé API ou le réseau.',
+      count: '{count} polices',
+      capability: 'Compatible avec les polices variables (VF) et WOFF2, appliquées à la page.',
+    },
   },
   page: {
     app: {

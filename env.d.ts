@@ -14,6 +14,7 @@ declare global {
 
   interface ImportMetaEnv {
     readonly VITE_CLARITY_PROJECT_ID?: string
+    readonly VITE_GOOGLE_FONT_KEY?: string
   }
 }
 

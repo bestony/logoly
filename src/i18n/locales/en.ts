@@ -61,6 +61,20 @@ export default {
       switch: 'Switch to {locale}',
       stay: 'Keep current language',
     },
+    fontPicker: {
+      title: 'Font Picker',
+      subtitle: 'Uses your Google Web Fonts API key, loads variable fonts and WOFF2 on demand.',
+      search: 'Search fonts',
+      searchPlaceholder: 'Type a family name',
+      fontLabel: 'Font family',
+      variantLabel: 'Variant',
+      reload: 'Reload list',
+      loading: 'Loading…',
+      missingKey: 'Add VITE_GOOGLE_FONT_KEY in .env to enable Google Fonts.',
+      fetchError: 'Unable to load fonts. Check your API key or network.',
+      count: '{count} fonts',
+      capability: 'Supports variable fonts (VF) and WOFF2, applied across the page.',
+    },
   },
   page: {
     app: {

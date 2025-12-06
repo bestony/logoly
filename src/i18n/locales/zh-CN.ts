@@ -61,6 +61,20 @@ export default {
       switch: '切换为 {locale}',
       stay: '保持当前语言',
     },
+    fontPicker: {
+      title: '字体选择器',
+      subtitle: '使用 Google Web Fonts API Key，按需加载可变字体与 WOFF2。',
+      search: '搜索字体',
+      searchPlaceholder: '输入字体名称',
+      fontLabel: '字体族',
+      variantLabel: '字重 / 变体',
+      reload: '重新加载',
+      loading: '加载中…',
+      missingKey: '请在 .env 中配置 VITE_GOOGLE_FONT_KEY 后使用字体列表。',
+      fetchError: '字体列表加载失败，请检查 API Key 或网络。',
+      count: '{count} 款字体',
+      capability: '支持可变字体（VF）与 WOFF2，并应用到当前页面。',
+    },
   },
   page: {
     app: {

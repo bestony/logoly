@@ -2,6 +2,7 @@ import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
 import 'virtual:uno.css'
+import './styles/theme.css'
 import App from './App.vue'
 import { CLARITY_PROJECT_ID, GA_MEASUREMENT_ID } from './constants/app'
 import { i18n } from './i18n'

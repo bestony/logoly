@@ -4,7 +4,7 @@
       class="preview-card"
       :style="{ backgroundColor: isTransparentBg ? 'transparent' : previewBgColor }"
     >
-      <div ref="captureEl" class="logo-wrapper">
+      <div ref="captureEl" class="logo-wrapper" :style="{ fontFamily: activeFontFamily }">
         <span
           ref="leftEl"
           class="text-part left-text"
@@ -33,6 +33,15 @@
     </div>
 
     <div class="controls">
+      <div class="control-group">
+        <p class="group-title">字体 Font</p>
+        <FontPicker
+          v-model="fontFamily"
+          v-model:variant="fontVariant"
+          @font-change="handleFontChange"
+        />
+      </div>
+
       <div class="control-group">
         <p class="group-title">文本颜色</p>
         <div class="control-grid">
@@ -79,18 +88,26 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+
+// biome-ignore lint/correctness/noUnusedImports: used in template
+import FontPicker from '@/components/FontPicker.vue'
 
 // 1. 定义响应式状态
 const leftText = ref('edit')
 const rightText = ref('me')
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const themeColor = ref('#ff9900') // 经典的橙色 hex
+// biome-ignore lint/correctness/noUnusedVariables: used in template
 const rightTextColor = ref('#000000')
+// biome-ignore lint/correctness/noUnusedVariables: used in template
 const leftTextColor = ref('#ffffff')
+// biome-ignore lint/correctness/noUnusedVariables: used in template
 const leftBgColor = ref('#000000')
 const previewBgColor = ref('#000000')
 const isTransparentBg = ref(false)
+const fontFamily = ref('')
+const fontVariant = ref('regular')
 const captureEl = ref<HTMLElement | null>(null)
 const leftEl = ref<HTMLElement | null>(null)
 const rightEl = ref<HTMLElement | null>(null)
@@ -99,6 +116,17 @@ const getDownloadOptions = () => ({
   backgroundColor: isTransparentBg.value ? 'transparent' : previewBgColor.value,
   quality: 0.92,
 })
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const activeFontFamily = computed(() =>
+  fontFamily.value?.length ? `${fontFamily.value}, sans-serif` : 'var(--logoly-font-family)',
+)
+
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const handleFontChange = (payload: { family: string; variant: string }) => {
+  fontFamily.value = payload.family
+  fontVariant.value = payload.variant
+}
 
 // 避免 Vue 重新渲染 contenteditable 导致光标跳到开头，初始内容手动写入
 onMounted(() => {
@@ -129,8 +157,7 @@ defineExpose({ captureEl, getDownloadOptions })
 </script>
 
 <style scoped>
-/* 引入类似字体，Arial 或 Helvetica 都可以，为了效果好通常加粗 */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+/* 使用全局字体变量，FontPicker 选择后会更新 */
 
 /* 卡片容器样式 */
 .preview-card {
