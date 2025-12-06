@@ -2,18 +2,22 @@
   <div class="container">
     <div class="preview-card">
       <div ref="captureEl" class="logo-wrapper">
-        <span class="text-part left-text" contenteditable="true" @input="onLeftInput">
-          {{ leftText }}
-        </span>
+        <span
+          ref="leftEl"
+          class="text-part left-text"
+          contenteditable="true"
+          spellcheck="false"
+          @input="onLeftInput"
+        ></span>
 
         <span
+          ref="rightEl"
           class="text-part right-text"
           :style="{ backgroundColor: themeColor }"
           contenteditable="true"
+          spellcheck="false"
           @input="onRightInput"
-        >
-          {{ rightText }}
-        </span>
+        ></span>
       </div>
     </div>
 
@@ -27,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 // 1. 定义响应式状态
 const leftText = ref('edit')
@@ -35,6 +39,19 @@ const rightText = ref('me')
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const themeColor = ref('#ff9900') // 经典的橙色 hex
 const captureEl = ref<HTMLElement | null>(null)
+const leftEl = ref<HTMLElement | null>(null)
+const rightEl = ref<HTMLElement | null>(null)
+
+// 避免 Vue 重新渲染 contenteditable 导致光标跳到开头，初始内容手动写入
+onMounted(() => {
+  if (leftEl.value) {
+    leftEl.value.textContent = leftText.value
+  }
+
+  if (rightEl.value) {
+    rightEl.value.textContent = rightText.value
+  }
+})
 
 // 2. 处理 contenteditable 的输入更新
 // 注意：contenteditable 元素不支持 v-model，需要手动监听 input 事件
