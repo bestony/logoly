@@ -97,7 +97,7 @@
             <input v-model="isPureBlackPreview" type="checkbox" />
             <span>{{ t('component.pornhub.pureBlackPreview') }}</span>
           </label>
-          <label class="color-picker-label" :class="{ disabled: isTransparentBg }">
+          <label class="color-picker-label" :class="isTransparentBg ? 'disabled' : ''">
             {{ t('component.pornhub.canvasBg') }}
             <input
               type="color"

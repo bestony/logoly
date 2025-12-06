@@ -49,21 +49,22 @@ describe('PornHub flow (e2e-like)', () => {
 
     const logo = wrapper.find('.logo-wrapper')
     expect(logo.exists()).toBe(true)
+    const logoEl = logo.element as HTMLElement
 
     // Adjust font size
     const fontSizeSlider = wrapper.find('input[type="range"][aria-label="font-size"]')
     expect(fontSizeSlider.exists()).toBe(true)
-    expect(logo.element.style.fontSize).toBe('60px')
+    expect(logoEl.style.fontSize).toBe('60px')
     await fontSizeSlider.setValue('80')
     await flushPromises()
-    expect(logo.element.style.fontSize).toBe('80px')
+    expect(logoEl.style.fontSize).toBe('80px')
 
     // Switch font via stubbed picker
     const fontButton = wrapper.find('[data-testid="apply-font"]')
     expect(fontButton.exists()).toBe(true)
     await fontButton.trigger('click')
     await flushPromises()
-    expect(logo.element.style.fontFamily).toContain('Inter')
+    expect(logoEl.style.fontFamily).toContain('Inter')
 
     // Adjust colors
     // Enable left background picker then adjust colors
@@ -73,7 +74,10 @@ describe('PornHub flow (e2e-like)', () => {
     const colorInputs = wrapper.findAll('input[type="color"]')
     expect(colorInputs.length).toBeGreaterThanOrEqual(4)
 
-    const [leftBgInput, leftColorInput, rightBgInput, rightColorInput] = colorInputs
+    const leftBgInput = colorInputs[0]!
+    const leftColorInput = colorInputs[1]!
+    const rightBgInput = colorInputs[2]!
+    const rightColorInput = colorInputs[3]!
 
     await leftBgInput.setValue('#112233')
     await leftColorInput.setValue('#445566')
@@ -83,10 +87,13 @@ describe('PornHub flow (e2e-like)', () => {
     const leftSpan = wrapper.find('.left-text')
     const rightSpan = wrapper.find('.right-text')
 
-    expect(leftSpan.element.style.backgroundColor).toBe('rgb(17, 34, 51)')
-    expect(leftSpan.element.style.color).toBe('rgb(68, 85, 102)')
-    expect(rightSpan.element.style.backgroundColor).toBe('rgb(171, 205, 239)')
-    expect(rightSpan.element.style.color).toBe('rgb(18, 52, 86)')
+    const leftEl = leftSpan.element as HTMLElement
+    const rightEl = rightSpan.element as HTMLElement
+
+    expect(leftEl.style.backgroundColor).toBe('rgb(17, 34, 51)')
+    expect(leftEl.style.color).toBe('rgb(68, 85, 102)')
+    expect(rightEl.style.backgroundColor).toBe('rgb(171, 205, 239)')
+    expect(rightEl.style.color).toBe('rgb(18, 52, 86)')
 
     // Update text content to control the download filename
     leftSpan.element.textContent = 'Left'
