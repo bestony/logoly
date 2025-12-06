@@ -88,6 +88,19 @@ describe('PornHub flow (e2e-like)', () => {
     expect(rightSpan.element.style.backgroundColor).toBe('rgb(171, 205, 239)')
     expect(rightSpan.element.style.color).toBe('rgb(18, 52, 86)')
 
+    // Update text content to control the download filename
+    leftSpan.element.textContent = 'Left'
+    await leftSpan.trigger('input')
+    rightSpan.element.textContent = 'Right'
+    await rightSpan.trigger('input')
+    await flushPromises()
+
+    expect(leftSpan.text()).toBe('Left')
+    expect(rightSpan.text()).toBe('Right')
+
+    const exposedBaseName = (wrapper.vm as any).pornHubRef?.getFileBaseName?.()
+    expect(exposedBaseName).toBe('LeftRight')
+
     // Trigger downloads
     const pngButton = getButtonByText(wrapper, 'Download PNG')
     const jpgButton = getButtonByText(wrapper, 'Download JPG')
@@ -105,12 +118,14 @@ describe('PornHub flow (e2e-like)', () => {
     await zipButton?.trigger('click')
     await flushPromises()
 
+    const expectedBaseName = 'LeftRight'
+
     expect(downloadImageMock).toHaveBeenNthCalledWith(
       1,
       expect.any(HTMLElement),
       'png',
       expect.objectContaining({
-        baseName: 'logoly-home',
+        baseName: expectedBaseName,
         options: expect.objectContaining({
           backgroundColor: '#000000',
           pixelRatio: 2,
@@ -124,7 +139,7 @@ describe('PornHub flow (e2e-like)', () => {
       expect.any(HTMLElement),
       'jpeg',
       expect.objectContaining({
-        baseName: 'logoly-home',
+        baseName: expectedBaseName,
       }),
     )
 
@@ -133,7 +148,7 @@ describe('PornHub flow (e2e-like)', () => {
       expect.any(HTMLElement),
       'svg',
       expect.objectContaining({
-        baseName: 'logoly-home',
+        baseName: expectedBaseName,
       }),
     )
 
@@ -141,7 +156,7 @@ describe('PornHub flow (e2e-like)', () => {
       expect.any(HTMLElement),
       ['png', 'jpeg', 'svg'],
       expect.objectContaining({
-        baseName: 'logoly-home',
+        baseName: expectedBaseName,
         options: expect.objectContaining({
           backgroundColor: '#000000',
         }),

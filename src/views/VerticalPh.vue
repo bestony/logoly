@@ -9,6 +9,7 @@ type DownloadOptions = { pixelRatio?: number; backgroundColor?: string; quality?
 type LogoRef = {
   captureEl: HTMLElement | null
   getDownloadOptions: (format?: DownloadFormat) => DownloadOptions
+  getFileBaseName: () => string
 } | null
 
 const logoRef = ref<LogoRef>(null)
@@ -18,11 +19,11 @@ const { runDownload } = useDownloadTask(isDownloading, errorMessage)
 const { t } = useI18n()
 
 const DEFAULT_OPTIONS = { pixelRatio: 2, backgroundColor: '#000000', quality: 0.92 } as const
-const BASE_NAME = 'vertical-ph'
 
 const getTarget = () => logoRef.value?.captureEl ?? null
 const getOptions = (format?: DownloadFormat) =>
   logoRef.value?.getDownloadOptions(format) ?? DEFAULT_OPTIONS
+const getBaseName = () => logoRef.value?.getFileBaseName() ?? 'logoly'
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const handleSingleDownload = (format: DownloadFormat) =>
@@ -35,7 +36,7 @@ const handleSingleDownload = (format: DownloadFormat) =>
       }
 
       return downloadImage(target, format, {
-        baseName: BASE_NAME,
+        baseName: getBaseName(),
         options: { ...getOptions(format) },
       })
     },
@@ -53,7 +54,7 @@ const handleZipDownload = () =>
       }
 
       return downloadAsZip(target, ['png', 'jpeg', 'svg'], {
-        baseName: BASE_NAME,
+        baseName: getBaseName(),
         options: { ...getOptions('png') },
       })
     },

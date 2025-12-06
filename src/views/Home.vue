@@ -9,7 +9,8 @@ import { type DownloadFormat, downloadAsZip, downloadImage } from '@/utils/downl
 type DownloadOptions = { pixelRatio?: number; backgroundColor?: string; quality?: number }
 type LogoRef = {
   captureEl: HTMLElement | null
-  getDownloadOptions: () => DownloadOptions
+  getDownloadOptions: (format?: DownloadFormat) => DownloadOptions
+  getFileBaseName: () => string
 } | null
 const pornHubRef = ref<LogoRef>(null)
 const isDownloading = ref(false)
@@ -18,11 +19,11 @@ const { runDownload } = useDownloadTask(isDownloading, errorMessage)
 const { t } = useI18n()
 
 const DEFAULT_OPTIONS = { pixelRatio: 2, backgroundColor: '#000000', quality: 0.92 } as const
-const BASE_NAME = 'logoly-home'
 
 const getTarget = () => pornHubRef.value?.captureEl ?? null
 const getOptions = (format?: DownloadFormat) =>
   pornHubRef.value?.getDownloadOptions(format) ?? DEFAULT_OPTIONS
+const getBaseName = () => pornHubRef.value?.getFileBaseName() ?? 'logoly'
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const handleSingleDownload = (format: DownloadFormat) =>
@@ -35,7 +36,7 @@ const handleSingleDownload = (format: DownloadFormat) =>
       }
 
       return downloadImage(target, format, {
-        baseName: BASE_NAME,
+        baseName: getBaseName(),
         options: { ...getOptions(format) },
       })
     },
@@ -53,7 +54,7 @@ const handleZipDownload = () =>
       }
 
       return downloadAsZip(target, ['png', 'jpeg', 'svg'], {
-        baseName: BASE_NAME,
+        baseName: getBaseName(),
         options: { ...getOptions('png') },
       })
     },

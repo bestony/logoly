@@ -167,6 +167,21 @@ const getDownloadOptions = (format?: 'png' | 'jpeg' | 'svg') => ({
   quality: 0.92,
 })
 
+const sanitizeFileName = (value: string) => {
+  const cleaned = value
+    .trim()
+    .replace(/\s+/g, '-') // collapse whitespace to single dash
+    .replace(/[\\/:*?"<>|]/g, '') // strip illegal path characters
+  return cleaned.length ? cleaned : 'logoly'
+}
+
+const getFileBaseName = () => {
+  const leftContent = leftEl.value?.textContent ?? leftText.value ?? ''
+  const rightContent = rightEl.value?.textContent ?? rightText.value ?? ''
+
+  return sanitizeFileName(`${leftContent}${rightContent}`)
+}
+
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const activeFontFamily = computed(() =>
   fontFamily.value?.length
@@ -214,16 +229,20 @@ onMounted(() => {
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const onLeftInput = (e: Event) => {
   const target = e.target as HTMLElement | null
-  leftText.value = target?.innerText ?? ''
+  leftText.value = target?.textContent ?? ''
 }
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const onRightInput = (e: Event) => {
   const target = e.target as HTMLElement | null
-  rightText.value = target?.innerText ?? ''
+  rightText.value = target?.textContent ?? ''
 }
 
-defineExpose({ captureEl, getDownloadOptions })
+defineExpose({
+  captureEl,
+  getDownloadOptions,
+  getFileBaseName,
+})
 </script>
 
 <style scoped>
