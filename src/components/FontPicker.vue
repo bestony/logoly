@@ -189,8 +189,9 @@ const fetchFonts = async () => {
     const payload = (await response.json()) as { items: WebFont[] }
     fonts.value = payload.items ?? []
 
-    if (!selectedFamily.value && fonts.value.length > 0) {
-      selectedFamily.value = fonts.value[0].family
+    const firstFamily = fonts.value[0]?.family
+    if (!selectedFamily.value && firstFamily) {
+      selectedFamily.value = firstFamily
     }
 
     if (selectedFamily.value && selectedVariant.value) {
@@ -256,41 +257,41 @@ onMounted(() => {
 <template>
 
 
-    <div class="fp-grid">
-      <label class="fp-label">
-        <span>{{ t('component.fontPicker.fontLabel') }}</span>
-        <Multiselect
-          v-model="selectedOption"
-          :options="groupedOptions"
-          group-label="category"
-          group-values="fonts"
-          track-by="value"
-          label="label"
-          :multiple="false"
-          :close-on-select="true"
-          :searchable="true"
-          :show-labels="false"
-          :allow-empty="false"
-          :disabled="groupedOptions.length === 0 || isLoading"
-          :placeholder="t('component.fontPicker.searchPlaceholder')"
-          aria-label="font picker"
-          :max-height="320"
-        />
-      </label>
+  <div class="fp-grid">
+    <label class="fp-label">
+      <span>{{ t('component.fontPicker.fontLabel') }}</span>
+      <Multiselect
+        v-model="selectedOption"
+        :options="groupedOptions"
+        group-label="category"
+        group-values="fonts"
+        track-by="value"
+        label="label"
+        :multiple="false"
+        :close-on-select="true"
+        :searchable="true"
+        :show-labels="false"
+        :allow-empty="false"
+        :disabled="groupedOptions.length === 0 || isLoading"
+        :placeholder="t('component.fontPicker.searchPlaceholder')"
+        aria-label="font picker"
+        :max-height="320"
+      />
+    </label>
 
-      <label class="fp-label">
-        <span>{{ t('component.fontPicker.variantLabel') }}</span>
-        <select
-          v-model="selectedVariant"
-          class="fp-input"
-          :disabled="variantOptions.length === 0 || isLoading"
-        >
-          <option v-for="variant in variantOptions" :key="variant" :value="variant">
-            {{ variant }}
-          </option>
-        </select>
-      </label>
-    </div>
+    <label class="fp-label">
+      <span>{{ t('component.fontPicker.variantLabel') }}</span>
+      <select
+        v-model="selectedVariant"
+        class="fp-input"
+        :disabled="variantOptions.length === 0 || isLoading"
+      >
+        <option v-for="variant in variantOptions" :key="variant" :value="variant">
+          {{ variant }}
+        </option>
+      </select>
+    </label>
+  </div>
 
 
     <p v-if="error" class="fp-error">
@@ -299,71 +300,9 @@ onMounted(() => {
 
 </template>
 
-<style scoped>
-.font-picker-card {
-  background: #2f2f2f;
-  border-radius: 12px;
-  padding: 14px 16px;
-  color: #e5e5e5;
-}
-
-.fp-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: center;
-}
-
-.fp-title {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.fp-subtitle {
-  margin: 4px 0 0;
-  font-size: 12px;
-  color: #b0b0b0;
-}
-
-.fp-actions {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: #c8c8c8;
-}
-
-.fp-badge {
-  background: #1f1f1f;
-  border: 1px solid #3a3a3a;
-  border-radius: 999px;
-  padding: 6px 10px;
-}
-
-.fp-button {
-  border: 1px solid #555;
-  background: #1f1f1f;
-  color: #eaeaea;
-  border-radius: 10px;
-  padding: 6px 12px;
-  cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, background-color 0.15s;
-}
-
-.fp-button:hover:not(:disabled) {
-  border-color: #ff9000;
-  color: #fff;
-}
-
-.fp-button:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-
+<style>
 .fp-grid {
-  margin-top: 12px;
+  margin-top: 4px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 12px;
@@ -374,23 +313,25 @@ onMounted(() => {
   flex-direction: column;
   gap: 6px;
   font-size: 13px;
-  color: #d4d4d4;
+  color: #e8e8e8;
+  letter-spacing: 0.01em;
 }
 
 .fp-input {
   height: 40px;
-  border-radius: 10px;
-  border: 1px solid #3d3d3d;
-  background: #1f1f1f;
+  border-radius: 12px;
+  border: 1px solid #2d2d2d;
+  background: #0f0f0f;
   padding: 0 12px;
   font-size: 13px;
+  color: #f6f6f6;
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 .fp-input:focus {
-  border-color: #ff9000;
-  box-shadow: 0 0 0 1px #ff9000;
+  border-color: #ff9900;
+  box-shadow: 0 0 0 1px #ff9900;
 }
 
 .fp-input:disabled {
@@ -425,48 +366,55 @@ onMounted(() => {
 }
 
 :deep(.multiselect) {
-  background: #1c1c1c;
-  border: 1px solid #444;
-  border-radius: 10px;
-  min-height: 40px;
-  box-shadow: none;
+  background: #111;
+  border: none;
+  border-radius: 12px;
+  min-height: 42px;
+  box-shadow: 0 0 0 1px #2b2b2b;
+  font-family: var(--logoly-font-family, 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif);
 }
 
 :deep(.multiselect__tags) {
   border: none;
-  background: #1c1c1c;
-  padding: 6px 10px;
-  min-height: 40px;
+  background: transparent;
+  padding: 8px 12px;
+  min-height: 42px;
+  color: #f4f4f4;
 }
 
-:deep(.multiselect__input) {
-
+:deep(.multiselect__single) {
+  color: #ff9900;
   background: transparent;
 }
 
+:deep(.multiselect__input) {
+  background: transparent;
+  color: #f4f4f4;
+}
+
 :deep(.multiselect__placeholder) {
-  color: #cfd2d8;
+  color: #d2d6de;
 }
 
 :deep(.multiselect__content-wrapper) {
-  background: #181818;
-  border: 1px solid #3d3d3d;
-  border-radius: 10px;
+  background: #0f0f0f;
+  border: 1px solid #2d2d2d;
+  border-radius: 12px;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
 }
 
 :deep(.multiselect__group) {
-  padding: 4px 10px;
-  color: #b7bdc7;
+  padding: 6px 12px;
+  color: #c5cad4;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
 
 :deep(.multiselect__option) {
-  background: #1f1f1f;
-  color: #f5f5f5;
-  padding: 10px 12px;
+  background: #121212;
+  color: #f7f7f7;
+  padding: 10px 14px;
 }
 
 :deep(.multiselect__option--highlight),
@@ -476,8 +424,8 @@ onMounted(() => {
 }
 
 :deep(.multiselect__option--selected) {
-  background: #2c2c2c;
-  color: #ff9f1a;
+  background: #1c1c1c;
+  color: #ff9900;
 }
 
 :deep(.multiselect__option--disabled) {
@@ -485,7 +433,6 @@ onMounted(() => {
 }
 
 :deep(.multiselect:focus-within) {
-  border-color: #ff9000;
-  box-shadow: 0 0 0 1px #ff9000;
+  box-shadow: 0 0 0 1px #ff9900;
 }
 </style>

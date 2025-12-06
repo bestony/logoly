@@ -74,7 +74,7 @@ export default {
       missingKey: '.env に VITE_GOOGLE_FONT_KEY を設定すると Google Fonts が有効になります。',
       fetchError: 'フォントを読み込めませんでした。API キーまたはネットワークを確認してください。',
       count: '{count} 種類',
-      capability: '可変フォント (VF) と WOFF2 に対応し、ページ全体に適用します。',
+      capability: '可変フォント (VF) と WOFF2 に対応し、ロゴのプレビューにのみ適用します。',
     },
   },
   page: {

@@ -161,15 +161,15 @@ defineExpose({ captureEl, getDownloadOptions })
 
 /* 卡片容器样式 */
 .preview-card {
-  border: 1px solid #333;
-  border-radius: 12px;
-  padding: 60px 80px;
-  background-color: #000;
+  border: 1px solid #1f1f1f;
+  border-radius: 14px;
+  padding: 56px 72px;
+  background: radial-gradient(circle at 30% 20%, #1b1b1b 0%, #0c0c0c 55%, #070707 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
 }
 
 /* Logo 核心布局 */
@@ -206,12 +206,14 @@ defineExpose({ captureEl, getDownloadOptions })
 
 /* 底部控制器样式 */
 .controls {
-  background: #333;
-  padding: 14px 20px;
-  border-radius: 8px;
+  background: #0f0f0f;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #1f1f1f;
   display: flex;
   flex-direction: column;
   gap: 14px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
 }
 
 .color-picker-label {
@@ -219,22 +221,30 @@ defineExpose({ captureEl, getDownloadOptions })
   align-items: center;
   gap: 10px;
   font-size: 14px;
-  color: #ccc;
+  color: #e6e6e6;
   cursor: pointer;
 }
 
 .color-input {
-  border: none;
+  border: 1px solid #2d2d2d;
   width: 30px;
   height: 30px;
   cursor: pointer;
-  background: none;
+  background: #0b0b0b;
+  border-radius: 8px;
+  padding: 2px;
+  box-shadow: 0 0 0 1px transparent;
+}
+
+.color-input:focus-visible {
+  border-color: #ff9900;
+  box-shadow: 0 0 0 1px #ff9900;
 }
 
 .control-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 10px;
+  gap: 12px;
   align-items: center;
 }
 
@@ -242,13 +252,18 @@ defineExpose({ captureEl, getDownloadOptions })
   display: flex;
   flex-direction: column;
   gap: 10px;
+  /* padding: 12px 14px; */
+  /* border-radius: 10px; */
+  /* background: #151515; */
+  /* border: 1px solid #1f1f1f; */
 }
 
 .group-title {
   margin: 0;
   font-size: 15px;
-  font-weight: 600;
-  color: #f5f5f5;
+  font-weight: 700;
+  color: #ffad33;
+  letter-spacing: 0.01em;
 }
 
 .toggle {
@@ -256,7 +271,7 @@ defineExpose({ captureEl, getDownloadOptions })
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: #ccc;
+  color: #d8d8d8;
   cursor: pointer;
   user-select: none;
 }

@@ -73,7 +73,8 @@ export default {
       missingKey: 'Añade VITE_GOOGLE_FONT_KEY en .env para habilitar Google Fonts.',
       fetchError: 'No se pudieron cargar las fuentes. Revisa la API key o la red.',
       count: '{count} fuentes',
-      capability: 'Compatible con fuentes variables (VF) y WOFF2; se aplica a la página.',
+      capability:
+        'Compatible con fuentes variables (VF) y WOFF2; solo afecta a la previsualización del logo.',
     },
   },
   page: {
