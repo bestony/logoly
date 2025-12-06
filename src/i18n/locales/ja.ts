@@ -227,4 +227,99 @@ export default {
       },
     },
   },
+  seo: {
+    home: {
+      title: 'Pornhub風ロゴジェネレーター｜PNG/SVGを無料エクスポート',
+      description:
+        'Logoly は Pornhub・OnlyFans・FedEx・Mastercard 風のロゴをブラウザだけで作れる無料ツールです。文字と配色を自由に編集し、登録不要で PNG・JPG・SVG をダウンロードできます。',
+      keywords: [
+        'pornhub ロゴ ジェネレーター',
+        'onlyfans ロゴ メーカー',
+        '無料 ロゴ 作成',
+        'svg ロゴ オンライン',
+        'mastercard ロゴ 風',
+        'fedex ロゴ ジェネレーター',
+      ],
+    },
+    about: {
+      title: 'Logoly について｜オープンソースのロゴジェネレーター',
+      description:
+        'Logoly がブラウザ内だけでブランド風ワードマークを描画する仕組み、オープンソースライセンス、テンプレートや翻訳への貢献方法を紹介します。',
+      keywords: [
+        'logoly について',
+        'オープンソース ロゴジェネレーター',
+        'ブラウザ ロゴ メーカー',
+        'logoly コミュニティ',
+      ],
+    },
+    faq: {
+      title: 'FAQ｜Logoly のヘルプとトラブルシューティング',
+      description:
+        'ダウンロードやフォント、プライバシー、Pornhub / OnlyFans 風ロゴの作り方に関する質問に回答します。',
+      keywords: ['logoly faq', 'ロゴ ジェネレーター ヘルプ', 'svg ロゴ ダウンロード', 'フォント 読み込み 失敗'],
+    },
+    'vertical-ph': {
+      title: '縦型 Pornhub 風ロゴテンプレート',
+      description: 'カラーを調整して縦型の Pornhub 風ロゴを作成し、即座に PNG/SVG で保存できます。',
+      keywords: ['pornhub 縦型 ロゴ', '縦長 ロゴ ジェネレーター', 'ph 風 ロゴ'],
+    },
+    onlyfans: {
+      title: 'OnlyFans ロゴジェネレーター',
+      description:
+        'OnlyFans 風のワードマークを好きなテキストとブランドカラーで作成し、透明 PNG または SVG をダウンロード。',
+      keywords: ['onlyfans ロゴ', 'onlyfans ロゴ ジェネレーター', '青色 ロゴ メーカー'],
+    },
+    fedex: {
+      title: 'FedEx ロゴジェネレーター',
+      description:
+        'FedEx 風のワードマークを色と字間を調整して再現し、すぐに PNG/SVG へ書き出します。',
+      keywords: ['fedex ロゴ', 'fedex ロゴ 作成', '配送 ロゴ ジェネレーター'],
+    },
+    mastercard: {
+      title: 'Mastercard ロゴジェネレーター',
+      description:
+        'Mastercard 風の二重円ワードマークをブラウザで作り、テキストと色を自由に編集できます。',
+      keywords: ['mastercard ロゴ', '決済 ロゴ 作成', '円形 ロゴ メーカー'],
+    },
+    bluesnap: {
+      title: 'BlueSnap ロゴジェネレーター',
+      description: 'BlueSnap 風のカラーでロゴを生成し、SVG/PNG としてエクスポートできます。',
+      keywords: ['bluesnap ロゴ', '決済 ロゴ ジェネレーター', 'ブルー ロゴ'],
+    },
+    simpletext: {
+      title: 'シンプルテキスト ロゴメーカー',
+      description: 'フォントや太さ、背景を調整し、シンプルなテキストロゴを素早くエクスポート。',
+      keywords: ['テキスト ロゴ ジェネレーター', 'シンプル ロゴ 作成', 'フォント ロゴ オンライン'],
+    },
+    sega: {
+      title: 'SEGA ロゴジェネレーター',
+      description: 'SEGA 風のアウトラインロゴを任意のテキストで作成し、高解像度 PNG/SVG をダウンロード。',
+      keywords: ['sega ロゴ', 'レトロ ロゴ 作成', 'ゲーム ロゴ ジェネレーター'],
+    },
+    nintendo: {
+      title: 'Nintendo ロゴジェネレーター',
+      description: '任天堂風の丸みを帯びたワードマークを即時プレビューしてダウンロードできます。',
+      keywords: ['nintendo ロゴ', 'ゲーム ロゴ メーカー', '赤い ロゴ'],
+    },
+    lego: {
+      title: 'LEGO ロゴジェネレーター',
+      description: 'LEGO 風のブロック体ロゴを鮮やかな配色で作り、すぐに使えるデータを出力。',
+      keywords: ['lego ロゴ', 'ブロック ロゴ', 'おもちゃ ロゴ 作成'],
+    },
+    marvel: {
+      title: 'Marvel ロゴジェネレーター',
+      description: '赤と白をコントロールして、太字の Marvel 風タイトルロゴを作成。',
+      keywords: ['marvel ロゴ', 'コミック ロゴ', '映画 ロゴ メーカー'],
+    },
+    bravo: {
+      title: 'Bravo ロゴジェネレーター',
+      description: '吹き出しスタイルの Bravo 風チャンネルロゴをテキスト付きで生成します。',
+      keywords: ['bravo ロゴ', 'テレビ ロゴ ジェネレーター', 'チャンネル ロゴ'],
+    },
+    amc: {
+      title: 'AMC ロゴジェネレーター',
+      description: 'AMC 風ワードマークをブラウザで作成し、印刷向け PNG/SVG を書き出します。',
+      keywords: ['amc ロゴ', 'テレビ ネットワーク ロゴ', 'ワードマーク ジェネレーター'],
+    },
+  },
 }

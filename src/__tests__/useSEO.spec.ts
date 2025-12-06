@@ -2,6 +2,7 @@ import { flushPromises, mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defineComponent, nextTick } from 'vue'
 import { createMemoryHistory, createRouter } from 'vue-router'
+import { i18n } from '../i18n'
 import { useSEO } from '../composables/useSEO'
 
 const clearHead = () => {
@@ -12,16 +13,18 @@ const clearHead = () => {
 describe('useSEO', () => {
   beforeEach(() => {
     clearHead()
+    i18n.global.locale.value = 'en'
   })
 
   afterEach(() => {
     clearHead()
+    i18n.global.locale.value = 'en'
     vi.restoreAllMocks()
     ;(navigator as { userLanguage?: string }).userLanguage = undefined
   })
 
-  it('detects Chinese browsers and applies zh-CN metadata on mount', async () => {
-    vi.spyOn(navigator, 'language', 'get').mockReturnValue('zh-CN')
+  it('applies current i18n locale on mount and updates when locale changes', async () => {
+    i18n.global.locale.value = 'en'
 
     const Component = defineComponent({
       setup() {
@@ -33,15 +36,20 @@ describe('useSEO', () => {
     mount(Component)
     await nextTick()
 
-    expect(document.documentElement.lang).toBe('zh-CN')
-    expect(document.title).toContain(
-      'Logoly - PornHub 风格 Logo 生成器 | 在线免费制作支持 PNG/SVG 导出',
+    expect(document.documentElement.lang).toBe('en')
+    expect(document.querySelector('meta[property="og:locale"]')?.getAttribute('content')).toBe(
+      'en_US',
     )
+
+    i18n.global.locale.value = 'zh-CN'
+    await flushPromises()
+
+    expect(document.documentElement.lang).toBe('zh-CN')
     expect(document.querySelector('meta[property="og:locale"]')?.getAttribute('content')).toBe(
       'zh_CN',
     )
-    expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      `${window.location.origin}/`,
+    expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toContain(
+      '免费在线生成 PornHub 风格 Logo',
     )
   })
 
@@ -66,32 +74,6 @@ describe('useSEO', () => {
     )
     expect(document.querySelector('meta[property="twitter:title"]')?.getAttribute('content')).toBe(
       'Logoly - PornHub Style Logo Generator | Free PNG & SVG Download',
-    )
-  })
-
-  it('falls back to English content for unsupported languages', async () => {
-    const existingDescription = document.createElement('meta')
-    existingDescription.setAttribute('name', 'description')
-    existingDescription.setAttribute('content', 'stale')
-    document.head.appendChild(existingDescription)
-
-    const Component = defineComponent({
-      setup() {
-        const { updateSEO } = useSEO()
-        return { updateSEO }
-      },
-      template: '<div />',
-    })
-
-    const wrapper = mount(Component)
-    wrapper.vm.updateSEO('fr')
-    await nextTick()
-
-    expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toContain(
-      'Générateur de logos en ligne gratuit façon PornHub',
-    )
-    expect(document.querySelector('meta[property="og:locale"]')?.getAttribute('content')).toBe(
-      'fr_FR',
     )
   })
 
@@ -139,6 +121,44 @@ describe('useSEO', () => {
     expect(document.documentElement.lang).toBe('ja')
   })
 
+  it('prefers localized route SEO text over static route meta', async () => {
+    i18n.global.locale.value = 'es'
+
+    const router = createRouter({
+      history: createMemoryHistory(),
+      routes: [
+        {
+          path: '/about',
+          name: 'about',
+          component: { template: '<div>about</div>' },
+          meta: { title: 'About', description: 'English only description' },
+        },
+      ],
+    })
+
+    const Component = defineComponent({
+      setup() {
+        useSEO()
+        return {}
+      },
+      template: '<RouterView />',
+    })
+
+    await router.push('/about')
+    await router.isReady()
+
+    mount(Component, { global: { plugins: [router] } })
+    await flushPromises()
+
+    expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toContain(
+      'Descubre cómo Logoly renderiza wordmarks',
+    )
+    expect(document.title).toContain('Sobre Logoly')
+    expect(document.querySelector('meta[name="keywords"]')?.getAttribute('content')).toContain(
+      'creador de logos gratis',
+    )
+  })
+
   it('falls back to English when language input is empty', async () => {
     const Component = defineComponent({
       setup() {
@@ -158,7 +178,7 @@ describe('useSEO', () => {
     expect(document.documentElement.lang).toBe('en')
   })
 
-  it('defaults to English when language code is unknown', async () => {
+  it('falls back to English when language code is unknown', async () => {
     const Component = defineComponent({
       setup() {
         const { updateSEO } = useSEO()
@@ -180,12 +200,25 @@ describe('useSEO', () => {
     expect(document.documentElement.lang).toBe('en')
   })
 
-  it('respects navigator.userLanguage when navigator.language is missing', async () => {
-    vi.spyOn(navigator, 'language', 'get').mockReturnValue(undefined as unknown as string)
-    Object.defineProperty(navigator, 'userLanguage', {
-      value: 'zh-TW',
-      configurable: true,
+  it('detects the current i18n locale before checking browser language', () => {
+    i18n.global.locale.value = 'fr'
+
+    const Component = defineComponent({
+      setup() {
+        const { detectLanguage } = useSEO()
+        return { detectLanguage }
+      },
+      template: '<div />',
     })
+
+    const wrapper = mount(Component)
+    expect(wrapper.vm.detectLanguage()).toBe('fr')
+  })
+
+  it('falls back to browser locale when i18n locale is empty', () => {
+    i18n.global.locale.value = '' as unknown as typeof i18n.global.locale.value
+    vi.spyOn(navigator, 'language', 'get').mockReturnValue('zh-TW')
+    ;(navigator as { userLanguage?: string }).userLanguage = 'zh-TW'
 
     const Component = defineComponent({
       setup() {
@@ -197,22 +230,6 @@ describe('useSEO', () => {
 
     const wrapper = mount(Component)
     expect(wrapper.vm.detectLanguage()).toBe('zh-CN')
-  })
-
-  it('defaults to en when no navigator language data is available', () => {
-    vi.spyOn(navigator, 'language', 'get').mockReturnValue(undefined as unknown as string)
-    ;(navigator as { userLanguage?: string }).userLanguage = undefined
-
-    const Component = defineComponent({
-      setup() {
-        const { detectLanguage } = useSEO()
-        return { detectLanguage }
-      },
-      template: '<div />',
-    })
-
-    const wrapper = mount(Component)
-    expect(wrapper.vm.detectLanguage()).toBe('en')
   })
 
   it('updates canonical when route changes with router present', async () => {

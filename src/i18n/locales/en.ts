@@ -229,4 +229,99 @@ export default {
       },
     },
   },
+  seo: {
+    home: {
+      title: 'Pornhub-style logo generator | Free PNG/SVG export',
+      description:
+        'Logoly is a free logo maker inspired by Pornhub, OnlyFans, FedEx, and Mastercard. Customize text and colors directly in the browser and export PNG, JPG, or SVG without sign-up.',
+      keywords: [
+        'pornhub logo generator',
+        'onlyfans logo maker',
+        'free logo generator',
+        'svg logo online',
+        'mastercard logo style',
+        'fedex logo generator',
+      ],
+    },
+    about: {
+      title: 'About Logoly | Open-source logo generator',
+      description:
+        'Learn how Logoly renders brand-style wordmarks entirely in-browser, the open-source license, and how to contribute templates or translations.',
+      keywords: [
+        'about logoly',
+        'open source logo generator',
+        'browser logo maker',
+        'logoly community',
+      ],
+    },
+    faq: {
+      title: 'FAQ | Logoly help and troubleshooting',
+      description:
+        'Answers for downloads, fonts, privacy, and using Logoly to create Pornhub or OnlyFans style logos.',
+      keywords: ['logoly faq', 'logo generator help', 'download svg logo', 'fonts missing help'],
+    },
+    'vertical-ph': {
+      title: 'Vertical Pornhub logo template',
+      description: 'Create vertical Pornhub-style logos with adjustable colors and instant PNG/SVG export.',
+      keywords: ['vertical pornhub logo', 'pornhub vertical logo generator', 'ph style logo'],
+    },
+    onlyfans: {
+      title: 'OnlyFans logo generator',
+      description:
+        'Make OnlyFans-inspired wordmarks with your own text and brand colors; download transparent PNG or SVG.',
+      keywords: ['onlyfans logo', 'onlyfans logo generator', 'blue logo maker'],
+    },
+    fedex: {
+      title: 'FedEx logo generator',
+      description:
+        'Recreate the FedEx-style wordmark with editable colors and spacing, exported instantly to PNG or SVG.',
+      keywords: ['fedex logo', 'fedex style logo maker', 'delivery logo generator'],
+    },
+    mastercard: {
+      title: 'Mastercard logo generator',
+      description:
+        'Build Mastercard-style double-circle wordmarks with editable text and colors in your browser.',
+      keywords: ['mastercard logo', 'payment logo generator', 'circle logo maker'],
+    },
+    bluesnap: {
+      title: 'BlueSnap logo generator',
+      description: 'Generate BlueSnap-inspired logos with on-brand colors and export them as SVG/PNG.',
+      keywords: ['bluesnap logo', 'payment logo maker', 'blue logo'],
+    },
+    simpletext: {
+      title: 'Simple text logo maker',
+      description: 'Quickly export clean text logos with customizable fonts, weights, and backgrounds.',
+      keywords: ['text logo generator', 'simple logo maker', 'font logo online'],
+    },
+    sega: {
+      title: 'SEGA logo generator',
+      description: 'Design SEGA-style outlined logos with custom wording and download high-resolution PNG/SVG.',
+      keywords: ['sega logo', 'retro logo generator', 'gaming logo maker'],
+    },
+    nintendo: {
+      title: 'Nintendo logo generator',
+      description: 'Create rounded Nintendo-style wordmarks with instant preview and downloads.',
+      keywords: ['nintendo logo', 'gaming logo maker', 'red logo generator'],
+    },
+    lego: {
+      title: 'LEGO logo generator',
+      description: 'Craft LEGO-inspired blocky logos with bright colors and export ready-to-use assets.',
+      keywords: ['lego logo', 'block logo maker', 'toy logo generator'],
+    },
+    marvel: {
+      title: 'Marvel logo generator',
+      description: 'Make bold Marvel-style title logos with custom text and red/white color controls.',
+      keywords: ['marvel logo', 'comic logo generator', 'movie logo maker'],
+    },
+    bravo: {
+      title: 'Bravo logo generator',
+      description: 'Generate Bravo-inspired channel logos with editable text and bubble styling.',
+      keywords: ['bravo logo', 'tv logo maker', 'channel logo'],
+    },
+    amc: {
+      title: 'AMC logo generator',
+      description: 'Create AMC-style wordmarks in-browser and export print-ready PNG/SVG.',
+      keywords: ['amc logo', 'tv network logo', 'wordmark generator'],
+    },
+  },
 }

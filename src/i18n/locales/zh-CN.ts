@@ -223,4 +223,90 @@ export default {
       },
     },
   },
+  seo: {
+    home: {
+      title: 'Pornhub 风格 Logo 生成器｜免费导出 PNG/SVG',
+      description:
+        'Logoly 是一个免费在线生成 Pornhub、OnlyFans、FedEx、Mastercard 等风格 Logo 的工具。直接在浏览器自定义文字和配色，导出 PNG/JPG/SVG 无需注册。',
+      keywords: [
+        'Pornhub logo生成器',
+        'OnlyFans logo制作',
+        '免费logo生成',
+        'SVG logo 在线',
+        'Mastercard 风格 logo',
+        'FedEx logo 生成',
+      ],
+    },
+    about: {
+      title: '关于 Logoly｜开源 Logo 生成器',
+      description:
+        '了解 Logoly 如何在浏览器内渲染品牌风格文字标识、开源协议，以及如何贡献模板或翻译。',
+      keywords: ['关于 Logoly', '开源 logo 生成器', '前端 logo 工具', 'Logoly 社区'],
+    },
+    faq: {
+      title: '常见问题｜Logoly 帮助中心',
+      description: '回答下载、字体、隐私，以及生成 Pornhub / OnlyFans 风格 logo 的常见问题。',
+      keywords: ['Logoly FAQ', 'logo 生成器 帮助', 'SVG logo 下载', '字体加载 失败'],
+    },
+    'vertical-ph': {
+      title: '纵向 Pornhub 风格 Logo 模板',
+      description: '调整配色即可生成纵向 Pornhub 风格 Logo，立即导出 PNG/SVG。',
+      keywords: ['Pornhub 纵向 logo', '纵向 logo 生成', 'ph 风格 logo'],
+    },
+    onlyfans: {
+      title: 'OnlyFans Logo 生成器',
+      description: '用自定义文字和品牌色生成 OnlyFans 风格的文字标识，支持透明 PNG 或 SVG 下载。',
+      keywords: ['OnlyFans logo', 'OnlyFans logo 生成器', '蓝色 logo 制作'],
+    },
+    fedex: {
+      title: 'FedEx Logo 生成器',
+      description: '还原 FedEx 风格的文字标志，可调色和字距，立即导出 PNG/SVG。',
+      keywords: ['FedEx logo', 'FedEx 风格 logo', '快递 logo 生成'],
+    },
+    mastercard: {
+      title: 'Mastercard Logo 生成器',
+      description: '在浏览器制作 Mastercard 风格的双圆文字标识，文字和颜色可自由编辑。',
+      keywords: ['Mastercard logo', '支付 logo 生成', '圆形 logo 制作'],
+    },
+    bluesnap: {
+      title: 'BlueSnap Logo 生成器',
+      description: '生成 BlueSnap 风格的品牌色 Logo，支持 SVG/PNG 导出。',
+      keywords: ['BlueSnap logo', '支付 logo 制作', '蓝色 logo'],
+    },
+    simpletext: {
+      title: '纯文字 Logo 生成器',
+      description: '快速导出简洁的文字 Logo，字体、粗细、背景均可调整。',
+      keywords: ['文字 logo 生成器', '简洁 logo 制作', '字体 logo 在线'],
+    },
+    sega: {
+      title: 'SEGA Logo 生成器',
+      description: '用自定义文字生成 SEGA 风格描边 Logo，下载高清 PNG/SVG。',
+      keywords: ['SEGA logo', '复古 logo 生成', '游戏 logo 制作'],
+    },
+    nintendo: {
+      title: 'Nintendo Logo 生成器',
+      description: '生成圆角的 Nintendo 风格文字标识，所见即所得并可立即下载。',
+      keywords: ['Nintendo logo', '游戏 logo 生成器', '红色 logo'],
+    },
+    lego: {
+      title: 'LEGO Logo 生成器',
+      description: '打造 LEGO 风格的方块体 Logo，鲜亮配色，导出即可使用。',
+      keywords: ['LEGO logo', '积木 logo', '玩具 logo 生成'],
+    },
+    marvel: {
+      title: 'Marvel Logo 生成器',
+      description: '控制红白配色，制作粗体的 Marvel 风格标题 Logo。',
+      keywords: ['Marvel logo', '漫画 logo 生成', '电影 logo 制作'],
+    },
+    bravo: {
+      title: 'Bravo Logo 生成器',
+      description: '生成气泡样式的 Bravo 风格频道 Logo，文本可编辑。',
+      keywords: ['Bravo logo', '电视台 logo', '频道 logo 生成'],
+    },
+    amc: {
+      title: 'AMC Logo 生成器',
+      description: '在浏览器生成 AMC 风格的文字标识，导出可打印的 PNG/SVG。',
+      keywords: ['AMC logo', '电视网络 logo', 'wordmark 生成器'],
+    },
+  },
 }
