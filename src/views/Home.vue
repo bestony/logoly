@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import PornHub from '@/components/LogoEditor/PornHub.vue'
 import { useDownloadTask } from '@/composables/useDownloadTask'
@@ -10,6 +11,7 @@ const pornHubRef = ref<LogoRef>(null)
 const isDownloading = ref(false)
 const errorMessage = ref<string | null>(null)
 const { runDownload } = useDownloadTask(isDownloading, errorMessage)
+const { t } = useI18n()
 
 const DEFAULT_OPTIONS = { pixelRatio: 2, backgroundColor: '#000000', quality: 0.92 } as const
 const BASE_NAME = 'logoly-home'
@@ -31,7 +33,7 @@ const handleSingleDownload = (format: DownloadFormat) =>
         options: { ...DEFAULT_OPTIONS },
       })
     },
-    '下载失败，请稍后重试。',
+    t('page.home.errors.downloadFail'),
   )
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
@@ -49,14 +51,14 @@ const handleZipDownload = () =>
         options: { ...DEFAULT_OPTIONS },
       })
     },
-    '打包失败，请稍后重试。',
+    t('page.home.errors.zipFail'),
   )
 </script>
 
 <template>
   <div class="container mx-auto px-4 py-2 rounded-2xl bg-black/70">
     <header>
-      <h1 class="text-4xl font-bold mb-4 text-white">PornHub Style Logo Generator</h1>
+      <h1 class="text-4xl font-bold mb-4 text-white">{{ t('page.home.title') }}</h1>
 
       <PornHub ref="pornHubRef" class="mt-4" />
 
@@ -67,7 +69,13 @@ const handleZipDownload = () =>
           :disabled="isDownloading"
           @click="handleSingleDownload('png')"
         >
-          <span>{{ isDownloading ? "生成中…" : "下载 PNG" }}</span>
+          <span>
+            {{
+              isDownloading
+                ? t('page.home.state.processing')
+                : t('page.home.actions.downloadPng')
+            }}
+          </span>
         </button>
         <button
           type="button"
@@ -75,7 +83,13 @@ const handleZipDownload = () =>
           :disabled="isDownloading"
           @click="handleSingleDownload('jpeg')"
         >
-          <span>{{ isDownloading ? "生成中…" : "下载 JPG" }}</span>
+          <span>
+            {{
+              isDownloading
+                ? t('page.home.state.processing')
+                : t('page.home.actions.downloadJpg')
+            }}
+          </span>
         </button>
         <button
           type="button"
@@ -83,7 +97,13 @@ const handleZipDownload = () =>
           :disabled="isDownloading"
           @click="handleSingleDownload('svg')"
         >
-          <span>{{ isDownloading ? "生成中…" : "下载 SVG" }}</span>
+          <span>
+            {{
+              isDownloading
+                ? t('page.home.state.processing')
+                : t('page.home.actions.downloadSvg')
+            }}
+          </span>
         </button>
         <button
           type="button"
@@ -91,7 +111,13 @@ const handleZipDownload = () =>
           :disabled="isDownloading"
           @click="handleZipDownload"
         >
-          <span>{{ isDownloading ? "打包中…" : "打包下载 ZIP" }}</span>
+          <span>
+            {{
+              isDownloading
+                ? t('page.home.state.packaging')
+                : t('page.home.actions.downloadZip')
+            }}
+          </span>
         </button>
         <span v-if="errorMessage" class="text-sm text-red-400">{{ errorMessage }}</span>
       </div>

@@ -66,6 +66,23 @@ export default {
     app: {
       renderError: 'ページのレンダリングで問題が発生しました。クリックして再試行してください。',
     },
+    home: {
+      title: 'Pornhub風ロゴジェネレーター',
+      state: {
+        processing: '生成中…',
+        packaging: 'パッケージ中…',
+      },
+      actions: {
+        downloadPng: 'PNG をダウンロード',
+        downloadJpg: 'JPG をダウンロード',
+        downloadSvg: 'SVG をダウンロード',
+        downloadZip: 'ZIP をダウンロード',
+      },
+      errors: {
+        downloadFail: 'ダウンロードに失敗しました。もう一度お試しください。',
+        zipFail: 'ZIP 作成に失敗しました。もう一度お試しください。',
+      },
+    },
     about: {
       title: '私たちについて',
       subtitle: {

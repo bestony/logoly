@@ -66,6 +66,23 @@ export default {
     app: {
       renderError: '页面渲染出现问题，点击重试。',
     },
+    home: {
+      title: 'Pornhub 风格 Logo 生成器',
+      state: {
+        processing: '生成中…',
+        packaging: '打包中…',
+      },
+      actions: {
+        downloadPng: '下载 PNG',
+        downloadJpg: '下载 JPG',
+        downloadSvg: '下载 SVG',
+        downloadZip: '打包下载 ZIP',
+      },
+      errors: {
+        downloadFail: '下载失败，请稍后重试。',
+        zipFail: '打包失败，请稍后重试。',
+      },
+    },
     about: {
       title: '关于我们',
       subtitle: {

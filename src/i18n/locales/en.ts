@@ -66,6 +66,23 @@ export default {
     app: {
       renderError: 'Page failed to render, click Retry to try again.',
     },
+    home: {
+      title: 'Pornhub-style Logo Generator',
+      state: {
+        processing: 'Generating…',
+        packaging: 'Packaging…',
+      },
+      actions: {
+        downloadPng: 'Download PNG',
+        downloadJpg: 'Download JPG',
+        downloadSvg: 'Download SVG',
+        downloadZip: 'Download ZIP',
+      },
+      errors: {
+        downloadFail: 'Download failed, please try again later.',
+        zipFail: 'ZIP export failed, please try again later.',
+      },
+    },
     about: {
       title: 'About Logoly',
       subtitle: {

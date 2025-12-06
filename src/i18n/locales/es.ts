@@ -66,6 +66,23 @@ export default {
     app: {
       renderError: 'Hubo un problema al renderizar la página. Haz clic para reintentar.',
     },
+    home: {
+      title: 'Generador de logos estilo Pornhub',
+      state: {
+        processing: 'Generando…',
+        packaging: 'Empaquetando…',
+      },
+      actions: {
+        downloadPng: 'Descargar PNG',
+        downloadJpg: 'Descargar JPG',
+        downloadSvg: 'Descargar SVG',
+        downloadZip: 'Descargar ZIP',
+      },
+      errors: {
+        downloadFail: 'La descarga falló, inténtalo de nuevo.',
+        zipFail: 'La exportación ZIP falló, inténtalo de nuevo.',
+      },
+    },
     about: {
       title: 'Sobre nosotros',
       subtitle: {

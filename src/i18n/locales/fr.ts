@@ -67,6 +67,23 @@ export default {
     app: {
       renderError: 'Le rendu de la page a échoué, cliquez pour réessayer.',
     },
+    home: {
+      title: 'Générateur de logos style Pornhub',
+      state: {
+        processing: 'Génération…',
+        packaging: 'Compression…',
+      },
+      actions: {
+        downloadPng: 'Télécharger PNG',
+        downloadJpg: 'Télécharger JPG',
+        downloadSvg: 'Télécharger SVG',
+        downloadZip: 'Télécharger ZIP',
+      },
+      errors: {
+        downloadFail: 'Échec du téléchargement, réessayez plus tard.',
+        zipFail: 'Échec de l’archive ZIP, réessayez plus tard.',
+      },
+    },
     about: {
       title: 'À propos de nous',
       subtitle: {
