@@ -75,6 +75,9 @@ export default {
       count: '{count} 款字体',
       capability: '支持可变字体（VF）与 WOFF2，仅作用于 logo 预览区域。',
     },
+    pornhub: {
+      fontSize: '字体大小',
+    },
   },
   page: {
     app: {

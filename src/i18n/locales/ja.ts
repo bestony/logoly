@@ -76,6 +76,9 @@ export default {
       count: '{count} 種類',
       capability: '可変フォント (VF) と WOFF2 に対応し、ロゴのプレビューにのみ適用します。',
     },
+    pornhub: {
+      fontSize: 'フォントサイズ',
+    },
   },
   page: {
     app: {

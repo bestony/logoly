@@ -75,6 +75,9 @@ export default {
       count: '{count} fonts',
       capability: 'Supports variable fonts (VF) and WOFF2, applied to the logo preview only.',
     },
+    pornhub: {
+      fontSize: 'Font size',
+    },
   },
   page: {
     app: {

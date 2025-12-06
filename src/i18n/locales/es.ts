@@ -76,6 +76,9 @@ export default {
       capability:
         'Compatible con fuentes variables (VF) y WOFF2; solo afecta a la previsualización del logo.',
     },
+    pornhub: {
+      fontSize: 'Tamaño de fuente',
+    },
   },
   page: {
     app: {

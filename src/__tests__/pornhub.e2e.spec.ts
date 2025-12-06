@@ -50,6 +50,14 @@ describe('PornHub flow (e2e-like)', () => {
     const logo = wrapper.find('.logo-wrapper')
     expect(logo.exists()).toBe(true)
 
+    // Adjust font size
+    const fontSizeSlider = wrapper.find('input[type="range"][aria-label="font-size"]')
+    expect(fontSizeSlider.exists()).toBe(true)
+    expect(logo.element.style.fontSize).toBe('60px')
+    await fontSizeSlider.setValue('80')
+    await flushPromises()
+    expect(logo.element.style.fontSize).toBe('80px')
+
     // Switch font via stubbed picker
     const fontButton = wrapper.find('[data-testid="apply-font"]')
     expect(fontButton.exists()).toBe(true)

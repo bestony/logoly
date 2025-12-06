@@ -78,6 +78,9 @@ export default {
       capability:
         'Compatible polices variables (VF) et WOFF2, appliquées seulement à la prévisualisation.',
     },
+    pornhub: {
+      fontSize: 'Taille de police',
+    },
   },
   page: {
     app: {

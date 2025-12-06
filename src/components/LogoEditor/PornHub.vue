@@ -4,7 +4,11 @@
       class="preview-card"
       :style="{ backgroundColor: isTransparentBg ? 'transparent' : previewBgColor }"
     >
-      <div ref="captureEl" class="logo-wrapper" :style="{ fontFamily: activeFontFamily }">
+      <div
+        ref="captureEl"
+        class="logo-wrapper"
+        :style="{ fontFamily: activeFontFamily, fontSize: fontSizePx }"
+      >
         <span
           ref="leftEl"
           class="text-part left-text"
@@ -40,6 +44,22 @@
           v-model:variant="fontVariant"
           @font-change="handleFontChange"
         />
+      </div>
+
+      <div class="control-group">
+        <p class="group-title">{{ t('component.pornhub.fontSize') }}</p>
+        <div class="slider-row">
+          <input
+            v-model.number="fontSize"
+            type="range"
+            min="24"
+            max="160"
+            step="1"
+            class="font-size-slider"
+            aria-label="font-size"
+          />
+          <span class="slider-value">{{ fontSize }}px</span>
+        </div>
       </div>
 
       <div class="control-group">
@@ -89,9 +109,12 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import FontPicker from '@/components/FontPicker.vue'
+
+const { t } = useI18n()
 
 // 1. 定义响应式状态
 const leftText = ref('edit')
@@ -108,6 +131,7 @@ const previewBgColor = ref('#000000')
 const isTransparentBg = ref(false)
 const fontFamily = ref('')
 const fontVariant = ref('regular')
+const fontSize = ref(60)
 const captureEl = ref<HTMLElement | null>(null)
 const leftEl = ref<HTMLElement | null>(null)
 const rightEl = ref<HTMLElement | null>(null)
@@ -121,6 +145,8 @@ const getDownloadOptions = () => ({
 const activeFontFamily = computed(() =>
   fontFamily.value?.length ? `${fontFamily.value}, sans-serif` : 'var(--logoly-font-family)',
 )
+
+const fontSizePx = computed(() => `${fontSize.value}px`)
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const handleFontChange = (payload: { family: string; variant: string }) => {
@@ -177,7 +203,6 @@ defineExpose({ captureEl, getDownloadOptions })
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 60px; /* 根据需要调整大小 */
   font-weight: 700;
   line-height: 1;
   gap: 0; /* 使用 margin 确保导出与预览一致 */
@@ -266,6 +291,24 @@ defineExpose({ captureEl, getDownloadOptions })
   font-weight: 700;
   color: #ffad33;
   letter-spacing: 0.01em;
+}
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.font-size-slider {
+  flex: 1;
+  accent-color: #ff9900;
+}
+
+.slider-value {
+  width: 58px;
+  text-align: right;
+  color: #f5f5f5;
+  font-variant-numeric: tabular-nums;
 }
 
 .toggle {
