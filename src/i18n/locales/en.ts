@@ -70,7 +70,7 @@ export default {
       variantLabel: 'Variant',
       reload: 'Reload list',
       loading: 'Loading…',
-      missingKey: 'Add VITE_GOOGLE_FONT_KEY in .env to enable Google Fonts.',
+      missingKey: 'Fonts API unavailable. Ensure server env GOOGLE_FONT_KEY is configured.',
       fetchError: 'Unable to load fonts. Check your API key or network.',
       count: '{count} fonts',
       capability: 'Supports variable fonts (VF) and WOFF2, applied to the logo preview only.',
@@ -262,7 +262,8 @@ export default {
     },
     'vertical-ph': {
       title: 'Vertical Pornhub logo template',
-      description: 'Create vertical Pornhub-style logos with adjustable colors and instant PNG/SVG export.',
+      description:
+        'Create vertical Pornhub-style logos with adjustable colors and instant PNG/SVG export.',
       keywords: ['vertical pornhub logo', 'pornhub vertical logo generator', 'ph style logo'],
     },
     onlyfans: {
@@ -285,17 +286,20 @@ export default {
     },
     bluesnap: {
       title: 'BlueSnap logo generator',
-      description: 'Generate BlueSnap-inspired logos with on-brand colors and export them as SVG/PNG.',
+      description:
+        'Generate BlueSnap-inspired logos with on-brand colors and export them as SVG/PNG.',
       keywords: ['bluesnap logo', 'payment logo maker', 'blue logo'],
     },
     simpletext: {
       title: 'Simple text logo maker',
-      description: 'Quickly export clean text logos with customizable fonts, weights, and backgrounds.',
+      description:
+        'Quickly export clean text logos with customizable fonts, weights, and backgrounds.',
       keywords: ['text logo generator', 'simple logo maker', 'font logo online'],
     },
     sega: {
       title: 'SEGA logo generator',
-      description: 'Design SEGA-style outlined logos with custom wording and download high-resolution PNG/SVG.',
+      description:
+        'Design SEGA-style outlined logos with custom wording and download high-resolution PNG/SVG.',
       keywords: ['sega logo', 'retro logo generator', 'gaming logo maker'],
     },
     nintendo: {
@@ -305,12 +309,14 @@ export default {
     },
     lego: {
       title: 'LEGO logo generator',
-      description: 'Craft LEGO-inspired blocky logos with bright colors and export ready-to-use assets.',
+      description:
+        'Craft LEGO-inspired blocky logos with bright colors and export ready-to-use assets.',
       keywords: ['lego logo', 'block logo maker', 'toy logo generator'],
     },
     marvel: {
       title: 'Marvel logo generator',
-      description: 'Make bold Marvel-style title logos with custom text and red/white color controls.',
+      description:
+        'Make bold Marvel-style title logos with custom text and red/white color controls.',
       keywords: ['marvel logo', 'comic logo generator', 'movie logo maker'],
     },
     bravo: {

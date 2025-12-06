@@ -28,7 +28,6 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
-const apiKey = import.meta.env.VITE_GOOGLE_FONT_KEY
 
 const fonts = ref<WebFont[]>([])
 const isLoading = ref(false)
@@ -169,18 +168,11 @@ const loadFont = async (family: string, variant: string) => {
 }
 
 const fetchFonts = async () => {
-  if (!apiKey) {
-    error.value = t('component.fontPicker.missingKey')
-    return
-  }
-
   isLoading.value = true
   error.value = null
 
   try {
-    const response = await fetch(
-      `https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}&sort=popularity`,
-    )
+    const response = await fetch('/api/fonts?sort=popularity')
 
     if (!response.ok) {
       throw new Error('Failed to load font list')

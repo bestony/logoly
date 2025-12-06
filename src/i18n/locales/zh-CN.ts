@@ -70,7 +70,7 @@ export default {
       variantLabel: '字重 / 变体',
       reload: '重新加载',
       loading: '加载中…',
-      missingKey: '请在 .env 中配置 VITE_GOOGLE_FONT_KEY 后使用字体列表。',
+      missingKey: '字体服务不可用，请在服务器环境变量中配置 GOOGLE_FONT_KEY。',
       fetchError: '字体列表加载失败，请检查 API Key 或网络。',
       count: '{count} 款字体',
       capability: '支持可变字体（VF）与 WOFF2，仅作用于 logo 预览区域。',

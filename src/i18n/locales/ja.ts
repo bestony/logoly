@@ -71,7 +71,8 @@ export default {
       variantLabel: 'バリアント',
       reload: 'リストを再読み込み',
       loading: '読込中…',
-      missingKey: '.env に VITE_GOOGLE_FONT_KEY を設定すると Google Fonts が有効になります。',
+      missingKey:
+        'フォントサービスを利用できません。サーバーの環境変数 GOOGLE_FONT_KEY を設定してください。',
       fetchError: 'フォントを読み込めませんでした。API キーまたはネットワークを確認してください。',
       count: '{count} 種類',
       capability: '可変フォント (VF) と WOFF2 に対応し、ロゴのプレビューにのみ適用します。',
@@ -256,7 +257,12 @@ export default {
       title: 'FAQ｜Logoly のヘルプとトラブルシューティング',
       description:
         'ダウンロードやフォント、プライバシー、Pornhub / OnlyFans 風ロゴの作り方に関する質問に回答します。',
-      keywords: ['logoly faq', 'ロゴ ジェネレーター ヘルプ', 'svg ロゴ ダウンロード', 'フォント 読み込み 失敗'],
+      keywords: [
+        'logoly faq',
+        'ロゴ ジェネレーター ヘルプ',
+        'svg ロゴ ダウンロード',
+        'フォント 読み込み 失敗',
+      ],
     },
     'vertical-ph': {
       title: '縦型 Pornhub 風ロゴテンプレート',
@@ -293,7 +299,8 @@ export default {
     },
     sega: {
       title: 'SEGA ロゴジェネレーター',
-      description: 'SEGA 風のアウトラインロゴを任意のテキストで作成し、高解像度 PNG/SVG をダウンロード。',
+      description:
+        'SEGA 風のアウトラインロゴを任意のテキストで作成し、高解像度 PNG/SVG をダウンロード。',
       keywords: ['sega ロゴ', 'レトロ ロゴ 作成', 'ゲーム ロゴ ジェネレーター'],
     },
     nintendo: {

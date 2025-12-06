@@ -70,7 +70,8 @@ export default {
       variantLabel: 'Variante',
       reload: 'Recargar lista',
       loading: 'Cargando…',
-      missingKey: 'Añade VITE_GOOGLE_FONT_KEY en .env para habilitar Google Fonts.',
+      missingKey:
+        'Servicio de fuentes no disponible. Verifica la variable GOOGLE_FONT_KEY en el servidor.',
       fetchError: 'No se pudieron cargar las fuentes. Revisa la API key o la red.',
       count: '{count} fuentes',
       capability:
@@ -259,11 +260,17 @@ export default {
       title: 'FAQ | Ayuda y resolución de problemas de Logoly',
       description:
         'Respuestas sobre descargas, fuentes, privacidad y cómo usar Logoly para crear logos estilo Pornhub u OnlyFans.',
-      keywords: ['faq logoly', 'ayuda generador de logos', 'descargar logo svg', 'fuentes faltantes'],
+      keywords: [
+        'faq logoly',
+        'ayuda generador de logos',
+        'descargar logo svg',
+        'fuentes faltantes',
+      ],
     },
     'vertical-ph': {
       title: 'Plantilla vertical estilo Pornhub',
-      description: 'Crea logos verticales estilo Pornhub con colores ajustables y exportación inmediata PNG/SVG.',
+      description:
+        'Crea logos verticales estilo Pornhub con colores ajustables y exportación inmediata PNG/SVG.',
       keywords: ['logo vertical pornhub', 'generador logo vertical', 'logo estilo ph'],
     },
     onlyfans: {
@@ -286,27 +293,32 @@ export default {
     },
     bluesnap: {
       title: 'Generador de logo BlueSnap',
-      description: 'Genera logos inspirados en BlueSnap con colores de marca y expórtalos como SVG/PNG.',
+      description:
+        'Genera logos inspirados en BlueSnap con colores de marca y expórtalos como SVG/PNG.',
       keywords: ['logo bluesnap', 'generador logo pago', 'logo azul'],
     },
     simpletext: {
       title: 'Creador de logo de texto simple',
-      description: 'Exporta rápido logos de texto limpios con fuentes, pesos y fondos personalizables.',
+      description:
+        'Exporta rápido logos de texto limpios con fuentes, pesos y fondos personalizables.',
       keywords: ['generador logo de texto', 'creador de logo simple', 'logo con fuentes en línea'],
     },
     sega: {
       title: 'Generador de logo SEGA',
-      description: 'Diseña logos con contorno estilo SEGA con tu propio texto y descarga PNG/SVG en alta resolución.',
+      description:
+        'Diseña logos con contorno estilo SEGA con tu propio texto y descarga PNG/SVG en alta resolución.',
       keywords: ['logo sega', 'generador logo retro', 'creador logo gaming'],
     },
     nintendo: {
       title: 'Generador de logo Nintendo',
-      description: 'Crea wordmarks redondeados al estilo Nintendo con vista previa y descargas instantáneas.',
+      description:
+        'Crea wordmarks redondeados al estilo Nintendo con vista previa y descargas instantáneas.',
       keywords: ['logo nintendo', 'generador logo gaming', 'logo rojo'],
     },
     lego: {
       title: 'Generador de logo LEGO',
-      description: 'Crea logos estilo LEGO con tipografía cuadrada y colores brillantes listos para exportar.',
+      description:
+        'Crea logos estilo LEGO con tipografía cuadrada y colores brillantes listos para exportar.',
       keywords: ['logo lego', 'generador logo bloques', 'logo juguetes'],
     },
     marvel: {
@@ -317,12 +329,14 @@ export default {
     },
     bravo: {
       title: 'Generador de logo Bravo',
-      description: 'Genera logos de canal inspirados en Bravo con texto editable y estilo de burbuja.',
+      description:
+        'Genera logos de canal inspirados en Bravo con texto editable y estilo de burbuja.',
       keywords: ['logo bravo', 'generador logo tv', 'logo de canal'],
     },
     amc: {
       title: 'Generador de logo AMC',
-      description: 'Crea wordmarks al estilo AMC en el navegador y exporta PNG/SVG listos para imprimir.',
+      description:
+        'Crea wordmarks al estilo AMC en el navegador y exporta PNG/SVG listos para imprimir.',
       keywords: ['logo amc', 'logo cadena tv', 'generador de wordmarks'],
     },
   },

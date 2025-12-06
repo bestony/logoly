@@ -72,7 +72,7 @@ export default {
       variantLabel: 'Variante',
       reload: 'Recharger la liste',
       loading: 'Chargement…',
-      missingKey: 'Ajoutez VITE_GOOGLE_FONT_KEY dans .env pour activer Google Fonts.',
+      missingKey: 'Service de polices indisponible. Vérifiez la variable serveur GOOGLE_FONT_KEY.',
       fetchError: 'Impossible de charger les polices. Vérifiez la clé API ou le réseau.',
       count: '{count} polices',
       capability:
@@ -261,11 +261,17 @@ export default {
       title: 'FAQ | Aide et dépannage Logoly',
       description:
         'Réponses sur les téléchargements, les polices, la confidentialité et l’usage de Logoly pour créer des logos façon Pornhub ou OnlyFans.',
-      keywords: ['faq logoly', 'aide générateur de logo', 'télécharger logo svg', 'polices manquantes'],
+      keywords: [
+        'faq logoly',
+        'aide générateur de logo',
+        'télécharger logo svg',
+        'polices manquantes',
+      ],
     },
     'vertical-ph': {
       title: 'Modèle vertical façon Pornhub',
-      description: 'Créez des logos verticaux style Pornhub avec couleurs ajustables et export PNG/SVG instantané.',
+      description:
+        'Créez des logos verticaux style Pornhub avec couleurs ajustables et export PNG/SVG instantané.',
       keywords: ['logo pornhub vertical', 'générateur logo vertical', 'logo style ph'],
     },
     onlyfans: {
@@ -288,12 +294,14 @@ export default {
     },
     bluesnap: {
       title: 'Générateur de logo BlueSnap',
-      description: 'Générez des logos inspirés de BlueSnap avec les couleurs de la marque et exportez en SVG/PNG.',
+      description:
+        'Générez des logos inspirés de BlueSnap avec les couleurs de la marque et exportez en SVG/PNG.',
       keywords: ['logo bluesnap', 'générateur logo paiement', 'logo bleu'],
     },
     simpletext: {
       title: 'Créateur de logo texte simple',
-      description: 'Exportez rapidement des logos texte épurés avec polices, graisses et fonds personnalisables.',
+      description:
+        'Exportez rapidement des logos texte épurés avec polices, graisses et fonds personnalisables.',
       keywords: ['générateur logo texte', 'créateur logo simple', 'logo police en ligne'],
     },
     sega: {
@@ -304,12 +312,14 @@ export default {
     },
     nintendo: {
       title: 'Générateur de logo Nintendo',
-      description: 'Créez des wordmarks arrondis façon Nintendo avec aperçu instantané et téléchargements.',
+      description:
+        'Créez des wordmarks arrondis façon Nintendo avec aperçu instantané et téléchargements.',
       keywords: ['logo nintendo', 'générateur logo gaming', 'logo rouge'],
     },
     lego: {
       title: 'Générateur de logo LEGO',
-      description: 'Concevez des logos inspirés de LEGO avec typographie angulaire et couleurs vives prêtes à exporter.',
+      description:
+        'Concevez des logos inspirés de LEGO avec typographie angulaire et couleurs vives prêtes à exporter.',
       keywords: ['logo lego', 'générateur logo blocs', 'logo jouet'],
     },
     marvel: {
@@ -320,12 +330,14 @@ export default {
     },
     bravo: {
       title: 'Générateur de logo Bravo',
-      description: 'Générez des logos de chaîne inspirés de Bravo avec texte éditable et bulle stylisée.',
+      description:
+        'Générez des logos de chaîne inspirés de Bravo avec texte éditable et bulle stylisée.',
       keywords: ['logo bravo', 'générateur logo tv', 'logo chaîne'],
     },
     amc: {
       title: 'Générateur de logo AMC',
-      description: 'Créez des wordmarks façon AMC dans le navigateur et exportez des PNG/SVG prêts à imprimer.',
+      description:
+        'Créez des wordmarks façon AMC dans le navigateur et exportez des PNG/SVG prêts à imprimer.',
       keywords: ['logo amc', 'logo chaîne tv', 'générateur de wordmark'],
     },
   },
