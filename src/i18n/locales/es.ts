@@ -86,6 +86,7 @@ export default {
       rightTextColor: 'Texto derecho',
       canvas: 'Fondo del lienzo',
       canvasBg: 'Color del lienzo',
+      pureBlackPreview: 'Vista previa negro puro',
       transparentHint: 'Lienzo transparente (PNG / SVG mantienen transparencia)',
       fontSize: 'Tamaño de fuente',
     },

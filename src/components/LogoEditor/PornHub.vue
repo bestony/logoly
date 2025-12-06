@@ -1,9 +1,6 @@
 <template>
   <div class="container">
-    <div
-      class="preview-card"
-      :style="{ backgroundColor: isTransparentBg ? 'transparent' : previewBgColor }"
-    >
+    <div class="preview-card" :style="previewCardStyle">
       <div
         ref="captureEl"
         class="logo-wrapper"
@@ -92,6 +89,10 @@
       <div class="control-group">
         <p class="group-title">{{ t('component.pornhub.canvas') }}</p>
         <div class="control-grid background-grid">
+          <label class="toggle">
+            <input v-model="isPureBlackPreview" type="checkbox" />
+            <span>{{ t('component.pornhub.pureBlackPreview') }}</span>
+          </label>
           <label class="color-picker-label" :class="{ disabled: isTransparentBg }">
             {{ t('component.pornhub.canvasBg') }}
             <input
@@ -134,6 +135,7 @@ const leftBgColor = ref<string>('transparent')
 const lastLeftBgColor = ref('#000000')
 const previewBgColor = ref('#000000')
 const isTransparentBg = ref(false)
+const isPureBlackPreview = ref(true)
 const fontFamily = ref('')
 const fontVariant = ref('regular')
 const fontSize = ref(60)
@@ -166,6 +168,18 @@ const activeFontFamily = computed(() =>
 )
 
 const fontSizePx = computed(() => `${fontSize.value}px`)
+
+const previewCardStyle = computed(() => {
+  if (isTransparentBg.value) {
+    return { background: 'transparent' }
+  }
+
+  if (isPureBlackPreview.value) {
+    return { background: '#000000' }
+  }
+
+  return { background: previewBgColor.value }
+})
 
 watch(leftBgColor, (newColor) => {
   if (newColor !== 'transparent') {
@@ -251,8 +265,8 @@ defineExpose({ captureEl, getDownloadOptions })
 /* 右侧文字 (带背景的) */
 .right-text {
   color: #000;
-  padding: 4px 10px; /* 上下左右的内边距 */
-  border-radius: 6px; /* 圆角 */
+  padding: 6px 12px; /* 上下左右的内边距 */
+  border-radius: 7px; /* 介于 6-8px 之间，更贴近官方比例 */
   transition: background-color 0.2s;
 }
 

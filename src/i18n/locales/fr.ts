@@ -88,6 +88,7 @@ export default {
       rightTextColor: 'Texte droit',
       canvas: 'Arrière-plan du canevas',
       canvasBg: 'Couleur du canevas',
+      pureBlackPreview: 'Aperçu noir uni',
       transparentHint: 'Canevas transparent (PNG / SVG conservent la transparence)',
       fontSize: 'Taille de police',
     },

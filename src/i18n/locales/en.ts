@@ -85,6 +85,7 @@ export default {
       rightTextColor: 'Right text',
       canvas: 'Canvas background',
       canvasBg: 'Canvas color',
+      pureBlackPreview: 'Pure black preview',
       transparentHint: 'Transparent canvas (PNG / SVG keep transparency)',
       fontSize: 'Font size',
     },

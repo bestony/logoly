@@ -86,6 +86,7 @@ export default {
       rightTextColor: '右テキスト',
       canvas: 'キャンバス背景',
       canvasBg: 'キャンバス色',
+      pureBlackPreview: '純黒プレビュー',
       transparentHint: '透明キャンバス（PNG / SVG も透明を保持）',
       fontSize: 'フォントサイズ',
     },

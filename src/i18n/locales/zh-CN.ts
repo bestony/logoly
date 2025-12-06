@@ -85,6 +85,7 @@ export default {
       rightTextColor: '右侧文字颜色',
       canvas: '画布背景色',
       canvasBg: '画布背景',
+      pureBlackPreview: '纯黑预览',
       transparentHint: '透明画布背景（导出 PNG / SVG 可透明）',
       fontSize: '字体大小',
     },
