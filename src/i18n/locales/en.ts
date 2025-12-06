@@ -78,6 +78,7 @@ export default {
     pornhub: {
       fontFamily: 'Font',
       textColor: 'Text colors',
+      leftBgToggle: 'Show left background block',
       leftBg: 'Left background',
       leftTextColor: 'Left text',
       rightBg: 'Right background',

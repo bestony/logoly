@@ -65,7 +65,11 @@
       <div class="control-group">
         <p class="group-title">{{ t('component.pornhub.textColor') }}</p>
         <div class="control-grid">
-          <label class="color-picker-label">
+          <label class="toggle left-bg-toggle">
+            <input v-model="isLeftBgVisible" type="checkbox" />
+            <span>{{ t('component.pornhub.leftBgToggle') }}</span>
+          </label>
+          <label v-if="isLeftBgVisible" class="color-picker-label">
             {{ t('component.pornhub.leftBg') }}
             <input type="color" v-model="leftBgColor" class="color-input" />
           </label>
@@ -108,7 +112,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 // biome-ignore lint/correctness/noUnusedImports: used in template
@@ -126,7 +130,8 @@ const rightTextColor = ref('#000000')
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const leftTextColor = ref('#ffffff')
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const leftBgColor = ref('#000000')
+const leftBgColor = ref<string>('transparent')
+const lastLeftBgColor = ref('#000000')
 const previewBgColor = ref('#000000')
 const isTransparentBg = ref(false)
 const fontFamily = ref('')
@@ -135,6 +140,20 @@ const fontSize = ref(60)
 const captureEl = ref<HTMLElement | null>(null)
 const leftEl = ref<HTMLElement | null>(null)
 const rightEl = ref<HTMLElement | null>(null)
+const isLeftBgVisible = computed<boolean>({
+  get: () => leftBgColor.value !== 'transparent',
+  set: (value) => {
+    if (value) {
+      leftBgColor.value = lastLeftBgColor.value
+      return
+    }
+
+    lastLeftBgColor.value =
+      leftBgColor.value === 'transparent' ? lastLeftBgColor.value : leftBgColor.value
+    leftBgColor.value = 'transparent'
+  },
+})
+
 const getDownloadOptions = () => ({
   pixelRatio: 2,
   backgroundColor: isTransparentBg.value ? 'transparent' : previewBgColor.value,
@@ -147,6 +166,12 @@ const activeFontFamily = computed(() =>
 )
 
 const fontSizePx = computed(() => `${fontSize.value}px`)
+
+watch(leftBgColor, (newColor) => {
+  if (newColor !== 'transparent') {
+    lastLeftBgColor.value = newColor
+  }
+})
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const handleFontChange = (payload: { family: string; variant: string }) => {
@@ -325,6 +350,17 @@ defineExpose({ captureEl, getDownloadOptions })
   width: 16px;
   height: 16px;
   accent-color: #ff9900;
+}
+
+.left-bg-toggle {
+  padding: 10px 12px;
+  border: 1px solid #1f1f1f;
+  border-radius: 10px;
+  background: #141414;
+}
+
+.left-bg-toggle span {
+  color: #e6e6e6;
 }
 
 .disabled {

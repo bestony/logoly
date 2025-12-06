@@ -79,6 +79,7 @@ export default {
     pornhub: {
       fontFamily: 'フォント',
       textColor: 'テキストカラー',
+      leftBgToggle: '左背景を表示',
       leftBg: '左背景',
       leftTextColor: '左テキスト',
       rightBg: '右背景',

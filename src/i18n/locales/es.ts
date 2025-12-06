@@ -79,6 +79,7 @@ export default {
     pornhub: {
       fontFamily: 'Fuente',
       textColor: 'Colores de texto',
+      leftBgToggle: 'Mostrar fondo izquierdo',
       leftBg: 'Fondo izquierdo',
       leftTextColor: 'Texto izquierdo',
       rightBg: 'Fondo derecho',
