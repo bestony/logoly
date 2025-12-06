@@ -4,7 +4,11 @@
       <div
         ref="captureEl"
         class="logo-wrapper"
-        :style="{ fontFamily: activeFontFamily, fontSize: fontSizePx }"
+        :style="{
+          fontFamily: activeFontFamily,
+          fontSize: fontSizePx,
+          backgroundColor: captureBgColor,
+        }"
       >
         <span
           ref="leftEl"
@@ -122,10 +126,10 @@ import FontPicker from '@/components/FontPicker.vue'
 const { t } = useI18n()
 
 // 1. 定义响应式状态
-const leftText = ref('edit')
+const leftText = ref('Edit')
 const rightText = ref('me')
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const themeColor = ref('#ff9900') // 经典的橙色 hex
+const themeColor = ref('#ff9900')
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const rightTextColor = ref('#000000')
 // biome-ignore lint/correctness/noUnusedVariables: used in template
@@ -156,18 +160,24 @@ const isLeftBgVisible = computed<boolean>({
   },
 })
 
-const getDownloadOptions = () => ({
+const resolveBg = (format?: 'png' | 'jpeg' | 'svg') =>
+  isTransparentBg.value && format !== 'jpeg' ? 'transparent' : previewBgColor.value
+
+const getDownloadOptions = (format?: 'png' | 'jpeg' | 'svg') => ({
   pixelRatio: 2,
-  backgroundColor: isTransparentBg.value ? 'transparent' : previewBgColor.value,
+  backgroundColor: resolveBg(format),
   quality: 0.92,
 })
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const activeFontFamily = computed(() =>
-  fontFamily.value?.length ? `${fontFamily.value}, sans-serif` : 'var(--logoly-font-family)',
+  fontFamily.value?.length
+    ? `${fontFamily.value}, sans-serif`
+    : "Inter, 'Noto Sans', var(--logoly-font-family), sans-serif",
 )
 
 const fontSizePx = computed(() => `${fontSize.value}px`)
+const captureBgColor = computed(() => resolveBg())
 
 const previewCardStyle = computed(() => {
   if (isTransparentBg.value) {
@@ -244,7 +254,8 @@ defineExpose({ captureEl, getDownloadOptions })
   justify-content: center;
   font-weight: 700;
   line-height: 1;
-  gap: 0; /* 使用 margin 确保导出与预览一致 */
+  letter-spacing: -0.3px;
+  gap: 0;
   width: fit-content;
 }
 
@@ -259,7 +270,8 @@ defineExpose({ captureEl, getDownloadOptions })
 /* 左侧文字 */
 .left-text {
   color: #fff;
-  margin-right: 6px; /* 与预览保持一致且兼容 html-to-image */
+  margin-right: 0;
+  padding: 6px 0;
 }
 
 /* 右侧文字 (带背景的) */
@@ -267,6 +279,7 @@ defineExpose({ captureEl, getDownloadOptions })
   color: #000;
   padding: 6px 12px; /* 上下左右的内边距 */
   border-radius: 7px; /* 介于 6-8px 之间，更贴近官方比例 */
+  margin-left: -2px; /* 微调字距，让块更贴近左侧文字 */
   transition: background-color 0.2s;
 }
 

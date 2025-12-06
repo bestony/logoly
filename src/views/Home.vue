@@ -21,7 +21,8 @@ const DEFAULT_OPTIONS = { pixelRatio: 2, backgroundColor: '#000000', quality: 0.
 const BASE_NAME = 'logoly-home'
 
 const getTarget = () => pornHubRef.value?.captureEl ?? null
-const getOptions = () => pornHubRef.value?.getDownloadOptions() ?? DEFAULT_OPTIONS
+const getOptions = (format?: DownloadFormat) =>
+  pornHubRef.value?.getDownloadOptions(format) ?? DEFAULT_OPTIONS
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const handleSingleDownload = (format: DownloadFormat) =>
@@ -35,7 +36,7 @@ const handleSingleDownload = (format: DownloadFormat) =>
 
       return downloadImage(target, format, {
         baseName: BASE_NAME,
-        options: { ...getOptions() },
+        options: { ...getOptions(format) },
       })
     },
     t('page.home.errors.downloadFail'),
@@ -53,7 +54,7 @@ const handleZipDownload = () =>
 
       return downloadAsZip(target, ['png', 'jpeg', 'svg'], {
         baseName: BASE_NAME,
-        options: { ...getOptions() },
+        options: { ...getOptions('png') },
       })
     },
     t('page.home.errors.zipFail'),

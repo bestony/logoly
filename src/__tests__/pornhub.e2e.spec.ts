@@ -66,6 +66,10 @@ describe('PornHub flow (e2e-like)', () => {
     expect(logo.element.style.fontFamily).toContain('Inter')
 
     // Adjust colors
+    // Enable left background picker then adjust colors
+    const leftBgToggle = wrapper.find('input[type="checkbox"]')
+    await leftBgToggle.setValue(true)
+
     const colorInputs = wrapper.findAll('input[type="color"]')
     expect(colorInputs.length).toBeGreaterThanOrEqual(4)
 
