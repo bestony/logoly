@@ -49,7 +49,7 @@ const flatOptions = computed<FontOption[]>(() =>
 const groupedOptions = computed<FontGroup[]>(() => {
   const map = new Map<string, FontGroup>()
   fonts.value.forEach((font) => {
-    const category = font.category || 'Other'
+    const category = (font.category || 'Other').toUpperCase()
     if (!map.has(category)) {
       map.set(category, { category, fonts: [] })
     }
@@ -382,7 +382,6 @@ onMounted(() => {
   border-radius: 10px;
   border: 1px solid #3d3d3d;
   background: #1f1f1f;
-  color: #f5f5f5;
   padding: 0 12px;
   font-size: 13px;
   outline: none;
@@ -440,12 +439,8 @@ onMounted(() => {
   min-height: 40px;
 }
 
-:deep(.multiselect__single) {
-  color: #f5f5f5;
-}
-
 :deep(.multiselect__input) {
-  color: #f5f5f5;
+
   background: transparent;
 }
 
@@ -463,7 +458,9 @@ onMounted(() => {
 :deep(.multiselect__group) {
   padding: 4px 10px;
   color: #b7bdc7;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 :deep(.multiselect__option) {
