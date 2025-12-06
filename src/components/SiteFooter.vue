@@ -13,7 +13,10 @@ const versionSuffix =
       : // biome-ignore lint/correctness/noUndeclaredVariables: injected via Vite define
         __GIT_SHA__ || 'unknown'
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const versionLabel = `v1.0.0-${versionSuffix}`
+// biome-ignore lint/correctness/noUndeclaredVariables: injected via Vite define
+const appVersion = __APP_VERSION__ || '0.0.0'
+// biome-ignore lint/correctness/noUnusedVariables: used in template
+const versionLabel = `v${appVersion}-${versionSuffix}`
 const currentYear = new Date().getFullYear()
 const { t, te } = useI18n()
 const COPYRIGHT_KEY = 'component.siteFooter.copyright'

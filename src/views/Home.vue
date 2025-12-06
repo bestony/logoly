@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import PornHub from '@/components/LogoEditor/PornHub.vue'
@@ -8,7 +8,7 @@ import { type DownloadFormat, downloadAsZip, downloadImage } from '@/utils/downl
 
 type DownloadOptions = { pixelRatio?: number; backgroundColor?: string; quality?: number }
 type LogoRef = {
-  captureEl: HTMLElement | null
+  captureEl: Ref<HTMLElement | null> | HTMLElement | null
   getDownloadOptions: (format?: DownloadFormat) => DownloadOptions
   getFileBaseName: () => string
 } | null
@@ -20,7 +20,18 @@ const { t } = useI18n()
 
 const DEFAULT_OPTIONS = { pixelRatio: 2, backgroundColor: '#000000', quality: 0.92 } as const
 
-const getTarget = () => pornHubRef.value?.captureEl ?? null
+const resolveCaptureEl = (
+  captureEl: Ref<HTMLElement | null> | HTMLElement | null | undefined,
+) => {
+  if (!captureEl) return null
+  if (!(captureEl instanceof HTMLElement) && 'value' in (captureEl as Ref<HTMLElement | null>)) {
+    return (captureEl as Ref<HTMLElement | null>).value
+  }
+  return captureEl as HTMLElement | null
+}
+
+const getTarget = () => resolveCaptureEl(pornHubRef.value?.captureEl)
+const isCanvasReady = computed(() => Boolean(getTarget()))
 const getOptions = (format?: DownloadFormat) =>
   pornHubRef.value?.getDownloadOptions(format) ?? DEFAULT_OPTIONS
 const getBaseName = () => pornHubRef.value?.getFileBaseName() ?? 'logoly'
@@ -41,6 +52,7 @@ const handleSingleDownload = (format: DownloadFormat) =>
       })
     },
     t('page.home.errors.downloadFail'),
+    t('page.home.errors.canvasNotReady'),
   )
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
@@ -59,6 +71,7 @@ const handleZipDownload = () =>
       })
     },
     t('page.home.errors.zipFail'),
+    t('page.home.errors.canvasNotReady'),
   )
 </script>
 
@@ -73,7 +86,7 @@ const handleZipDownload = () =>
         <button
           type="button"
           class="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 font-semibold text-black transition hover:bg-orange-500 disabled:cursor-not-allowed disabled:opacity-70"
-          :disabled="isDownloading"
+          :disabled="isDownloading || !isCanvasReady"
           @click="handleSingleDownload('png')"
         >
           <span>
@@ -87,7 +100,7 @@ const handleZipDownload = () =>
         <button
           type="button"
           class="inline-flex items-center gap-2 rounded-lg border border-orange-400 px-4 py-2 font-semibold text-orange-200 transition hover:bg-orange-500/10 disabled:cursor-not-allowed disabled:opacity-70"
-          :disabled="isDownloading"
+          :disabled="isDownloading || !isCanvasReady"
           @click="handleSingleDownload('jpeg')"
         >
           <span>
@@ -101,7 +114,7 @@ const handleZipDownload = () =>
         <button
           type="button"
           class="inline-flex items-center gap-2 rounded-lg border border-gray-500 px-4 py-2 font-semibold text-gray-100 transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-70"
-          :disabled="isDownloading"
+          :disabled="isDownloading || !isCanvasReady"
           @click="handleSingleDownload('svg')"
         >
           <span>
@@ -115,7 +128,7 @@ const handleZipDownload = () =>
         <button
           type="button"
           class="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 font-semibold text-black transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-70"
-          :disabled="isDownloading"
+          :disabled="isDownloading || !isCanvasReady"
           @click="handleZipDownload"
         >
           <span>

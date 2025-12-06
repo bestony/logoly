@@ -8,8 +8,18 @@ type Task = () => Promise<void>
  * Reusable across pages to avoid duplicating toggles and error wiring.
  */
 export const useDownloadTask = (isDownloading: Ref<boolean>, errorMessage: Ref<string | null>) => {
-  const runDownload = async (guard: Guard, task: Task, failMessage: string) => {
-    if (isDownloading.value || !guard()) {
+  const runDownload = async (
+    guard: Guard,
+    task: Task,
+    failMessage: string,
+    guardFailMessage?: string,
+  ) => {
+    if (isDownloading.value) {
+      return
+    }
+
+    if (!guard()) {
+      errorMessage.value = guardFailMessage ?? failMessage
       return
     }
 

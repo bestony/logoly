@@ -110,6 +110,7 @@ export default {
       errors: {
         downloadFail: 'ダウンロードに失敗しました。もう一度お試しください。',
         zipFail: 'ZIP 作成に失敗しました。もう一度お試しください。',
+        canvasNotReady: 'キャンバスを準備しています。少し待ってから再度お試しください。',
       },
     },
     verticalPh: {

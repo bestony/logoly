@@ -112,6 +112,7 @@ export default {
       errors: {
         downloadFail: 'Échec du téléchargement, réessayez plus tard.',
         zipFail: 'Échec de l’archive ZIP, réessayez plus tard.',
+        canvasNotReady: 'La zone de dessin se charge encore, patientez un instant.',
       },
     },
     verticalPh: {

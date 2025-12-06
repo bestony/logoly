@@ -110,6 +110,7 @@ export default {
       errors: {
         downloadFail: 'La descarga falló, inténtalo de nuevo.',
         zipFail: 'La exportación ZIP falló, inténtalo de nuevo.',
+        canvasNotReady: 'El lienzo aún se está cargando, espera un momento.',
       },
     },
     verticalPh: {

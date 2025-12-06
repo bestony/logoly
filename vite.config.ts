@@ -1,5 +1,6 @@
 import { execSync } from 'node:child_process'
 import { fileURLToPath, URL } from 'node:url'
+import { readFileSync } from 'node:fs'
 import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vite'
@@ -11,6 +12,17 @@ const gitSha = (() => {
   } catch (error) {
     console.warn('[vite] Unable to read git SHA, falling back to "unknown"', error)
     return 'unknown'
+  }
+})()
+
+const appVersion = (() => {
+  try {
+    const packageJsonUrl = new URL('./package.json', import.meta.url)
+    const packageJson = JSON.parse(readFileSync(packageJsonUrl, 'utf-8')) as { version?: string }
+    return packageJson.version ?? '0.0.0'
+  } catch (error) {
+    console.warn('[vite] Unable to read package version, falling back to "0.0.0"', error)
+    return '0.0.0'
   }
 })()
 
@@ -30,6 +42,8 @@ export default defineConfig(({ mode }) => {
       __GIT_SHA__: JSON.stringify(gitSha),
       // biome-ignore lint/style/useNamingConvention: global compile-time constants
       __APP_MODE__: JSON.stringify(mode),
+      // biome-ignore lint/style/useNamingConvention: global compile-time constants
+      __APP_VERSION__: JSON.stringify(appVersion),
     },
     build: {
       cssCodeSplit: true,

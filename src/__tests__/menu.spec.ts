@@ -32,7 +32,7 @@ describe('Menu', () => {
     const router = createTestRouter()
     await router.push('/')
     await router.isReady()
-    const pushSpy = vi.spyOn(router, 'push')
+    const pushSpy = vi.spyOn(router, 'push').mockResolvedValue('/vertical-ph' as never)
 
     const wrapper = mount(Menu, {
       global: { plugins: [router, i18n, createPinia()] },
@@ -48,7 +48,7 @@ describe('Menu', () => {
     const router = createTestRouter()
     await router.push('/')
     await router.isReady()
-    const pushSpy = vi.spyOn(router, 'push')
+    const pushSpy = vi.spyOn(router, 'push').mockResolvedValue('/sega' as never)
 
     const wrapper = mount(Menu, {
       global: { plugins: [router, i18n, createPinia()] },
@@ -122,7 +122,7 @@ describe('Menu', () => {
     const router = createTestRouter()
     await router.push('/')
     await router.isReady()
-    const pushSpy = vi.spyOn(router, 'push')
+    const pushSpy = vi.spyOn(router, 'push').mockResolvedValue('/vertical-ph' as never)
 
     const wrapper = mount(Menu, {
       global: { plugins: [router, i18n, createPinia()] },

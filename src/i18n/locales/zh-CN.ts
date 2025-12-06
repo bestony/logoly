@@ -109,6 +109,7 @@ export default {
       errors: {
         downloadFail: '下载失败，请稍后重试。',
         zipFail: '打包失败，请稍后重试。',
+        canvasNotReady: '画布尚未加载，请稍候。',
       },
     },
     verticalPh: {

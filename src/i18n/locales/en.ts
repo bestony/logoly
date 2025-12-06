@@ -109,6 +109,7 @@ export default {
       errors: {
         downloadFail: 'Download failed, please try again later.',
         zipFail: 'ZIP export failed, please try again later.',
+        canvasNotReady: 'Canvas is still loading—please wait a moment.',
       },
     },
     verticalPh: {

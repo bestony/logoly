@@ -1,6 +1,9 @@
 import { mount } from '@vue/test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import packageJson from '../../package.json' assert { type: 'json' }
 import { i18n } from '../i18n'
+
+const appVersion = packageJson.version ?? '0.0.0'
 
 const mountFooter = async () => {
   const SiteFooter = (await import('../components/SiteFooter.vue')).default
@@ -23,7 +26,7 @@ describe('SiteFooter', () => {
     const wrapper = await mountFooter()
     const year = new Date().getFullYear().toString()
     expect(wrapper.text()).toContain(`© ${year} Logoly`)
-    expect(wrapper.text()).toContain('v1.0.0-test')
+    expect(wrapper.text()).toContain(`v${appVersion}-test`)
 
     const links = wrapper.findAll('a')
     const hrefs = links.map((link) => link.attributes('href'))
@@ -37,7 +40,7 @@ describe('SiteFooter', () => {
     vi.stubEnv('MODE', 'development')
     vi.stubEnv('DEV', true)
     const wrapper = await mountFooter()
-    expect(wrapper.text()).toContain('v1.0.0-development')
+    expect(wrapper.text()).toContain(`v${appVersion}-development`)
   })
 
   it('falls back to git SHA in production mode', async () => {
@@ -47,7 +50,7 @@ describe('SiteFooter', () => {
     ;(globalThis as { __GIT_SHA__?: string }).__GIT_SHA__ = 'abcdef'
 
     const wrapper = await mountFooter()
-    expect(wrapper.text()).toContain('v1.0.0-abcdef')
+    expect(wrapper.text()).toContain(`v${appVersion}-abcdef`)
   })
 
   it('uses unknown suffix when git SHA is missing in production', async () => {
@@ -57,7 +60,7 @@ describe('SiteFooter', () => {
     ;(globalThis as { __GIT_SHA__?: string }).__GIT_SHA__ = ''
 
     const wrapper = await mountFooter()
-    expect(wrapper.text()).toContain('v1.0.0-unknown')
+    expect(wrapper.text()).toContain(`v${appVersion}-unknown`)
   })
 
   it('falls back to a plain copyright string when the locale key is missing', async () => {

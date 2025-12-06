@@ -13,6 +13,7 @@ describe('Menu analytics', () => {
     const router = createTestRouter()
     await router.push('/')
     await router.isReady()
+    vi.spyOn(router, 'push').mockResolvedValue('/sega' as never)
 
     const wrapper = mount(Menu, {
       global: { plugins: [router, i18n, createPinia()] },
