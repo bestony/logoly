@@ -1,19 +1,30 @@
 <template>
   <div class="container">
-    <div class="preview-card">
+    <div
+      class="preview-card"
+      :style="{ backgroundColor: isTransparentBg ? 'transparent' : previewBgColor }"
+    >
       <div ref="captureEl" class="logo-wrapper">
         <span
           ref="leftEl"
           class="text-part left-text"
           contenteditable="true"
           spellcheck="false"
+          :style="{
+            color: leftTextColor,
+            backgroundColor: leftBgColor,
+          }"
           @input="onLeftInput"
         ></span>
 
         <span
           ref="rightEl"
           class="text-part right-text"
-          :style="{ backgroundColor: themeColor }"
+          :style="{
+            backgroundColor: themeColor,
+            color: rightTextColor,
+            border: themeColor === 'transparent' ? '1px dashed #666' : 'none',
+          }"
           contenteditable="true"
           spellcheck="false"
           @input="onRightInput"
@@ -22,10 +33,47 @@
     </div>
 
     <div class="controls">
-      <label class="color-picker-label">
-        Pick a color you like
-        <input type="color" v-model="themeColor" class="color-input" />
-      </label>
+      <div class="control-group">
+        <p class="group-title">文本颜色</p>
+        <div class="control-grid">
+          <label class="color-picker-label">
+            左侧背景
+            <input type="color" v-model="leftBgColor" class="color-input" />
+          </label>
+          <label class="color-picker-label">
+            左侧文字颜色
+            <input type="color" v-model="leftTextColor" class="color-input" />
+          </label>
+          <label class="color-picker-label">
+            右侧背景
+            <input type="color" v-model="themeColor" class="color-input" />
+          </label>
+          <label class="color-picker-label">
+            右侧文字颜色
+            <input type="color" v-model="rightTextColor" class="color-input" />
+          </label>
+
+        </div>
+      </div>
+
+      <div class="control-group">
+        <p class="group-title">画布背景色</p>
+        <div class="control-grid background-grid">
+          <label class="color-picker-label" :class="{ disabled: isTransparentBg }">
+            画布背景
+            <input
+              type="color"
+              v-model="previewBgColor"
+              class="color-input"
+              :disabled="isTransparentBg"
+            />
+          </label>
+          <label class="toggle">
+            <input v-model="isTransparentBg" type="checkbox" />
+            <span>透明画布背景（导出 PNG / SVG 可透明）</span>
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -38,9 +86,19 @@ const leftText = ref('edit')
 const rightText = ref('me')
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const themeColor = ref('#ff9900') // 经典的橙色 hex
+const rightTextColor = ref('#000000')
+const leftTextColor = ref('#ffffff')
+const leftBgColor = ref('#000000')
+const previewBgColor = ref('#000000')
+const isTransparentBg = ref(false)
 const captureEl = ref<HTMLElement | null>(null)
 const leftEl = ref<HTMLElement | null>(null)
 const rightEl = ref<HTMLElement | null>(null)
+const getDownloadOptions = () => ({
+  pixelRatio: 2,
+  backgroundColor: isTransparentBg.value ? 'transparent' : previewBgColor.value,
+  quality: 0.92,
+})
 
 // 避免 Vue 重新渲染 contenteditable 导致光标跳到开头，初始内容手动写入
 onMounted(() => {
@@ -67,7 +125,7 @@ const onRightInput = (e: Event) => {
   rightText.value = target?.innerText ?? ''
 }
 
-defineExpose({ captureEl })
+defineExpose({ captureEl, getDownloadOptions })
 </script>
 
 <style scoped>
@@ -122,8 +180,11 @@ defineExpose({ captureEl })
 /* 底部控制器样式 */
 .controls {
   background: #333;
-  padding: 10px 20px;
+  padding: 14px 20px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .color-picker-label {
@@ -141,5 +202,46 @@ defineExpose({ captureEl })
   height: 30px;
   cursor: pointer;
   background: none;
+}
+
+.control-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  align-items: center;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.group-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #f5f5f5;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #ccc;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: #ff9900;
+}
+
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }
 </style>
