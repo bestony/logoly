@@ -125,9 +125,10 @@ const handleLocaleChange = (code: string) => {
         <div class="flex items-center">
           <RouterLink
             to="/"
-            class="text-xl font-bold text-primary hover:text-primary/80 transition-colors"
+            class="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
           >
-            Logoly
+            <img src="/logoly.svg" alt="Logoly" class="h-8 w-auto" />
+            <span class="sr-only">Logoly</span>
           </RouterLink>
         </div>
         <div v-if="isMobile" class="flex items-center gap-2">
