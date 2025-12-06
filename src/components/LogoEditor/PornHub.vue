@@ -117,131 +117,41 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import FontPicker from '@/components/FontPicker.vue'
+import { useLogoEditor } from '@/composables/useLogoEditor'
 
 const { t } = useI18n()
 
-// 1. 定义响应式状态
-const leftText = ref('Edit')
-const rightText = ref('me')
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const themeColor = ref('#ff9900')
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const rightTextColor = ref('#000000')
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const leftTextColor = ref('#ffffff')
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const leftBgColor = ref<string>('transparent')
-const lastLeftBgColor = ref('#000000')
-const previewBgColor = ref('#000000')
-const isTransparentBg = ref(false)
-const isPureBlackPreview = ref(true)
-const fontFamily = ref('')
-const fontVariant = ref('regular')
-const fontSize = ref(60)
-const captureEl = ref<HTMLElement | null>(null)
-const leftEl = ref<HTMLElement | null>(null)
-const rightEl = ref<HTMLElement | null>(null)
-const isLeftBgVisible = computed<boolean>({
-  get: () => leftBgColor.value !== 'transparent',
-  set: (value) => {
-    if (value) {
-      leftBgColor.value = lastLeftBgColor.value
-      return
-    }
-
-    lastLeftBgColor.value =
-      leftBgColor.value === 'transparent' ? lastLeftBgColor.value : leftBgColor.value
-    leftBgColor.value = 'transparent'
-  },
-})
-
-const resolveBg = (format?: 'png' | 'jpeg' | 'svg') =>
-  isTransparentBg.value && format !== 'jpeg' ? 'transparent' : previewBgColor.value
-
-const getDownloadOptions = (format?: 'png' | 'jpeg' | 'svg') => ({
-  pixelRatio: 2,
-  backgroundColor: resolveBg(format),
-  quality: 0.92,
-})
-
-const sanitizeFileName = (value: string) => {
-  const cleaned = value
-    .trim()
-    .replace(/\s+/g, '-') // collapse whitespace to single dash
-    .replace(/[\\/:*?"<>|]/g, '') // strip illegal path characters
-  return cleaned.length ? cleaned : 'logoly'
-}
-
-const getFileBaseName = () => {
-  const leftContent = leftEl.value?.textContent ?? leftText.value ?? ''
-  const rightContent = rightEl.value?.textContent ?? rightText.value ?? ''
-
-  return sanitizeFileName(`${leftContent}${rightContent}`)
-}
-
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const activeFontFamily = computed(() =>
-  fontFamily.value?.length
-    ? `${fontFamily.value}, sans-serif`
-    : "Inter, 'Noto Sans', var(--logoly-font-family), sans-serif",
-)
-
-const fontSizePx = computed(() => `${fontSize.value}px`)
-const captureBgColor = computed(() => resolveBg())
-
-const previewCardStyle = computed(() => {
-  if (isTransparentBg.value) {
-    return { background: 'transparent' }
-  }
-
-  if (isPureBlackPreview.value) {
-    return { background: '#000000' }
-  }
-
-  return { background: previewBgColor.value }
-})
-
-watch(leftBgColor, (newColor) => {
-  if (newColor !== 'transparent') {
-    lastLeftBgColor.value = newColor
-  }
-})
-
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const handleFontChange = (payload: { family: string; variant: string }) => {
-  fontFamily.value = payload.family
-  fontVariant.value = payload.variant
-}
-
-// 避免 Vue 重新渲染 contenteditable 导致光标跳到开头，初始内容手动写入
-onMounted(() => {
-  if (leftEl.value) {
-    leftEl.value.textContent = leftText.value
-  }
-
-  if (rightEl.value) {
-    rightEl.value.textContent = rightText.value
-  }
-})
-
-// 2. 处理 contenteditable 的输入更新
-// 注意：contenteditable 元素不支持 v-model，需要手动监听 input 事件
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const onLeftInput = (e: Event) => {
-  const target = e.target as HTMLElement | null
-  leftText.value = target?.textContent ?? ''
-}
-
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const onRightInput = (e: Event) => {
-  const target = e.target as HTMLElement | null
-  rightText.value = target?.textContent ?? ''
-}
+const {
+  leftText,
+  rightText,
+  themeColor,
+  rightTextColor,
+  leftTextColor,
+  leftBgColor,
+  isLeftBgVisible,
+  previewBgColor,
+  isTransparentBg,
+  isPureBlackPreview,
+  fontFamily,
+  fontVariant,
+  fontSize,
+  captureEl,
+  leftEl,
+  rightEl,
+  activeFontFamily,
+  fontSizePx,
+  captureBgColor,
+  previewCardStyle,
+  getDownloadOptions,
+  getFileBaseName,
+  handleFontChange,
+  onLeftInput,
+  onRightInput,
+} = useLogoEditor({ initialFontSize: 60 })
 
 defineExpose({
   captureEl,
