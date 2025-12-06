@@ -38,7 +38,7 @@
 
     <div class="controls">
       <div class="control-group">
-        <p class="group-title">字体 Font</p>
+        <p class="group-title">{{ t('component.pornhub.fontFamily') }}</p>
         <FontPicker
           v-model="fontFamily"
           v-model:variant="fontVariant"
@@ -63,22 +63,22 @@
       </div>
 
       <div class="control-group">
-        <p class="group-title">文本颜色</p>
+        <p class="group-title">{{ t('component.pornhub.textColor') }}</p>
         <div class="control-grid">
           <label class="color-picker-label">
-            左侧背景
+            {{ t('component.pornhub.leftBg') }}
             <input type="color" v-model="leftBgColor" class="color-input" />
           </label>
           <label class="color-picker-label">
-            左侧文字颜色
+            {{ t('component.pornhub.leftTextColor') }}
             <input type="color" v-model="leftTextColor" class="color-input" />
           </label>
           <label class="color-picker-label">
-            右侧背景
+            {{ t('component.pornhub.rightBg') }}
             <input type="color" v-model="themeColor" class="color-input" />
           </label>
           <label class="color-picker-label">
-            右侧文字颜色
+            {{ t('component.pornhub.rightTextColor') }}
             <input type="color" v-model="rightTextColor" class="color-input" />
           </label>
 
@@ -86,10 +86,10 @@
       </div>
 
       <div class="control-group">
-        <p class="group-title">画布背景色</p>
+        <p class="group-title">{{ t('component.pornhub.canvas') }}</p>
         <div class="control-grid background-grid">
           <label class="color-picker-label" :class="{ disabled: isTransparentBg }">
-            画布背景
+            {{ t('component.pornhub.canvasBg') }}
             <input
               type="color"
               v-model="previewBgColor"
@@ -99,7 +99,7 @@
           </label>
           <label class="toggle">
             <input v-model="isTransparentBg" type="checkbox" />
-            <span>透明画布背景（导出 PNG / SVG 可透明）</span>
+            <span>{{ t('component.pornhub.transparentHint') }}</span>
           </label>
         </div>
       </div>
