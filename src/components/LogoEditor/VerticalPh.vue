@@ -124,8 +124,8 @@ import FontPicker from '@/components/FontPicker.vue'
 
 const { t } = useI18n()
 
-const leftText = ref('Porn')
-const rightText = ref('hub')
+const leftText = ref('Edit')
+const rightText = ref('me')
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const themeColor = ref('#ff9900')
 // biome-ignore lint/correctness/noUnusedVariables: used in template
