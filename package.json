@@ -13,13 +13,7 @@
   },
   "license": "WTFPL",
   "author": "Bestony",
-  "keywords": [
-    "logo",
-    "generator",
-    "pornhub",
-    "vue",
-    "vite"
-  ],
+  "keywords": ["logo", "generator", "pornhub", "vue", "vite"],
   "homepage": "https://github.com/bestony/logoly#readme",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"

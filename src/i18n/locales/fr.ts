@@ -75,7 +75,8 @@ export default {
       missingKey: 'Ajoutez VITE_GOOGLE_FONT_KEY dans .env pour activer Google Fonts.',
       fetchError: 'Impossible de charger les polices. Vérifiez la clé API ou le réseau.',
       count: '{count} polices',
-      capability: 'Compatible polices variables (VF) et WOFF2, appliquées seulement à la prévisualisation.',
+      capability:
+        'Compatible polices variables (VF) et WOFF2, appliquées seulement à la prévisualisation.',
     },
   },
   page: {

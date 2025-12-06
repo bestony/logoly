@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
+// biome-ignore lint/correctness/noUnusedVariables: t is consumed in the template
 const { t } = useI18n()
 </script>
 
