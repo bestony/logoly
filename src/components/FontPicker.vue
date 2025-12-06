@@ -300,7 +300,7 @@ onMounted(() => {
 
 </template>
 
-<style>
+<style scoped>
 .fp-grid {
   margin-top: 4px;
   display: grid;
@@ -366,24 +366,27 @@ onMounted(() => {
 }
 
 :deep(.multiselect) {
-  background: #111;
-  border: none;
+  background: #0f0f0f !important;
+  border: 1px solid #2d2d2d !important;
   border-radius: 12px;
-  min-height: 42px;
-  box-shadow: 0 0 0 1px #2b2b2b;
+  min-height: 40px;
+  box-shadow: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
   font-family: var(--logoly-font-family, 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif);
 }
 
 :deep(.multiselect__tags) {
   border: none;
   background: transparent;
-  padding: 8px 12px;
-  min-height: 42px;
-  color: #f4f4f4;
+  padding: 0 12px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  color: #f6f6f6;
 }
 
 :deep(.multiselect__single) {
-  color: #ff9900;
+  color: #f6f6f6;
   background: transparent;
 }
 
@@ -394,6 +397,13 @@ onMounted(() => {
 
 :deep(.multiselect__placeholder) {
   color: #d2d6de;
+}
+
+:deep(.multiselect__select) {
+  border: none;
+  width: 36px;
+  height: 40px;
+  background: transparent;
 }
 
 :deep(.multiselect__content-wrapper) {
@@ -432,7 +442,9 @@ onMounted(() => {
   color: #6b7280;
 }
 
-:deep(.multiselect:focus-within) {
+:deep(.multiselect:focus-within),
+:deep(.multiselect.multiselect--active) {
+  border-color: #ff9900 !important;
   box-shadow: 0 0 0 1px #ff9900;
 }
 </style>
