@@ -279,7 +279,7 @@ defineExpose({ captureEl, getDownloadOptions })
   color: #000;
   padding: 6px 12px; /* 上下左右的内边距 */
   border-radius: 7px; /* 介于 6-8px 之间，更贴近官方比例 */
-  margin-left: -2px; /* 微调字距，让块更贴近左侧文字 */
+  transform: translateX(10px); /* 微调字距，避免导出裁切 margin */
   transition: background-color 0.2s;
 }
 
