@@ -174,13 +174,14 @@ defineExpose({ captureEl, getDownloadOptions })
 
 /* Logo 核心布局 */
 .logo-wrapper {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 60px; /* 根据需要调整大小 */
   font-weight: 700;
   line-height: 1;
-  gap: 4px; /* 两个单词之间的微小间距 */
+  gap: 0; /* 使用 margin 确保导出与预览一致 */
+  width: fit-content;
 }
 
 /* 通用文字样式 */
@@ -194,6 +195,7 @@ defineExpose({ captureEl, getDownloadOptions })
 /* 左侧文字 */
 .left-text {
   color: #fff;
+  margin-right: 6px; /* 与预览保持一致且兼容 html-to-image */
 }
 
 /* 右侧文字 (带背景的) */
