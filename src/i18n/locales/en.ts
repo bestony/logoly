@@ -92,6 +92,17 @@ export default {
       transparentHint: 'Transparent canvas (PNG / SVG keep transparency)',
       fontSize: 'Font size',
     },
+    simpleText: {
+      previewTitle: 'Preview',
+      controlsTitle: 'Typography controls',
+      controlsHint: 'Tweak the wordmark below and see changes instantly above.',
+      textLabel: 'Text',
+      textPlaceholder: 'Type anything…',
+      fontSize: 'Font size',
+      textColor: 'Text color',
+      fontTitle: 'Font & variant',
+      fontHint: 'Loads Google Fonts on demand; variants auto-apply weight or italics.',
+    },
   },
   page: {
     app: {
@@ -118,6 +129,12 @@ export default {
     verticalPh: {
       title: 'Vertical PH',
       description: 'Vertical Pornhub-style logo template page.',
+    },
+    simpleText: {
+      title: 'Simple Text',
+      description:
+        'Create a clean single-line wordmark with custom font, variant, size, and color.',
+      defaultText: 'Simple Text',
     },
     onlyfans: {
       title: 'OnlyFans',

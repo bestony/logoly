@@ -94,6 +94,17 @@ export default {
       transparentHint: 'Lienzo transparente (PNG / SVG mantienen transparencia)',
       fontSize: 'Tamaño de fuente',
     },
+    simpleText: {
+      previewTitle: 'Previsualización',
+      controlsTitle: 'Controles tipográficos',
+      controlsHint: 'Ajusta el texto abajo y verás los cambios al instante arriba.',
+      textLabel: 'Texto',
+      textPlaceholder: 'Escribe algo…',
+      fontSize: 'Tamaño de fuente',
+      textColor: 'Color de texto',
+      fontTitle: 'Fuente y variante',
+      fontHint: 'Carga Google Fonts bajo demanda; las variantes aplican peso / cursiva.',
+    },
   },
   page: {
     app: {
@@ -120,6 +131,12 @@ export default {
     verticalPh: {
       title: 'Pornhub vertical',
       description: 'Página de plantilla de logo estilo Pornhub vertical.',
+    },
+    simpleText: {
+      title: 'Simple Text',
+      description:
+        'Crea un wordmark de una línea con fuente, variante, tamaño y color personalizados.',
+      defaultText: 'Simple Text',
     },
     onlyfans: {
       title: 'OnlyFans',

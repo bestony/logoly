@@ -33,7 +33,7 @@ const cases: ViewCase[] = [
   { component: FedEx, title: () => i18n.global.t('page.fedex.title') },
   { component: Mastercard, title: () => i18n.global.t('page.mastercard.title') },
   { component: Bluesnap, title: () => i18n.global.t('page.bluesnap.title') },
-  { component: SimpleText, title: 'Simple Text' },
+  { component: SimpleText, title: () => i18n.global.t('page.simpleText.title') },
   { component: SEGA, title: () => i18n.global.t('page.sega.title') },
   { component: Nintendo, title: () => i18n.global.t('page.nintendo.title') },
   { component: Lego, title: () => i18n.global.t('page.lego.title') },

@@ -95,6 +95,17 @@ export default {
       transparentHint: 'Canevas transparent (PNG / SVG conservent la transparence)',
       fontSize: 'Taille de police',
     },
+    simpleText: {
+      previewTitle: 'Aperçu',
+      controlsTitle: 'Réglages typographiques',
+      controlsHint: 'Ajustez le mot ci-dessous, la prévisualisation se met à jour instantanément.',
+      textLabel: 'Texte',
+      textPlaceholder: 'Saisissez votre texte…',
+      fontSize: 'Taille de police',
+      textColor: 'Couleur du texte',
+      fontTitle: 'Police et variante',
+      fontHint: 'Charge Google Fonts à la demande ; les variantes appliquent poids / italique.',
+    },
   },
   page: {
     app: {
@@ -121,6 +132,12 @@ export default {
     verticalPh: {
       title: 'Pornhub vertical',
       description: 'Page de modèle de logo style Pornhub vertical.',
+    },
+    simpleText: {
+      title: 'Simple Text',
+      description:
+        'Créez un wordmark mono-ligne épuré avec police, variante, taille et couleur sur mesure.',
+      defaultText: 'Simple Text',
     },
     onlyfans: {
       title: 'OnlyFans',

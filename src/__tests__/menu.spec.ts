@@ -20,7 +20,7 @@ describe('Menu', () => {
     expect(labels.slice(0, 6)).toEqual([
       'PornHub',
       'Vertical PH',
-      'OnlyFans',
+      'Simple Text',
       'More',
       'About',
       'FAQ',
@@ -59,8 +59,8 @@ describe('Menu', () => {
     await dropdownButton?.trigger('click')
     await flushPromises()
 
-    const otherItem = wrapper.findAll('button').find((button) => button.text() === 'SEGA')
-    expect(otherItem).toBeTruthy()
+    const otherItem = wrapper.findAll('button').find((button) => button.text().includes('SEGA'))
+    expect(otherItem?.text()).toContain('SEGA')
     await otherItem?.trigger('click')
     await flushPromises()
 
@@ -80,10 +80,11 @@ describe('Menu', () => {
     await dropdownButton?.trigger('click')
     await flushPromises()
 
+    const buildingLabel = i18n.global.t('component.menu.badge.building')
     const dropdownItems = wrapper
       .findAll('button')
-      .filter((button) => otherLabels.includes(button.text()))
-      .map((button) => button.text())
+      .map((button) => button.text().replace(buildingLabel, '').trim())
+      .filter((text) => otherLabels.includes(text))
 
     expect(dropdownItems).toEqual(otherLabels)
   })
@@ -157,7 +158,7 @@ describe('Menu', () => {
 })
 
 const otherLabels = [
-  'Simple Text',
+  'OnlyFans',
   'FedEx',
   'Mastercard',
   'Bluesnap',

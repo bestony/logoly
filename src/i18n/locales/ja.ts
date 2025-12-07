@@ -94,6 +94,17 @@ export default {
       transparentHint: '透明キャンバス（PNG / SVG も透明を保持）',
       fontSize: 'フォントサイズ',
     },
+    simpleText: {
+      previewTitle: 'プレビュー',
+      controlsTitle: 'タイポ設定',
+      controlsHint: '下のコントロールで文字を調整すると、上のプレビューが即座に更新されます。',
+      textLabel: 'テキスト',
+      textPlaceholder: '入力してください…',
+      fontSize: 'フォントサイズ',
+      textColor: '文字色',
+      fontTitle: 'フォントとバリアント',
+      fontHint: 'Google Fonts をオンデマンドで読み込み、バリアントでウェイト/イタリックを適用します。',
+    },
   },
   page: {
     app: {
@@ -120,6 +131,12 @@ export default {
     verticalPh: {
       title: '縦型 Pornhub',
       description: '縦型の Pornhub 風ロゴテンプレートページです。',
+    },
+    simpleText: {
+      title: 'Simple Text',
+      description:
+        'フォント・バリアント・サイズ・カラーを自由に設定したシンプルな1行ロゴを作成します。',
+      defaultText: 'Simple Text',
     },
     onlyfans: {
       title: 'OnlyFans',

@@ -92,6 +92,17 @@ export default {
       transparentHint: '透明画布背景（导出 PNG / SVG 可透明）',
       fontSize: '字体大小',
     },
+    simpleText: {
+      previewTitle: '预览',
+      controlsTitle: '排版调节',
+      controlsHint: '在下方调整文字，预览会即时同步更新。',
+      textLabel: '文字',
+      textPlaceholder: '输入想要的文案…',
+      fontSize: '字号',
+      textColor: '文字颜色',
+      fontTitle: '字体与变体',
+      fontHint: '按需加载 Google Fonts，字重 / 斜体一键切换。',
+    },
   },
   page: {
     app: {
@@ -118,6 +129,11 @@ export default {
     verticalPh: {
       title: '垂直版 PornHub',
       description: '垂直版 PornHub 风格 Logo 模板页面。',
+    },
+    simpleText: {
+      title: 'Simple Text',
+      description: '制作单行文字标识，支持自定义字体、字重、字号和颜色。',
+      defaultText: 'Simple Text',
     },
     onlyfans: {
       title: 'OnlyFans',
