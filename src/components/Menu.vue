@@ -47,16 +47,36 @@ const languageOptions: LanguageOption[] = [
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const otherItems = [
-  { name: 'component.menu.onlyfans', path: '/onlyfans', routeName: 'onlyfans' },
-  { name: 'component.menu.fedex', path: '/fedex', routeName: 'fedex' },
-  { name: 'component.menu.mastercard', path: '/mastercard', routeName: 'mastercard' },
-  { name: 'component.menu.bluesnap', path: '/bluesnap', routeName: 'bluesnap' },
-  { name: 'component.menu.sega', path: '/sega', routeName: 'sega' },
-  { name: 'component.menu.nintendo', path: '/nintendo', routeName: 'nintendo' },
-  { name: 'component.menu.lego', path: '/lego', routeName: 'lego' },
-  { name: 'component.menu.marvel', path: '/marvel', routeName: 'marvel' },
-  { name: 'component.menu.bravo', path: '/bravo', routeName: 'bravo' },
-  { name: 'component.menu.amc', path: '/amc', routeName: 'amc' },
+  {
+    name: 'component.menu.onlyfans',
+    path: '/onlyfans',
+    routeName: 'onlyfans',
+    badge: 'component.menu.badge.building',
+  },
+  { name: 'component.menu.fedex', path: '/fedex', routeName: 'fedex', badge: 'component.menu.badge.building' },
+  {
+    name: 'component.menu.mastercard',
+    path: '/mastercard',
+    routeName: 'mastercard',
+    badge: 'component.menu.badge.building',
+  },
+  {
+    name: 'component.menu.bluesnap',
+    path: '/bluesnap',
+    routeName: 'bluesnap',
+    badge: 'component.menu.badge.building',
+  },
+  { name: 'component.menu.sega', path: '/sega', routeName: 'sega', badge: 'component.menu.badge.building' },
+  {
+    name: 'component.menu.nintendo',
+    path: '/nintendo',
+    routeName: 'nintendo',
+    badge: 'component.menu.badge.building',
+  },
+  { name: 'component.menu.lego', path: '/lego', routeName: 'lego', badge: 'component.menu.badge.building' },
+  { name: 'component.menu.marvel', path: '/marvel', routeName: 'marvel', badge: 'component.menu.badge.building' },
+  { name: 'component.menu.bravo', path: '/bravo', routeName: 'bravo', badge: 'component.menu.badge.building' },
+  { name: 'component.menu.amc', path: '/amc', routeName: 'amc', badge: 'component.menu.badge.building' },
 ]
 
 const isMobile = ref(false)
@@ -193,11 +213,17 @@ const handleLocaleChange = (code: string) => {
                       type="button"
                       :class="[
                         active ? 'bg-primary/20 text-primary' : 'text-gray-200',
-                        'block w-full text-left px-4 py-2 text-sm',
+                        'relative flex w-full items-center justify-between gap-2 text-left px-4 py-2 text-sm',
                       ]"
                       @click="handleOtherItemClick(item)"
                     >
-                      {{ t(item.name) }}
+                      <span>{{ t(item.name) }}</span>
+                      <span
+                        v-if="item.badge"
+                        class="pointer-events-none text-[9px] font-semibold uppercase tracking-wide text-orange-200 bg-orange-500/15 border border-orange-400/60 rounded px-1 py-[2px]"
+                      >
+                        {{ t(item.badge) }}
+                      </span>
                     </button>
                   </MenuItem>
                 </div>
@@ -299,10 +325,16 @@ const handleLocaleChange = (code: string) => {
                 v-for="item in otherItems"
                 :key="item.routeName"
                 type="button"
-                class="w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer bg-gray-900/60 text-gray-200 hover:text-white hover:bg-gray-800"
+                class="w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer bg-gray-900/60 text-gray-200 hover:text-white hover:bg-gray-800 flex items-center justify-between gap-2"
                 @click="handleOtherItemClick(item)"
               >
-                {{ t(item.name) }}
+                <span>{{ t(item.name) }}</span>
+                <span
+                  v-if="item.badge"
+                  class="pointer-events-none text-[9px] font-semibold uppercase tracking-wide text-orange-200 bg-orange-500/15 border border-orange-400/60 rounded px-1 py-[2px]"
+                >
+                  {{ t(item.badge) }}
+                </span>
               </button>
             </div>
           </div>

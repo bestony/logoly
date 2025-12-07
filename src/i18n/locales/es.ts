@@ -26,6 +26,9 @@ export default {
       marvel: 'Marvel',
       bravo: 'Bravo',
       amc: 'AMC',
+      badge: {
+        building: 'en construcción',
+      },
     },
     errorBoundary: {
       defaultMessage: 'Ocurrió un error inesperado',

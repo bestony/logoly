@@ -26,6 +26,9 @@ export default {
       marvel: 'Marvel',
       bravo: 'Bravo',
       amc: 'AMC',
+      badge: {
+        building: '建设中',
+      },
     },
     errorBoundary: {
       defaultMessage: '出现意外错误',
