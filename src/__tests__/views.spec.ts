@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils'
+import { RouterLinkStub, mount } from '@vue/test-utils'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { i18n } from '../i18n'
 import About from '../views/About.vue'
@@ -30,7 +30,7 @@ const cases: ViewCase[] = [
   { component: OnlyFans, title: 'OnlyFans' },
   { component: About, title: () => i18n.global.t('page.about.title') },
   { component: FAQ, title: () => i18n.global.t('page.faq.title') },
-  { component: FedEx, title: 'FedEx' },
+  { component: FedEx, title: () => i18n.global.t('page.fedex.title') },
   { component: Mastercard, title: 'Mastercard' },
   { component: Bluesnap, title: 'Bluesnap' },
   { component: SimpleText, title: 'Simple Text' },
@@ -51,6 +51,9 @@ describe('Static views', () => {
     const wrapper = mount(component, {
       global: {
         plugins: [i18n],
+        stubs: {
+          RouterLink: RouterLinkStub,
+        },
       },
     })
     expect(wrapper.find('h1').text()).toBe(resolveTitle(title))

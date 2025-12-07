@@ -216,6 +216,31 @@ export default {
         },
       },
     },
+    fedex: {
+      title: 'FedEx',
+      status: 'En construction',
+      lead:
+        'Nous peaufinons le générateur de logo façon FedEx : palette, espacement et export sont en cours.',
+      note: 'Merci de votre patience ; en attendant, essayez les autres modèles.',
+      items: {
+        palette: {
+          title: 'Palette signature',
+          desc: 'Violet + orange FedEx avec échange instantané et conseils de contraste.',
+        },
+        spacing: {
+          title: 'Espacement prêt à livrer',
+          desc: 'Réglages de crénage et de baseline alignés sur le wordmark original.',
+        },
+        export: {
+          title: 'Exports propres',
+          desc: 'PNG/SVG/JPEG transparents, bords nets et paquets zip.',
+        },
+      },
+      actions: {
+        home: 'Retour à l’accueil',
+        progress: 'Suivre l’avancement sur GitHub',
+      },
+    },
     notFound: {
       title: 'Page introuvable, mais vos idées comptent',
       lead:

@@ -215,6 +215,31 @@ export default {
         },
       },
     },
+    fedex: {
+      title: 'FedEx',
+      status: 'En construcción',
+      lead:
+        'Estamos afinando el generador de logos estilo FedEx: colores, espaciado y exportaciones.',
+      note: 'Gracias por tu paciencia; mientras tanto prueba otras plantillas.',
+      items: {
+        palette: {
+          title: 'Paleta distintiva',
+          desc: 'Combinación púrpura + naranja de FedEx con cambio rápido y tips de contraste.',
+        },
+        spacing: {
+          title: 'Espaciado listo para entrega',
+          desc: 'Ajustes de kerning, línea base y alineación que siguen el wordmark original.',
+        },
+        export: {
+          title: 'Exportaciones limpias',
+          desc: 'PNG/SVG/JPEG transparentes con bordes nítidos y paquetes zip.',
+        },
+      },
+      actions: {
+        home: 'Volver al inicio',
+        progress: 'Seguir el progreso en GitHub',
+      },
+    },
     notFound: {
       title: 'Página no encontrada, pero tus ideas importan',
       lead:

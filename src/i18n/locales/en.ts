@@ -213,6 +213,31 @@ export default {
         },
       },
     },
+    fedex: {
+      title: 'FedEx',
+      status: 'Under construction',
+      lead:
+        'We are tuning the FedEx-style logo maker—colors, spacing, and exports are being polished.',
+      note: 'Thanks for your patience. You can use other templates while this one ships.',
+      items: {
+        palette: {
+          title: 'Signature palette',
+          desc: 'FedEx purple + orange pairing with one-click swap and contrast hints.',
+        },
+        spacing: {
+          title: 'Delivery-ready spacing',
+          desc: 'Kerning, baseline, and alignment presets that mirror the original wordmark.',
+        },
+        export: {
+          title: 'Clean exports',
+          desc: 'Transparent PNG/SVG/JPEG with crisp vector edges and zip bundles.',
+        },
+      },
+      actions: {
+        home: 'Back to home',
+        progress: 'Follow progress on GitHub',
+      },
+    },
     notFound: {
       title: 'Page not found, but your ideas matter',
       lead:

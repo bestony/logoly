@@ -212,6 +212,30 @@ export default {
         },
       },
     },
+    fedex: {
+      title: 'FedEx',
+      status: '正在施工',
+      lead: 'FedEx 风格的 Logo 编辑器正在打磨配色、字距和导出流程。',
+      note: '感谢耐心等待，期间可以先试试其他模板。',
+      items: {
+        palette: {
+          title: '品牌配色校准',
+          desc: 'FedEx 紫 + 橙组合，一键切换并提示对比度。',
+        },
+        spacing: {
+          title: '字距与对齐',
+          desc: '提供接近官方的字距、基线预设，调节更稳。',
+        },
+        export: {
+          title: '导出与品质',
+          desc: '透明 PNG/SVG/JPEG，边缘干净，并支持打包下载。',
+        },
+      },
+      actions: {
+        home: '返回首页',
+        progress: '在 GitHub 关注进度',
+      },
+    },
     notFound: {
       title: '这里是空白页，但你的想法很重要',
       lead: '你访问的链接不存在，或页面尚未上线。告诉我们你想要的模板或功能，我们会在 GitHub 上和你一起跟进。',

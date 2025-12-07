@@ -214,6 +214,30 @@ export default {
         },
       },
     },
+    fedex: {
+      title: 'FedEx',
+      status: '工事中',
+      lead: 'FedEx 風ロゴエディターを準備中です。配色・字間・書き出しを調整しています。',
+      note: 'お待ちいただきありがとうございます。先に他のテンプレートをお試しください。',
+      items: {
+        palette: {
+          title: 'シグネチャーカラー',
+          desc: 'FedEx のパープル＋オレンジをワンクリックで切替、コントラストも確認。',
+        },
+        spacing: {
+          title: '文字間と整列',
+          desc: '元のワードマークに近いカーニング・ベースラインのプリセットを用意。',
+        },
+        export: {
+          title: 'クリーンな書き出し',
+          desc: '透過 PNG/SVG/JPEG を鋭いエッジで出力し、ZIP まとめも予定。',
+        },
+      },
+      actions: {
+        home: 'ホームに戻る',
+        progress: 'GitHub で進捗を見る',
+      },
+    },
     notFound: {
       title: 'ページが見つかりませんが、あなたのアイデアは大切です',
       lead:
