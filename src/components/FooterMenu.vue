@@ -6,29 +6,34 @@ const router = useRouter()
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const { t } = useI18n()
 
+const buildingBadgeKey = 'component.menu.badge.building'
+
+type FooterItem = { label: string; path: string; badge?: string }
+type FooterCategory = { title: string; items: FooterItem[] }
+
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const categories = [
+const categories: FooterCategory[] = [
   {
     title: 'component.footerMenu.categories.websites',
     items: [
       { label: 'component.menu.home', path: '/' },
       { label: 'component.menu.verticalPh', path: '/vertical-ph' },
-      { label: 'component.menu.onlyfans', path: '/onlyfans' },
+      { label: 'component.menu.onlyfans', path: '/onlyfans', badge: buildingBadgeKey },
       { label: 'component.menu.simpleText', path: '/simpletext' },
     ],
   },
   {
     title: 'component.footerMenu.categories.brands',
     items: [
-      { label: 'component.menu.fedex', path: '/fedex' },
-      { label: 'component.menu.mastercard', path: '/mastercard' },
-      { label: 'component.menu.bluesnap', path: '/bluesnap' },
-      { label: 'component.menu.sega', path: '/sega' },
-      { label: 'component.menu.nintendo', path: '/nintendo' },
-      { label: 'component.menu.lego', path: '/lego' },
-      { label: 'component.menu.marvel', path: '/marvel' },
-      { label: 'component.menu.bravo', path: '/bravo' },
-      { label: 'component.menu.amc', path: '/amc' },
+      { label: 'component.menu.fedex', path: '/fedex', badge: buildingBadgeKey },
+      { label: 'component.menu.mastercard', path: '/mastercard', badge: buildingBadgeKey },
+      { label: 'component.menu.bluesnap', path: '/bluesnap', badge: buildingBadgeKey },
+      { label: 'component.menu.sega', path: '/sega', badge: buildingBadgeKey },
+      { label: 'component.menu.nintendo', path: '/nintendo', badge: buildingBadgeKey },
+      { label: 'component.menu.lego', path: '/lego', badge: buildingBadgeKey },
+      { label: 'component.menu.marvel', path: '/marvel', badge: buildingBadgeKey },
+      { label: 'component.menu.bravo', path: '/bravo', badge: buildingBadgeKey },
+      { label: 'component.menu.amc', path: '/amc', badge: buildingBadgeKey },
     ],
   },
 ]
@@ -61,10 +66,16 @@ const go = (path: string) => {
               v-for="item in category.items"
               :key="item.path"
               type="button"
-              class="px-3 py-2 text-sm rounded-md bg-gray-900 text-gray-200 hover:bg-primary/20 hover:text-primary transition-colors border border-gray-700"
+              class="px-3 py-2 text-sm rounded-md bg-gray-900 text-gray-200 hover:bg-primary/20 hover:text-primary transition-colors border border-gray-700 flex items-center gap-2"
               @click="go(item.path)"
             >
-              {{ t(item.label) }}
+              <span>{{ t(item.label) }}</span>
+              <span
+                v-if="item.badge"
+                class="pointer-events-none text-[9px] font-semibold uppercase tracking-wide text-orange-200 bg-orange-500/15 border border-orange-400/60 rounded px-1 py-[2px]"
+              >
+                {{ t(item.badge) }}
+              </span>
             </button>
           </div>
         </div>
