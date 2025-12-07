@@ -102,6 +102,7 @@ export default {
       textPlaceholder: 'Escribe algo…',
       fontSize: 'Tamaño de fuente',
       textColor: 'Color de texto',
+      previewBg: 'Fondo de previsualización',
       fontTitle: 'Fuente y variante',
       fontHint: 'Carga Google Fonts bajo demanda; las variantes aplican peso / cursiva.',
     },
@@ -162,9 +163,8 @@ export default {
       title: 'Sobre nosotros',
       subtitle: {
         line1:
-          'Logoly es un generador de logos en línea de código abierto que permite a cualquiera crear wordmarks de marca en segundos, incluso sin base de diseño.',
-        line2:
-          'Puedes usar, modificar y distribuir libremente tanto el código como las imágenes generadas.',
+          'Logoly es un generador de logos open source que permite crear wordmarks en segundos, incluso sin base de diseño.',
+        line2: 'Puedes usar, modificar y distribuir libremente el código y las imágenes generadas.',
       },
       highlights: {
         title: 'Aspectos destacados del producto',

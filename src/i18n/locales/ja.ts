@@ -102,6 +102,7 @@ export default {
       textPlaceholder: '入力してください…',
       fontSize: 'フォントサイズ',
       textColor: '文字色',
+      previewBg: 'プレビュー背景色',
       fontTitle: 'フォントとバリアント',
       fontHint: 'Google Fonts をオンデマンドで読み込み、バリアントでウェイト/イタリックを適用します。',
     },

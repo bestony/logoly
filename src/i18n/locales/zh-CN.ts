@@ -100,6 +100,7 @@ export default {
       textPlaceholder: '输入想要的文案…',
       fontSize: '字号',
       textColor: '文字颜色',
+      previewBg: '预览背景色',
       fontTitle: '字体与变体',
       fontHint: '按需加载 Google Fonts，字重 / 斜体一键切换。',
     },
@@ -482,7 +483,7 @@ export default {
     home: {
       title: 'Pornhub 风格 Logo 生成器｜免费导出 PNG/SVG',
       description:
-        'Logoly 是一个免费在线生成 Pornhub、OnlyFans、FedEx、Mastercard 等风格 Logo 的工具。直接在浏览器自定义文字和配色，导出 PNG/JPG/SVG 无需注册。',
+        '在线生成 Pornhub、OnlyFans、FedEx、Mastercard 等风格 Logo；浏览器内自定义文字配色并导出 PNG/JPG/SVG，无需注册。',
       keywords: [
         'Pornhub logo生成器',
         'OnlyFans logo制作',

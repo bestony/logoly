@@ -100,6 +100,7 @@ export default {
       textPlaceholder: 'Type anything…',
       fontSize: 'Font size',
       textColor: 'Text color',
+      previewBg: 'Preview background',
       fontTitle: 'Font & variant',
       fontHint: 'Loads Google Fonts on demand; variants auto-apply weight or italics.',
     },
@@ -160,34 +161,34 @@ export default {
       title: 'About Logoly',
       subtitle: {
         line1:
-          'Logoly is an open-source online logo generator that helps anyone create brand wordmarks in seconds.',
+          'Logoly is an open-source logo generator that makes brand wordmarks in seconds.',
         line2:
-          'You can freely use, modify, and distribute both the code and the images you export.',
+          'You can freely use, modify, and distribute the code and the images you export.',
       },
       highlights: {
         title: 'Product highlights',
         instant: {
           title: 'Generate in one click',
-          desc: 'Type text to preview Pornhub / OnlyFans-style logos instantly; export PNG or SVG.',
+          desc: 'Type text to preview Pornhub / OnlyFans-style logos, then export PNG or SVG.',
           link: 'Try now',
         },
         local: {
           title: 'All in the browser',
-          desc: 'Rendering and downloads stay local—no uploads, no traces left behind.',
+          desc: 'Rendering and downloads stay local—no uploads or traces left behind.',
         },
         open: {
           title: 'Open source',
-          desc: 'Code lives on GitHub under WTFPL, free to reuse and fork.',
+          desc: 'Code lives on GitHub under WTFPL—free to reuse and fork.',
           link: 'GitHub repo',
         },
         community: {
           title: 'Community-built',
-          desc: 'Templates, locales, and features evolve through community contributions.',
+          desc: 'Templates, locales, and features grow through community contributions.',
         },
       },
       community: {
         title: 'Open Source & Community',
-        desc: 'Logoly grows with community input—add templates, improve UX, translate, or share ideas.',
+        desc: 'Logoly grows with community input—add templates, polish UX, translate, share ideas.',
         links: {
           issues: 'File an issue or suggestion',
           guide: 'Contribution guide',
@@ -195,7 +196,7 @@ export default {
       },
       contact: {
         title: 'Contact us',
-        desc: 'Have ideas or partnership needs? Open a GitHub issue or find more contacts on the blog.',
+        desc: 'Have ideas or partnership needs? Open a GitHub issue or reach out via the blog.',
         cta: 'Feedback on GitHub',
       },
     },
@@ -226,7 +227,7 @@ export default {
           items: {
             commercial: {
               q: 'Can I use logos commercially?',
-              a: 'Logoly is free and open; ensure your use does not violate third-party trademarks or copyrights.',
+              a: 'Logoly is free and open; avoid infringing third-party trademarks or copyrights.',
             },
             privacy: {
               q: 'Do you store or share user content?',
@@ -243,7 +244,7 @@ export default {
             },
             contrib: {
               q: 'How do I contribute or add a new template?',
-              a: 'Fork and open a PR with the template page and preview; tests or notes appreciated.',
+              a: 'Fork and open a PR with the template page and preview; tests welcome.',
             },
             license: {
               q: 'What is the license?',
@@ -490,7 +491,7 @@ export default {
     home: {
       title: 'Pornhub-style logo generator | Free PNG/SVG export',
       description:
-        'Logoly is a free logo maker inspired by Pornhub, OnlyFans, FedEx, and Mastercard. Customize text and colors directly in the browser and export PNG, JPG, or SVG without sign-up.',
+        'Free Pornhub/OnlyFans/FedEx/Mastercard logo maker. Edit text/colors; export PNG/JPG/SVG.',
       keywords: [
         'pornhub logo generator',
         'onlyfans logo maker',
@@ -503,7 +504,7 @@ export default {
     about: {
       title: 'About Logoly | Open-source logo generator',
       description:
-        'Learn how Logoly renders brand-style wordmarks entirely in-browser, the open-source license, and how to contribute templates or translations.',
+        'How Logoly renders wordmarks in-browser, its open-source license, and how to add templates or translations.',
       keywords: [
         'about logoly',
         'open source logo generator',
@@ -514,7 +515,7 @@ export default {
     faq: {
       title: 'FAQ | Logoly help and troubleshooting',
       description:
-        'Answers for downloads, fonts, privacy, and using Logoly to create Pornhub or OnlyFans style logos.',
+        'Answers about downloads, fonts, privacy, and making Pornhub or OnlyFans style logos with Logoly.',
       keywords: ['logoly faq', 'logo generator help', 'download svg logo', 'fonts missing help'],
     },
     'vertical-ph': {

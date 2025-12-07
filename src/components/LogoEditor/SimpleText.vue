@@ -15,6 +15,8 @@ const fontFamily = ref('')
 const fontVariant = ref('regular')
 const fontSize = ref(88)
 const textColor = ref('#f4f4f5')
+const previewBgColor = ref('#050505')
+const isTransparentBg = ref(false)
 
 const activeFontFamily = computed(() =>
   fontFamily.value?.length
@@ -60,6 +62,11 @@ const previewCardStyle = computed(() => ({
     'radial-gradient(circle at 18% 24%, #1f2937 0%, #0b0c10 45%, #07080d 70%)',
 }))
 
+const previewSurfaceStyle = computed(() => ({
+  background: isTransparentBg.value ? 'transparent' : previewBgColor.value,
+  borderColor: 'rgba(255, 255, 255, 0.05)',
+}))
+
 const sanitizeFileName = (value: string) => {
   const cleaned = value
     .trim()
@@ -70,9 +77,12 @@ const sanitizeFileName = (value: string) => {
 
 const getFileBaseName = () => sanitizeFileName(textValue.value || t('page.simpleText.defaultText'))
 
+const resolveBg = (format?: DownloadFormat) =>
+  isTransparentBg.value && format !== 'jpeg' ? 'transparent' : previewBgColor.value
+
 const getDownloadOptions = (format?: DownloadFormat) => ({
   pixelRatio: 2,
-  backgroundColor: '#050505',
+  backgroundColor: resolveBg(format),
   quality: format === 'jpeg' ? 0.92 : 0.94,
 })
 
@@ -114,7 +124,7 @@ defineExpose({
     <div class="preview-stack">
       <p class="section-label">{{ t('component.simpleText.previewTitle') }}</p>
       <div class="preview-card" :style="previewCardStyle">
-        <div ref="captureEl" class="preview-surface">
+        <div ref="captureEl" class="preview-surface" :style="previewSurfaceStyle">
           <span
             ref="editableEl"
             class="preview-text"
@@ -164,6 +174,19 @@ defineExpose({
           <div class="color-row">
             <input v-model="textColor" type="color" class="color-input" aria-label="text-color" />
             <span class="color-value">{{ textColor.toUpperCase() }}</span>
+          </div>
+        </label>
+
+        <label class="field color-field">
+          <span class="field-label">{{ t('component.simpleText.previewBg') }}</span>
+          <div class="color-row">
+            <input
+              v-model="previewBgColor"
+              type="color"
+              class="color-input"
+              aria-label="preview-background-color"
+            />
+            <span class="color-value">{{ previewBgColor.toUpperCase() }}</span>
           </div>
         </label>
       </div>
