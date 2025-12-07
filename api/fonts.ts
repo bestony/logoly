@@ -13,6 +13,8 @@ const buildUrl = (apiKey: string, sort?: string | string[]) => {
 }
 
 export default async function handler(request: VercelRequest, response: VercelResponse) {
+  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
+
   if (request.method !== 'GET') {
     response.setHeader('Allow', 'GET')
     return response.status(405).json({ error: 'Method Not Allowed' })

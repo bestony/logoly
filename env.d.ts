@@ -8,6 +8,7 @@ declare global {
   const __APP_VERSION__: string
 
   interface Window {
+    FONT_PREFIX?: string
     dataLayer?: unknown[]
     gtag?: (...args: unknown[]) => void
     clarity?: ((...args: unknown[]) => void) & { q?: unknown[] }
@@ -15,7 +16,10 @@ declare global {
 
   interface ImportMetaEnv {
     readonly VITE_CLARITY_PROJECT_ID?: string
+    readonly FONT_PREFIX?: string
   }
+
+  var FONT_PREFIX: string | undefined
 }
 
 declare module 'file-saver' {

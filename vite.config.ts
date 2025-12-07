@@ -37,6 +37,7 @@ export default defineConfig(({ mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
+    envPrefix: ['VITE_', 'FONT_'],
     define: {
       // biome-ignore lint/style/useNamingConvention: global compile-time constants
       __GIT_SHA__: JSON.stringify(gitSha),

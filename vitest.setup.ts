@@ -50,4 +50,24 @@ if (typeof window !== 'undefined') {
   }
 }
 
+const originalFetch = globalThis.fetch
+
+if (typeof originalFetch === 'function') {
+  const emptyFontsResponse = new Response(JSON.stringify({ items: [] }), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' },
+  })
+
+  globalThis.fetch = ((input: RequestInfo | URL, init?: RequestInit) => {
+    const url =
+      typeof input === 'string' ? input : input instanceof URL ? input.toString() : input.url
+
+    if (url.includes('/api/fonts')) {
+      return Promise.resolve(emptyFontsResponse.clone())
+    }
+
+    return originalFetch(input as RequestInfo, init)
+  }) as typeof fetch
+}
+
 export {}

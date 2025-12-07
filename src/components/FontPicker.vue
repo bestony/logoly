@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.css'
+import { buildFontApiUrl } from '@/utils/font-api'
 
 type WebFont = {
   family: string
@@ -172,7 +173,7 @@ const fetchFonts = async () => {
   error.value = null
 
   try {
-    const response = await fetch('/api/fonts?sort=popularity')
+    const response = await fetch(buildFontApiUrl('popularity'))
 
     if (!response.ok) {
       throw new Error('Failed to load font list')
