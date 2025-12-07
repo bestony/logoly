@@ -58,8 +58,7 @@ const previewStyle = computed(() => ({
 }))
 
 const previewCardStyle = computed(() => ({
-  background:
-    'radial-gradient(circle at 18% 24%, #1f2937 0%, #0b0c10 45%, #07080d 70%)',
+  background: 'radial-gradient(circle at 18% 24%, #1f2937 0%, #0b0c10 45%, #07080d 70%)',
 }))
 
 const previewSurfaceStyle = computed(() => ({
@@ -122,9 +121,8 @@ defineExpose({
 <template>
   <section class="simple-text-editor">
     <div class="preview-stack">
-      <p class="section-label">{{ t('component.simpleText.previewTitle') }}</p>
-      <div class="preview-card" :style="previewCardStyle">
-        <div ref="captureEl" class="preview-surface" :style="previewSurfaceStyle">
+        <div  class="preview-surface" :style="previewSurfaceStyle">
+          <div ref="captureEl">
           <span
             ref="editableEl"
             class="preview-text"
@@ -138,8 +136,8 @@ defineExpose({
           >
             {{ textValue }}
           </span>
+          </div>
         </div>
-      </div>
     </div>
 
     <div class="panel">

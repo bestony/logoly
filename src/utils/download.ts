@@ -37,6 +37,7 @@ export const downloadImage = async (
   const snapshotOptions = {
     pixelRatio: options.pixelRatio ?? 2,
     backgroundColor: options.backgroundColor ?? '#000000',
+    skipAutoScale:true,
   }
 
   const dataUrl =
