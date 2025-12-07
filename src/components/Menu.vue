@@ -25,6 +25,8 @@ const primaryItems = [
   { name: 'component.menu.home', path: '/', routeName: 'home' },
   { name: 'component.menu.verticalPh', path: '/vertical-ph', routeName: 'vertical-ph' },
   { name: 'component.menu.onlyfans', path: '/onlyfans', routeName: 'onlyfans' },
+  { name: 'component.menu.simpleText', path: '/simpletext', routeName: 'simpletext' },
+
 ]
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
@@ -46,7 +48,6 @@ const languageOptions: LanguageOption[] = [
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const otherItems = [
-  { name: 'component.menu.simpleText', path: '/simpletext', routeName: 'simpletext' },
   { name: 'component.menu.fedex', path: '/fedex', routeName: 'fedex' },
   { name: 'component.menu.mastercard', path: '/mastercard', routeName: 'mastercard' },
   { name: 'component.menu.bluesnap', path: '/bluesnap', routeName: 'bluesnap' },
