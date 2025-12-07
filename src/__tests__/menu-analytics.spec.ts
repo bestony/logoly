@@ -15,6 +15,8 @@ describe('Menu analytics', () => {
     await router.isReady()
     vi.spyOn(router, 'push').mockResolvedValue('/sega' as never)
 
+    expect(vi.isMockFunction(trackEvent)).toBe(true)
+
     const wrapper = mount(Menu, {
       global: { plugins: [router, i18n, createPinia()] },
     })
@@ -24,11 +26,12 @@ describe('Menu analytics', () => {
     await dropdownButton?.trigger('click')
     await flushPromises()
 
-    const segaButton = wrapper.findAll('button').find((button) => button.text().includes('SEGA'))
-    expect(segaButton).toBeTruthy()
-    await segaButton?.trigger('click')
+    const segaLink = wrapper.findAll('a').find((link) => link.text().includes('SEGA'))
+    expect(segaLink).toBeTruthy()
+    await segaLink?.trigger('click')
     await flushPromises()
 
+    expect(router.push).toHaveBeenCalledWith('/sega')
     expect(trackEvent).toHaveBeenCalledWith('dropdown_click', {
       menu: 'component.menu.other',
       label: 'component.menu.sega',

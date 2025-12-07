@@ -3,14 +3,12 @@ import { ref, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import SimpleTextEditor from '@/components/LogoEditor/SimpleText.vue'
 import { useDownloadTask } from '@/composables/useDownloadTask'
-import { useSnapshotDownload } from '@/composables/useSnapshotDownload'
-import type { DownloadFormat } from '@/utils/download'
-
-type DownloadOptions = { pixelRatio?: number; backgroundColor?: string; quality?: number }
+import { useSnapshotDownload, type DownloadSource } from '@/composables/useSnapshotDownload'
+import { SIMPLE_TEXT_DOWNLOAD_OPTIONS } from '@/constants/download'
 
 type SimpleTextRef = {
   captureEl: Ref<HTMLElement | null> | HTMLElement | null
-  getDownloadOptions: (format?: DownloadFormat) => DownloadOptions
+  getDownloadOptions: DownloadSource['getDownloadOptions']
   getFileBaseName: () => string
 } | null
 
@@ -20,12 +18,10 @@ const errorMessage = ref<string | null>(null)
 const { runDownload } = useDownloadTask(isDownloading, errorMessage)
 const { t } = useI18n()
 
-const DEFAULT_OPTIONS = { pixelRatio: 2, backgroundColor: '#050505', quality: 0.94 } as const
-
 const { isCanvasReady, handleSingleDownload, handleZipDownload } = useSnapshotDownload({
   sourceRef: editorRef,
   runDownload,
-  defaultOptions: DEFAULT_OPTIONS,
+  defaultOptions: SIMPLE_TEXT_DOWNLOAD_OPTIONS,
   baseNameFallback: 'simple-text',
   t,
 })

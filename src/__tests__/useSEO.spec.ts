@@ -232,6 +232,23 @@ describe('useSEO', () => {
     expect(wrapper.vm.detectLanguage()).toBe('zh-CN')
   })
 
+  it('reads legacy userLanguage when navigator.language is unavailable', () => {
+    i18n.global.locale.value = '' as unknown as typeof i18n.global.locale.value
+    vi.spyOn(navigator, 'language', 'get').mockReturnValue(undefined as unknown as string)
+    ;(navigator as { userLanguage?: string }).userLanguage = 'fr-CA'
+
+    const Component = defineComponent({
+      setup() {
+        const { detectLanguage } = useSEO()
+        return { detectLanguage }
+      },
+      template: '<div />',
+    })
+
+    const wrapper = mount(Component)
+    expect(wrapper.vm.detectLanguage()).toBe('fr')
+  })
+
   it('updates canonical when route changes with router present', async () => {
     const router = createRouter({
       history: createMemoryHistory(),
@@ -263,5 +280,81 @@ describe('useSEO', () => {
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
       `${window.location.origin}/about`,
     )
+  })
+
+  it('normalizes keyword arrays defined on route meta', async () => {
+    const router = createRouter({
+      history: createMemoryHistory(),
+      routes: [
+        {
+          path: '/keywords',
+          name: 'keywords',
+          component: { template: '<div>keywords</div>' },
+          meta: { title: 'Keywords', description: 'desc', keywords: ['one', 'two'] },
+        },
+      ],
+    })
+
+    const Component = defineComponent({
+      setup() {
+        useSEO()
+        return {}
+      },
+      template: '<RouterView />',
+    })
+
+    await router.push('/keywords')
+    await router.isReady()
+    mount(Component, { global: { plugins: [router] } })
+    await flushPromises()
+
+    expect(document.querySelector('meta[name="keywords"]')?.getAttribute('content')).toBe(
+      'one, two',
+    )
+  })
+
+  it('prefers localized keyword strings when translations exist', async () => {
+    const router = createRouter({
+      history: createMemoryHistory(),
+      routes: [
+        {
+          path: '/localized',
+          name: 'translated',
+          component: { template: '<div>localized</div>' },
+          meta: { title: 'Fallback', description: 'Fallback desc' },
+        },
+      ],
+    })
+
+    const originalTe = i18n.global.te.bind(i18n.global)
+    const originalT = i18n.global.t.bind(i18n.global)
+    vi.spyOn(i18n.global, 'te').mockImplementation((key) =>
+      key.toString().startsWith('seo.translated') ? true : originalTe(key),
+    )
+    vi.spyOn(i18n.global, 't').mockImplementation((key, ...rest: unknown[]) => {
+      if (key === 'seo.translated.title') return 'Localized Title'
+      if (key === 'seo.translated.description') return 'Localized Description'
+      if (key === 'seo.translated.keywords') return 'uno dos'
+      // @ts-expect-error passthrough signature
+      return originalT(key, ...rest)
+    })
+
+    const Component = defineComponent({
+      setup() {
+        useSEO()
+        return {}
+      },
+      template: '<RouterView />',
+    })
+
+    await router.push('/localized')
+    await router.isReady()
+    mount(Component, { global: { plugins: [router] } })
+    await flushPromises()
+
+    expect(document.querySelector('meta[name="keywords"]')?.getAttribute('content')).toBe(
+      'uno dos',
+    )
+    expect(document.title).toContain('Localized Title')
   })
 })

@@ -28,4 +28,10 @@ export type RouteMeta = {
   placeholderKey?: string
   brandLabel?: string
   progressHref?: string
+  nav?: {
+    labelKey: string
+    group: 'primary' | 'other' | 'trailing'
+    order?: number
+    badgeKey?: string
+  }
 }

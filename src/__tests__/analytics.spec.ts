@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 afterEach(() => {
+  document.head.innerHTML = ''
   vi.resetModules()
   vi.unstubAllEnvs()
   vi.unstubAllGlobals()
@@ -48,5 +49,42 @@ describe('trackEvent', () => {
     trackEvent('noop_event')
 
     expect(gtag).toHaveBeenCalledWith('event', 'noop_event', {})
+  })
+})
+
+describe('initAnalytics', () => {
+  const GA_SRC = 'https://www.googletagmanager.com/gtag/js?id='
+
+  it('skips script injection when measurement id is missing', async () => {
+    vi.stubEnv('PROD', true)
+    const { initAnalytics } = await import('../utils/analytics')
+
+    initAnalytics(undefined, true)
+
+    expect(document.querySelector(`script[src^="${GA_SRC}"]`)).toBeNull()
+  })
+
+  it('injects GA tag once and wires gtag', async () => {
+    vi.stubEnv('PROD', true)
+    const { initAnalytics } = await import('../utils/analytics')
+
+    initAnalytics('G-TEST', true)
+
+    const script = document.querySelector(`script[src="${GA_SRC}G-TEST"]`)
+    expect(script).not.toBeNull()
+    expect(typeof window.gtag).toBe('function')
+
+    initAnalytics('G-TEST', true)
+
+    expect(document.querySelectorAll(`script[src="${GA_SRC}G-TEST"]`).length).toBe(1)
+  })
+
+  it('skips GA initialization when prod flag is false even with an id', async () => {
+    vi.stubEnv('PROD', false)
+    const { initAnalytics } = await import('../utils/analytics')
+
+    initAnalytics('G-DEV', false)
+
+    expect(document.querySelector(`script[src^="${GA_SRC}"]`)).toBeNull()
   })
 })

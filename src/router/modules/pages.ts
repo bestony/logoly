@@ -4,7 +4,16 @@ const baseDescription =
   'Create branded style logos online in seconds. Supports PNG and SVG downloads with zero backend processing.'
 
 export const pageRoutes: RouteDefinition[] = [
-  { path: '/', name: 'home', view: 'Home', meta: { title: 'Home', description: baseDescription } },
+  {
+    path: '/',
+    name: 'home',
+    view: 'Home',
+    meta: {
+      title: 'Home',
+      description: baseDescription,
+      nav: { labelKey: 'component.menu.home', group: 'primary', order: 1 },
+    },
+  },
   {
     path: '/about',
     name: 'about',
@@ -13,6 +22,7 @@ export const pageRoutes: RouteDefinition[] = [
       title: 'About',
       description: 'Learn about the Logoly project, contributors, and how to get involved.',
       keywords: ['about', 'logoly', 'open source'],
+      nav: { labelKey: 'component.menu.about', group: 'trailing', order: 1 },
     },
   },
   {
@@ -23,6 +33,7 @@ export const pageRoutes: RouteDefinition[] = [
       title: 'FAQ',
       description: 'Frequently asked questions about generating and downloading logos.',
       keywords: ['faq', 'help', 'logo generator tips'],
+      nav: { labelKey: 'component.menu.faq', group: 'trailing', order: 2 },
     },
   },
 ]

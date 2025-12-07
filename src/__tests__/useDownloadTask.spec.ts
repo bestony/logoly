@@ -43,4 +43,29 @@ describe('useDownloadTask', () => {
     expect(errorMessage.value).toBe('download failed')
     consoleErrorSpy.mockRestore()
   })
+
+  it('uses the fallback failure message when guard message is missing', async () => {
+    const isDownloading = ref(false)
+    const errorMessage = ref<string | null>(null)
+    const { runDownload } = useDownloadTask(isDownloading, errorMessage)
+    const guard = vi.fn().mockReturnValue(false)
+
+    await runDownload(guard, vi.fn(), 'generic failure')
+
+    expect(errorMessage.value).toBe('generic failure')
+  })
+
+  it('skips execution when a download is already in progress', async () => {
+    const isDownloading = ref(true)
+    const errorMessage = ref<string | null>(null)
+    const guard = vi.fn().mockReturnValue(true)
+    const task = vi.fn()
+    const { runDownload } = useDownloadTask(isDownloading, errorMessage)
+
+    await runDownload(guard, task, 'fail')
+
+    expect(guard).not.toHaveBeenCalled()
+    expect(task).not.toHaveBeenCalled()
+    expect(isDownloading.value).toBe(true)
+  })
 })

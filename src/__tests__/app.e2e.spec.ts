@@ -31,11 +31,11 @@ describe('App navigation (e2e-like)', () => {
 
     expect(wrapper.text()).toContain(i18n.global.t('page.home.title'))
 
-    const aboutButton = wrapper
-      .findAll('button')
-      .find((button) => button.text().includes('关于') || button.text().includes('About'))
-    expect(aboutButton).toBeTruthy()
-    await aboutButton?.trigger('click')
+    const aboutLink = wrapper
+      .findAll('a')
+      .find((link) => link.text().includes('关于') || link.text().includes('About'))
+    expect(aboutLink).toBeTruthy()
+    await aboutLink?.trigger('click')
     await flushPromises()
     await pushSpy.mock.results.at(-1)?.value
     await flushPromises()

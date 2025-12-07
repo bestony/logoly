@@ -5,34 +5,20 @@ import { storeToRefs } from 'pinia'
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 // biome-ignore lint/correctness/noUnusedImports: used in template
-import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
+import { useNavigationItems } from '@/composables/useNavigationItems'
 import type { Locale } from '../i18n'
 import { useLocaleStore } from '../stores/locale'
 import { trackEvent } from '../utils/analytics'
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const route = useRoute()
-const router = useRouter()
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const { t } = useI18n()
 const localeStore = useLocaleStore()
 // biome-ignore lint/correctness/noUnusedVariables: used in template
 const { locale } = storeToRefs(localeStore)
 localeStore.init()
-
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const primaryItems = [
-  { name: 'component.menu.home', path: '/', routeName: 'home' },
-  { name: 'component.menu.verticalPh', path: '/vertical-ph', routeName: 'vertical-ph' },
-  { name: 'component.menu.simpleText', path: '/simpletext', routeName: 'simpletext' },
-
-]
-
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const trailingItems = [
-  { name: 'component.menu.about', path: '/about', routeName: 'about' },
-  { name: 'component.menu.faq', path: '/faq', routeName: 'faq' },
-]
 
 type LanguageOption = { code: string; label: string; emoji: string }
 
@@ -46,38 +32,7 @@ const languageOptions: LanguageOption[] = [
 ]
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const otherItems = [
-  {
-    name: 'component.menu.onlyfans',
-    path: '/onlyfans',
-    routeName: 'onlyfans',
-    badge: 'component.menu.badge.building',
-  },
-  { name: 'component.menu.fedex', path: '/fedex', routeName: 'fedex', badge: 'component.menu.badge.building' },
-  {
-    name: 'component.menu.mastercard',
-    path: '/mastercard',
-    routeName: 'mastercard',
-    badge: 'component.menu.badge.building',
-  },
-  {
-    name: 'component.menu.bluesnap',
-    path: '/bluesnap',
-    routeName: 'bluesnap',
-    badge: 'component.menu.badge.building',
-  },
-  { name: 'component.menu.sega', path: '/sega', routeName: 'sega', badge: 'component.menu.badge.building' },
-  {
-    name: 'component.menu.nintendo',
-    path: '/nintendo',
-    routeName: 'nintendo',
-    badge: 'component.menu.badge.building',
-  },
-  { name: 'component.menu.lego', path: '/lego', routeName: 'lego', badge: 'component.menu.badge.building' },
-  { name: 'component.menu.marvel', path: '/marvel', routeName: 'marvel', badge: 'component.menu.badge.building' },
-  { name: 'component.menu.bravo', path: '/bravo', routeName: 'bravo', badge: 'component.menu.badge.building' },
-  { name: 'component.menu.amc', path: '/amc', routeName: 'amc', badge: 'component.menu.badge.building' },
-]
+const { primaryItems, trailingItems, otherItems } = useNavigationItems()
 
 const isMobile = ref(false)
 const isMobileMenuOpen = ref(false)
@@ -117,19 +72,14 @@ const closeMobileMenu = () => {
   isMobileMenuOpen.value = false
 }
 
-const navigate = async (path: string) => {
-  await router.push(path)
-  closeMobileMenu()
-}
-
 // biome-ignore lint/correctness/noUnusedVariables: used in template
-const handleOtherItemClick = async (item: { name: string; path: string }) => {
+const handleOtherItemClick = (item: { labelKey: string; path: string }) => {
   trackEvent('dropdown_click', {
     menu: 'component.menu.other',
-    label: item.name,
+    label: item.labelKey,
     path: item.path,
   })
-  await navigate(item.path)
+  closeMobileMenu()
 }
 
 // biome-ignore lint/correctness/noUnusedVariables: used in template
@@ -172,20 +122,20 @@ const handleLocaleChange = (code: string) => {
           </button>
         </div>
         <div v-else class="flex items-center space-x-1">
-          <button
+          <RouterLink
             v-for="item in primaryItems"
             :key="item.routeName"
-            type="button"
-            @click="navigate(item.path)"
-            class="px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer"
+            :to="item.path"
+            class="px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            :aria-current="route.name === item.routeName ? 'page' : undefined"
             :class="
               route.name === item.routeName
                 ? 'bg-primary/20 text-primary'
                 : 'text-gray-300 hover:text-white hover:bg-gray-800'
             "
           >
-            {{ t(item.name) }}
-          </button>
+            {{ t(item.labelKey) }}
+          </RouterLink>
 
           <UiMenu as="div" class="relative inline-block text-left">
             <div>
@@ -209,42 +159,44 @@ const handleLocaleChange = (code: string) => {
               >
                 <div class="py-1">
                   <MenuItem v-for="item in otherItems" :key="item.routeName" v-slot="{ active }">
-                    <button
-                      type="button"
-                      :class="[
-                        active ? 'bg-primary/20 text-primary' : 'text-gray-200',
-                        'relative flex w-full items-center justify-between gap-2 text-left px-4 py-2 text-sm',
-                      ]"
-                      @click="handleOtherItemClick(item)"
-                    >
-                      <span>{{ t(item.name) }}</span>
-                      <span
-                        v-if="item.badge"
-                        class="pointer-events-none text-[9px] font-semibold uppercase tracking-wide text-orange-200 bg-orange-500/15 border border-orange-400/60 rounded px-1 py-[2px]"
+                    <RouterLink v-slot="{ href, navigate }" :to="item.path" custom>
+                      <a
+                        :href="href"
+                        :class="[
+                          active ? 'bg-primary/20 text-primary' : 'text-gray-200',
+                          'relative flex w-full items-center justify-between gap-2 text-left px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
+                        ]"
+                        @click="(event) => { handleOtherItemClick(item); navigate(event) }"
                       >
-                        {{ t(item.badge) }}
-                      </span>
-                    </button>
+                        <span>{{ t(item.labelKey) }}</span>
+                        <span
+                          v-if="item.badgeKey"
+                          class="pointer-events-none text-[9px] font-semibold uppercase tracking-wide text-orange-200 bg-orange-500/15 border border-orange-400/60 rounded px-1 py-[2px]"
+                        >
+                          {{ t(item.badgeKey) }}
+                        </span>
+                      </a>
+                    </RouterLink>
                   </MenuItem>
                 </div>
               </MenuItems>
             </Transition>
           </UiMenu>
 
-          <button
+          <RouterLink
             v-for="item in trailingItems"
             :key="item.routeName"
-            type="button"
-            @click="navigate(item.path)"
-            class="px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer"
+            :to="item.path"
+            class="px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            :aria-current="route.name === item.routeName ? 'page' : undefined"
             :class="
               route.name === item.routeName
                 ? 'bg-primary/20 text-primary'
                 : 'text-gray-300 hover:text-white hover:bg-gray-800'
             "
           >
-            {{ t(item.name) }}
-          </button>
+            {{ t(item.labelKey) }}
+          </RouterLink>
 
           <UiMenu as="div" class="relative inline-block text-left">
             <div>
@@ -304,16 +256,16 @@ const handleLocaleChange = (code: string) => {
           class="md:hidden border-t border-gray-800 pt-3 pb-4 space-y-4"
         >
           <div class="grid gap-2 grid-cols-2">
-            <button
+            <RouterLink
               v-for="item in primaryItems"
               :key="item.routeName"
-              type="button"
-              class="w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer bg-gray-900/60 text-gray-200 hover:text-white hover:bg-gray-800"
+              :to="item.path"
+              class="w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer bg-gray-900/60 text-gray-200 hover:text-white hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               :class="route.name === item.routeName ? 'border border-primary/60 text-primary' : ''"
-              @click="navigate(item.path)"
+              @click="closeMobileMenu"
             >
-              {{ t(item.name) }}
-            </button>
+              {{ t(item.labelKey) }}
+            </RouterLink>
           </div>
 
           <div class="border-t border-gray-800 pt-2">
@@ -321,36 +273,42 @@ const handleLocaleChange = (code: string) => {
               {{ t('component.menu.other') }}
             </p>
             <div class="grid gap-2 grid-cols-2">
-              <button
+              <RouterLink
                 v-for="item in otherItems"
                 :key="item.routeName"
-                type="button"
-                class="w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer bg-gray-900/60 text-gray-200 hover:text-white hover:bg-gray-800 flex items-center justify-between gap-2"
-                @click="handleOtherItemClick(item)"
+                v-slot="{ href, navigate }"
+                :to="item.path"
+                custom
               >
-                <span>{{ t(item.name) }}</span>
-                <span
-                  v-if="item.badge"
-                  class="pointer-events-none text-[9px] font-semibold uppercase tracking-wide text-orange-200 bg-orange-500/15 border border-orange-400/60 rounded px-1 py-[2px]"
+                <a
+                  :href="href"
+                  class="w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer bg-gray-900/60 text-gray-200 hover:text-white hover:bg-gray-800 flex items-center justify-between gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  @click="(event) => { handleOtherItemClick(item); navigate(event) }"
                 >
-                  {{ t(item.badge) }}
-                </span>
-              </button>
+                  <span>{{ t(item.labelKey) }}</span>
+                  <span
+                    v-if="item.badgeKey"
+                    class="pointer-events-none text-[9px] font-semibold uppercase tracking-wide text-orange-200 bg-orange-500/15 border border-orange-400/60 rounded px-1 py-[2px]"
+                  >
+                    {{ t(item.badgeKey) }}
+                  </span>
+                </a>
+              </RouterLink>
             </div>
           </div>
 
           <div class="border-t border-gray-800 pt-2">
             <div class="grid gap-2 grid-cols-2">
-              <button
+              <RouterLink
                 v-for="item in trailingItems"
                 :key="item.routeName"
-                type="button"
-                class="w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer bg-gray-900/60 text-gray-200 hover:text-white hover:bg-gray-800"
+                :to="item.path"
+                class="w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer bg-gray-900/60 text-gray-200 hover:text-white hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 :class="route.name === item.routeName ? 'border border-primary/60 text-primary' : ''"
-                @click="navigate(item.path)"
+                @click="closeMobileMenu"
               >
-                {{ t(item.name) }}
-              </button>
+                {{ t(item.labelKey) }}
+              </RouterLink>
             </div>
           </div>
 

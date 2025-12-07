@@ -66,6 +66,10 @@ const selectedOption = computed({
   },
 })
 
+const onOptionChange = (option: FontOption | null) => {
+  selectedOption.value = option
+}
+
 const variantOptions = computed(() => {
   if (!currentFont.value) {
     return []
@@ -254,7 +258,8 @@ onMounted(() => {
     <label class="fp-label">
       <span>{{ t('component.fontPicker.fontLabel') }}</span>
       <Multiselect
-        v-model="selectedOption"
+        :model-value="selectedOption"
+        @update:modelValue="onOptionChange"
         :options="groupedOptions"
         group-label="category"
         group-values="fonts"

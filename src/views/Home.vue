@@ -4,27 +4,19 @@ import { useI18n } from 'vue-i18n'
 // biome-ignore lint/correctness/noUnusedImports: used in template
 import PornHub from '@/components/LogoEditor/PornHub.vue'
 import { useDownloadTask } from '@/composables/useDownloadTask'
-import { useSnapshotDownload } from '@/composables/useSnapshotDownload'
-import type { DownloadFormat } from '@/utils/download'
+import { useSnapshotDownload, type DownloadSource } from '@/composables/useSnapshotDownload'
+import { DEFAULT_DOWNLOAD_OPTIONS } from '@/constants/download'
 
-type DownloadOptions = { pixelRatio?: number; backgroundColor?: string; quality?: number }
-type LogoRef = {
-  captureEl: Ref<HTMLElement | null> | HTMLElement | null
-  getDownloadOptions: (format?: DownloadFormat) => DownloadOptions
-  getFileBaseName: () => string
-} | null
-const pornHubRef = ref<LogoRef>(null)
+const pornHubRef = ref<DownloadSource>(null)
 const isDownloading = ref(false)
 const errorMessage = ref<string | null>(null)
 const { runDownload } = useDownloadTask(isDownloading, errorMessage)
 const { t } = useI18n()
 
-const DEFAULT_OPTIONS = { pixelRatio: 2, backgroundColor: '#000000', quality: 0.92 } as const
-
 const { isCanvasReady, handleSingleDownload, handleZipDownload } = useSnapshotDownload({
   sourceRef: pornHubRef,
   runDownload,
-  defaultOptions: DEFAULT_OPTIONS,
+  defaultOptions: DEFAULT_DOWNLOAD_OPTIONS,
   baseNameFallback: 'logoly',
   t,
 })

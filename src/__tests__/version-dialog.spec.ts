@@ -178,4 +178,26 @@ describe('VersionDialog', () => {
     const vm = wrapper.vm as unknown as { isOpen: boolean }
     expect(vm.isOpen).toBe(false)
   })
+
+  it('swallows clipboard errors while still closing the dialog', async () => {
+    const writeText = vi.fn().mockRejectedValue(new Error('denied'))
+    Object.assign(navigator, { clipboard: { writeText } })
+
+    const wrapper = mount(VersionDialog, {
+      props: { version: 'v5.0.0' },
+      global: { plugins: [i18n] },
+    })
+    mountedWrappers.push(wrapper)
+
+    await wrapper.find('button').trigger('click')
+    await flushPromises()
+
+    const copyButton = document.querySelector('[data-testid="copy-debug"]') as HTMLButtonElement
+    await copyButton.click()
+    await flushPromises()
+
+    const vm = wrapper.vm as unknown as { isOpen: boolean }
+    expect(writeText).toHaveBeenCalled()
+    expect(vm.isOpen).toBe(false)
+  })
 })

@@ -7,23 +7,23 @@ import {
 } from '@/utils/download'
 import type { useDownloadTask } from './useDownloadTask'
 
-type CaptureEl = Ref<HTMLElement | null> | HTMLElement | null | undefined
+export type CaptureElement = Ref<HTMLElement | null> | HTMLElement | null | undefined
 
-type DownloadableSource = {
-  captureEl: CaptureEl
+export type DownloadSource = {
+  captureEl: CaptureElement
   getDownloadOptions: (format?: DownloadFormat) => DownloadOptions['options']
   getFileBaseName: () => string
 } | null
 
 type UseSnapshotDownloadOptions = {
-  sourceRef: Ref<DownloadableSource>
+  sourceRef: Ref<DownloadSource>
   runDownload: ReturnType<typeof useDownloadTask>['runDownload']
   defaultOptions: DownloadOptions['options']
   baseNameFallback: string
   t: (key: string) => string
 }
 
-const resolveCaptureEl = (captureEl: CaptureEl) => {
+const resolveCaptureEl = (captureEl: CaptureElement) => {
   if (!captureEl) return null
   if (!(captureEl instanceof HTMLElement) && 'value' in (captureEl as Ref<HTMLElement | null>)) {
     return (captureEl as Ref<HTMLElement | null>).value

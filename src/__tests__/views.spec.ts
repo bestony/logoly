@@ -71,4 +71,107 @@ describe('Brand placeholder views', () => {
 
     expect(wrapper.find('h1').text()).toBe(i18n.global.t(key))
   })
+
+  it('falls back to route name and defaults when meta is missing', async () => {
+    const router = createTestRouter()
+    router.addRoute({ path: '/custom', name: 'custom', component: BrandPlaceholder })
+    await router.push('/custom')
+    await router.isReady()
+
+    const wrapper = mount(BrandPlaceholder, {
+      global: {
+        plugins: [i18n, router],
+        stubs: {
+          UnderConstruction: {
+            props: ['baseKey', 'brandLabel', 'progressHref'],
+            template:
+              '<div><span class="base">{{ baseKey }}</span><span class="brand">{{ brandLabel }}</span><span class="progress">{{ progressHref }}</span></div>',
+          },
+        },
+      },
+    })
+
+    expect(wrapper.find('.base').text()).toBe('page.custom')
+    expect(wrapper.find('.brand').text()).toBe('Logoly')
+    expect(wrapper.find('.progress').text()).toBe('')
+  })
+
+  it('passes through progress links when provided', async () => {
+    const router = createTestRouter()
+    router.addRoute({
+      path: '/progress',
+      name: 'progress',
+      component: BrandPlaceholder,
+      meta: { progressHref: 'https://example.com/progress' },
+    })
+    await router.push('/progress')
+    await router.isReady()
+
+    const wrapper = mount(BrandPlaceholder, {
+      global: {
+        plugins: [i18n, router],
+        stubs: {
+          UnderConstruction: {
+            props: ['baseKey', 'brandLabel', 'progressHref'],
+            template:
+              '<div><span class="progress">{{ progressHref }}</span><span class="base">{{ baseKey }}</span><span class="brand">{{ brandLabel }}</span></div>',
+          },
+        },
+      },
+    })
+
+    expect(wrapper.find('.progress').text()).toBe('https://example.com/progress')
+    expect(wrapper.find('.base').text()).toBe('page.progress')
+    expect(wrapper.find('.brand').text()).toBe('Logoly')
+  })
+
+  it('uses meta title as brand label fallback when brandLabel is missing', async () => {
+    const router = createTestRouter()
+    router.addRoute({
+      path: '/with-title',
+      name: 'with-title',
+      component: BrandPlaceholder,
+      meta: { title: 'Titled Brand' },
+    })
+    await router.push('/with-title')
+    await router.isReady()
+
+    const wrapper = mount(BrandPlaceholder, {
+      global: {
+        plugins: [i18n, router],
+        stubs: {
+          UnderConstruction: {
+            props: ['baseKey', 'brandLabel'],
+            template: '<div class="brand">{{ brandLabel }}-{{ baseKey }}</div>',
+          },
+        },
+      },
+    })
+
+    expect(wrapper.find('.brand').text()).toBe('Titled Brand-page.with-title')
+  })
+
+  it('defaults placeholder base key to home when route name is missing', async () => {
+    const router = createTestRouter()
+    router.addRoute({
+      path: '/anon',
+      component: BrandPlaceholder,
+    })
+    await router.push('/anon')
+    await router.isReady()
+
+    const wrapper = mount(BrandPlaceholder, {
+      global: {
+        plugins: [i18n, router],
+        stubs: {
+          UnderConstruction: {
+            props: ['baseKey'],
+            template: '<div class="base">{{ baseKey }}</div>',
+          },
+        },
+      },
+    })
+
+    expect(wrapper.find('.base').text()).toBe('page.home')
+  })
 })

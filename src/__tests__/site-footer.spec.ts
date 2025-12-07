@@ -70,4 +70,11 @@ describe('SiteFooter', () => {
     const year = new Date().getFullYear().toString()
     expect(wrapper.text()).toContain(`© ${year} Logoly`)
   })
+
+  it('falls back to default app version when build constant is empty', async () => {
+    // biome-ignore lint/style/useNamingConvention: injected at build time
+    ;(globalThis as { __APP_VERSION__?: string }).__APP_VERSION__ = ''
+    const wrapper = await mountFooter()
+    expect(wrapper.text()).toContain('v0.0.0-test')
+  })
 })
