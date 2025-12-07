@@ -185,8 +185,24 @@ defineExpose({
               type="color"
               class="color-input"
               aria-label="preview-background-color"
+              :disabled="isTransparentBg"
             />
             <span class="color-value">{{ previewBgColor.toUpperCase() }}</span>
+          </div>
+        </label>
+
+        <label class="field toggle-field">
+          <span class="field-label">{{ t('component.simpleText.transparent') }}</span>
+          <div class="toggle-row">
+            <input
+              id="transparent-bg"
+              v-model="isTransparentBg"
+              type="checkbox"
+              class="toggle-input"
+            />
+            <label class="toggle-label" for="transparent-bg">
+              {{ t('component.simpleText.transparentHint') }}
+            </label>
           </div>
         </label>
       </div>
@@ -366,6 +382,23 @@ defineExpose({
     'Liberation Mono',
     monospace;
   font-size: 13px;
+}
+
+.toggle-field .toggle-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-input {
+  width: 18px;
+  height: 18px;
+  accent-color: #f59e0b;
+}
+
+.toggle-label {
+  color: #e5e7eb;
+  font-size: 14px;
 }
 
 .font-card {

@@ -103,6 +103,8 @@ export default {
       fontSize: 'Tamaño de fuente',
       textColor: 'Color de texto',
       previewBg: 'Fondo de previsualización',
+      transparent: 'Fondo transparente',
+      transparentHint: 'Exporta PNG/SVG con fondo transparente (JPG queda sólido).',
       fontTitle: 'Fuente y variante',
       fontHint: 'Carga Google Fonts bajo demanda; las variantes aplican peso / cursiva.',
     },

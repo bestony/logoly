@@ -103,6 +103,8 @@ export default {
       fontSize: 'フォントサイズ',
       textColor: '文字色',
       previewBg: 'プレビュー背景色',
+      transparent: '透明背景',
+      transparentHint: 'PNG/SVG を透明で書き出し（JPEG は不透明のまま）。',
       fontTitle: 'フォントとバリアント',
       fontHint: 'Google Fonts をオンデマンドで読み込み、バリアントでウェイト/イタリックを適用します。',
     },

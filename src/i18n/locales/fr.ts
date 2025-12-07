@@ -104,6 +104,8 @@ export default {
       fontSize: 'Taille de police',
       textColor: 'Couleur du texte',
       previewBg: "Fond de l'aperçu",
+      transparent: 'Fond transparent',
+      transparentHint: 'Exporter PNG/SVG avec fond transparent (JPEG reste opaque).',
       fontTitle: 'Police et variante',
       fontHint: 'Charge Google Fonts à la demande ; les variantes appliquent poids / italique.',
     },

@@ -101,6 +101,8 @@ export default {
       fontSize: '字号',
       textColor: '文字颜色',
       previewBg: '预览背景色',
+      transparent: '透明背景',
+      transparentHint: 'PNG/SVG 导出保持透明（JPG 仍为实底）。',
       fontTitle: '字体与变体',
       fontHint: '按需加载 Google Fonts，字重 / 斜体一键切换。',
     },

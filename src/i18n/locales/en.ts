@@ -101,6 +101,8 @@ export default {
       fontSize: 'Font size',
       textColor: 'Text color',
       previewBg: 'Preview background',
+      transparent: 'Transparent background',
+      transparentHint: 'Keep PNG/SVG exports transparent (JPEG remains solid).',
       fontTitle: 'Font & variant',
       fontHint: 'Loads Google Fonts on demand; variants auto-apply weight or italics.',
     },
