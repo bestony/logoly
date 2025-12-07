@@ -1,5 +1,5 @@
 import { saveAs } from 'file-saver'
-import { toJpeg, toPng, toSvg } from 'html-to-image'
+import { getFontEmbedCSS, toJpeg, toPng, toSvg } from 'html-to-image'
 import JSZip from 'jszip'
 
 type BaseOptions = {
@@ -34,10 +34,12 @@ export const downloadImage = async (
     options = { pixelRatio: 2, backgroundColor: '#000000', quality: 0.92 },
   }: DownloadOptions = {},
 ) => {
+  const fontEmbedCSS = await getFontEmbedCSS(element)
   const snapshotOptions = {
     pixelRatio: options.pixelRatio ?? 2,
     backgroundColor: options.backgroundColor ?? '#000000',
-    skipAutoScale:true,
+    skipAutoScale: true,
+    fontEmbedCSS,
   }
 
   const dataUrl =
@@ -64,9 +66,11 @@ export const downloadAsZip = async (
     options = { pixelRatio: 2, backgroundColor: '#000000', quality: 0.92 },
   }: DownloadOptions = {},
 ) => {
+  const fontEmbedCSS = await getFontEmbedCSS(element)
   const snapshotOptions = {
     pixelRatio: options.pixelRatio ?? 2,
     backgroundColor: options.backgroundColor ?? '#000000',
+    fontEmbedCSS,
   }
 
   const zip = new JSZip()
