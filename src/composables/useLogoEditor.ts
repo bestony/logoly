@@ -1,8 +1,8 @@
-import { computed, onMounted, ref, watch, type Ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 
 type DownloadFormat = 'png' | 'jpeg' | 'svg'
 
-export type LogoEditorOptions = {
+type LogoEditorOptions = {
   initialLeft?: string
   initialRight?: string
   initialFontSize?: number
@@ -145,10 +145,4 @@ export const useLogoEditor = (options: LogoEditorOptions = {}) => {
     onLeftInput,
     onRightInput,
   }
-}
-
-export type LogoEditorExposed = {
-  captureEl: Ref<HTMLElement | null>
-  getDownloadOptions: ReturnType<typeof useLogoEditor>['getDownloadOptions']
-  getFileBaseName: () => string
 }

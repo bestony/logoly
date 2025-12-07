@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { computed, ref, type Ref } from 'vue'
+import { ref, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import SimpleTextEditor from '@/components/LogoEditor/SimpleText.vue'
 import { useDownloadTask } from '@/composables/useDownloadTask'
-import { type DownloadFormat, downloadAsZip, downloadImage } from '@/utils/download'
+import { useSnapshotDownload } from '@/composables/useSnapshotDownload'
+import type { DownloadFormat } from '@/utils/download'
 
 type DownloadOptions = { pixelRatio?: number; backgroundColor?: string; quality?: number }
 
@@ -21,59 +22,13 @@ const { t } = useI18n()
 
 const DEFAULT_OPTIONS = { pixelRatio: 2, backgroundColor: '#050505', quality: 0.94 } as const
 
-const resolveCaptureEl = (
-  captureEl: Ref<HTMLElement | null> | HTMLElement | null | undefined,
-) => {
-  if (!captureEl) return null
-  if (!(captureEl instanceof HTMLElement) && 'value' in (captureEl as Ref<HTMLElement | null>)) {
-    return (captureEl as Ref<HTMLElement | null>).value
-  }
-  return captureEl as HTMLElement | null
-}
-
-const getTarget = () => resolveCaptureEl(editorRef.value?.captureEl)
-const isCanvasReady = computed(() => Boolean(getTarget()))
-const getOptions = (format?: DownloadFormat) =>
-  editorRef.value?.getDownloadOptions(format) ?? DEFAULT_OPTIONS
-const getBaseName = () => editorRef.value?.getFileBaseName() ?? 'simple-text'
-
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const handleSingleDownload = (format: DownloadFormat) =>
-  runDownload(
-    () => Boolean(getTarget()),
-    () => {
-      const target = getTarget()
-      if (!target) {
-        return Promise.resolve()
-      }
-
-      return downloadImage(target, format, {
-        baseName: getBaseName(),
-        options: { ...getOptions(format) },
-      })
-    },
-    t('page.home.errors.downloadFail'),
-    t('page.home.errors.canvasNotReady'),
-  )
-
-// biome-ignore lint/correctness/noUnusedVariables: used in template
-const handleZipDownload = () =>
-  runDownload(
-    () => Boolean(getTarget()),
-    () => {
-      const target = getTarget()
-      if (!target) {
-        return Promise.resolve()
-      }
-
-      return downloadAsZip(target, ['png', 'jpeg', 'svg'], {
-        baseName: getBaseName(),
-        options: { ...getOptions('png') },
-      })
-    },
-    t('page.home.errors.zipFail'),
-    t('page.home.errors.canvasNotReady'),
-  )
+const { isCanvasReady, handleSingleDownload, handleZipDownload } = useSnapshotDownload({
+  sourceRef: editorRef,
+  runDownload,
+  defaultOptions: DEFAULT_OPTIONS,
+  baseNameFallback: 'simple-text',
+  t,
+})
 </script>
 
 <template>

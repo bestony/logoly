@@ -3,6 +3,18 @@ import type { RouteDefinition } from '../types'
 const makeBrandDescription = (brand: string) =>
   `Generate ${brand} style logos online with instant preview and PNG/SVG export.`
 
+const placeholderRoute = (path: string, name: string, brand: string): RouteDefinition => ({
+  path,
+  name,
+  view: 'BrandPlaceholder',
+  meta: {
+    title: brand,
+    description: makeBrandDescription(brand),
+    placeholderKey: `page.${name}`,
+    brandLabel: brand,
+  },
+})
+
 export const brandRoutes: RouteDefinition[] = [
   {
     path: '/vertical-ph',
@@ -13,22 +25,22 @@ export const brandRoutes: RouteDefinition[] = [
   {
     path: '/onlyfans',
     name: 'onlyfans',
-    view: 'OnlyFans',
-    meta: { title: 'OnlyFans', description: makeBrandDescription('OnlyFans') },
+    view: 'BrandPlaceholder',
+    meta: {
+      title: 'OnlyFans',
+      description: makeBrandDescription('OnlyFans'),
+      placeholderKey: 'page.onlyfans',
+      brandLabel: 'OnlyFans',
+    },
   },
-  { path: '/fedex', name: 'fedex', view: 'FedEx', meta: { title: 'FedEx' } },
-  {
-    path: '/mastercard',
-    name: 'mastercard',
-    view: 'Mastercard',
-    meta: { title: 'Mastercard', description: makeBrandDescription('Mastercard') },
-  },
-  { path: '/bluesnap', name: 'bluesnap', view: 'Bluesnap', meta: { title: 'Bluesnap' } },
+  placeholderRoute('/fedex', 'fedex', 'FedEx'),
+  placeholderRoute('/mastercard', 'mastercard', 'Mastercard'),
+  placeholderRoute('/bluesnap', 'bluesnap', 'Bluesnap'),
   { path: '/simpletext', name: 'simpletext', view: 'SimpleText', meta: { title: 'Simple Text' } },
-  { path: '/sega', name: 'sega', view: 'SEGA', meta: { title: 'SEGA' } },
-  { path: '/nintendo', name: 'nintendo', view: 'Nintendo', meta: { title: 'Nintendo' } },
-  { path: '/lego', name: 'lego', view: 'Lego', meta: { title: 'LEGO' } },
-  { path: '/marvel', name: 'marvel', view: 'Marvel', meta: { title: 'Marvel' } },
-  { path: '/bravo', name: 'bravo', view: 'Bravo', meta: { title: 'Bravo' } },
-  { path: '/amc', name: 'amc', view: 'AMC', meta: { title: 'AMC' } },
+  placeholderRoute('/sega', 'sega', 'SEGA'),
+  placeholderRoute('/nintendo', 'nintendo', 'Nintendo'),
+  placeholderRoute('/lego', 'lego', 'LEGO'),
+  placeholderRoute('/marvel', 'marvel', 'Marvel'),
+  placeholderRoute('/bravo', 'bravo', 'Bravo'),
+  placeholderRoute('/amc', 'amc', 'AMC'),
 ]

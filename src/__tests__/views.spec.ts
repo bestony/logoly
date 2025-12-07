@@ -1,19 +1,11 @@
 import { RouterLinkStub, mount } from '@vue/test-utils'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { i18n } from '../i18n'
+import { createTestRouter } from './test-utils'
 import About from '../views/About.vue'
-import AMC from '../views/AMC.vue'
-import Bluesnap from '../views/Bluesnap.vue'
-import Bravo from '../views/Bravo.vue'
+import BrandPlaceholder from '../views/BrandPlaceholder.vue'
 import FAQ from '../views/FAQ.vue'
-import FedEx from '../views/FedEx.vue'
 import Home from '../views/Home.vue'
-import Lego from '../views/Lego.vue'
-import Marvel from '../views/Marvel.vue'
-import Mastercard from '../views/Mastercard.vue'
-import Nintendo from '../views/Nintendo.vue'
-import OnlyFans from '../views/OnlyFans.vue'
-import SEGA from '../views/SEGA.vue'
 import SimpleText from '../views/SimpleText.vue'
 import VerticalPh from '../views/VerticalPh.vue'
 
@@ -24,22 +16,12 @@ type ViewCase = {
 
 const resolveTitle = (title: ViewCase['title']) => (typeof title === 'function' ? title() : title)
 
-const cases: ViewCase[] = [
+const primaryCases: ViewCase[] = [
   { component: Home, title: () => i18n.global.t('page.home.title') },
   { component: VerticalPh, title: () => i18n.global.t('page.verticalPh.title') },
-  { component: OnlyFans, title: () => i18n.global.t('page.onlyfans.title') },
   { component: About, title: () => i18n.global.t('page.about.title') },
   { component: FAQ, title: () => i18n.global.t('page.faq.title') },
-  { component: FedEx, title: () => i18n.global.t('page.fedex.title') },
-  { component: Mastercard, title: () => i18n.global.t('page.mastercard.title') },
-  { component: Bluesnap, title: () => i18n.global.t('page.bluesnap.title') },
   { component: SimpleText, title: () => i18n.global.t('page.simpleText.title') },
-  { component: SEGA, title: () => i18n.global.t('page.sega.title') },
-  { component: Nintendo, title: () => i18n.global.t('page.nintendo.title') },
-  { component: Lego, title: () => i18n.global.t('page.lego.title') },
-  { component: Marvel, title: () => i18n.global.t('page.marvel.title') },
-  { component: Bravo, title: () => i18n.global.t('page.bravo.title') },
-  { component: AMC, title: () => i18n.global.t('page.amc.title') },
 ]
 
 describe('Static views', () => {
@@ -47,7 +29,7 @@ describe('Static views', () => {
     i18n.global.locale.value = 'zh-CN'
   })
 
-  it.each(cases)('renders %s heading', ({ component, title }) => {
+  it.each(primaryCases)('renders %s heading', ({ component, title }) => {
     const wrapper = mount(component, {
       global: {
         plugins: [i18n],
@@ -57,5 +39,36 @@ describe('Static views', () => {
       },
     })
     expect(wrapper.find('h1').text()).toBe(resolveTitle(title))
+  })
+})
+
+describe('Brand placeholder views', () => {
+  beforeAll(() => {
+    i18n.global.locale.value = 'zh-CN'
+  })
+
+  it.each([
+    ['/onlyfans', 'page.onlyfans.title'],
+    ['/fedex', 'page.fedex.title'],
+    ['/mastercard', 'page.mastercard.title'],
+    ['/bluesnap', 'page.bluesnap.title'],
+    ['/sega', 'page.sega.title'],
+    ['/nintendo', 'page.nintendo.title'],
+    ['/lego', 'page.lego.title'],
+    ['/marvel', 'page.marvel.title'],
+    ['/bravo', 'page.bravo.title'],
+    ['/amc', 'page.amc.title'],
+  ])('renders %s heading', async (path, key) => {
+    const router = createTestRouter()
+    await router.push(path)
+    await router.isReady()
+
+    const wrapper = mount(BrandPlaceholder, {
+      global: {
+        plugins: [i18n, router],
+      },
+    })
+
+    expect(wrapper.find('h1').text()).toBe(i18n.global.t(key))
   })
 })

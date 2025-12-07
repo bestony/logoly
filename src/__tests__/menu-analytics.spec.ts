@@ -24,7 +24,7 @@ describe('Menu analytics', () => {
     await dropdownButton?.trigger('click')
     await flushPromises()
 
-    const segaButton = wrapper.findAll('button').find((button) => button.text() === 'SEGA')
+    const segaButton = wrapper.findAll('button').find((button) => button.text().includes('SEGA'))
     expect(segaButton).toBeTruthy()
     await segaButton?.trigger('click')
     await flushPromises()

@@ -25,4 +25,7 @@ export type RouteMeta = {
   title: string
   description?: string
   keywords?: string[]
+  placeholderKey?: string
+  brandLabel?: string
+  progressHref?: string
 }
