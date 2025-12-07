@@ -118,6 +118,26 @@ export default {
       title: 'Pornhub vertical',
       description: 'Página de plantilla de logo estilo Pornhub vertical.',
     },
+    onlyfans: {
+      title: 'OnlyFans',
+      status: 'En construcción',
+      lead: 'Estamos actualizando el generador estilo OnlyFans para mejor espaciado y exportaciones.',
+      note: 'Gracias por esperar; mientras tanto puedes probar otras plantillas.',
+      items: {
+        spacing: {
+          title: 'Ajuste tipográfico',
+          desc: 'Presets de kerning y baseline para acercarse al wordmark original.',
+        },
+        export: {
+          title: 'Exportaciones limpias',
+          desc: 'PNG/SVG/JPEG transparentes con bordes nítidos y paquetes ZIP.',
+        },
+      },
+      actions: {
+        home: 'Volver al inicio',
+        progress: 'Seguir el progreso en GitHub',
+      },
+    },
     about: {
       title: 'Sobre nosotros',
       subtitle: {
@@ -229,6 +249,198 @@ export default {
         spacing: {
           title: 'Espaciado listo para entrega',
           desc: 'Ajustes de kerning, línea base y alineación que siguen el wordmark original.',
+        },
+        export: {
+          title: 'Exportaciones limpias',
+          desc: 'PNG/SVG/JPEG transparentes con bordes nítidos y paquetes zip.',
+        },
+      },
+      actions: {
+        home: 'Volver al inicio',
+        progress: 'Seguir el progreso en GitHub',
+      },
+    },
+    mastercard: {
+      title: 'Mastercard',
+      status: 'En construcción',
+      lead: 'Estamos puliendo este generador: colores, espaciado y exportaciones vienen en camino.',
+      note: 'Gracias por tu paciencia; mientras tanto prueba otras plantillas.',
+      items: {
+        palette: {
+          title: 'Paleta de marca',
+          desc: 'Colores en línea con la marca, con cambio rápido y tips de contraste.',
+        },
+        spacing: {
+          title: 'Espaciado y alineación',
+          desc: 'Presets de kerning y baseline para acercarse al wordmark original.',
+        },
+        export: {
+          title: 'Exportaciones limpias',
+          desc: 'PNG/SVG/JPEG transparentes con bordes nítidos y paquetes zip.',
+        },
+      },
+      actions: {
+        home: 'Volver al inicio',
+        progress: 'Seguir el progreso en GitHub',
+      },
+    },
+    bluesnap: {
+      title: 'Bluesnap',
+      status: 'En construcción',
+      lead: 'Estamos puliendo este generador: colores, espaciado y exportaciones vienen en camino.',
+      note: 'Gracias por tu paciencia; mientras tanto prueba otras plantillas.',
+      items: {
+        palette: {
+          title: 'Paleta de marca',
+          desc: 'Colores en línea con la marca, con cambio rápido y tips de contraste.',
+        },
+        spacing: {
+          title: 'Espaciado y alineación',
+          desc: 'Presets de kerning y baseline para acercarse al wordmark original.',
+        },
+        export: {
+          title: 'Exportaciones limpias',
+          desc: 'PNG/SVG/JPEG transparentes con bordes nítidos y paquetes zip.',
+        },
+      },
+      actions: {
+        home: 'Volver al inicio',
+        progress: 'Seguir el progreso en GitHub',
+      },
+    },
+    sega: {
+      title: 'SEGA',
+      status: 'En construcción',
+      lead: 'Estamos puliendo este generador: colores, espaciado y exportaciones vienen en camino.',
+      note: 'Gracias por tu paciencia; mientras tanto prueba otras plantillas.',
+      items: {
+        palette: {
+          title: 'Paleta de marca',
+          desc: 'Colores en línea con la marca, con cambio rápido y tips de contraste.',
+        },
+        spacing: {
+          title: 'Espaciado y alineación',
+          desc: 'Presets de kerning y baseline para acercarse al wordmark original.',
+        },
+        export: {
+          title: 'Exportaciones limpias',
+          desc: 'PNG/SVG/JPEG transparentes con bordes nítidos y paquetes zip.',
+        },
+      },
+      actions: {
+        home: 'Volver al inicio',
+        progress: 'Seguir el progreso en GitHub',
+      },
+    },
+    nintendo: {
+      title: 'Nintendo',
+      status: 'En construcción',
+      lead: 'Estamos puliendo este generador: colores, espaciado y exportaciones vienen en camino.',
+      note: 'Gracias por tu paciencia; mientras tanto prueba otras plantillas.',
+      items: {
+        palette: {
+          title: 'Paleta de marca',
+          desc: 'Colores en línea con la marca, con cambio rápido y tips de contraste.',
+        },
+        spacing: {
+          title: 'Espaciado y alineación',
+          desc: 'Presets de kerning y baseline para acercarse al wordmark original.',
+        },
+        export: {
+          title: 'Exportaciones limpias',
+          desc: 'PNG/SVG/JPEG transparentes con bordes nítidos y paquetes zip.',
+        },
+      },
+      actions: {
+        home: 'Volver al inicio',
+        progress: 'Seguir el progreso en GitHub',
+      },
+    },
+    lego: {
+      title: 'Lego',
+      status: 'En construcción',
+      lead: 'Estamos puliendo este generador: colores, espaciado y exportaciones vienen en camino.',
+      note: 'Gracias por tu paciencia; mientras tanto prueba otras plantillas.',
+      items: {
+        palette: {
+          title: 'Paleta de marca',
+          desc: 'Colores en línea con la marca, con cambio rápido y tips de contraste.',
+        },
+        spacing: {
+          title: 'Espaciado y alineación',
+          desc: 'Presets de kerning y baseline para acercarse al wordmark original.',
+        },
+        export: {
+          title: 'Exportaciones limpias',
+          desc: 'PNG/SVG/JPEG transparentes con bordes nítidos y paquetes zip.',
+        },
+      },
+      actions: {
+        home: 'Volver al inicio',
+        progress: 'Seguir el progreso en GitHub',
+      },
+    },
+    marvel: {
+      title: 'Marvel',
+      status: 'En construcción',
+      lead: 'Estamos puliendo este generador: colores, espaciado y exportaciones vienen en camino.',
+      note: 'Gracias por tu paciencia; mientras tanto prueba otras plantillas.',
+      items: {
+        palette: {
+          title: 'Paleta de marca',
+          desc: 'Colores en línea con la marca, con cambio rápido y tips de contraste.',
+        },
+        spacing: {
+          title: 'Espaciado y alineación',
+          desc: 'Presets de kerning y baseline para acercarse al wordmark original.',
+        },
+        export: {
+          title: 'Exportaciones limpias',
+          desc: 'PNG/SVG/JPEG transparentes con bordes nítidos y paquetes zip.',
+        },
+      },
+      actions: {
+        home: 'Volver al inicio',
+        progress: 'Seguir el progreso en GitHub',
+      },
+    },
+    bravo: {
+      title: 'Bravo',
+      status: 'En construcción',
+      lead: 'Estamos puliendo este generador: colores, espaciado y exportaciones vienen en camino.',
+      note: 'Gracias por tu paciencia; mientras tanto prueba otras plantillas.',
+      items: {
+        palette: {
+          title: 'Paleta de marca',
+          desc: 'Colores en línea con la marca, con cambio rápido y tips de contraste.',
+        },
+        spacing: {
+          title: 'Espaciado y alineación',
+          desc: 'Presets de kerning y baseline para acercarse al wordmark original.',
+        },
+        export: {
+          title: 'Exportaciones limpias',
+          desc: 'PNG/SVG/JPEG transparentes con bordes nítidos y paquetes zip.',
+        },
+      },
+      actions: {
+        home: 'Volver al inicio',
+        progress: 'Seguir el progreso en GitHub',
+      },
+    },
+    amc: {
+      title: 'AMC',
+      status: 'En construcción',
+      lead: 'Estamos puliendo este generador: colores, espaciado y exportaciones vienen en camino.',
+      note: 'Gracias por tu paciencia; mientras tanto prueba otras plantillas.',
+      items: {
+        palette: {
+          title: 'Paleta de marca',
+          desc: 'Colores en línea con la marca, con cambio rápido y tips de contraste.',
+        },
+        spacing: {
+          title: 'Espaciado y alineación',
+          desc: 'Presets de kerning y baseline para acercarse al wordmark original.',
         },
         export: {
           title: 'Exportaciones limpias',

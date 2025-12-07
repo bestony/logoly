@@ -118,6 +118,26 @@ export default {
       title: '縦型 Pornhub',
       description: '縦型の Pornhub 風ロゴテンプレートページです。',
     },
+    onlyfans: {
+      title: 'OnlyFans',
+      status: '工事中',
+      lead: 'OnlyFans 風ロゴジェネレーターをアップデート中。文字間と書き出し品質を改善しています。',
+      note: 'お待ちいただきありがとうございます。他のテンプレートもぜひお試しください。',
+      items: {
+        spacing: {
+          title: 'タイポ微調整',
+          desc: '元のワードマークに近いカーニングとベースラインのプリセットを用意。',
+        },
+        export: {
+          title: 'クリーンな書き出し',
+          desc: '透過 PNG/SVG/JPEG を鋭いエッジで、ZIP まとめにも対応。',
+        },
+      },
+      actions: {
+        home: 'ホームに戻る',
+        progress: 'GitHub で進捗を見る',
+      },
+    },
     about: {
       title: '私たちについて',
       subtitle: {
@@ -231,6 +251,198 @@ export default {
         export: {
           title: 'クリーンな書き出し',
           desc: '透過 PNG/SVG/JPEG を鋭いエッジで出力し、ZIP まとめも予定。',
+        },
+      },
+      actions: {
+        home: 'ホームに戻る',
+        progress: 'GitHub で進捗を見る',
+      },
+    },
+    mastercard: {
+      title: 'Mastercard',
+      status: '工事中',
+      lead: 'このロゴジェネレーターは配色・字間・書き出しを調整中です。',
+      note: 'お待ちいただきありがとうございます。他のテンプレートもぜひお試しください。',
+      items: {
+        palette: {
+          title: 'ブランドカラー',
+          desc: 'ブランドに沿った配色をワンクリックで切替、コントラストも確認。',
+        },
+        spacing: {
+          title: '文字間と整列',
+          desc: '元のワードマークに近いカーニングとベースラインのプリセット。',
+        },
+        export: {
+          title: 'クリーンな書き出し',
+          desc: '透過 PNG/SVG/JPEG をシャープなエッジで、ZIP まとめにも対応。',
+        },
+      },
+      actions: {
+        home: 'ホームに戻る',
+        progress: 'GitHub で進捗を見る',
+      },
+    },
+    bluesnap: {
+      title: 'Bluesnap',
+      status: '工事中',
+      lead: 'このロゴジェネレーターは配色・字間・書き出しを調整中です。',
+      note: 'お待ちいただきありがとうございます。他のテンプレートもぜひお試しください。',
+      items: {
+        palette: {
+          title: 'ブランドカラー',
+          desc: 'ブランドに沿った配色をワンクリックで切替、コントラストも確認。',
+        },
+        spacing: {
+          title: '文字間と整列',
+          desc: '元のワードマークに近いカーニングとベースラインのプリセット。',
+        },
+        export: {
+          title: 'クリーンな書き出し',
+          desc: '透過 PNG/SVG/JPEG をシャープなエッジで、ZIP まとめにも対応。',
+        },
+      },
+      actions: {
+        home: 'ホームに戻る',
+        progress: 'GitHub で進捗を見る',
+      },
+    },
+    sega: {
+      title: 'SEGA',
+      status: '工事中',
+      lead: 'このロゴジェネレーターは配色・字間・書き出しを調整中です。',
+      note: 'お待ちいただきありがとうございます。他のテンプレートもぜひお試しください。',
+      items: {
+        palette: {
+          title: 'ブランドカラー',
+          desc: 'ブランドに沿った配色をワンクリックで切替、コントラストも確認。',
+        },
+        spacing: {
+          title: '文字間と整列',
+          desc: '元のワードマークに近いカーニングとベースラインのプリセット。',
+        },
+        export: {
+          title: 'クリーンな書き出し',
+          desc: '透過 PNG/SVG/JPEG をシャープなエッジで、ZIP まとめにも対応。',
+        },
+      },
+      actions: {
+        home: 'ホームに戻る',
+        progress: 'GitHub で進捗を見る',
+      },
+    },
+    nintendo: {
+      title: 'Nintendo',
+      status: '工事中',
+      lead: 'このロゴジェネレーターは配色・字間・書き出しを調整中です。',
+      note: 'お待ちいただきありがとうございます。他のテンプレートもぜひお試しください。',
+      items: {
+        palette: {
+          title: 'ブランドカラー',
+          desc: 'ブランドに沿った配色をワンクリックで切替、コントラストも確認。',
+        },
+        spacing: {
+          title: '文字間と整列',
+          desc: '元のワードマークに近いカーニングとベースラインのプリセット。',
+        },
+        export: {
+          title: 'クリーンな書き出し',
+          desc: '透過 PNG/SVG/JPEG をシャープなエッジで、ZIP まとめにも対応。',
+        },
+      },
+      actions: {
+        home: 'ホームに戻る',
+        progress: 'GitHub で進捗を見る',
+      },
+    },
+    lego: {
+      title: 'Lego',
+      status: '工事中',
+      lead: 'このロゴジェネレーターは配色・字間・書き出しを調整中です。',
+      note: 'お待ちいただきありがとうございます。他のテンプレートもぜひお試しください。',
+      items: {
+        palette: {
+          title: 'ブランドカラー',
+          desc: 'ブランドに沿った配色をワンクリックで切替、コントラストも確認。',
+        },
+        spacing: {
+          title: '文字間と整列',
+          desc: '元のワードマークに近いカーニングとベースラインのプリセット。',
+        },
+        export: {
+          title: 'クリーンな書き出し',
+          desc: '透過 PNG/SVG/JPEG をシャープなエッジで、ZIP まとめにも対応。',
+        },
+      },
+      actions: {
+        home: 'ホームに戻る',
+        progress: 'GitHub で進捗を見る',
+      },
+    },
+    marvel: {
+      title: 'Marvel',
+      status: '工事中',
+      lead: 'このロゴジェネレーターは配色・字間・書き出しを調整中です。',
+      note: 'お待ちいただきありがとうございます。他のテンプレートもぜひお試しください。',
+      items: {
+        palette: {
+          title: 'ブランドカラー',
+          desc: 'ブランドに沿った配色をワンクリックで切替、コントラストも確認。',
+        },
+        spacing: {
+          title: '文字間と整列',
+          desc: '元のワードマークに近いカーニングとベースラインのプリセット。',
+        },
+        export: {
+          title: 'クリーンな書き出し',
+          desc: '透過 PNG/SVG/JPEG をシャープなエッジで、ZIP まとめにも対応。',
+        },
+      },
+      actions: {
+        home: 'ホームに戻る',
+        progress: 'GitHub で進捗を見る',
+      },
+    },
+    bravo: {
+      title: 'Bravo',
+      status: '工事中',
+      lead: 'このロゴジェネレーターは配色・字間・書き出しを調整中です。',
+      note: 'お待ちいただきありがとうございます。他のテンプレートもぜひお試しください。',
+      items: {
+        palette: {
+          title: 'ブランドカラー',
+          desc: 'ブランドに沿った配色をワンクリックで切替、コントラストも確認。',
+        },
+        spacing: {
+          title: '文字間と整列',
+          desc: '元のワードマークに近いカーニングとベースラインのプリセット。',
+        },
+        export: {
+          title: 'クリーンな書き出し',
+          desc: '透過 PNG/SVG/JPEG をシャープなエッジで、ZIP まとめにも対応。',
+        },
+      },
+      actions: {
+        home: 'ホームに戻る',
+        progress: 'GitHub で進捗を見る',
+      },
+    },
+    amc: {
+      title: 'AMC',
+      status: '工事中',
+      lead: 'このロゴジェネレーターは配色・字間・書き出しを調整中です。',
+      note: 'お待ちいただきありがとうございます。他のテンプレートもぜひお試しください。',
+      items: {
+        palette: {
+          title: 'ブランドカラー',
+          desc: 'ブランドに沿った配色をワンクリックで切替、コントラストも確認。',
+        },
+        spacing: {
+          title: '文字間と整列',
+          desc: '元のワードマークに近いカーニングとベースラインのプリセット。',
+        },
+        export: {
+          title: 'クリーンな書き出し',
+          desc: '透過 PNG/SVG/JPEG をシャープなエッジで、ZIP まとめにも対応。',
         },
       },
       actions: {

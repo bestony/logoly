@@ -116,6 +116,26 @@ export default {
       title: '垂直版 PornHub',
       description: '垂直版 PornHub 风格 Logo 模板页面。',
     },
+    onlyfans: {
+      title: 'OnlyFans',
+      status: '正在施工',
+      lead: 'OnlyFans 风格的 Logo 编辑器正在刷新字距和导出体验。',
+      note: '感谢等待，可以先体验其他模板。',
+      items: {
+        spacing: {
+          title: '字体微调',
+          desc: '提供接近官方的字距、基线预设，让风格更贴近。',
+        },
+        export: {
+          title: '导出与品质',
+          desc: '透明 PNG/SVG/JPEG，边缘干净，并支持打包下载。',
+        },
+      },
+      actions: {
+        home: '返回首页',
+        progress: '在 GitHub 关注进度',
+      },
+    },
     about: {
       title: '关于我们',
       subtitle: {
@@ -225,6 +245,198 @@ export default {
         spacing: {
           title: '字距与对齐',
           desc: '提供接近官方的字距、基线预设，调节更稳。',
+        },
+        export: {
+          title: '导出与品质',
+          desc: '透明 PNG/SVG/JPEG，边缘干净，并支持打包下载。',
+        },
+      },
+      actions: {
+        home: '返回首页',
+        progress: '在 GitHub 关注进度',
+      },
+    },
+    mastercard: {
+      title: 'Mastercard',
+      status: '正在施工',
+      lead: '这个 Logo 编辑器正在完善配色、字距和导出流程。',
+      note: '感谢耐心等待，期间可以先试试其他模板。',
+      items: {
+        palette: {
+          title: '品牌配色',
+          desc: '保持品牌风格的配色，支持一键切换并提示对比度。',
+        },
+        spacing: {
+          title: '字距与对齐',
+          desc: '预设接近官方的字距和基线，调整更稳。',
+        },
+        export: {
+          title: '导出与品质',
+          desc: '透明 PNG/SVG/JPEG，边缘干净，并支持打包下载。',
+        },
+      },
+      actions: {
+        home: '返回首页',
+        progress: '在 GitHub 关注进度',
+      },
+    },
+    bluesnap: {
+      title: 'Bluesnap',
+      status: '正在施工',
+      lead: '这个 Logo 编辑器正在完善配色、字距和导出流程。',
+      note: '感谢耐心等待，期间可以先试试其他模板。',
+      items: {
+        palette: {
+          title: '品牌配色',
+          desc: '保持品牌风格的配色，支持一键切换并提示对比度。',
+        },
+        spacing: {
+          title: '字距与对齐',
+          desc: '预设接近官方的字距和基线，调整更稳。',
+        },
+        export: {
+          title: '导出与品质',
+          desc: '透明 PNG/SVG/JPEG，边缘干净，并支持打包下载。',
+        },
+      },
+      actions: {
+        home: '返回首页',
+        progress: '在 GitHub 关注进度',
+      },
+    },
+    sega: {
+      title: 'SEGA',
+      status: '正在施工',
+      lead: '这个 Logo 编辑器正在完善配色、字距和导出流程。',
+      note: '感谢耐心等待，期间可以先试试其他模板。',
+      items: {
+        palette: {
+          title: '品牌配色',
+          desc: '保持品牌风格的配色，支持一键切换并提示对比度。',
+        },
+        spacing: {
+          title: '字距与对齐',
+          desc: '预设接近官方的字距和基线，调整更稳。',
+        },
+        export: {
+          title: '导出与品质',
+          desc: '透明 PNG/SVG/JPEG，边缘干净，并支持打包下载。',
+        },
+      },
+      actions: {
+        home: '返回首页',
+        progress: '在 GitHub 关注进度',
+      },
+    },
+    nintendo: {
+      title: 'Nintendo',
+      status: '正在施工',
+      lead: '这个 Logo 编辑器正在完善配色、字距和导出流程。',
+      note: '感谢耐心等待，期间可以先试试其他模板。',
+      items: {
+        palette: {
+          title: '品牌配色',
+          desc: '保持品牌风格的配色，支持一键切换并提示对比度。',
+        },
+        spacing: {
+          title: '字距与对齐',
+          desc: '预设接近官方的字距和基线，调整更稳。',
+        },
+        export: {
+          title: '导出与品质',
+          desc: '透明 PNG/SVG/JPEG，边缘干净，并支持打包下载。',
+        },
+      },
+      actions: {
+        home: '返回首页',
+        progress: '在 GitHub 关注进度',
+      },
+    },
+    lego: {
+      title: 'Lego',
+      status: '正在施工',
+      lead: '这个 Logo 编辑器正在完善配色、字距和导出流程。',
+      note: '感谢耐心等待，期间可以先试试其他模板。',
+      items: {
+        palette: {
+          title: '品牌配色',
+          desc: '保持品牌风格的配色，支持一键切换并提示对比度。',
+        },
+        spacing: {
+          title: '字距与对齐',
+          desc: '预设接近官方的字距和基线，调整更稳。',
+        },
+        export: {
+          title: '导出与品质',
+          desc: '透明 PNG/SVG/JPEG，边缘干净，并支持打包下载。',
+        },
+      },
+      actions: {
+        home: '返回首页',
+        progress: '在 GitHub 关注进度',
+      },
+    },
+    marvel: {
+      title: 'Marvel',
+      status: '正在施工',
+      lead: '这个 Logo 编辑器正在完善配色、字距和导出流程。',
+      note: '感谢耐心等待，期间可以先试试其他模板。',
+      items: {
+        palette: {
+          title: '品牌配色',
+          desc: '保持品牌风格的配色，支持一键切换并提示对比度。',
+        },
+        spacing: {
+          title: '字距与对齐',
+          desc: '预设接近官方的字距和基线，调整更稳。',
+        },
+        export: {
+          title: '导出与品质',
+          desc: '透明 PNG/SVG/JPEG，边缘干净，并支持打包下载。',
+        },
+      },
+      actions: {
+        home: '返回首页',
+        progress: '在 GitHub 关注进度',
+      },
+    },
+    bravo: {
+      title: 'Bravo',
+      status: '正在施工',
+      lead: '这个 Logo 编辑器正在完善配色、字距和导出流程。',
+      note: '感谢耐心等待，期间可以先试试其他模板。',
+      items: {
+        palette: {
+          title: '品牌配色',
+          desc: '保持品牌风格的配色，支持一键切换并提示对比度。',
+        },
+        spacing: {
+          title: '字距与对齐',
+          desc: '预设接近官方的字距和基线，调整更稳。',
+        },
+        export: {
+          title: '导出与品质',
+          desc: '透明 PNG/SVG/JPEG，边缘干净，并支持打包下载。',
+        },
+      },
+      actions: {
+        home: '返回首页',
+        progress: '在 GitHub 关注进度',
+      },
+    },
+    amc: {
+      title: 'AMC',
+      status: '正在施工',
+      lead: '这个 Logo 编辑器正在完善配色、字距和导出流程。',
+      note: '感谢耐心等待，期间可以先试试其他模板。',
+      items: {
+        palette: {
+          title: '品牌配色',
+          desc: '保持品牌风格的配色，支持一键切换并提示对比度。',
+        },
+        spacing: {
+          title: '字距与对齐',
+          desc: '预设接近官方的字距和基线，调整更稳。',
         },
         export: {
           title: '导出与品质',

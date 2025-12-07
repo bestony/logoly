@@ -119,6 +119,26 @@ export default {
       title: 'Pornhub vertical',
       description: 'Page de modèle de logo style Pornhub vertical.',
     },
+    onlyfans: {
+      title: 'OnlyFans',
+      status: 'En construction',
+      lead: 'Nous mettons à jour le générateur OnlyFans pour un meilleur espacement et de meilleurs exports.',
+      note: 'Merci de patienter ; vous pouvez tester les autres modèles en attendant.',
+      items: {
+        spacing: {
+          title: 'Réglage typographique',
+          desc: 'Préréglages de crénage et de baseline proches du wordmark original.',
+        },
+        export: {
+          title: 'Exports propres',
+          desc: 'PNG/SVG/JPEG transparents, bords nets et archives ZIP.',
+        },
+      },
+      actions: {
+        home: 'Retour à l’accueil',
+        progress: 'Suivre l’avancement sur GitHub',
+      },
+    },
     about: {
       title: 'À propos de nous',
       subtitle: {
@@ -234,6 +254,198 @@ export default {
         export: {
           title: 'Exports propres',
           desc: 'PNG/SVG/JPEG transparents, bords nets et paquets zip.',
+        },
+      },
+      actions: {
+        home: 'Retour à l’accueil',
+        progress: 'Suivre l’avancement sur GitHub',
+      },
+    },
+    mastercard: {
+      title: 'Mastercard',
+      status: 'En construction',
+      lead: 'Nous peaufinons ce générateur : palette, espacement et exports arrivent.',
+      note: 'Merci de votre patience ; essayez les autres modèles en attendant.',
+      items: {
+        palette: {
+          title: 'Palette de marque',
+          desc: 'Couleurs fidèles avec échange rapide et conseils de contraste.',
+        },
+        spacing: {
+          title: 'Espacement et alignement',
+          desc: 'Préréglages de crénage et baseline proches du wordmark original.',
+        },
+        export: {
+          title: 'Exports propres',
+          desc: 'PNG/SVG/JPEG transparents, bords nets et archives ZIP.',
+        },
+      },
+      actions: {
+        home: 'Retour à l’accueil',
+        progress: 'Suivre l’avancement sur GitHub',
+      },
+    },
+    bluesnap: {
+      title: 'Bluesnap',
+      status: 'En construction',
+      lead: 'Nous peaufinons ce générateur : palette, espacement et exports arrivent.',
+      note: 'Merci de votre patience ; essayez les autres modèles en attendant.',
+      items: {
+        palette: {
+          title: 'Palette de marque',
+          desc: 'Couleurs fidèles avec échange rapide et conseils de contraste.',
+        },
+        spacing: {
+          title: 'Espacement et alignement',
+          desc: 'Préréglages de crénage et baseline proches du wordmark original.',
+        },
+        export: {
+          title: 'Exports propres',
+          desc: 'PNG/SVG/JPEG transparents, bords nets et archives ZIP.',
+        },
+      },
+      actions: {
+        home: 'Retour à l’accueil',
+        progress: 'Suivre l’avancement sur GitHub',
+      },
+    },
+    sega: {
+      title: 'SEGA',
+      status: 'En construction',
+      lead: 'Nous peaufinons ce générateur : palette, espacement et exports arrivent.',
+      note: 'Merci de votre patience ; essayez les autres modèles en attendant.',
+      items: {
+        palette: {
+          title: 'Palette de marque',
+          desc: 'Couleurs fidèles avec échange rapide et conseils de contraste.',
+        },
+        spacing: {
+          title: 'Espacement et alignement',
+          desc: 'Préréglages de crénage et baseline proches du wordmark original.',
+        },
+        export: {
+          title: 'Exports propres',
+          desc: 'PNG/SVG/JPEG transparents, bords nets et archives ZIP.',
+        },
+      },
+      actions: {
+        home: 'Retour à l’accueil',
+        progress: 'Suivre l’avancement sur GitHub',
+      },
+    },
+    nintendo: {
+      title: 'Nintendo',
+      status: 'En construction',
+      lead: 'Nous peaufinons ce générateur : palette, espacement et exports arrivent.',
+      note: 'Merci de votre patience ; essayez les autres modèles en attendant.',
+      items: {
+        palette: {
+          title: 'Palette de marque',
+          desc: 'Couleurs fidèles avec échange rapide et conseils de contraste.',
+        },
+        spacing: {
+          title: 'Espacement et alignement',
+          desc: 'Préréglages de crénage et baseline proches du wordmark original.',
+        },
+        export: {
+          title: 'Exports propres',
+          desc: 'PNG/SVG/JPEG transparents, bords nets et archives ZIP.',
+        },
+      },
+      actions: {
+        home: 'Retour à l’accueil',
+        progress: 'Suivre l’avancement sur GitHub',
+      },
+    },
+    lego: {
+      title: 'Lego',
+      status: 'En construction',
+      lead: 'Nous peaufinons ce générateur : palette, espacement et exports arrivent.',
+      note: 'Merci de votre patience ; essayez les autres modèles en attendant.',
+      items: {
+        palette: {
+          title: 'Palette de marque',
+          desc: 'Couleurs fidèles avec échange rapide et conseils de contraste.',
+        },
+        spacing: {
+          title: 'Espacement et alignement',
+          desc: 'Préréglages de crénage et baseline proches du wordmark original.',
+        },
+        export: {
+          title: 'Exports propres',
+          desc: 'PNG/SVG/JPEG transparents, bords nets et archives ZIP.',
+        },
+      },
+      actions: {
+        home: 'Retour à l’accueil',
+        progress: 'Suivre l’avancement sur GitHub',
+      },
+    },
+    marvel: {
+      title: 'Marvel',
+      status: 'En construction',
+      lead: 'Nous peaufinons ce générateur : palette, espacement et exports arrivent.',
+      note: 'Merci de votre patience ; essayez les autres modèles en attendant.',
+      items: {
+        palette: {
+          title: 'Palette de marque',
+          desc: 'Couleurs fidèles avec échange rapide et conseils de contraste.',
+        },
+        spacing: {
+          title: 'Espacement et alignement',
+          desc: 'Préréglages de crénage et baseline proches du wordmark original.',
+        },
+        export: {
+          title: 'Exports propres',
+          desc: 'PNG/SVG/JPEG transparents, bords nets et archives ZIP.',
+        },
+      },
+      actions: {
+        home: 'Retour à l’accueil',
+        progress: 'Suivre l’avancement sur GitHub',
+      },
+    },
+    bravo: {
+      title: 'Bravo',
+      status: 'En construction',
+      lead: 'Nous peaufinons ce générateur : palette, espacement et exports arrivent.',
+      note: 'Merci de votre patience ; essayez les autres modèles en attendant.',
+      items: {
+        palette: {
+          title: 'Palette de marque',
+          desc: 'Couleurs fidèles avec échange rapide et conseils de contraste.',
+        },
+        spacing: {
+          title: 'Espacement et alignement',
+          desc: 'Préréglages de crénage et baseline proches du wordmark original.',
+        },
+        export: {
+          title: 'Exports propres',
+          desc: 'PNG/SVG/JPEG transparents, bords nets et archives ZIP.',
+        },
+      },
+      actions: {
+        home: 'Retour à l’accueil',
+        progress: 'Suivre l’avancement sur GitHub',
+      },
+    },
+    amc: {
+      title: 'AMC',
+      status: 'En construction',
+      lead: 'Nous peaufinons ce générateur : palette, espacement et exports arrivent.',
+      note: 'Merci de votre patience ; essayez les autres modèles en attendant.',
+      items: {
+        palette: {
+          title: 'Palette de marque',
+          desc: 'Couleurs fidèles avec échange rapide et conseils de contraste.',
+        },
+        spacing: {
+          title: 'Espacement et alignement',
+          desc: 'Préréglages de crénage et baseline proches du wordmark original.',
+        },
+        export: {
+          title: 'Exports propres',
+          desc: 'PNG/SVG/JPEG transparents, bords nets et archives ZIP.',
         },
       },
       actions: {

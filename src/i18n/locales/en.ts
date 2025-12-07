@@ -116,6 +116,26 @@ export default {
       title: 'Vertical PH',
       description: 'Vertical Pornhub-style logo template page.',
     },
+    onlyfans: {
+      title: 'OnlyFans',
+      status: 'Under construction',
+      lead: 'The OnlyFans-style logo maker is being refreshed for better spacing and exports.',
+      note: 'Thanks for waiting. You can still explore other templates meanwhile.',
+      items: {
+        spacing: {
+          title: 'Typography tuning',
+          desc: 'Kerning and baseline presets to mirror the original wordmark feel.',
+        },
+        export: {
+          title: 'Clean exports',
+          desc: 'Transparent PNG/SVG/JPEG with crisp edges and ZIP bundles.',
+        },
+      },
+      actions: {
+        home: 'Back to home',
+        progress: 'Follow progress on GitHub',
+      },
+    },
     about: {
       title: 'About Logoly',
       subtitle: {
@@ -231,6 +251,198 @@ export default {
         export: {
           title: 'Clean exports',
           desc: 'Transparent PNG/SVG/JPEG with crisp vector edges and zip bundles.',
+        },
+      },
+      actions: {
+        home: 'Back to home',
+        progress: 'Follow progress on GitHub',
+      },
+    },
+    mastercard: {
+      title: 'Mastercard',
+      status: 'Under construction',
+      lead: 'This logo maker is being polished—colors, spacing, and exports are on the way.',
+      note: 'Thanks for your patience. Try other templates while we finish.',
+      items: {
+        palette: {
+          title: 'Signature palette',
+          desc: 'On-brand colors with quick swap and contrast tips.',
+        },
+        spacing: {
+          title: 'Spacing & alignment',
+          desc: 'Kerning and baseline presets to match the original wordmark.',
+        },
+        export: {
+          title: 'Clean exports',
+          desc: 'Transparent PNG/SVG/JPEG with crisp edges and ZIP bundles.',
+        },
+      },
+      actions: {
+        home: 'Back to home',
+        progress: 'Follow progress on GitHub',
+      },
+    },
+    bluesnap: {
+      title: 'Bluesnap',
+      status: 'Under construction',
+      lead: 'This logo maker is being polished—colors, spacing, and exports are on the way.',
+      note: 'Thanks for your patience. Try other templates while we finish.',
+      items: {
+        palette: {
+          title: 'Signature palette',
+          desc: 'On-brand colors with quick swap and contrast tips.',
+        },
+        spacing: {
+          title: 'Spacing & alignment',
+          desc: 'Kerning and baseline presets to match the original wordmark.',
+        },
+        export: {
+          title: 'Clean exports',
+          desc: 'Transparent PNG/SVG/JPEG with crisp edges and ZIP bundles.',
+        },
+      },
+      actions: {
+        home: 'Back to home',
+        progress: 'Follow progress on GitHub',
+      },
+    },
+    sega: {
+      title: 'SEGA',
+      status: 'Under construction',
+      lead: 'This logo maker is being polished—colors, spacing, and exports are on the way.',
+      note: 'Thanks for your patience. Try other templates while we finish.',
+      items: {
+        palette: {
+          title: 'Signature palette',
+          desc: 'On-brand colors with quick swap and contrast tips.',
+        },
+        spacing: {
+          title: 'Spacing & alignment',
+          desc: 'Kerning and baseline presets to match the original wordmark.',
+        },
+        export: {
+          title: 'Clean exports',
+          desc: 'Transparent PNG/SVG/JPEG with crisp edges and ZIP bundles.',
+        },
+      },
+      actions: {
+        home: 'Back to home',
+        progress: 'Follow progress on GitHub',
+      },
+    },
+    nintendo: {
+      title: 'Nintendo',
+      status: 'Under construction',
+      lead: 'This logo maker is being polished—colors, spacing, and exports are on the way.',
+      note: 'Thanks for your patience. Try other templates while we finish.',
+      items: {
+        palette: {
+          title: 'Signature palette',
+          desc: 'On-brand colors with quick swap and contrast tips.',
+        },
+        spacing: {
+          title: 'Spacing & alignment',
+          desc: 'Kerning and baseline presets to match the original wordmark.',
+        },
+        export: {
+          title: 'Clean exports',
+          desc: 'Transparent PNG/SVG/JPEG with crisp edges and ZIP bundles.',
+        },
+      },
+      actions: {
+        home: 'Back to home',
+        progress: 'Follow progress on GitHub',
+      },
+    },
+    lego: {
+      title: 'Lego',
+      status: 'Under construction',
+      lead: 'This logo maker is being polished—colors, spacing, and exports are on the way.',
+      note: 'Thanks for your patience. Try other templates while we finish.',
+      items: {
+        palette: {
+          title: 'Signature palette',
+          desc: 'On-brand colors with quick swap and contrast tips.',
+        },
+        spacing: {
+          title: 'Spacing & alignment',
+          desc: 'Kerning and baseline presets to match the original wordmark.',
+        },
+        export: {
+          title: 'Clean exports',
+          desc: 'Transparent PNG/SVG/JPEG with crisp edges and ZIP bundles.',
+        },
+      },
+      actions: {
+        home: 'Back to home',
+        progress: 'Follow progress on GitHub',
+      },
+    },
+    marvel: {
+      title: 'Marvel',
+      status: 'Under construction',
+      lead: 'This logo maker is being polished—colors, spacing, and exports are on the way.',
+      note: 'Thanks for your patience. Try other templates while we finish.',
+      items: {
+        palette: {
+          title: 'Signature palette',
+          desc: 'On-brand colors with quick swap and contrast tips.',
+        },
+        spacing: {
+          title: 'Spacing & alignment',
+          desc: 'Kerning and baseline presets to match the original wordmark.',
+        },
+        export: {
+          title: 'Clean exports',
+          desc: 'Transparent PNG/SVG/JPEG with crisp edges and ZIP bundles.',
+        },
+      },
+      actions: {
+        home: 'Back to home',
+        progress: 'Follow progress on GitHub',
+      },
+    },
+    bravo: {
+      title: 'Bravo',
+      status: 'Under construction',
+      lead: 'This logo maker is being polished—colors, spacing, and exports are on the way.',
+      note: 'Thanks for your patience. Try other templates while we finish.',
+      items: {
+        palette: {
+          title: 'Signature palette',
+          desc: 'On-brand colors with quick swap and contrast tips.',
+        },
+        spacing: {
+          title: 'Spacing & alignment',
+          desc: 'Kerning and baseline presets to match the original wordmark.',
+        },
+        export: {
+          title: 'Clean exports',
+          desc: 'Transparent PNG/SVG/JPEG with crisp edges and ZIP bundles.',
+        },
+      },
+      actions: {
+        home: 'Back to home',
+        progress: 'Follow progress on GitHub',
+      },
+    },
+    amc: {
+      title: 'AMC',
+      status: 'Under construction',
+      lead: 'This logo maker is being polished—colors, spacing, and exports are on the way.',
+      note: 'Thanks for your patience. Try other templates while we finish.',
+      items: {
+        palette: {
+          title: 'Signature palette',
+          desc: 'On-brand colors with quick swap and contrast tips.',
+        },
+        spacing: {
+          title: 'Spacing & alignment',
+          desc: 'Kerning and baseline presets to match the original wordmark.',
+        },
+        export: {
+          title: 'Clean exports',
+          desc: 'Transparent PNG/SVG/JPEG with crisp edges and ZIP bundles.',
         },
       },
       actions: {

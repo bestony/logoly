@@ -27,19 +27,19 @@ const resolveTitle = (title: ViewCase['title']) => (typeof title === 'function' 
 const cases: ViewCase[] = [
   { component: Home, title: () => i18n.global.t('page.home.title') },
   { component: VerticalPh, title: () => i18n.global.t('page.verticalPh.title') },
-  { component: OnlyFans, title: 'OnlyFans' },
+  { component: OnlyFans, title: () => i18n.global.t('page.onlyfans.title') },
   { component: About, title: () => i18n.global.t('page.about.title') },
   { component: FAQ, title: () => i18n.global.t('page.faq.title') },
   { component: FedEx, title: () => i18n.global.t('page.fedex.title') },
-  { component: Mastercard, title: 'Mastercard' },
-  { component: Bluesnap, title: 'Bluesnap' },
+  { component: Mastercard, title: () => i18n.global.t('page.mastercard.title') },
+  { component: Bluesnap, title: () => i18n.global.t('page.bluesnap.title') },
   { component: SimpleText, title: 'Simple Text' },
-  { component: SEGA, title: 'SEGA' },
-  { component: Nintendo, title: 'Nintendo' },
-  { component: Lego, title: 'Lego' },
-  { component: Marvel, title: 'Marvel' },
-  { component: Bravo, title: 'Bravo' },
-  { component: AMC, title: 'AMC' },
+  { component: SEGA, title: () => i18n.global.t('page.sega.title') },
+  { component: Nintendo, title: () => i18n.global.t('page.nintendo.title') },
+  { component: Lego, title: () => i18n.global.t('page.lego.title') },
+  { component: Marvel, title: () => i18n.global.t('page.marvel.title') },
+  { component: Bravo, title: () => i18n.global.t('page.bravo.title') },
+  { component: AMC, title: () => i18n.global.t('page.amc.title') },
 ]
 
 describe('Static views', () => {
