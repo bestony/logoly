@@ -7,7 +7,7 @@ export interface AppFooterProps {
 function DefaultFooterContent() {
 	return (
 		<>
-			<p>&copy; {new Date().getFullYear()} Logoly.</p>
+			<p>&copy; Logoly.</p>
 			<p>Built with TanStack Start.</p>
 		</>
 	);
