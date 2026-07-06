@@ -6,6 +6,7 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { AppLayout } from "@/components/layout";
 import {
 	GoogleAnalyticsPageviewTracker,
 	getGoogleAnalyticsHeadScripts,
@@ -50,7 +51,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<GoogleAnalyticsPageviewTracker />
-				{children}
+				<AppLayout>{children}</AppLayout>
 				<TanStackDevtools
 					config={{
 						position: "bottom-right",
