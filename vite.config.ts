@@ -1,22 +1,28 @@
-import { paraglideVitePlugin } from '@inlang/paraglide-js'
-import { defineConfig } from 'vite'
-import { devtools } from '@tanstack/devtools-vite'
+import { cloudflare } from "@cloudflare/vite-plugin";
+import { paraglideVitePlugin } from "@inlang/paraglide-js";
+import tailwindcss from "@tailwindcss/vite";
+import { devtools } from "@tanstack/devtools-vite";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import viteReact from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
-import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+const config = defineConfig(({ mode }) => {
+	const isTest = mode === "test" || process.env.VITEST === "true";
 
-import viteReact from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import { cloudflare } from '@cloudflare/vite-plugin'
+	return {
+		resolve: { tsconfigPaths: true },
+		plugins: [
+			paraglideVitePlugin({
+				project: "./project.inlang",
+				outdir: "./src/paraglide",
+			}),
+			devtools(),
+			...(isTest ? [] : [cloudflare({ viteEnvironment: { name: "ssr" } })]),
+			tailwindcss(),
+			tanstackStart(),
+			viteReact(),
+		],
+	};
+});
 
-const config = defineConfig({
-  resolve: { tsconfigPaths: true },
-  plugins: [paraglideVitePlugin({ project: './project.inlang', outdir: './src/paraglide' }),
-    devtools(),
-    cloudflare({ viteEnvironment: { name: 'ssr' } }),
-    tailwindcss(),
-    tanstackStart(),
-    viteReact(),
-  ],
-})
-
-export default config
+export default config;

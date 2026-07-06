@@ -6,6 +6,10 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import {
+	GoogleAnalyticsPageviewTracker,
+	getGoogleAnalyticsHeadScripts,
+} from "../integrations/google-analytics";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 
@@ -33,6 +37,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				href: appCss,
 			},
 		],
+		scripts: getGoogleAnalyticsHeadScripts(),
 	}),
 	shellComponent: RootDocument,
 });
@@ -44,6 +49,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
+				<GoogleAnalyticsPageviewTracker />
 				{children}
 				<TanStackDevtools
 					config={{
