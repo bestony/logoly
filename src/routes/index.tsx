@@ -11,7 +11,7 @@ function Home() {
 			<p className="mt-4 text-lg">
 				Edit <code>src/routes/index.tsx</code> to get started.
 			</p>
-			<Button>shadcn/ui is ready</Button>
+			<Button variant="yellow">shadcn/ui is ready</Button>
 		</div>
 	);
 }
